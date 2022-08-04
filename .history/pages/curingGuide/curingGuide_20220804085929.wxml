@@ -1,0 +1,17 @@
+<!--pages/curingGuide/curingGuide.wxml-->
+<view class="curingGuide">
+    <view class="homePage"> 
+        <view class="curingGuideContext">
+            <!-- <view class="title">养护指南</view> -->
+            <image class="guideTitle" src="../../icon/curingGuide.png"></image>
+            <view class="guideContext" wx:for="{{curingGuide}}" wx:for-item="guideItem" data-index="{{index}}">
+                <image wx:if="{{guideItem.type == 0}}" src="../../icon/"></image>
+                <image wx:if="{{guideItem.type == 1}}" src="../../icon/warn.png"></image>
+                <image wx:if="{{guideItem.type == 2}}" src="../../icon/warn.png"></image>
+                <view class="text">{{guideItem.context}}</view>
+            </view>
+        </view>
+        <view class="itemList">
+        </view>
+    </view>
+</view>

@@ -1,0 +1,79 @@
+/* pages/wikiHome.wxss */
+
+.homePage{
+    width: 750rpx;
+    /* height: 1150rpx; */
+    height: calc(100vh - 80rpx);
+
+    background: #EEEAE7;
+    border-radius: 40rpx;
+}
+
+.searchTable{
+    width: 90%;
+    height: 55rpx;
+    background: #fff;
+    position: relative;
+    top: 40rpx;
+    margin: auto;   
+    display: flex; 
+    border: 1rpx solid #6E5D52;
+    border-radius: 30rpx;
+}
+    .searchIconPosition{
+        position: relative;
+        top: -1rpx;
+        left: -1rpx;
+        width: 80rpx;
+        height: 55rpx;
+        /* border-right: 1rpx double #6E5D52; */
+        /* border-top: 1rpx solid #6E5D52; */
+        border: 1rpx solid #6E5D52;
+        border-radius: 30rpx;
+    }
+    .searchIcon{
+        width: 40rpx;
+        height: 40rpx;
+        position: relative;
+        top: 9rpx;
+        left: 20rpx;
+    }
+    .searchInput{
+        height: 55rpx;
+        width: 580rpx;
+        position: relative;
+        left: 10rpx;
+    }
+    .selectTable{
+        position: relative;
+        top: 90rpx;
+    }
+    #tabs{
+        display: flex;
+        justify-content: space-around;
+    }
+     
+    .item{
+        flex:1 0%;
+        margin:0rpx 10rpx 10rpx 10rpx;
+        padding-bottom: 12rpx;
+        color:black;
+        text-align: center;
+
+    }
+     
+    .active{
+        background-color: #F6F4EF;
+        color: #009DFF;
+        border-bottom: 4rpx solid #6E5D52;
+    }
+     
+    .swiper{
+        display: block;
+        width: 100%;
+        overflow: hidden; 
+    } 
+    .swiper view{ 
+        text-align: center; 
+        padding-top: 100rpx; 
+    }

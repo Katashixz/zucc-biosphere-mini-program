@@ -1,0 +1,6 @@
+<!--pages/wikiHome.wxml-->
+<view >
+<view class="homePage">
+    111
+</view>
+</view>

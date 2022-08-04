@@ -1,0 +1,23 @@
+<!--pages/wikiHome.wxml-->
+<view class="homePage">
+    <view class="searchTable">
+        <view class="searchIconPosition">
+            <image src="/icon/searchIcon.png" class="searchIcon"></image>
+        </view>
+        <input class="searchInput"/>
+    </view>
+    <view class="selectTable">
+    <view id="tabs" >
+    <view wx:for="{{tabs}}" data-idx="{{index}}" 
+class="item {{checked==index?'active':''}}" bindtap="navTip">
+        {{item}}
+    </view>
+</view>
+ 
+<swiper current="{{checked}}" class="swiper" duration="300" bindchange="bindChange"> 
+  <swiper-item wx:for="{{tabs}}"> 
+     <view>页面{{index+1}}</view> 
+  </swiper-item> 
+</swiper>
+    </view>
+</view>

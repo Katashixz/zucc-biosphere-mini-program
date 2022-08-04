@@ -1,0 +1,15 @@
+/* pages/wikiHome.wxss */
+
+.homePage{
+    width: 750rpx;
+    height: 1150rpx;
+    background: #EEEAE7;
+    border-radius: 40rpx;
+}
+
+.searchTable{
+    padding-top: 80rpx;
+    width: 650rpx;
+    height: 62rpx;
+    background: #fff;    
+}

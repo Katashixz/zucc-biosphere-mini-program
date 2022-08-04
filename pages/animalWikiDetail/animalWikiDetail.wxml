@@ -1,0 +1,35 @@
+<!--pages/wikiDetail/wikiDetail.wxml-->
+<view class="wikiDetail">
+    <view class="homePage">
+    <view class="imageList">
+        <swiper class="imageSwiper" autoplay="true" interval="3000" circular="true" indicator-dots="true" indicator-color="white" indicator-active-color="#aabbcc" wx:key="imageSwiperKey">
+            <swiper-item wx:for="{{wikiData.imageList}}"  wx:for-item="dataItem" data-index="{{index}}" wx:key="imageListKey">
+                <image mode="scaleToFill" src="{{dataItem.url}}" show-menu-by-longpress="true"></image>
+            </swiper-item>
+        </swiper>
+    </view>
+    <view class="divider">
+    </view>
+    <view class="dataList">
+        <text class="nickName inCenter">{{wikiData.nickName}}</text>
+            <view class="contentArea">
+                <view class="dataListContentLeft">
+                    <view class="flexType" wx:if="{{index%2==0}}" wx:for="{{wikiData.map}}" wx:for-item="map" wx:key="mapKey" data-index="{{index}}">
+                        <text class="title">{{map.title}}</text>
+                        <text class="content">{{map.content}}</text>
+                    </view>
+                </view>
+                <view class="dataListContentRight">
+                    <view class="flexType" wx:if="{{index%2==1}}" wx:for="{{wikiData.map}}" wx:for-item="map" wx:key="mapKey" data-index="{{index}}">
+                        <text class="title">{{map.title}}</text>
+                        <text class="content">{{map.content}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="relationList">
+                <text class=""></text>
+            </view>
+            <text class="endText" style="left: 160rpx; top: 0rpx;">————没有内容了哦————</text>
+    </view>
+</view>
+</view>

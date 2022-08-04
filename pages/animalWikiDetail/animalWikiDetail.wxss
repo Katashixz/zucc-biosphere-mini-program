@@ -1,0 +1,82 @@
+/* pages/wikiDetail/wikiDetail.wxss */
+.imageList{
+    width: 720rpx;
+    height: 540rpx;
+    position: relative;
+    top: 60rpx;
+    left: 15rpx;
+    border-radius: 68rpx;
+    overflow: hidden;
+
+}
+.imageSwiper{
+    width: 100%;
+    height: 100%;
+}
+
+.imageSwiper swiper-item image{
+    /* border-radius: 68rpx; */
+    width: 100%;
+    height: 550rpx;
+}
+.divider{
+    border-top: 1px solid #797979;
+    top: 80rpx;
+    width: 300rpx;
+    position: relative;
+    left: 225rpx;
+}
+.dataList{
+    background-color: #F6F4EF;
+    position: relative;
+    /* height: 100%; */
+    border-radius: 56rpx;
+    top: 80rpx;
+}
+.nickName{
+    font-size: 72rpx;
+    font-weight: 600;
+    /* left: 300rpx; */
+    color: #6E5D52;
+}
+.contentArea{
+    display: flex;
+    /* flex-direction: row; */
+    width: 750rpx;
+    
+    /* float:left; */
+
+}
+.dataListContentLeft{
+    width: 180rpx;
+    margin-top: 20rpx;
+    display: flex;
+    position: relative;
+    margin-left: 80rpx;
+    flex-direction: column;
+    /* float:left; */
+}
+.dataListContentRight{
+    width: 180rpx;
+    margin-top: 20rpx;
+    display: flex;
+    position: relative;
+    margin-left: 200rpx;
+    flex-direction: column;
+    /* float:left; */
+}
+.title{
+    font-size: 34rpx;
+    font-weight: 600;
+    color: #978980;
+}
+.content{
+    font-size: 34rpx;
+    font-weight: 600;
+    color: #6E5D52;
+}
+.flexType{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20rpx;
+}

@@ -1,0 +1,41 @@
+/**app.wxss**/
+
+/* .container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}  */
+
+.homePage{
+    width: 750rpx;
+    /* height: 1150rpx; */
+    height: 100vh;
+    /* height: 100vh; */
+
+    background: #EEEAE7;
+    /* border-radius: 40rpx; */
+    border-top-left-radius: 40rpx;
+    border-top-right-radius: 40rpx;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.endText{
+    position: relative;
+    height: 40rpx;
+    top: 20rpx;
+    color: #6E5D52;
+    font-size: 30rpx;
+    text-align: center;
+}
+.inCenter{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.avatarImage{
+    border-radius: 100rpx;
+}

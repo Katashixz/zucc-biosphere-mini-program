@@ -1,0 +1,10 @@
+<!--pages/wikiHome.wxml-->
+<view class="homePage">
+    <view class="searchTable">
+        <view class="searchIconPosition">
+            <image src="/icon/searchIcon.png" class="searchIcon"></image>
+        </view>
+        <input class="serachInput"/></input>
+    </view>
+    <view class="selectTable"></view>
+</view>

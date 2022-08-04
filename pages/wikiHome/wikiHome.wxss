@@ -1,0 +1,140 @@
+/* pages/wikiHome.wxss */
+
+.homePage{
+    height: calc(100vh - 80rpx);
+}
+
+.searchTable{
+    width: 90%;
+    height: 55rpx;
+    background: #fff;
+    position: relative;
+    top: 40rpx;
+    margin: auto;   
+    display: flex; 
+    border: 1rpx solid #6E5D52;
+    border-radius: 30rpx;
+}
+    .searchIconPosition{
+        position: relative;
+        top: -1rpx;
+        left: -1rpx;
+        width: 80rpx;
+        height: 55rpx;
+        /* border-right: 1rpx double #6E5D52; */
+        /* border-top: 1rpx solid #6E5D52; */
+        border: 1rpx solid #6E5D52;
+        border-radius: 30rpx;
+    }
+    .searchIcon{
+        width: 40rpx;
+        height: 40rpx;
+        position: relative;
+        top: 9rpx;
+        left: 20rpx;
+    }
+    .searchInput{
+        height: 55rpx;
+        width: 580rpx;
+        position: relative;
+        left: 10rpx;
+    }
+    .selectTable{
+        position: relative;
+        top: 90rpx;
+        width: 100%;
+        height: 100%;
+    }
+    .divider{
+        margin: auto;   
+        width: 80%;
+        height: 0rpx;
+        border-top: 1rpx solid #6E5D52;
+    }
+    #tabs{
+        border-top-left-radius: 30rpx;
+        border-top-right-radius: 30rpx;
+        position: relative;
+        margin: auto;   
+        display: flex;
+        justify-content: space-around;
+        background-color: #F6F4EF;
+        width: 40%;
+        /* border-bottom: 1rpx solid #6E5D52; */
+    }
+     
+    .item{
+        flex:1 0%;
+        margin:10rpx 10rpx 10rpx 10rpx;
+        /* padding-bottom: 12rpx; */
+        color:#777777;
+        text-align: center;
+        font-weight: bold;
+    }
+     
+    .active{
+        color: #009DFF;
+        text-align: center;
+        /* border-bottom: 4rpx solid #6E5D52; */
+    }
+    .active::after{
+        position: relative;
+        bottom: -10rpx;
+        content: '';
+        width: 60%;
+        height: 1px;
+        display: block;
+        margin: 0 auto;
+        border-bottom: 3px solid #6E5D52;
+        /* padding: 1px; */
+    }
+     
+    .swiper{
+        border-top-left-radius: 30rpx;
+        border-top-right-radius: 30rpx;
+        background-color: #F6F4EF;
+        display: block;
+        width: 100%;
+        /* overflow: hidden;  */
+        height: 100vh;
+        
+        /* height: calc(100vh - 80rpx); */
+
+    } 
+    .swiper view{ 
+        text-align: center; 
+        /* padding-top: 40rpx; */
+
+        border-radius: 20rpx;
+    }
+    .swiper swiper-item{
+        display: flex;
+        /* position: relative; */
+        align-content: flex-start;
+        flex-wrap: wrap;
+        /* overflow: hidden; */
+        /* justify-content: space-between; */
+    }
+    .dataItem{
+        top: 0rpx;
+        margin-top: 40rpx;
+        margin-left: 60rpx;
+        bottom: 40rpx;
+        display: flex;
+        width: 38%;
+        height: 140rpx;
+        background-color: #fff;
+    }
+    .dataItem image{
+        /* margin: auto; */
+        margin-top: 15rpx;
+        margin-left: 10rpx;
+        width: 114rpx;
+        height: 114rpx;
+        border-radius: 100rpx;
+    }
+    .dataItem text{
+        margin: auto;
+        font-size: 140%;
+        color: #6E5D52;
+    }

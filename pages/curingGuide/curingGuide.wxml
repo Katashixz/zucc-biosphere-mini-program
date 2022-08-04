@@ -1,0 +1,29 @@
+<!--pages/curingGuide/curingGuide.wxml-->
+<view class="curingGuide">
+    <view class="homePage"> 
+        <view class="curingGuideContext">
+            <!-- <view class="title">养护指南</view> -->
+            <image class="guideTitle" src="../../icon/curingGuide.png"></image>
+            <view class="guideContext" wx:for="{{curingGuide}}" wx:for-item="guideItem" data-index="{{index}}" wx:key="curingGuideKey">
+                <image wx:if="{{guideItem.type == 0}}" src="../../icon/forbidden.png"></image>
+                <image wx:if="{{guideItem.type == 1}}" src="../../icon/pass.png"></image>
+                <image wx:if="{{guideItem.type == 2}}" src="../../icon/warn.png"></image>
+                <text class="text" user-select="true">{{guideItem.context}}</text>
+            </view>
+        </view>
+        <view class="divider"></view>
+        <view class="itemList"> 
+            <view wx:for="{{targetList}}" wx:for-item="listItem" data-index="{{index}}" wx:key="targetListKey" bindtap="toWikiDetail">
+                <view class="listItem" wx:if="{{index == 0}}" style="margin-top: 0rpx;">
+                    <image src="{{listItem.avatarUrl}}"></image>
+                    <text>{{listItem.name}}</text>
+                </view>
+                <view class="listItem" wx:if="{{index > 0}}">
+                    <image src="{{listItem.avatarUrl}}"></image>
+                    <text>{{listItem.name}}</text>
+                </view>
+            </view>
+            <text class="endText" style="left: 120rpx;">————没有内容了哦————</text>
+        </view>
+    </view>
+</view>
