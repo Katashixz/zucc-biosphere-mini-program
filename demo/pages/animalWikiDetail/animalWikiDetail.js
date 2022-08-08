@@ -51,7 +51,38 @@ Page({
             ],
             relation: [
                 {
+                    id:1,
                     name: "小黑の崽",
+                    imageUrl: "https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/postImages/%E7%A7%91%E6%99%AE%E5%9B%BE%E7%89%87/%E7%8C%AB%E5%92%AA/%E5%B0%8F%E9%BB%91%E5%9B%BE%E7%89%87/d40a35270267f578eb05d2b8b8a88b2.jpg"
+                },
+                {
+                    id:2,
+                    name: "小黑の二崽",
+                    imageUrl: "https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/postImages/%E7%A7%91%E6%99%AE%E5%9B%BE%E7%89%87/%E7%8C%AB%E5%92%AA/%E5%B0%8F%E9%BB%91%E5%9B%BE%E7%89%87/d40a35270267f578eb05d2b8b8a88b2.jpg"
+                },
+                {
+                    id:3,
+                    name: "小黑の三三三三三三崽",
+                    imageUrl: "https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/postImages/%E7%A7%91%E6%99%AE%E5%9B%BE%E7%89%87/%E7%8C%AB%E5%92%AA/%E5%B0%8F%E9%BB%91%E5%9B%BE%E7%89%87/d40a35270267f578eb05d2b8b8a88b2.jpg"
+                },
+                {
+                    id:4,
+                    name: "小黑の四崽",
+                    imageUrl: "https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/postImages/%E7%A7%91%E6%99%AE%E5%9B%BE%E7%89%87/%E7%8C%AB%E5%92%AA/%E5%B0%8F%E9%BB%91%E5%9B%BE%E7%89%87/d40a35270267f578eb05d2b8b8a88b2.jpg"
+                },
+                {
+                    id:5,
+                    name: "小黑の五崽",
+                    imageUrl: "https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/postImages/%E7%A7%91%E6%99%AE%E5%9B%BE%E7%89%87/%E7%8C%AB%E5%92%AA/%E5%B0%8F%E9%BB%91%E5%9B%BE%E7%89%87/d40a35270267f578eb05d2b8b8a88b2.jpg"
+                },
+                {
+                    id:6,
+                    name: "小黑の六崽",
+                    imageUrl: "https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/postImages/%E7%A7%91%E6%99%AE%E5%9B%BE%E7%89%87/%E7%8C%AB%E5%92%AA/%E5%B0%8F%E9%BB%91%E5%9B%BE%E7%89%87/d40a35270267f578eb05d2b8b8a88b2.jpg"
+                },
+                {
+                    id:7,
+                    name: "小黑の七崽",
                     imageUrl: "https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/postImages/%E7%A7%91%E6%99%AE%E5%9B%BE%E7%89%87/%E7%8C%AB%E5%92%AA/%E5%B0%8F%E9%BB%91%E5%9B%BE%E7%89%87/d40a35270267f578eb05d2b8b8a88b2.jpg"
                 }
             ]
@@ -60,11 +91,21 @@ Page({
     },
 
     /**
+     * 跳转到其他动物
+     */
+    toAnotherAnimal: function(e){
+        wx.navigateTo({
+            url: '/pages/animalWikiDetail/animalWikiDetail?id='+this.data.wikiData.relation[e.currentTarget.dataset.index].id+'&name='+this.data.wikiData.relation[e.currentTarget.dataset.index].name
+
+        })
+    },
+
+    /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
         var that = this;
-        console.log(options)
+        // console.log(options)
         if(options.name != undefined){
             wx.setNavigationBarTitle({
                 title: options.name,

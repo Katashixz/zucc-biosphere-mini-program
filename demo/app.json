@@ -7,7 +7,8 @@
         "pages/communityHome/communityHome",
         "custom-tab-bar/index",
         "pages/curingGuide/curingGuide",
-        "pages/animalWikiDetail/animalWikiDetail"
+        "pages/animalWikiDetail/animalWikiDetail",
+        "pages/plantsWikiDetail/plantsWikiDetail"
     ],
     "window": {
         "backgroundTextStyle": "light",

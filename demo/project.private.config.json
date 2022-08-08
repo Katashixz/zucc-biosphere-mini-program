@@ -20,6 +20,20 @@
                     "query": "",
                     "launchMode": "default",
                     "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/wikiHome/wikiHome",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/myInfoHome/myInfoHome",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }

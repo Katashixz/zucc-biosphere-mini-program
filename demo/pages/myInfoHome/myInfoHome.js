@@ -6,6 +6,9 @@ Page({
      */
     data: {
 
+        userInfo: {},
+        hasUserInfo: false,
+        
     },
 
     /**

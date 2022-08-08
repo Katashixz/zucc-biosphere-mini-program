@@ -1,0 +1,19 @@
+<!--pages/myInfoHome/myInfoHome.wxml-->
+<view class="myInfoHome">
+    <view class="homePage">
+        <view class="message">
+            <image src="../../icon/message.png"></image>
+        </view>
+        <view  wx:if="{{!hasUserInfo}}">
+            <button id="userLogin" bindtap="getUserProfile"> 登录 </button>
+        </view>
+        <view wx:else="{{!hasUserInfo}}" class="userInfo">
+            <text>Katashi</text>
+            <image src=""></image>
+        </view>
+        <view class="userLevel"></view>
+        <view class="myList">
+        </view>
+    </view>
+
+</view>

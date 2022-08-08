@@ -48,7 +48,7 @@
 
 }
 .dataListContentLeft{
-    width: 180rpx;
+    width: 240rpx;
     margin-top: 20rpx;
     display: flex;
     position: relative;
@@ -57,11 +57,11 @@
     /* float:left; */
 }
 .dataListContentRight{
-    width: 180rpx;
+    width: 240rpx;
     margin-top: 20rpx;
     display: flex;
     position: relative;
-    margin-left: 200rpx;
+    margin-left: 130rpx;
     flex-direction: column;
     /* float:left; */
 }
@@ -79,4 +79,31 @@
     display: flex;
     flex-direction: column;
     margin-top: 20rpx;
+}
+.relationList{
+    width: 750rpx;
+    /* height: 200rpx; */
+    display: flex;
+    flex-wrap: wrap;
+}
+.relationItem {
+    width: 140rpx;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20rpx;
+    margin-left: 35rpx;
+    /* margin-bottom: 20rpx; */
+    /* position: relative;
+    left: 40rpx;
+    top: 20rpx; */
+}
+.relationItem image{
+    /* position: relative; */
+    /* left: 20rpx; */
+    margin: 0rpx auto;
+    width: 114rpx;
+    height: 114rpx;
+}
+.relationItem text{
+    color: #6E5D52;
 }

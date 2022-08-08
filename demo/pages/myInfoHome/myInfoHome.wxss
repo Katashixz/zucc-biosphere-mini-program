@@ -1,0 +1,12 @@
+/* pages/myInfoHome/myInfoHome.wxss */
+.message{
+    position: relative;
+}
+.message image{
+    width: 64rpx;
+    height: 64rpx;
+    position: absolute;
+    margin-right: 10rpx;
+    margin-top: 5rpx;
+    right: 0;
+}

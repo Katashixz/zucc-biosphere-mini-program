@@ -27,9 +27,12 @@
                 </view>
             </view>
             <view class="relationList">
-                <text class=""></text>
+                <view class="relationItem" wx:for="{{wikiData.relation}}" wx:for-item="relation" wx:key="relationKey" data-index="{{index}}" bindtap="toAnotherAnimal">
+                    <image class="avatarImage" src="{{relation.imageUrl}}"></image>
+                    <text class="inCenter">{{relation.name}}</text>                    
+                </view>
             </view>
-            <text class="endText" style="left: 160rpx; top: 0rpx;">————没有内容了哦————</text>
+            <text class="endText" style="left: 160rpx; top: 20rpx;">————没有内容了哦————</text>
     </view>
 </view>
 </view>

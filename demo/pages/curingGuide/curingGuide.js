@@ -62,7 +62,7 @@ Page({
      */
     onLoad(options) {
         var that = this;
-        console.log(options)
+        // console.log(options)
         if(options.name != undefined){
             wx.setNavigationBarTitle({
                 title: options.name,
