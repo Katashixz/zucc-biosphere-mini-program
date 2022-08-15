@@ -1,6 +1,7 @@
 /* pages/myInfoHome/myInfoHome.wxss */
 .message{
     position: relative;
+    height: 64rpx;
 }
 .message image{
     width: 64rpx;
@@ -9,4 +10,115 @@
     margin-right: 10rpx;
     margin-top: 5rpx;
     right: 0;
+}
+.loginButton{
+    
+    width: 750rpx;
+    height: 300rpx;
+    /* background-color: #DDD8D0; */
+    position: relative;
+    /* top: 50rpx; */
+    border-bottom-left-radius: 50rpx;
+    border-bottom-right-radius: 50rpx;
+
+}
+.loginButton image{
+    
+    width: 220rpx;
+    height: 220rpx;
+    position: relative;
+    left: 440rpx;
+    top: -20rpx;
+}
+.loginButton button{
+    width: 400rpx;
+    height: 90rpx;
+    font-size: 50rpx;
+    position: relative;
+    top: 120rpx;
+    left: -140rpx;
+    border-radius: 60rpx;
+    background-color: #EEEAE7;
+    color: #333333;
+    /* background-color: #ffffff; */
+    /* color: #7A685B; */
+}
+.userLevel{
+    position: relative;
+    left: 35rpx;
+    width: 680rpx;
+    height: 120rpx;
+    background-color: #ffffff;
+    border-radius: 30rpx;
+}
+.left{
+    font-size: 40rpx;
+    margin-top: 30rpx;
+    margin-left: 50rpx;
+    margin-right: 20rpx;
+
+}
+.right{
+    margin-top: 35rpx;
+    margin-right: 50rpx;
+
+    font-size: 50rpx;
+    color: #EBB844;
+}
+.myList{
+    position: relative;
+    top: 40rpx;
+    left: 35rpx;
+    border-radius: 30rpx;
+    width: 680rpx;
+    height: 760rpx;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+.listItem{
+    width: 670rpx;
+    height: 104rpx;
+    display: flex;
+}
+
+.itemIcon{
+    margin-top: 14rpx;
+    margin-left: 30rpx;
+    height: 75rpx;
+    /* height: 75rpx; */
+    width: 75rpx;
+}
+.itemGo{
+    height: 60rpx;
+    width: 60rpx;
+    position: absolute;
+    margin-top: 24rpx;
+    /* top: 14rpx; */
+    right: 40rpx;
+}
+.itemText{
+    position: relative;
+    top: 30rpx;
+    font-size: 35rpx;
+    left: 40rpx;
+}
+.listItemLine{
+    width: 630rpx;
+    left: 25rpx;
+    border-bottom: 1rpx dashed grey;
+    position: relative;
+    /* bottom: 0rpx; */
+    /* top: 103rpx; */
+}
+.button::after{
+    border: none;
+}
+.emailMe{
+    display: flex !important;
+    width: 670rpx !important;
+    height: 104rpx !important;
+    background-color: #ffffff  !important;
+    border-color: #ffffff;
+
 }
