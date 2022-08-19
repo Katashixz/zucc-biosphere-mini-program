@@ -1,2 +1,103 @@
 <!--pages/commuityHome/communityHome.wxml-->
-<text>pages/commuityHome/communityHome.wxml</text>
+<view class="communityHome">
+    <view class="homePage">
+        <!-- <view class="searchTable">
+            <view class="searchIconPosition">
+                <image src="/icon/searchIcon.png" class="searchIcon"></image>
+            </view>
+            <input class="searchInput"/>
+        </view> -->
+        <view class="hotPost">
+            <view class="hotPostLeft">
+                <text class="hotText">热门讨论</text>
+                <image class="hotGif" src="https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/dancing.gif" mode="heightFix"/>
+            </view>
+            <swiper class="hotPostRight" autoplay="true" interval="2500" duration="1000" circular="true" vertical="true">
+                <swiper-item item-id=""
+                class="hotPostList" 
+                wx:for="{{tenHotPosts}}"
+                wx:key="postID"
+                wx:for-item="item"
+                data-index="{{index}}"
+                bindtap="toHotPost"
+                >
+                <view class="itemContent">
+
+                    <text class="number" > {{index == 9? index + 1: '0' + (index + 1)}}</text>
+                    <text class="itemText">{{item.postContent}}</text>
+                </view>
+                </swiper-item>
+            </swiper>
+        </view>
+        <view class="twoButton">
+            <button class="adoptionDiary btn" type="primary" bindtap="toAdoptionDiary">
+            领养日记
+            </button>
+        <button class="shop btn" type="primary" disabled="{{disabled}}" bindtap="tobioinfo">
+            商城
+        </button>
+        </view>
+        <view class="postList">
+            <view class="post" wx:for="{{postList}}" wx:key="postID"
+        wx:for-item="postItem" data-index="{{index}}"
+        bindtap="toPost">
+                <view class="postLineTop">
+                    <view class="avatar" >
+                        <image mode="aspectFill" src="{{postItem.userAvatarUrl}}" />
+                    </view>
+                    <view class="nameAndPostTime">
+                        <view class="postManName">{{postItem.userID}}</view>
+                        <view class="postTime">发布于{{postItem.postDate}}</view>
+                    </view>
+                </view>
+                <view class="postLineMid">
+                    <text>
+                        <text class="themeColor">#{{postItem.postTheme}}#</text>
+                        {{postItem.postContent}}
+                    </text>
+                    <view class="imageWithContent">
+                        <view class="singleImage"
+                        wx:for="{{postItem.postImage}}"
+                        wx:for-item="imageItem"
+                        wx:for-index="index2"
+                        wx:key="imageItemKey"
+                        >
+                            <image mode="aspectFill" src="{{imageItem.imageurl}}"
+                            data-idx="{{index}}"
+                            data-idx2="{{index2}}"
+                            catchtap="handleImagePreview"
+                            />
+                        </view>
+                    </view>
+                </view>
+                <view class="postLineBottom">
+                    <view class="postOperate" 
+                catchtap="changeLike" 
+                data-index="{{index}}">
+                    <image src="{{postItem.postisLiked ? '../../icon/like_fill_click.png':'../../icon/like.png'}}" />
+                    
+                    <view class="postOperateText">{{postItem.postlikeNum ? postItem.postlikeNum:''}}</view>
+                    </view>
+                    <view class="postOperate">
+                        <image src="../../icon/comment_fill.png" />
+                        <view class="postOperateText">{{postItem.postcommentNum?postItem.postcommentNum:''}}</view>
+                    </view>
+                    <view 
+                    class="postOperate" 
+                    catchtap="toReward"
+                    data-index="{{index}}"
+                    >   
+                        <image src="../../icon/charging.png" />
+                        <view class="postOperateText">充电</view>
+                    </view>
+                
+                </view>
+
+            </view>
+            
+        </view>
+        <view style="height: 182rpx;"></view>
+
+    </view>
+
+</view>

@@ -9,13 +9,26 @@
             <view class="message">
                 <image src="../../icon/message.png"></image>
             </view>
-            <text>{{userInfo.nickName}}</text>
-            <image src="{{userInfo.avatarUrl}}"></image>
+            <text class="userName">{{userInfo.userName}}</text>
+            
+            <view class="userAvatar">
+                <image src="{{userInfo.avatarUrl}}"></image>
+            </view>
+            <view class="checkIn" wx:if="{{!isCheckedIn}}" bindtap="checkIn">
+                <image src="../../icon/checkIn.png"></image>
+                <text>签个到吧~</text>
+            </view>
+            <view class="checkIn" wx:if="{{isCheckedIn}}">
+                <image src="../../icon/checkIn.png"></image>
+                <text>已连续签到{{totalDays}}天</text>
+            </view>
         </view>
+        <!-- toast 提示框 -->
+        <include src="../../utils/toast/toast.wxml" />
         <view class="userLevel">
             <view class="levelBorder inCenter">
                 <text class="left">等级</text>
-                <text class="right">{{userInfo.level}}</text>
+                <text class="right">{{level}}</text>
                 <text class="left">能量值</text>
                 <text class="right">{{userInfo.energyPoint}}</text>
             </view>
@@ -57,10 +70,10 @@
                 <image class="itemGo" src="../../icon/goTo.png"></image>
             </view>
             <view class="listItemLine"></view>
-            <button class="emailMe" open-type="feedback">
+            <button class="emailMe" open-type="feedback" >
                 <!-- <view class="myAnimals listItem"> -->
                     <image class="itemIcon" src="../../icon/emailMe.png"></image>
-                    <text class="itemText">意见反馈</text>
+                    <text class="itemText" style="left: 38rpx">意见反馈</text>
                     <image class="itemGo" src="../../icon/goTo.png"></image>
                 <!-- </view> -->
             </button>

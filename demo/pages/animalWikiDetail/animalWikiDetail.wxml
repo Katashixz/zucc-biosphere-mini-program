@@ -4,7 +4,7 @@
     <view class="imageList">
         <swiper class="imageSwiper" autoplay="true" interval="3000" circular="true" indicator-dots="true" indicator-color="white" indicator-active-color="#aabbcc" wx:key="imageSwiperKey">
             <swiper-item wx:for="{{wikiData.imageList}}"  wx:for-item="dataItem" data-index="{{index}}" wx:key="imageListKey">
-                <image mode="scaleToFill" src="{{dataItem.url}}" show-menu-by-longpress="true"></image>
+                <image mode="aspectFill" src="{{dataItem.url}}" show-menu-by-longpress="true"></image>
             </swiper-item>
         </swiper>
     </view>

@@ -80,6 +80,8 @@
     width: 670rpx;
     height: 104rpx;
     display: flex;
+    margin-left: 2.5rpx;
+    margin-right: 2.5rpx;
 }
 
 .itemIcon{
@@ -118,7 +120,62 @@
     display: flex !important;
     width: 670rpx !important;
     height: 104rpx !important;
+    font-weight: 400;
     background-color: #ffffff  !important;
-    border-color: #ffffff;
+    border-color: #ffffff !important;
+    padding: 0rpx !important;
 
+}
+.userInfo{
+    width: 750rpx;
+    height: 300rpx;
+    position: relative;
+
+}
+.userName{
+    font-size: 60rpx;
+    position: relative;
+    width: 350rpx;
+    top: 20rpx;
+    left: 100rpx;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+    /* margin-left: 40rpx; */
+    /* margin-top: 40rpx; */
+}
+.userAvatar{
+    height: 180rpx;
+    position: relative;
+    width: 750rpx;
+    bottom: 80rpx;
+}
+.userAvatar image{
+    height: 180rpx;
+    width: 180rpx;
+    border-radius: 100rpx;
+    position: absolute;
+    right: 0;
+    margin-right: 70rpx;
+}
+
+.checkIn{
+    position: relative;
+    height: 60rpx;
+    width: 350rpx;
+    top: -140rpx;
+    left: 100rpx;
+}
+.checkIn image{
+    height: 64rpx;
+    width: 64rpx;
+}
+.checkIn text{
+    position: relative;
+    top: -15rpx;
+    left: 10rpx;
+    
 }

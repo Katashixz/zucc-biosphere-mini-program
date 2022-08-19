@@ -1,0 +1,18 @@
+<!--toast.wxml-->
+
+<!--mask 背景-->
+<view class="toast_mask" wx:if="{{isShowMask}}"></view>
+<!--使用animation属性指定需要执行的动画-->
+<!--以下为toast显示的内容-->
+<view class="toast_content_box" wx:if="{{isShowToast}}" bindtap="showAni">
+  <view class="toast_content" wx:if="{{isShowToast}}">
+    <image class="toast_image" wx:if="{{image != null}}" src="{{image}}"></image>
+
+    <view class="toast_content_text">
+      {{toastText}}
+    </view>
+    <view class="toast_content_text2">
+      {{toastText2}}
+    </view>
+  </view>
+</view>

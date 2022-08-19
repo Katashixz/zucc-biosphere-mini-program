@@ -7,7 +7,7 @@ App({
         // urlHome: 'http://121.40.227.132:8080/api',
         urlHome: 'http://localhost:9000',
         token: '',
-        openid: '',
+        openID: '',
         hasUserInfo: false,
     },
 })
