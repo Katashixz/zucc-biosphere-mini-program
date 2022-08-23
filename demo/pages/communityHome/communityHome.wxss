@@ -1,5 +1,11 @@
 /* pages/commuityHome/communityHome.wxss */
-
+.communityHome{
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.homePage{
+    height: 100%;
+}
 .searchTable{
     width: 90%;
     height: 55rpx;
@@ -113,7 +119,6 @@
 }
 .postList{
     padding: 0 20rpx 20rpx;
-
 }
 .post{
     padding: 30rpx 20rpx 10rpx;
@@ -202,4 +207,53 @@
     font-size: 30rpx;
     padding-left: 10rpx;
     color: #8a8a8a;
+}
+.loadTips{
+    height: 60rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #249e2e;
+    font-weight: 500;
+    margin-bottom: 30rpx;
+    background-color: #EEEAE7;
+}
+.loadTips text{
+    background-color: #fff;
+    border-radius: 20rpx;
+    padding: 10rpx;
+}
+.loadAni{
+    position: relative;
+    bottom: 20rpx;
+    height: 90rpx;
+    overflow: hidden;
+    background: #EEEAE7;
+    border-radius: 90rpx;
+    width: 90rpx;
+    margin-left: 315rpx;
+    text-align: center;
+}
+.loadAni image{
+    background-color: #fff;
+
+    height: 120rpx;
+    position: relative;
+    bottom: 17rpx;
+    right: 275rpx;
+}
+.releasePost {
+    animation: bounceInRight 1s 1; 
+    position: fixed;
+    padding: 0;
+    line-height: 80rpx;
+    height: 80rpx;
+    bottom: 220rpx;
+    right: 25rpx;
+    width: 150rpx;
+    border-radius: 50rpx;
+    font-size: 34rpx;
+    font-weight: 500;
+    background: rgba(216,164,164,0.7);
+    opacity: 0.97;
+    text-align: center;
 }

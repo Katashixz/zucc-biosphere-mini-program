@@ -1,6 +1,6 @@
 <!--pages/commuityHome/communityHome.wxml-->
 <view class="communityHome">
-    <view class="homePage">
+    <view class="homePage" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
         <!-- <view class="searchTable">
             <view class="searchIconPosition">
                 <image src="/icon/searchIcon.png" class="searchIcon"></image>
@@ -16,7 +16,7 @@
                 <swiper-item item-id=""
                 class="hotPostList" 
                 wx:for="{{tenHotPosts}}"
-                wx:key="postID"
+                wx:key="postIDKey"
                 wx:for-item="item"
                 data-index="{{index}}"
                 bindtap="toHotPost"
@@ -52,9 +52,7 @@
                 </view>
                 <view class="postLineMid">
                     <text>
-                        <text class="themeColor">#{{postItem.postTheme}}#</text>
-                        {{postItem.postContent}}
-                    </text>
+                        <text class="themeColor">#{{postItem.postTheme}}#</text>{{postItem.postContent}}</text>
                     <view class="imageWithContent">
                         <view class="singleImage"
                         wx:for="{{postItem.postImage}}"
@@ -62,7 +60,7 @@
                         wx:for-index="index2"
                         wx:key="imageItemKey"
                         >
-                            <image mode="aspectFill" src="{{imageItem.imageurl}}"
+                            <image mode="aspectFill" src="{{imageItem.imageUrl}}"
                             data-idx="{{index}}"
                             data-idx2="{{index2}}"
                             catchtap="handleImagePreview"
@@ -94,10 +92,23 @@
                 </view>
 
             </view>
-            
+           
+             <!-- <view style="background-color: #EEEAE7;"> -->
+                <view class="loadTips" hidden="{{aniTime}}">
+                <text wx:if="{{isLoadAllPosts}}">已经加载了所有贴子啦</text>
+                <text wx:else>上拉加载更多贴子</text>
+                </view>
+                <view class="loadAni" hidden="{{!aniTime}}">
+                    <image src="https://assets.materialup.com/uploads/e21b405b-4e2a-48dc-9181-625a37c1eae8/preview.gif" mode="aspectFit" />
+                </view>
+                
+                <view class="releasePost">发帖</view>
+                <view style="height: 100rpx;"></view>
+
+            <!-- </view>  -->
         </view>
-        <view style="height: 182rpx;"></view>
-
+        
     </view>
-
+   
+    
 </view>

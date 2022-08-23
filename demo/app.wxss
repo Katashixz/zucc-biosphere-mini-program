@@ -1,6 +1,7 @@
 /**app.wxss**/
 /* 导入toast样式 */
 @import "utils/toast/toast.wxss";
+@import "./style/animate.wxss";
 /* .container {
   height: 100%;
   display: flex;

@@ -1,10 +1,15 @@
 // pages/commuityHome/communityHome.js
+const app = getApp()
+var startY, endY;
+var moveFlag = true; // 判断执行滑动事件
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+        
         tenHotPosts: [
             {
                 postID: "",
@@ -41,10 +46,33 @@ Page({
                 postDate: "2022年8月19日17:45:53",
                 postImage: [
                     {
-                        imageUrl:"https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/postImages/2848null"
+                        imageUrl:"https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/preview1.jpg"
                     },
                    {
-                    imageUrl:"https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epdCtmKulyPGx60K2JfNGMJNa9ziakjw18puwz0fQ6ibsCl7RcmDxbpPcdq1oE99hJzAVKs7jwkLpVQ/132"
+                    imageUrl:"https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/preview1.jpg"
+                   }
+                ],
+                postcommentNum: 1,
+                postlikeNum: 10,
+                postisTop: false,
+                postisEssential: true,
+                postisLiked: true,
+                postisStared: false
+            },
+            {
+                postID: 1,
+                userID: "啊啊啊",
+                userOpenID: "",
+                userAvatarUrl: "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epdCtmKulyPGx60K2JfNGMJNa9ziakjw18puwz0fQ6ibsCl7RcmDxbpPcdq1oE99hJzAVKs7jwkLpVQ/132",
+                postContent: "ee",
+                postTheme: "突击",
+                postDate: "2022年8月19日17:45:53",
+                postImage: [
+                    {
+                        imageUrl:"https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/preview1.jpg"
+                    },
+                   {
+                    imageUrl:"https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/preview1.jpg"
                    }
                 ],
                 postcommentNum: 1,
@@ -56,8 +84,26 @@ Page({
             }
             
         ],
+        isLoadAllPosts: false,
+        aniTime: false,
+        curPage: 0,
+        releasePostAni: false,
     },
-
+    //   查看图片
+    handleImagePreview(e) {
+        const idx = e.target.dataset.idx
+        const idx2 = e.target.dataset.idx2
+        const images = this.data.postList[idx].postImage
+        // console.log(images)
+        let toImg = []
+        images.forEach(element => {
+            toImg.push(element.imageUrl)
+        });
+        wx.previewImage({
+            current: toImg[idx2],  //当前预览的图片
+            urls: toImg,  //所有要预览的图片
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -76,9 +122,6 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
-        console.log("onShow")
-    
         if (typeof this.getTabBar === 'function' && this.getTabBar()) {
     
           this.getTabBar().setData({
@@ -88,7 +131,11 @@ Page({
           })
     
         }
-    
+        if (app.globalData.openid != '' && !this.data.isLogin) {
+            this.setData({
+                isLogin: !this.data.isLogin
+            })
+        }
       },
 
     /**
@@ -109,14 +156,52 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh() {
-
+        console.log("onPullDownRefresh Start")
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
     onReachBottom() {
+        var that = this
 
+        setTimeout(() => {
+            that.setData({
+                aniTime: true
+            })
+            return new Promise((resolve, reject) => {
+                that.setData({
+                    isLoadAllPosts: true,
+                })
+                // wx.request({
+                //   url: 'url',
+                // }).then((res) => {
+                //     // console.log(res)
+                //     if (res["isAllLoad"]){
+                //         that.setData({
+                //             isLoadAllPosts: res["isAllLoad"],
+                //         })
+    
+                //     }
+                //     else{
+                //         that.setData({
+                //             postList: res["postList"],
+                //             pullDownCnt: that.data.pullDownCnt + 1,
+                //         })
+                //     }
+                    // resolve()
+                // })
+                //     .catch((err) => {
+                //         console.error(err)
+                //         reject(err)
+                //     })
+            })
+        }, 600)
+        setTimeout(() => {
+            that.setData({
+                aniTime: false
+            })
+        }, 2000)
     },
 
     /**
@@ -124,5 +209,29 @@ Page({
      */
     onShareAppMessage() {
 
-    }
+    },
+    touchStart: function(e) {
+		startY = e.touches[0].pageY; // 获取触摸时的原点
+		moveFlag = true;
+	},
+	// 触摸移动事件
+	touchMove: function(e) {
+		endY = e.touches[0].pageY; // 获取触摸时的原点
+		if (moveFlag) {
+			if (endY - startY > 20) {
+				console.log("pullDown")
+                moveFlag = false;
+                $('#releasePost').addClass('animated__bounce');
+			}
+			if (startY - endY > 20) {
+				console.log("pullup")
+				moveFlag = false;
+			}
+		}
+	},
+	// 触摸结束事件
+	touchEnd: function(e) {
+		moveFlag = true; // 回复滑动事件
+	},
+
 })
