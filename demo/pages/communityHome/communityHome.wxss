@@ -241,19 +241,61 @@
     bottom: 17rpx;
     right: 275rpx;
 }
-.releasePost {
-    animation: bounceInRight 1s 1; 
+.releasePostShow {
+    /* animation: bounceInRight 1s 1;  */
     position: fixed;
     padding: 0;
     line-height: 80rpx;
     height: 80rpx;
     bottom: 220rpx;
-    right: 25rpx;
+    right: 0rpx;
+    /* width: 85rpx; */
     width: 150rpx;
     border-radius: 50rpx;
     font-size: 34rpx;
     font-weight: 500;
-    background: rgba(216,164,164,0.7);
+    background: rgba(215,193,168,0.7);
     opacity: 0.97;
     text-align: center;
+}
+.search {
+    /* animation: bounceInRight 1s 1;  */
+    position: fixed;
+    padding: 0;
+    line-height: 80rpx;
+    height: 80rpx;
+    bottom: 310rpx;
+    right: 0rpx;
+    /* width: 85rpx; */
+    width: 150rpx;
+    border-radius: 50rpx;
+    font-size: 34rpx;
+    font-weight: 500;
+    background: rgba(215,193,168,0.7);
+    opacity: 0.97;
+    text-align: center;
+}
+.releasePostShowImage{
+    position: relative;
+    top: 8rpx;
+    width: 40rpx;
+    height: 40rpx;
+}
+.releasePostShowText{
+    position: relative;
+    color: #fff;
+    font-size: 35rpx;
+    font-weight: 600;
+}
+.searchImage{
+    position: relative;
+    top: 8rpx;
+    width: 40rpx;
+    height: 40rpx;
+}
+.searchText{
+    position: relative;
+    color: #fff;
+    font-size: 35rpx;
+    font-weight: 600;
 }

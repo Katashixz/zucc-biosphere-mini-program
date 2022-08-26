@@ -1,0 +1,72 @@
+<!--pages/releasePost/releasePost.wxml-->
+<view class="releasePost">
+
+    <view id="themeSelc">
+        
+        <view class="top" animation="{{selectDarkAni}}" bindtap="showSelect" >
+            <view class="pic1">
+                <image id="context1" src="../../icon/context.png" />
+            </view>
+            <view class="select {{postTheme.select>-1?'selectColor':''}}"  id="">{{postTheme.default}}
+            </view>
+            <view class="top2" animation="{{selectAni}}">
+                <view class="option" hidden="{{postTheme.isHidden}}" >
+                    <view 
+                    wx:for="{{postTheme.txt}}" 
+                    wx:for-item="test_item" 
+                    wx:for-index="index"
+                    wx:key="itemKey"
+                    data-index="{{index}}"
+                    bindtap="SelectVal"
+                    class="themeItem {{postTheme.select==index?'isSelect':''}}"
+                    >
+                        {{test_item}}
+                    </view>
+                </view>
+            </view>
+
+
+            <view class="pic2">
+                <image id="right1" animation="{{rotateAni}}" src="../../icon/right2.png" />
+            </view>
+        </view> 
+
+    </view>
+    <view id="bodyText">
+        <view id="textIn">
+            <textarea id="textDown" placeholder="此处输入正文" name="" cols="40" value="{{textDown}}" rows="20" bindinput="getPostContent"></textarea>
+            
+        </view>
+        <view class="pictureMngr">
+            <block wx:for="{{images}}" wx:key="*this">
+                <view class="imageList">
+                    <!-- 图片缩略图  -->
+                    <image class="singerImage" src="{{item}}" mode="aspectFit" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+                    <!-- 移除图片的按钮  -->
+                    <view class="deleteImage" data-idx="{{index}}" bindtap="removeImage">
+                        
+                    </view>
+                </view>
+            </block>
+            <view id="addPho" bindtap="chooseImage" wx:if="{{images.length < 3}}">
+                <image src="../../icon/addPhotot2.png" />
+                <view >添加图片</view>
+            </view>
+
+        </view>
+
+    </view>
+    <view id="textPrompt">
+
+        <text >1、帖子需遵守法律法规以及相关社区条款
+
+        </text>
+        <text >2、目前只支持jpg，png，gif等图片格式上传
+
+        </text>
+        <text >3、请勿滥用帖子功能，违者将追究法律责任</text>
+    </view>
+    <view id="lineButtom">
+        <button class="btn" bindtap="release" animation="{{ani}}">发布</button>
+    </view>
+</view>

@@ -1,6 +1,7 @@
 <!--pages/commuityHome/communityHome.wxml-->
 <view class="communityHome">
     <view class="homePage" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+    
         <!-- <view class="searchTable">
             <view class="searchIconPosition">
                 <image src="/icon/searchIcon.png" class="searchIcon"></image>
@@ -38,7 +39,7 @@
         </button>
         </view>
         <view class="postList">
-            <view class="post" wx:for="{{postList}}" wx:key="postID"
+            <view class="post" wx:for="{{postList}}" wx:key="postIDListKey"
         wx:for-item="postItem" data-index="{{index}}"
         bindtap="toPost">
                 <view class="postLineTop">
@@ -102,12 +103,19 @@
                     <image src="https://assets.materialup.com/uploads/e21b405b-4e2a-48dc-9181-625a37c1eae8/preview.gif" mode="aspectFit" />
                 </view>
                 
-                <view class="releasePost">发帖</view>
+                
                 <view style="height: 100rpx;"></view>
 
             <!-- </view>  -->
         </view>
-        
+        <view class="search" style="{{releasePostStyle}}">
+        <image class="searchImage" src="../../icon/searchIconWhite.png"></image>
+        <text class="searchText"> 搜索</text>
+        </view>
+        <view class="releasePostShow" style="{{releasePostStyle}}" bindtap="toReleasePost">
+        <image class="releasePostShowImage" src="../../icon/release.png"></image>
+        <text class="releasePostShowText"> 发帖</text>
+        </view>
     </view>
    
     

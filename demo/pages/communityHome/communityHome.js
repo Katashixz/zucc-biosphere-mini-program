@@ -9,7 +9,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        
+        releasePostStyle: "",
         tenHotPosts: [
             {
                 postID: "",
@@ -204,6 +204,12 @@ Page({
         }, 2000)
     },
 
+    toReleasePost: function(e){
+        wx.navigateTo({
+            url: '/pages/releasePost/releasePost'
+
+        })
+    },
     /**
      * 用户点击右上角分享
      */
@@ -216,16 +222,21 @@ Page({
 	},
 	// 触摸移动事件
 	touchMove: function(e) {
+        var that = this;
 		endY = e.touches[0].pageY; // 获取触摸时的原点
 		if (moveFlag) {
-			if (endY - startY > 20) {
-				console.log("pullDown")
+			if (endY - startY > 5) {
                 moveFlag = false;
-                $('#releasePost').addClass('animated__bounce');
+                that.setData({releasePostStyle:"animation: slideInRight 1s 1;"})
 			}
-			if (startY - endY > 20) {
-				console.log("pullup")
-				moveFlag = false;
+			if (startY - endY > 5 && that.data.releasePostStyle!="visibility: hidden") {
+                moveFlag = false;
+                that.setData({releasePostStyle:"animation: slideOutRight 0.2s 1;"})
+                setTimeout(() => {
+                    that.setData({
+                        releasePostStyle: "visibility: hidden"
+                    })
+                }, 200)
 			}
 		}
 	},
