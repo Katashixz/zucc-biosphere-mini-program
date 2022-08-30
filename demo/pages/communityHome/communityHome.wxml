@@ -9,7 +9,7 @@
             <input class="searchInput"/>
         </view> -->
         <view class="hotPost">
-            <view class="hotPostLeft">
+            <view class="hotPostLeft" bindtap="toHotPostList">
                 <text class="hotText">热门讨论</text>
                 <image class="hotGif" src="https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/dancing.gif" mode="heightFix"/>
             </view>
@@ -73,11 +73,11 @@
                     <view class="postOperate" 
                 catchtap="changeLike" 
                 data-index="{{index}}">
-                    <image src="{{postItem.postisLiked ? '../../icon/like_fill_click.png':'../../icon/like.png'}}" />
+                    <image src="{{postItem.postIsLiked ? '../../icon/like_fill_click.png':'../../icon/like.png'}}" />
                     
                     <view class="postOperateText">{{postItem.postlikeNum ? postItem.postlikeNum:''}}</view>
                     </view>
-                    <view class="postOperate">
+                    <view class="postOperate" catchtap="comment" data-index="{{index}}">
                         <image src="../../icon/comment_fill.png" />
                         <view class="postOperateText">{{postItem.postcommentNum?postItem.postcommentNum:''}}</view>
                     </view>

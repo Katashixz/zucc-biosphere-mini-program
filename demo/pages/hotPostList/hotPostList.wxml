@@ -1,0 +1,23 @@
+<!--pages/hotPostList/hotPostList.wxml-->
+<view class="hotPostList">
+    <view class="homePage">
+        <view class="hotPostList">
+            <view class="hotPost" wx:for="{{hotPostList}}" wx:key="hotPostKey" wx:for-item="item" data-index="{{index}}" bindtap="toSelectedPost">
+                <view class="hotPostTop">
+                    <view class="rank" style="{{item.rank == 1 ? 'background: linear-gradient(rgba(219, 9, 9, 0.8), rgba(219, 85, 85, 0.5));':item.rank == 2 ? 'background: linear-gradient(rgba(252, 93, 20, 0.8), rgba(219, 125, 81, 0.63));':item.rank == 3 ? 'background: linear-gradient(rgba(219, 146, 9, 0.8), rgba(241, 192, 84, 0.63));': ''}}">{{item.rank}}</view>
+                    <text class="commentNum">评论数: {{item.commentNum}}</text>
+                    <text class="favoNum">点赞数: {{item.favoNum}}</text>
+                    <text class="heat">热度: {{item.heat}}</text>
+                    <image src="../../icon/heat.png" hidden="{{item.heat < 300}}" style="height: 35rpx;width: 35rpx;margin-left: 5rpx;"></image>
+                </view>
+                <view class="hotPostBottom">
+                    <text class="content" style="{{item.image == '' ? '':'width:380rpx'}}">{{item.content}}</text>
+                    <image mode="aspectFill" src="{{item.image}}" hidden="{{item.image == null || item.image == ''}}" class="contentImage"></image>
+                </view>
+                <view class="divide"></view>
+            </view>
+        
+        </view>
+    </view>
+
+</view>

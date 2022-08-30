@@ -1,7 +1,0 @@
-/* pages/wikiHome.wxss */
-
-.homePage{
-    width: 750rpx;
-    height: 1200rpx;
-    background: #EEEAE7;
-}

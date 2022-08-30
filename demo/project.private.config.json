@@ -70,6 +70,20 @@
                     "query": "",
                     "launchMode": "default",
                     "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/postDetails/postDetails",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/hotPostList/hotPostList",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }

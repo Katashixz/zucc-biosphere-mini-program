@@ -67,6 +67,70 @@ App({
         json[param] = animation.export()
         that.setData(json)
     },
+
+    //封装登录
+    getUserProfile:function(){
+        var that = this;
+        
+        wx.getUserProfile({
+            desc: '获取您的openID用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+            success: (res) => {
+                that.globalData.userInfo = res.userInfo;
+                that.globalData.hasUserInfo = true;
+                that.userLogin();
+            },
+
+        })
+    },
+    userLogin() {
+        var that = this;
+
+        // 登录
+        wx.login({
+            success: (res) => {
+                // console.log(app.globalData.userInfo);
+
+                wx.request({
+                method:"POST",
+                url: that.globalData.urlHome + '/user/login',
+                data:{
+                    code: res.code,
+                    avatarUrl: that.globalData.userInfo.avatarUrl,
+                    nickName: that.globalData.userInfo.nickName
+                },
+                  
+                success: (res2) => {
+                    console.log(res2);
+                if(res2.data.code != 200) {
+                    wx.showToast({
+                      title: '请重新登录！',
+                      icon: 'error',
+                      duration: 4000
+                    }),
+                    that.setData({
+                        hasUserInfo: false,
+                    })
+                }
+                else{
+                    that.globalData.openID = res2.data.data.userInfo.openID;
+                    that.globalData.token = res2.data.data.token;
+                    that.globalData.hasUserInfo = true;
+                    that.globalData.userInfo = res2.data.data.userInfo;
+                    // that.setData({
+                    //     hasUserInfo: true,
+                    //     userInfo: res2.data.data.userInfo,
+                    //     token: res2.data.data.token,
+                    //     openID: res2.data.data.userInfo.openID
+                    // })
+                    wx.setStorageSync('openID', that.openID);
+                }
+                
+                  }
+                })
+            }
+        })
+
+    },
     globalData: {
         userInfo: null,
         // urlHome: 'http://121.40.227.132:8080/api',

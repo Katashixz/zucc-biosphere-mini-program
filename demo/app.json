@@ -9,7 +9,10 @@
         "pages/curingGuide/curingGuide",
         "pages/animalWikiDetail/animalWikiDetail",
         "pages/plantsWikiDetail/plantsWikiDetail",
-        "pages/releasePost/releasePost"
+        "pages/releasePost/releasePost",
+        "pages/postDetails/postDetails",
+        "pages/hotPostList/hotPostList",
+        "pages/searchPage/searchPage"
     ],
     "window": {
         "backgroundTextStyle": "light",

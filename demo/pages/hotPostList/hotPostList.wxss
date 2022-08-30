@@ -1,0 +1,71 @@
+/* pages/hotPostList/hotPostList.wxss */
+.hotPost{
+    /* height: 250rpx; */
+    /* border-bottom: 1rpx solid #000000; */
+    width: 100%;
+    padding-top: 15rpx;
+}
+.hotPostTop{
+    display: flex;
+    padding: 10rpx;
+    padding-left: 20rpx;
+}
+.hotPostBottom{
+    display: flex;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+}
+.content{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-top: 10rpx;
+    padding-left: 15rpx;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /*限制文本行数*/
+    -webkit-box-orient: vertical;
+    word-break: break-all; /* 追加这一行代码 */
+    line-height: 50rpx;
+    color: rgb(61, 60, 60);
+    font-weight: 600;
+}
+.contentImage{
+    width: 380rpx;
+    height: 150rpx;
+    border-radius: 20rpx;
+    margin-left: 10rpx;
+    border: 1rpx solid rgba(119, 117, 117, 0.63);
+}
+.commentNum{
+    padding-left: 20rpx;
+    font-size: 30rpx;
+    color: grey;
+    /* font-weight: 700; */
+}
+.favoNum{
+    font-size: 30rpx;
+    padding-left: 20rpx;
+    color: grey;
+    /* font-weight: 700; */
+}
+.heat{
+    font-size: 30rpx;
+    padding-left: 20rpx;
+    color: grey;
+    /* font-weight: 700; */
+}
+.divide{
+    border-bottom: 1rpx solid rgb(170, 168, 168);
+    margin-top: 30rpx;
+    width: 680rpx;
+    margin-left: 35rpx;
+}
+.rank{
+    /* background-color: #a39d98; */
+    background: linear-gradient(rgba(9, 135, 219, 0.8), rgba(49, 145, 253, 0.63));
+    /* background: linear-gradient(#03A9F4, #7C4DFF); */
+    border-radius: 10rpx;
+    color: #ffffff;
+    width: 40rpx;
+    text-align: center;
+    font-weight: 700;
+}

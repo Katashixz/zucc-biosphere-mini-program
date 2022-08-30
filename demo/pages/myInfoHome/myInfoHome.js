@@ -141,7 +141,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        
     },
 
     /**
@@ -167,6 +167,14 @@ Page({
           })
     
         }
+        var that = this;
+        if(app.globalData.hasUserInfo){
+            that.setData({
+                hasUserInfo: true,
+                userInfo: app.globalData.userInfo,
+            })
+        }
+        console.log(that.data)
     
       },
 

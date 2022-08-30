@@ -12,11 +12,11 @@ Page({
         releasePostStyle: "",
         tenHotPosts: [
             {
-                postID: "",
+                postID: 1,
                 postContent: "e"
             },
             {
-                postID: "",
+                postID: 2,
                 postContent: "ee"
             },
         ],
@@ -24,7 +24,7 @@ Page({
             {
                 postID: 1,
                 userID: "yoxi",
-                userOpenID: "",
+                userOpenID: "123",
                 userAvatarUrl: "",
                 postContent: "789633",
                 postDate: "2022年8月19日16:44:33",
@@ -33,13 +33,13 @@ Page({
                 postlikeNum: 0,
                 postisTop: false,
                 postisEssential: true,
-                postisLiked: false,
+                postIsLiked: false,
                 postTheme: "啊啊啊"
             },
             {
-                postID: 1,
+                postID: 2,
                 userID: "啊啊啊",
-                userOpenID: "",
+                userOpenID: "111",
                 userAvatarUrl: "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epdCtmKulyPGx60K2JfNGMJNa9ziakjw18puwz0fQ6ibsCl7RcmDxbpPcdq1oE99hJzAVKs7jwkLpVQ/132",
                 postContent: "ee",
                 postTheme: "突击",
@@ -56,13 +56,13 @@ Page({
                 postlikeNum: 10,
                 postisTop: false,
                 postisEssential: true,
-                postisLiked: true,
+                postIsLiked: true,
                 postisStared: false
             },
             {
-                postID: 1,
+                postID: 3,
                 userID: "啊啊啊",
-                userOpenID: "",
+                userOpenID: "111",
                 userAvatarUrl: "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epdCtmKulyPGx60K2JfNGMJNa9ziakjw18puwz0fQ6ibsCl7RcmDxbpPcdq1oE99hJzAVKs7jwkLpVQ/132",
                 postContent: "ee",
                 postTheme: "突击",
@@ -75,11 +75,11 @@ Page({
                     imageUrl:"https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/preview1.jpg"
                    }
                 ],
-                postcommentNum: 1,
+                postcommentNum: 3,
                 postlikeNum: 10,
                 postisTop: false,
                 postisEssential: true,
-                postisLiked: true,
+                postIsLiked: true,
                 postisStared: false
             }
             
@@ -103,6 +103,73 @@ Page({
             current: toImg[idx2],  //当前预览的图片
             urls: toImg,  //所有要预览的图片
         })
+    },
+    
+    
+    //跳转到帖子详情页面
+    toPost: function (e) {
+        wx.navigateTo({
+            url: '/pages/postDetails/postDetails?postID=' + this.data.postList[e.currentTarget.dataset.index].postID
+        })
+    },
+    //跳转到热帖详情页面
+    toHotPost: function (e) {
+        wx.navigateTo({
+            url: '/pages/postDetails/postDetails?postID=' + this.data.tenHotPosts[e.currentTarget.dataset.index].postID
+        })
+    },
+    
+    toHotPostList: function (e) {
+        wx.navigateTo({
+            url: '/pages/hotPostList/hotPostList'
+        })
+    },
+    //点赞功能
+    changeLike: function (e) {
+        var that = this;
+        //先判断是否登录 登录后才能点赞
+        if(!app.globalData.hasUserInfo){
+            app.getUserProfile()
+        }else{
+            var index = e.currentTarget.dataset.index;
+            var isLiked = that.data.postList[index].postIsLiked;
+            that.setData({
+                [`postList[${index}].postIsLiked`]: !isLiked,
+            })
+
+        }
+
+        
+    },
+    //评论功能
+    comment: function (e) {
+        wx.navigateTo({
+            url: '/pages/postDetails/postDetails?postID=' + this.data.postList[e.currentTarget.dataset.index].postID
+        })
+    },
+    //打赏弹窗
+    toReward: function (e) {
+        var that = this
+
+        const post = that.data.postList[e.currentTarget.dataset.index]
+        if (getApp().globalData.hasUserInfo) {
+            if (getApp().globalData.openid == post.userOpenID) {
+                wx.showToast({
+                    title: '不能给自己打赏',
+                    icon: 'error',
+                })
+            } else {
+                wx.showActionSheet({
+                    itemList: ['10', '20', '50'],//显示的列表项
+                    success: function (tap) {//res.tapIndex点击的列表项
+                        that.payPoint(post, tap.tapIndex)
+                    },
+                })
+            }
+
+        } else {
+            app.getUserProfile()
+        }
     },
     /**
      * 生命周期函数--监听页面加载

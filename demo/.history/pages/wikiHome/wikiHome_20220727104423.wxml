@@ -1,6 +1,0 @@
-<!--pages/wikiHome.wxml-->
-<view >
-<view class="home-page">
-    <text >hel</text>
-</view>
-</view>

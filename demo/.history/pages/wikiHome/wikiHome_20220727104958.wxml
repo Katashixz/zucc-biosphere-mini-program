@@ -1,6 +1,0 @@
-<!--pages/wikiHome.wxml-->
-<view class="homePage">
-    <view class="searchTable">
-    </view>
-    <view class="selectTable"></view>
-</view>

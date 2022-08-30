@@ -1,5 +1,0 @@
-/* pages/wikiHome.wxss */
-.home-page{
-    width: 750rpx;
-    height: 780rpx;
-}
