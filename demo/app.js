@@ -76,7 +76,7 @@ App({
             desc: '获取您的openID用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
             success: (res) => {
                 that.globalData.userInfo = res.userInfo;
-                that.globalData.hasUserInfo = true;
+                // that.globalData.hasUserInfo = true;
                 that.userLogin();
             },
 
@@ -98,7 +98,16 @@ App({
                     avatarUrl: that.globalData.userInfo.avatarUrl,
                     nickName: that.globalData.userInfo.nickName
                 },
-                  
+                fail: (res2) =>{
+                    wx.showToast({
+                        title: '请重新登录！',
+                        icon: 'error',
+                        duration: 4000
+                      }),
+                      that.setData({
+                          hasUserInfo: false,
+                      })
+                },
                 success: (res2) => {
                     console.log(res2);
                 if(res2.data.code != 200) {
@@ -112,16 +121,15 @@ App({
                     })
                 }
                 else{
+                    wx.showToast({
+                        title: '登录成功！',
+                        icon: 'success',
+                        duration: 2000
+                      }),
                     that.globalData.openID = res2.data.data.userInfo.openID;
                     that.globalData.token = res2.data.data.token;
                     that.globalData.hasUserInfo = true;
                     that.globalData.userInfo = res2.data.data.userInfo;
-                    // that.setData({
-                    //     hasUserInfo: true,
-                    //     userInfo: res2.data.data.userInfo,
-                    //     token: res2.data.data.token,
-                    //     openID: res2.data.data.userInfo.openID
-                    // })
                     wx.setStorageSync('openID', that.openID);
                 }
                 
@@ -137,6 +145,6 @@ App({
         urlHome: 'http://localhost:9000',
         token: '',
         openID: '',
-        hasUserInfo: false,
+        hasUserInfo: true,
     },
 })

@@ -207,7 +207,6 @@ Page({
                   },
                 success: (res)=>{
                     that.setData({
-                        hasUserInfo: true,
                         userInfo: res.data.data.userInfo
                     })
                 }

@@ -293,9 +293,97 @@
     width: 40rpx;
     height: 40rpx;
 }
+.postManName{
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /*限制文本行数*/
+    -webkit-box-orient: vertical;
+    word-break: break-all; /* 追加这一行代码 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .searchText{
     position: relative;
     color: #fff;
     font-size: 35rpx;
     font-weight: 600;
+}
+.moreOptionsImage{
+    margin-left: 25rpx;
+    width: 50rpx;
+    height: 50rpx;
+}
+.moreOptions{
+    width: 100rpx;
+}
+#selectBox{
+    width: 100%;
+    /* border-top: 1px solid #ddd; */
+    overflow: hidden;
+    height: 0 ;
+    animation-fill-mode: forwards;
+    background-color: rgb(255, 255, 255);
+    font-size: 28rpx;
+    
+}
+.optionItemStyle{
+    text-align: center;
+    padding-left: 8rpx;
+    padding-right: 8rpx;
+    padding-top: 10rpx;
+    padding-bottom: 10rpx;
+    border-left: 1rpx solid rgb(211, 211, 211);
+    border-right: 1rpx solid rgb(211, 211, 211);
+    /* border-bottom: 1rpx solid grey; */
+    color: rgb(160, 158, 158);
+    /* border: 1rpx solid rgba(128, 128, 128, 0.336); */
+}
+.optionListItems{
+    position: relative;
+
+    z-index: 1000;
+}
+@keyframes slidedown{
+    from {
+      height: 0;
+    }
+    to {
+      height: 180rpx;
+    }
+  }
+  
+  @keyframes slideup{
+    from {
+      height: 180rpx;
+    }
+    to {
+      height: 0;
+    }
+  }
+  
+  .open{
+    animation: slidedown 0.5s;
+  }
+  
+  .close{
+    animation: slideup 0.5s; 
+  }
+  
+  .optionsListHide{
+    display: none;
+  }
+  
+  .optionsListShow{
+    display: block;
+  }
+.optionListItemsMask{
+    /* position: relative; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    /* background: rgba(255, 255, 255, 0); */
+    z-index: 100;
+    opacity: 0;
+    /* animation: opc 0.2s linear forwards; */
 }

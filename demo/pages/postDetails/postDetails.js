@@ -1,4 +1,6 @@
 // pages/postDetails/postDetails.js
+const app = getApp()
+
 Page({
 
     /**
@@ -21,11 +23,11 @@ Page({
                 imageUrl:"https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/preview1.jpg"
                 }
             ],
-            postcommentNum: 3,
-            postlikeNum: 10,
+            postCommentNum: 3,
+            postLikeNum: 10,
             postisTop: false,
             postisEssential: true,
-            postisLiked: true,
+            postIsLiked: true,
             postisStared: false
         },
         commentList: [
@@ -45,7 +47,8 @@ Page({
                 commentAccessID: "222",
                 content: "哈哈哈哈2",
             }
-        ]
+        ],
+        isFocus: false,
     },
 
     //   查看图片
@@ -63,6 +66,68 @@ Page({
             urls: toImg,  //所有要预览的图片
         })
     },
+    
+    //点赞功能
+    changeLike: function (e) {
+        var that = this;
+        //先判断是否登录 登录后才能点赞
+        if(!app.globalData.hasUserInfo){
+            app.getUserProfile()
+        }else{
+            var isLiked = that.data.postItem.postIsLiked;
+            that.setData({
+                [`postItem.postIsLiked`]: !isLiked,
+            })
+
+        }
+
+        
+    },
+    //打赏弹窗
+    toReward: function (e) {
+        var that = this
+
+        const post = that.data.postItem
+        if (app.globalData.hasUserInfo) {
+            if (app.globalData.openid == post.userOpenID) {
+                wx.showToast({
+                    title: '不能给自己打赏',
+                    icon: 'error',
+                })
+            } else {
+                this.userModal.open();
+            }
+
+        } else {
+            app.getUserProfile()
+        }
+    },
+    /**
+     * 输入框聚焦
+     */
+    confirmFocus(options) {
+        var that = this;
+        that.setData({
+            isFocus: true,
+        })
+    },
+    
+    /**
+     * 移出焦点监听
+     */
+    inputCommentsBlur(options) {
+        var that = this;
+        that.setData({
+            isFocus: false,
+        })
+        
+    },
+    /**
+     * 输入事件监听
+     */
+    inputCommentsContentListening(options) {
+        var that = this;
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -74,13 +139,13 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
-
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
     onShow() {
+        this.userModal = this.selectComponent("#userModal");
 
     },
 

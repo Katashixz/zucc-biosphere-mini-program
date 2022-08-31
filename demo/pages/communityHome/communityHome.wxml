@@ -41,7 +41,7 @@
         <view class="postList">
             <view class="post" wx:for="{{postList}}" wx:key="postIDListKey"
         wx:for-item="postItem" data-index="{{index}}"
-        bindtap="toPost">
+        >
                 <view class="postLineTop">
                     <view class="avatar" >
                         <image mode="aspectFill" src="{{postItem.userAvatarUrl}}" />
@@ -49,6 +49,19 @@
                     <view class="nameAndPostTime">
                         <view class="postManName">{{postItem.userID}}</view>
                         <view class="postTime">发布于{{postItem.postDate}}</view>
+                    </view>
+                    <view class="moreOptions">
+                        <image class="moreOptionsImage" src="../../icon/more.png" bindtap="moreOptions" data-index="{{index}}"></image>
+                        <view id="selectBox" class="{{postItem.click? 'optionsListShow':'optionsListHide'}} {{postItem.state?'open':'close'}}">
+                            <view class="optionListItemsMask" bindtap='closeMoreOptions' style="display:{{postItem.state? 'true':'none'}}" data-index="{{index}}"></view>
+                            
+                            <view class="optionListItems">
+                                <view class="optionItemStyle" bindtap="star">收藏</view>
+                                <view class="optionItemStyle" bindtap="share">分享</view>
+                                <view class="optionItemStyle" bindtap="report" style="border-bottom: 1rpx solid rgb(211, 211, 211);">举报</view>
+                            </view>
+
+                        </view>
                     </view>
                 </view>
                 <view class="postLineMid">
@@ -116,6 +129,7 @@
         <image class="releasePostShowImage" src="../../icon/release.png"></image>
         <text class="releasePostShowText"> 发帖</text>
         </view>
+        <Dialog id="userModal"></Dialog>
     </view>
    
     

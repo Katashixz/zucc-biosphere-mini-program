@@ -1,5 +1,6 @@
 <view class="postDetails">
     <view class="homePage">
+        <Dialog id="userModal"></Dialog>
         <scroll-view scroll-y="{{true}}" >
             <view class="post">
                 <view class="postLineTop">
@@ -33,13 +34,13 @@
                     <view class="postOperate" 
                 catchtap="changeLike" 
                 data-index="{{index}}">
-                    <image src="{{postItem.postisLiked ? '../../icon/like_fill_click.png':'../../icon/like.png'}}" />
+                    <image src="{{postItem.postIsLiked ? '../../icon/like_fill_click.png':'../../icon/like.png'}}" />
                     
-                    <view class="postOperateText">{{postItem.postlikeNum ? postItem.postlikeNum:''}}</view>
+                    <view class="postOperateText">{{postItem.postLikeNum ? postItem.postLikeNum:''}}</view>
                     </view>
-                    <view class="postOperate">
+                    <view class="postOperate" bindtap="confirmFocus">
                         <image src="../../icon/comment_fill.png" />
-                        <view class="postOperateText">{{postItem.postcommentNum?postItem.postcommentNum:''}}</view>
+                        <view class="postOperateText">{{postItem.postCommentNum?postItem.postCommentNum:''}}</view>
                     </view>
                     <view 
                     class="postOperate" 
@@ -90,6 +91,8 @@
             placeholder-class='phcolor' 
             bindinput='inputCommentsContentListening' 
             bindblur="inputCommentsBlur"
+            bindfocus="confirmFocus"
+            focus="{{isFocus}}"
             />
             <text class='commentsBtn' bindtap='clickComments'>评论</text>
         </view>

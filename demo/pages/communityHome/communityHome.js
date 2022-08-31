@@ -9,6 +9,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        
         releasePostStyle: "",
         tenHotPosts: [
             {
@@ -22,6 +23,8 @@ Page({
         ],
         postList: [
             {
+                state: false,
+                click: false,
                 postID: 1,
                 userID: "yoxi",
                 userOpenID: "123",
@@ -37,8 +40,10 @@ Page({
                 postTheme: "啊啊啊"
             },
             {
+                state: false,
+                click: false,
                 postID: 2,
-                userID: "啊啊啊",
+                userID: "啊啊啊aaaaaawcsa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊",
                 userOpenID: "111",
                 userAvatarUrl: "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epdCtmKulyPGx60K2JfNGMJNa9ziakjw18puwz0fQ6ibsCl7RcmDxbpPcdq1oE99hJzAVKs7jwkLpVQ/132",
                 postContent: "ee",
@@ -60,6 +65,8 @@ Page({
                 postisStared: false
             },
             {
+                state: false,
+                click: false,
                 postID: 3,
                 userID: "啊啊啊",
                 userOpenID: "111",
@@ -152,24 +159,78 @@ Page({
         var that = this
 
         const post = that.data.postList[e.currentTarget.dataset.index]
-        if (getApp().globalData.hasUserInfo) {
-            if (getApp().globalData.openid == post.userOpenID) {
+        if (app.globalData.hasUserInfo) {
+            if (app.globalData.openid == post.userOpenID) {
                 wx.showToast({
                     title: '不能给自己打赏',
                     icon: 'error',
                 })
             } else {
-                wx.showActionSheet({
-                    itemList: ['10', '20', '50'],//显示的列表项
-                    success: function (tap) {//res.tapIndex点击的列表项
-                        that.payPoint(post, tap.tapIndex)
-                    },
-                })
+                this.userModal.open();
             }
 
         } else {
             app.getUserProfile()
         }
+    },
+    /**
+     * 更多选择的动画
+     */
+    moreOptions: function(e){
+        var index = e.currentTarget.dataset.index
+        var list_state = this.data.postList[index].state,
+          first_state = this.data.postList[index].click;
+          
+        if (!first_state){
+          this.setData({
+        //    click: true,
+           [`postList[${index}].click`]: true,
+          });
+        }
+        if (list_state){
+          this.setData({
+           [`postList[${index}].state`]: false,
+        //    state: false
+          });
+        }else{
+          this.setData({
+           [`postList[${index}].state`]: true,
+
+        //    state: true
+          });
+        }
+      },
+    /**
+     * 关闭更多选择的动画
+     */
+    closeMoreOptions: function(e){
+        var index = e.currentTarget.dataset.index
+            this.setData({
+            //    click: true,
+                // [`postList[${index}].click`]: false,
+                [`postList[${index}].state`]: false,
+
+            });
+    },
+    /**
+     * 收藏
+     */
+    star(options) {
+        console.log("收藏")
+    },
+    /**
+     * 举报
+     */
+    report(options) {
+        console.log("举报")
+
+    },
+    /**
+     * 分享
+     */
+    share(options) {
+        console.log("分享")
+
     },
     /**
      * 生命周期函数--监听页面加载
@@ -182,7 +243,8 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
-
+        this.userModal = this.selectComponent("#userModal");
+        // this.userModal.close();
     },
 
     /**

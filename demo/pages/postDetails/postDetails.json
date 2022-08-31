@@ -1,4 +1,7 @@
 {
-    "usingComponents": {},
+    "usingComponents": {
+        "Dialog":"../../utils/Dialog/Dialog"
+
+    },
     "navigationBarTitleText": "社区"
 }
