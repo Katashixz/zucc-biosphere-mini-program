@@ -12,7 +12,8 @@
         "pages/releasePost/releasePost",
         "pages/postDetails/postDetails",
         "pages/hotPostList/hotPostList",
-        "pages/searchPage/searchPage"
+        "pages/searchPage/searchPage",
+        "utils/searchBar/searchBar"
     ],
     "window": {
         "backgroundTextStyle": "light",

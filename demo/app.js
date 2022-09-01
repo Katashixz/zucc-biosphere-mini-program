@@ -145,6 +145,6 @@ App({
         urlHome: 'http://localhost:9000',
         token: '',
         openID: '',
-        hasUserInfo: true,
+        hasUserInfo: false,
     },
 })

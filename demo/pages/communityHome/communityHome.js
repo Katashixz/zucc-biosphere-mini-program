@@ -125,13 +125,25 @@ Page({
             url: '/pages/postDetails/postDetails?postID=' + this.data.tenHotPosts[e.currentTarget.dataset.index].postID
         })
     },
-    
+    /**
+     * 搜索页面
+     */
+    toSearch: function (e) {
+        wx.navigateTo({
+            url: '/pages/searchPage/searchPage'
+        })
+    },
+    /**
+     * 热帖列表页面
+     */
     toHotPostList: function (e) {
         wx.navigateTo({
             url: '/pages/hotPostList/hotPostList'
         })
     },
-    //点赞功能
+    /**
+     * 点赞功能
+     */
     changeLike: function (e) {
         var that = this;
         //先判断是否登录 登录后才能点赞
@@ -148,13 +160,17 @@ Page({
 
         
     },
-    //评论功能
+    /**
+     * 评论功能
+     */
     comment: function (e) {
         wx.navigateTo({
             url: '/pages/postDetails/postDetails?postID=' + this.data.postList[e.currentTarget.dataset.index].postID
         })
     },
-    //打赏弹窗
+    /**
+     * 打赏弹窗
+     */
     toReward: function (e) {
         var that = this
 

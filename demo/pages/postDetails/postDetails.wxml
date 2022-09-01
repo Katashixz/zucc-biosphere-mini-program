@@ -11,6 +11,19 @@
                         <view class="postManName">{{postItem.userID}}</view>
                         <view class="postTime">发布于{{postItem.postDate}}</view>
                     </view>
+                    <view class="moreOptions">
+                        <image class="moreOptionsImage" src="../../icon/more.png" bindtap="moreOptions"></image>
+                        <view id="selectBox" class="{{click? 'optionsListShow':'optionsListHide'}} {{state?'open':'close'}}">
+                            <view class="optionListItemsMask" bindtap='closeMoreOptions' style="display:{{state? 'true':'none'}}"></view>
+                            
+                            <view class="optionListItems">
+                                <button class="optionItemStyle" bindtap="star">收藏</button>
+                                <button class="optionItemStyle" open-type="share">分享</button>
+                                <button class="optionItemStyle" bindtap="report" style="border-bottom: 1rpx solid rgb(211, 211, 211);">举报</button>
+                            </view>
+
+                        </view>
+                    </view>
                 </view>
                 <view class="postLineMid">
                     <text>
@@ -67,10 +80,10 @@
                     <image mode="aspectFill" src="{{commentItem.userAvatarUrl}}" />
                 </view>
                 <view class="nameAndPostTime">
-                    <view class="postManName">
-                        <view class="{{commentItem.userID==myID? 'isMyName':''}}">{{commentItem.userID}}</view>
+                    <view class=""  style="display: flex;">
+                        <view class="postManName" style="{{commentItem.userID.length > 13 ? 'width: 400rpx':''}}">{{commentItem.userID}}</view>
                         
-                        <view class="isPoster" wx:if="{{commentItem.userID === postItem.userID}}">
+                        <view class="isPoster" wx:if="{{commentItem.commentAccessID === postItem.userOpenID}}">
                             楼主
                         </view>
                     </view>

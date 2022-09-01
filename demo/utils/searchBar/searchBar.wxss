@@ -1,0 +1,45 @@
+/* utils/searchBar/searchBar.wxss */
+
+.searchTable{
+    width: 90%;
+    height: 55rpx;
+    background: #fff;
+    position: relative;
+    margin: auto;   
+    display: flex; 
+    border: 1rpx solid #6E5D52;
+    border-radius: 30rpx;
+    margin-bottom: 30rpx;
+    margin-top: 40rpx;
+}
+.searchIconPosition{
+    position: relative;
+    top: -1rpx;
+    left: -1rpx;
+    width: 80rpx;
+    height: 55rpx;
+    /* border-right: 1rpx double #6E5D52; */
+    /* border-top: 1rpx solid #6E5D52; */
+    border: 1rpx solid #6E5D52;
+    border-radius: 30rpx;
+}
+.searchIcon{
+    width: 40rpx;
+    height: 40rpx;
+    position: relative;
+    top: 9rpx;
+    left: 20rpx;
+}
+.searchInput{
+    height: 55rpx;
+    width: 480rpx;
+    position: relative;
+    left: 10rpx;
+}
+
+.cancle{
+    width: 100rpx;
+    text-align: center;
+    line-height: 50rpx;
+    color: #8a8a8a;
+}

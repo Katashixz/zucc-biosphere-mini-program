@@ -6,41 +6,6 @@
 .homePage{
     height: 100%;
 }
-.searchTable{
-    width: 90%;
-    height: 55rpx;
-    background: #fff;
-    position: relative;
-    top: 20rpx;
-    margin: auto;   
-    display: flex; 
-    border: 1rpx solid #6E5D52;
-    border-radius: 30rpx;
-}
-.searchIconPosition{
-    position: relative;
-    top: -1rpx;
-    left: -1rpx;
-    width: 80rpx;
-    height: 55rpx;
-    /* border-right: 1rpx double #6E5D52; */
-    /* border-top: 1rpx solid #6E5D52; */
-    border: 1rpx solid #6E5D52;
-    border-radius: 30rpx;
-}
-.searchIcon{
-    width: 40rpx;
-    height: 40rpx;
-    position: relative;
-    top: 9rpx;
-    left: 20rpx;
-}
-.searchInput{
-    height: 55rpx;
-    width: 580rpx;
-    position: relative;
-    left: 10rpx;
-}
 .hotPost{
     margin-top: 30rpx;
     margin-right: 20rpx;
@@ -153,7 +118,7 @@
     color: #bbb;
 }
 .postLineMid{
-    padding: 30rpx 0rpx;
+    padding: 10rpx 0rpx;
 
 }
 .postLineMid text{
@@ -300,6 +265,8 @@
     word-break: break-all; /* 追加这一行代码 */
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 400rpx;
+
 }
 .searchText{
     position: relative;
@@ -326,20 +293,26 @@
     
 }
 .optionItemStyle{
+    width: 100% !important;
+    border-radius: 0rpx !important;
     text-align: center;
-    padding-left: 8rpx;
-    padding-right: 8rpx;
-    padding-top: 10rpx;
-    padding-bottom: 10rpx;
+    padding-left: 8rpx !important;
+    padding-right: 8rpx !important;
+    padding-top: 10rpx !important;
+    padding-bottom: 7rpx !important;
     border-left: 1rpx solid rgb(211, 211, 211);
     border-right: 1rpx solid rgb(211, 211, 211);
     /* border-bottom: 1rpx solid grey; */
-    color: rgb(160, 158, 158);
-    /* border: 1rpx solid rgba(128, 128, 128, 0.336); */
+    color: rgb(160, 158, 158) !important;
+    font-weight: 400 !important;
+    font-size: 27rpx;
+    margin-left: 0rpx !important;
+    margin-right: 0rpx !important;
+    background: #ffffff;
 }
 .optionListItems{
     position: relative;
-
+    
     z-index: 1000;
 }
 @keyframes slidedown{

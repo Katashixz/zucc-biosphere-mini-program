@@ -2,12 +2,7 @@
 <view class="communityHome">
     <view class="homePage" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
     
-        <!-- <view class="searchTable">
-            <view class="searchIconPosition">
-                <image src="/icon/searchIcon.png" class="searchIcon"></image>
-            </view>
-            <input class="searchInput"/>
-        </view> -->
+        
         <view class="hotPost">
             <view class="hotPostLeft" bindtap="toHotPostList">
                 <text class="hotText">热门讨论</text>
@@ -40,8 +35,7 @@
         </view>
         <view class="postList">
             <view class="post" wx:for="{{postList}}" wx:key="postIDListKey"
-        wx:for-item="postItem" data-index="{{index}}"
-        >
+        wx:for-item="postItem" data-index="{{index}}" >
                 <view class="postLineTop">
                     <view class="avatar" >
                         <image mode="aspectFill" src="{{postItem.userAvatarUrl}}" />
@@ -56,15 +50,15 @@
                             <view class="optionListItemsMask" bindtap='closeMoreOptions' style="display:{{postItem.state? 'true':'none'}}" data-index="{{index}}"></view>
                             
                             <view class="optionListItems">
-                                <view class="optionItemStyle" bindtap="star">收藏</view>
-                                <view class="optionItemStyle" bindtap="share">分享</view>
-                                <view class="optionItemStyle" bindtap="report" style="border-bottom: 1rpx solid rgb(211, 211, 211);">举报</view>
+                                <button class="optionItemStyle" bindtap="star">收藏</button>
+                                <button class="optionItemStyle" open-type="share">分享</button>
+                                <button class="optionItemStyle" bindtap="report" style="border-bottom: 1rpx solid rgb(211, 211, 211);">举报</button>
                             </view>
 
                         </view>
                     </view>
                 </view>
-                <view class="postLineMid">
+                <view class="postLineMid" bindtap="toPost" data-index="{{index}}">
                     <text>
                         <text class="themeColor">#{{postItem.postTheme}}#</text>{{postItem.postContent}}</text>
                     <view class="imageWithContent">
@@ -121,7 +115,7 @@
 
             <!-- </view>  -->
         </view>
-        <view class="search" style="{{releasePostStyle}}">
+        <view class="search" style="{{releasePostStyle}}" bindtap="toSearch">
         <image class="searchImage" src="../../icon/searchIconWhite.png"></image>
         <text class="searchText"> 搜索</text>
         </view>

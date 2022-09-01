@@ -1,2 +1,39 @@
 <!--pages/searchPage/searchPage.wxml-->
-<text>pages/searchPage/searchPage.wxml</text>
+<view class="searchPage">
+    <view class="homePage">
+        <image class="catIcon" src="../../icon/catSearchPage.png"></image>
+        
+        <searchBar placeHolderContent="请输入帖子关键词"></searchBar>
+        <view class="searchResult">
+            <view class="resultItem" wx:for="{{searchResult}}" wx:key="resultKey" data-index="{{index}}" wx:for-item="postItem">
+                <view class="postLineTop">
+                    <view class="avatar" >
+                        <image mode="aspectFill" src="{{postItem.userAvatarUrl}}" />
+                    </view>
+                    <view class="nameAndPostTime">
+                        <view class="postManName">{{postItem.userID}}</view>
+                        <view class="postTime">发布于{{postItem.postDate}}</view>
+                    </view>
+                </view>
+                <view class="postLineMid" bindtap="toPost" data-index="{{index}}">
+                    <text>
+                        <text class="themeColor">#{{postItem.postTheme}}#</text>{{postItem.postContent}}</text>
+                    <view class="imageWithContent">
+                        <view class="singleImage"
+                        wx:for="{{postItem.postImage}}"
+                        wx:for-item="imageItem"
+                        wx:for-index="index2"
+                        wx:key="imageItemKey"
+                        >
+                            <image mode="aspectFill" src="{{imageItem.imageUrl}}"
+                            data-idx="{{index}}"
+                            data-idx2="{{index2}}"
+                            catchtap="handleImagePreview"
+                            />
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

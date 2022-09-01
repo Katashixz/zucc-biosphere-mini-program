@@ -7,6 +7,8 @@ Page({
      * 页面的初始数据
      */
     data: {
+        state: false,
+        click: false,
         postItem: {
             postID: 1,
             userID: "啊啊啊",
@@ -32,7 +34,7 @@ Page({
         },
         commentList: [
             {
-                userID:"啊啊啊",
+                userID:"啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊",
                 userAvatarUrl:"https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epdCtmKulyPGx60K2JfNGMJNa9ziakjw18puwz0fQ6ibsCl7RcmDxbpPcdq1oE99hJzAVKs7jwkLpVQ/132",
                 commentAccessName: "啊啊啊",
                 postDate: "2022年8月19日17:45:53",
@@ -103,6 +105,67 @@ Page({
         }
     },
     /**
+     * 分享此页面
+     */
+    onShareAppMessage: function (e) {
+        console.log(e)
+        this.closeMoreOptions();
+        return {
+          title: '城院生态圈',
+          path: '/pages/postDetails/postDetails?postID=' + this.data.postItem.postID,
+         
+        }
+      },
+    
+    /**
+     * 更多选择的动画
+     */
+    moreOptions: function(e){
+        var list_state = this.data.state,
+          first_state = this.data.click;
+          
+        if (!first_state){
+          this.setData({
+           click: true,
+          });
+        }
+        if (list_state){
+          this.setData({
+           state: false
+          });
+        }else{
+          this.setData({
+
+           state: true
+          });
+        }
+      },
+    /**
+     * 关闭更多选择的动画
+     */
+    closeMoreOptions: function(e){
+            this.setData({
+            //    click: true,
+                // [`postList[${index}].click`]: false,
+                state: false,
+
+            });
+    },
+    /**
+     * 收藏
+     */
+    star(options) {
+        console.log("收藏")
+    },
+    /**
+     * 举报
+     */
+    report(options) {
+        console.log("举报")
+
+    },
+    
+    /**
      * 输入框聚焦
      */
     confirmFocus(options) {
@@ -133,6 +196,7 @@ Page({
      */
     onLoad(options) {
         console.log(options.postID)
+        console.log(this.data.commentList[0].userID.length)
     },
 
     /**
@@ -177,10 +241,4 @@ Page({
 
     },
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {
-
-    }
 })

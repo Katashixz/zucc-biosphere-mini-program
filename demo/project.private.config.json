@@ -84,6 +84,13 @@
                     "query": "",
                     "launchMode": "default",
                     "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/searchPage/searchPage",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }

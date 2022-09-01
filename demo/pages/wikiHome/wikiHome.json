@@ -1,4 +1,7 @@
 {
-    "usingComponents": {},
+    "usingComponents": {
+        "searchBar":"../../utils/searchBar/searchBar"
+
+    },
     "navigationBarTitleText": "动植物图鉴"
 }
