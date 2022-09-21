@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biosphere.library.mapper.EnergyRecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.biosphere.library.pojo.EnergyRecord">
+        <id column="id" property="id" />
+        <result column="userID" property="userID" />
+        <result column="toUserID" property="toUserID" />
+        <result column="getDate" property="getDate" />
+        <result column="point" property="point" />
+        <result column="type" property="type" />
+        <result column="ischecked" property="ischecked" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, userID, toUserID, getDate, point, type, ischecked
+    </sql>
+
+</mapper>

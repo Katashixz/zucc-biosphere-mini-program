@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biosphere.library.mapper.AnimalsWikiMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.biosphere.library.pojo.AnimalsWiki">
+        <id column="ID" property="id" />
+        <result column="nickName" property="nickName" />
+        <result column="scientificNameID" property="scientificNameID" />
+        <result column="sex" property="sex" />
+        <result column="condition" property="condition" />
+        <result column="sterilization" property="sterilization" />
+        <result column="character" property="character" />
+        <result column="appearance" property="appearance" />
+        <result column="relationship" property="relationship" />
+        <result column="image" property="image" />
+        <result column="relationID" property="relationID" />
+        <result column="location" property="location" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, nickName, scientificNameID, sex, condition, sterilization, character, appearance, relationship, image, relationID, location
+    </sql>
+
+</mapper>

@@ -1,0 +1,279 @@
+/* pages/postDetails/postDetails.wxss */
+
+.post{
+    padding: 30rpx 20rpx 10rpx;
+    background-color: #fff;
+    /* border-radius: 40rpx; */
+    margin-bottom: 15rpx;
+    z-index: 20;
+}
+.postLineTop{
+    height: 100rpx;
+    display: flex;
+    padding: 0 10rpx;
+}
+.avatar{
+    margin-right: 20rpx;
+    margin-top: 10rpx;
+
+}
+.avatar image{
+    z-index: 105;
+    border-radius: 100rpx;
+    width: 100rpx;
+    height: 100rpx;
+}
+.nameAndPostTime{
+    margin-top: 10rpx;
+    display: flex;
+    flex: 3;
+    flex-direction: column;
+}
+.postTime{
+    font-size: 28rpx;
+    color: #bbb;
+}
+.postLineMid{
+    padding: 25rpx 0rpx;
+
+}
+.postLineMid text{
+    padding: 0 20rpx;
+    display: -webkit-box;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:3;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+.themeColor{
+    color: #14bb22;
+    margin-right: 10rpx;
+    font-weight: 500;
+}
+.imageWithContent{
+    display: flex;
+    justify-content: left;
+    margin-top: 10rpx;
+    padding: 0 10rpx;
+}
+.imageWithContent image{
+    z-index: 105;
+    margin: 5rpx;
+    border-radius: 20rpx;
+    width: 209rpx;
+    height: 200rpx;
+}
+.postLineBottom{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    z-index: 30;
+}
+.postOperate{
+    width: 180rpx;
+    padding: 20rpx;
+    border-radius: 20rpx;
+    /*background-color: #aaa; */
+    display: flex;
+    text-align: center;
+}
+.postOperate image{
+    margin-left: 30rpx;
+    width: 58rpx;
+    height: 58rpx;
+}
+.postOperateText{
+    margin-top: 10rpx;
+    font-size: 30rpx;
+    padding-left: 10rpx;
+    color: #8a8a8a;
+}
+.divide{
+    height: 100rpx;
+}
+.isPoster{
+    margin-top: 5rpx;
+    height: 30rpx;
+    width: 80rpx;
+    margin-left: 10rpx;
+    padding: 4rpx;
+    border-radius: 10rpx;
+    border: #67b1f7 2rpx solid;
+    background-color: #6d9afc;
+    color: #fff;
+    text-align: center;
+    font-size: 30rpx;
+    line-height: 30rpx;
+    font-weight: 800;
+}
+.isMyName{
+    font-weight: 600;
+    color: #ce9056;
+}
+.talkTo{
+    color:#14bb22;
+    font-weight:500;
+    margin-right: 20rpx;
+}
+.postManName{
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /*限制文本行数*/
+    -webkit-box-orient: vertical;
+    word-break: break-all; /* 追加这一行代码 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.comment{
+    padding: 10rpx 20rpx;
+    background-color: #fff;
+    /* // border-radius: 40rpx; */
+    z-index: 20;
+    border-bottom: 1rpx solid #EEEAE7;
+}
+
+.commentsInputLayout{
+    border-top-right-radius: 20rpx;
+    border-top-left-radius: 20rpx;
+    padding: 10rpx 5rpx 10rpx;
+    height: 70rpx;        
+    position: fixed;        
+    bottom: 0rpx;   
+    width: 100%;  
+    z-index: 20;            
+    display: flex;        
+    flex-direction: row;       
+    align-items: center;       
+    justify-content: center;       
+    background-color: #fff;        
+    /* 使之可以滚动 */
+        overflow-y: scroll; 
+    /* 增加该属性，可以增加弹性，是滑动更加顺畅 */        
+    -webkit-overflow-scrolling: touch;
+}
+.commentsInput {
+    border-radius: 25rpx;
+    width: auto;           
+    line-height: 60rpx;       
+    position: relative;       
+    flex: 1;       
+    padding-left: 30rpx;        
+    padding-right: 30rpx;       
+    font-size: 32rpx;       
+    word-break: break-all;        
+    word-wrap: break-word;        
+    color: #333;        
+    border-top: solid #f4f4f4 0.01rpx;        
+    background-color: #f4f4f4;        
+    z-index: 21;        
+}
+.commentsBtn {     
+    line-height: 60rpx; 
+    border-radius: 40rpx;       
+    position: relative;        
+    font-size: 32rpx;       
+    color: #fff;        
+    border-top: solid #6d9afc 0.01rpx;        
+    padding-left: 30rpx;        
+    padding-right: 30rpx;        
+    background-color: #6d9afc;       
+    z-index: 21;        
+    right: 10rpx;
+}
+.commentLineMid{
+    padding: 30rpx 0rpx;
+    display: flex;
+    flex-direction: row;
+    margin-left: 35rpx;
+}
+
+.moreOptionsImage{
+    margin-left: 25rpx;
+    width: 50rpx;
+    height: 50rpx;
+}
+.moreOptions{
+    width: 100rpx;
+}
+#selectBox{
+    width: 100%;
+    /* border-top: 1px solid #ddd; */
+    overflow: hidden;
+    height: 0 ;
+    animation-fill-mode: forwards;
+    background-color: rgb(255, 255, 255);
+    font-size: 28rpx;
+    
+}
+.optionItemStyle{
+    width: 100% !important;
+    border-radius: 0rpx !important;
+    text-align: center;
+    padding-left: 8rpx !important;
+    padding-right: 8rpx !important;
+    padding-top: 10rpx !important;
+    padding-bottom: 7rpx !important;
+    border-left: 1rpx solid rgb(211, 211, 211);
+    border-right: 1rpx solid rgb(211, 211, 211);
+    /* border-bottom: 1rpx solid grey; */
+    color: rgb(160, 158, 158) !important;
+    font-weight: 400 !important;
+    font-size: 27rpx;
+    margin-left: 0rpx !important;
+    margin-right: 0rpx !important;
+    background: #ffffff;
+    /* border: 1rpx solid rgba(128, 128, 128, 0.336); */
+}
+.optionListItems{
+    position: relative;
+    /* box-shadow: 15rpx 5rpx 15rpx rgba(160, 158, 158, 0.781); */
+    
+    z-index: 1000;
+}
+@keyframes slidedown{
+    from {
+      height: 0;
+    }
+    to {
+      height: 180rpx;
+    }
+  }
+  
+  @keyframes slideup{
+    from {
+      height: 180rpx;
+    }
+    to {
+      height: 0;
+    }
+  }
+  
+  .open{
+    animation: slidedown 0.5s;
+  }
+  
+  .close{
+    animation: slideup 0.5s; 
+  }
+  
+  .optionsListHide{
+    display: none;
+  }
+  
+  .optionsListShow{
+    display: block;
+  }
+.optionListItemsMask{
+    /* position: relative; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    /* background: rgba(255, 255, 255, 0); */
+    z-index: 100;
+    opacity: 0;
+    /* animation: opc 0.2s linear forwards; */
+}

@@ -1,0 +1,114 @@
+<view class="postDetails">
+    <view class="homePage">
+        <Dialog id="userModal"></Dialog>
+        <scroll-view scroll-y="{{true}}" >
+            <view class="post">
+                <view class="postLineTop">
+                    <view class="avatar" >
+                        <image mode="aspectFill" src="{{postItem.avatarUrl}}" />
+                    </view>
+                    <view class="nameAndPostTime">
+                        <view class="postManName">{{postItem.userName}}</view>
+                        <view class="postTime">发布于{{postItem.dateformat}}</view>
+                    </view>
+                    <view class="moreOptions">
+                        <image class="moreOptionsImage" src="../../icon/more.png" bindtap="moreOptions"></image>
+                        <view id="selectBox" class="{{click? 'optionsListShow':'optionsListHide'}} {{state?'open':'close'}}">
+                            <view class="optionListItemsMask" bindtap='closeMoreOptions' style="display:{{state? 'true':'none'}}"></view>
+                            
+                            <view class="optionListItems">
+                                <button class="optionItemStyle" bindtap="star">收藏</button>
+                                <button class="optionItemStyle" open-type="share">分享</button>
+                                <button class="optionItemStyle" bindtap="report" style="border-bottom: 1rpx solid rgb(211, 211, 211);">举报</button>
+                            </view>
+
+                        </view>
+                    </view>
+                </view>
+                <view class="postLineMid">
+                    <text>
+                        <text class="themeColor">#{{postItem.theme}}#</text>{{postItem.content}}</text>
+                    <view class="imageWithContent">
+                        <view class="singleImage"
+                        wx:for="{{postItem.imageUrlList}}"
+                        wx:for-item="imageItem"
+                        wx:for-index="index2"
+                        wx:key="imageItemKey"
+                        >
+                            <image mode="aspectFill" src="{{imageItem}}"
+                            data-idx="{{index}}"
+                            data-idx2="{{index2}}"
+                            catchtap="handleImagePreview"
+                            />
+                        </view>
+                    </view>
+                </view>
+                <view class="postLineBottom">
+                    <view class="postOperate" 
+                catchtap="changeLike" 
+                data-index="{{index}}">
+                    <image src="{{postIsLiked ? '../../icon/like_fill_click.png':'../../icon/like.png'}}" />
+                    
+                    <view class="postOperateText">{{postItem.likeNum ? postItem.likeNum:''}}</view>
+                    </view>
+                    <view class="postOperate" bindtap="confirmFocus">
+                        <image src="../../icon/comment_fill.png" />
+                        <view class="postOperateText">{{postItem.commentNum?postItem.commentNum:''}}</view>
+                    </view>
+                    <view 
+                    class="postOperate" 
+                    catchtap="toReward"
+                    data-index="{{index}}"
+                    >   
+                        <image src="../../icon/charging.png" />
+                        <view class="postOperateText">充电</view>
+                    </view>
+                
+                </view>
+            </view>
+            <!-- 其他人回复 -->
+
+        <view class="comment"  
+        wx:for="{{commentList}}"
+        wx:key="user"
+        wx:for-item="commentItem"
+        data-index="{{index}}"
+        bindtap="setAtIndex"
+        >
+            <view class="postLineTop">
+                <view class="avatar" >
+                    <image mode="aspectFill" src="{{commentItem.userAvatarUrl}}" />
+                </view>
+                <view class="nameAndPostTime">
+                    <view class=""  style="display: flex;">
+                        <view class="postManName" style="{{commentItem.userName.length > 13 ? 'width: 400rpx':''}}">{{commentItem.userName}}</view>
+                        
+                        <view class="isPoster" wx:if="{{commentItem.userID == postItem.userID}}">
+                            楼主
+                        </view>
+                    </view>
+                    <view class="postTime">评论于{{commentItem.commentDate}}</view>
+                </view>
+            </view>
+
+            <view class="commentLineMid">
+                <view class="talkTo" hidden="{{commentItem.commentAccessID == postItem.userID}}">@{{commentItem.commentAccessName}}:</view><view>{{commentItem.content}}</view>
+            </view>
+        </view>
+        <view class="divide"></view>
+        <view class='commentsInputLayout' style="bottom:{{keyboardHeight}}rpx">
+            <input value="{{resContent}}" 
+            type='text' maxlength='100' 
+            class='commentsInput' 
+            placeholder='请输入评论内容（100字以内）' 
+            placeholder-class='phcolor' 
+            bindinput='inputCommentsContentListening' 
+            bindblur="inputCommentsBlur"
+            bindfocus="confirmFocus"
+            focus="{{isFocus}}"
+            />
+            <text class='commentsBtn' bindtap='clickComments'>评论</text>
+        </view>
+        </scroll-view>
+    </view>
+</view>

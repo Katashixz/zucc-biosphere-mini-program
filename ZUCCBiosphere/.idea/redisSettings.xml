@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RedisConfiguration">
+    <option name="serverConfigurations">
+      <list>
+        <ServerConfiguration>
+          <option name="databaseVendor" value="DatabaseVendor{name='RedisDB'}" />
+          <option name="defaultKeyFilter" value="*" />
+          <option name="label" value="local" />
+          <option name="password" value="" />
+          <option name="sercurityInfo">
+            <SercurityInfo />
+          </option>
+          <option name="serverUrl" value="localhost:6379" />
+          <option name="userName" value="" />
+        </ServerConfiguration>
+        <ServerConfiguration>
+          <option name="databaseVendor" value="DatabaseVendor{name='RedisDB'}" />
+          <option name="defaultKeyFilter" value="*" />
+          <option name="label" value="myRedis" />
+          <option name="password" value="yi89853901yi" />
+          <option name="sercurityInfo">
+            <SercurityInfo />
+          </option>
+          <option name="serverUrl" value="124.221.252.162:6378" />
+          <option name="userName" value="" />
+        </ServerConfiguration>
+      </list>
+    </option>
+  </component>
+</project>

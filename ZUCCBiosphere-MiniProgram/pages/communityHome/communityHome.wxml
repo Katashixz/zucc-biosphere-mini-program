@@ -1,0 +1,130 @@
+<!--pages/commuityHome/communityHome.wxml-->
+<view class="communityHome">
+    <view class="homePage" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+    
+        
+        <view class="hotPost">
+            <view class="hotPostLeft" bindtap="toHotPostList">
+                <text class="hotText">热门讨论</text>
+                <image class="hotGif" src="https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/dancing.gif" mode="heightFix"/>
+            </view>
+            <swiper class="hotPostRight" autoplay="true" interval="2500" duration="1000" circular="true" vertical="true">
+                <swiper-item item-id=""
+                class="hotPostList" 
+                wx:for="{{tenHotPosts}}"
+                wx:key="postIDKey"
+                wx:for-item="item"
+                data-index="{{index}}"
+                bindtap="toHotPost"
+                >
+                <view class="itemContent">
+
+                    <text class="number" > {{index == 9? index + 1: '0' + (index + 1)}}</text>
+                    <text class="itemText">{{item.content}}</text>
+                </view>
+                </swiper-item>
+            </swiper>
+        </view>
+        <view class="twoButton">
+            <button class="adoptionDiary btn" type="primary" bindtap="toAdoptionDiary">
+            领养日记
+            </button>
+        <button class="shop btn" type="primary" disabled="{{disabled}}" bindtap="tobioinfo">
+            商城
+        </button>
+        </view>
+        <view class="postList">
+            <view class="post" wx:for="{{postList}}" wx:key="postIDListKey"
+        wx:for-item="postItem" data-index="{{index}}" >
+                <view class="postLineTop">
+                    <view class="avatar" >
+                        <image mode="aspectFill" src="{{postItem.avatarUrl}}" />
+                    </view>
+                    <view class="nameAndPostTime">
+                        <view class="postManName">{{postItem.userName}}</view>
+                        <view class="postTime">发布于{{postItem.dateformat}}</view>
+                    </view>
+                    <view class="moreOptions">
+                        <image class="moreOptionsImage" src="../../icon/more.png" bindtap="moreOptions" data-index="{{index}}"></image>
+                        <view id="selectBox" class="{{postItem.click? 'optionsListShow':'optionsListHide'}} {{postItem.state?'open':'close'}}">
+                            <view class="optionListItemsMask" bindtap='closeMoreOptions' style="display:{{postItem.state? 'true':'none'}}" data-index="{{index}}"></view>
+                            
+                            <view class="optionListItems">
+                                <button class="optionItemStyle" bindtap="star">收藏</button>
+                                <button class="optionItemStyle" open-type="share">分享</button>
+                                <button class="optionItemStyle" bindtap="report" style="border-bottom: 1rpx solid rgb(211, 211, 211);">举报</button>
+                            </view>
+
+                        </view>
+                    </view>
+                </view>
+                <view class="postLineMid" bindtap="toPost" data-index="{{index}}">
+                    <text>
+                        <text class="themeColor">#{{postItem.theme}}#</text>{{postItem.content}}</text>
+                    <view class="imageWithContent">
+                        <view class="singleImage"
+                        wx:for="{{postItem.imageUrlList}}"
+                        wx:for-item="imageItem"
+                        wx:for-index="index2"
+                        wx:key="imageItemKey"
+                        >
+                            <image mode="aspectFill" src="{{imageItem}}"
+                            data-idx="{{index}}"
+                            data-idx2="{{index2}}"
+                            catchtap="handleImagePreview"
+                            />
+                        </view>
+                    </view>
+                </view>
+                <view class="postLineBottom">
+                    <view class="postOperate" 
+                catchtap="changeLike" 
+                data-index="{{index}}">
+                    <image src="{{postItem.postIsLiked ? '../../icon/like_fill_click.png':'../../icon/like.png'}}" />
+                    
+                    <view class="postOperateText">{{postItem.likeNum ? postItem.likeNum:''}}</view>
+                    </view>
+                    <view class="postOperate" catchtap="comment" data-index="{{index}}">
+                        <image src="../../icon/comment_fill.png" />
+                        <view class="postOperateText">{{postItem.commentNum?postItem.commentNum:''}}</view>
+                    </view>
+                    <view 
+                    class="postOperate" 
+                    catchtap="toReward"
+                    data-index="{{index}}"
+                    >   
+                        <image src="../../icon/charging.png" />
+                        <view class="postOperateText">充电</view>
+                    </view>
+                
+                </view>
+
+            </view>
+           
+             <!-- <view style="background-color: #EEEAE7;"> -->
+                <view class="loadTips" hidden="{{aniTime}}">
+                <text wx:if="{{isLoadAllPosts}}">已经加载了所有贴子啦</text>
+                <text wx:else>上拉加载更多贴子</text>
+                </view>
+                <view class="loadAni inCenter" hidden="{{!aniTime}}">
+                    <image src="https://assets.materialup.com/uploads/e21b405b-4e2a-48dc-9181-625a37c1eae8/preview.gif" mode="aspectFit" />
+                </view>
+                
+                
+                <view style="height: 100rpx;"></view>
+
+            <!-- </view>  -->
+        </view>
+        <view class="search" style="{{releasePostStyle}}" bindtap="toSearch">
+        <image class="searchImage" src="../../icon/searchIconWhite.png"></image>
+        <text class="searchText"> 搜索</text>
+        </view>
+        <view class="releasePostShow" style="{{releasePostStyle}}" bindtap="toReleasePost">
+        <image class="releasePostShowImage" src="../../icon/release.png"></image>
+        <text class="releasePostShowText"> 发帖</text>
+        </view>
+        <Dialog id="userModal"></Dialog>
+    </view>
+   
+    
+</view>

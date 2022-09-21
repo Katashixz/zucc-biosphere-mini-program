@@ -1,0 +1,38 @@
+<!--pages/wikiDetail/wikiDetail.wxml-->
+<view class="wikiDetail">
+    <view class="homePage" >
+    <view class="imageList">
+        <swiper class="imageSwiper" autoplay="true" interval="3000" circular="true" indicator-dots="true" indicator-color="white" indicator-active-color="#aabbcc" wx:key="imageSwiperKey">
+            <swiper-item wx:for="{{imageList}}" data-index="{{index}}" wx:key="imageListKey">
+                <image mode="aspectFill" lazy-load="true" wx:if="{{imageList[index] != null}}" src="{{imageList[index]}}" show-menu-by-longpress="true"></image>
+            </swiper-item>
+        </swiper>
+    </view>
+    <view class="divider">
+    </view>
+    <view class="dataList">
+        <text class="nickName inCenter">{{nickName}}</text>
+            <view class="contentArea">
+                <view class="dataListContentLeft">
+                    <view class="flexType" wx:if="{{index%2==0}}" wx:for="{{title}}" wx:for-item="map" wx:key="mapKey" data-index="{{index}}">
+                        <text class="title">{{title[index]}}</text>
+                        <text class="content">{{content[index]}}</text>
+                    </view>
+                </view>
+                <view class="dataListContentRight">
+                    <view class="flexType" wx:if="{{index%2==1}}" wx:for="{{title}}" wx:for-item="map" wx:key="mapKey" data-index="{{index}}">
+                        <text class="title">{{title[index]}}</text>
+                        <text class="content">{{content[index]}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="relationList">
+                <view class="relationItem" wx:for="{{relation}}" wx:for-item="relation" wx:key="relationKey" data-index="{{index}}" bindtap="toAnotherAnimal">
+                    <image class="avatarImage" src="{{relation.imageUrl}}" mode="aspectFill"></image>
+                    <text class="inCenter">{{relation.name}}</text>                    
+                </view>
+            </view>
+            <text class="endText inCenter" >————没有内容了哦————</text>
+    </view>
+</view>
+</view>
