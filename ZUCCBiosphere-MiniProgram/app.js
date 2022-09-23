@@ -95,9 +95,11 @@ App({
         var that = this;
 
         return new Promise((resolve, reject) => {
+            wx.showLoading({
+              title: '加载中',
+            })
             wx.login({
                 success: (res) => {
-                    // console.log(app.globalData.userInfo);
 
                     wx.request({
                     method:"POST",
@@ -108,6 +110,7 @@ App({
                         nickName: that.globalData.userInfo.nickName
                     },
                     fail: (res2) =>{
+                        wx.hideLoading();
                         wx.showToast({
                             title: '请重新登录！',
                             icon: 'error',
@@ -119,7 +122,7 @@ App({
                         reject("error")
                     },
                     success: (res2) => {
-                        console.log(res2);
+                        wx.hideLoading();
                     if(res2.data.code != 200) {
                         wx.showToast({
                             title: '请重新登录！',
@@ -142,6 +145,8 @@ App({
                         that.globalData.hasUserInfo = true;
                         that.globalData.userInfo = res2.data.data.userInfo;
                         that.globalData.level = res2.data.data.level;
+                    console.log(that.globalData.userInfo);
+
                         wx.setStorageSync('openID', that.openID);
                         resolve("success")
                     }
@@ -154,8 +159,8 @@ App({
     },
     globalData: {
         userInfo: null,
-        // urlHome: 'http://124.221.252.162:9000',
-        urlHome: 'http://localhost:9000',
+        urlHome: 'http://124.221.252.162:9000',
+        // urlHome: 'http://localhost:9000',
         token: '',
         openID: '',
         hasUserInfo: false,

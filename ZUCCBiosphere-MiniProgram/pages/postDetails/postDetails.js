@@ -186,6 +186,7 @@ Page({
             url: url,
             method:"GET",
             success: (res) => {
+                wx.hideLoading();
                 if(res.data.code == 200){
                     that.setData({
                         postItem: res.data.data.postDetail,
@@ -200,10 +201,8 @@ Page({
                 }
   
             },
-            complete: (res) =>{
-              wx.hideLoading();
-            },
             fail: (res) => {
+                wx.hideLoading();
                 wx.showToast({
                   title: '服务器错误',
                   icon: 'error',
@@ -224,6 +223,7 @@ Page({
               url: url,
               method:"GET",
               success: (res) => {
+                wx.hideLoading();
                   if(res.data.code == 200){
                       that.setData({
                         commentList: res.data.data.commentList,
@@ -237,10 +237,8 @@ Page({
                   }
     
               },
-              complete: (res) =>{
-                wx.hideLoading();
-              },
               fail: (res) => {
+                wx.hideLoading();
                   wx.showToast({
                     title: '服务器错误',
                     icon: 'error',
@@ -254,8 +252,12 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        console.log(options.postID)
         var that = this;
+
+        that.setData({
+            postItem: [],
+            commentList: [],
+        })
         that.setData({
             postID: options.postID,
         })

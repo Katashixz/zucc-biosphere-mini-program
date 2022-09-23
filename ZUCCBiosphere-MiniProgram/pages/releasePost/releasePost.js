@@ -9,7 +9,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        textDown: "",
+        content: "",
         postTheme: {
             isHidden: true,
             default: "选择主题",
@@ -19,7 +19,7 @@ Page({
         images: [],
         imagesBase: [],
         tmpImages: [],
-        maxImg: 3
+        maxImg: 9
         
     },
 
@@ -84,15 +84,15 @@ Page({
     /* 获取帖子内容 */
     getPostContent: function (e) {
         this.setData({
-            postContent: e.detail.value
+            content: e.detail.value
         })
     },
 
     /* 发布帖子 */
     release: function () {
-        this.imageToBase();
-
-        if (this.data.postTheme.select == -1) {
+        var that = this;
+        that.imageToBase();
+        if (that.data.postTheme.select == -1) {
             wx.showToast({
                 title: '请选择主题!',
                 icon: 'error',  // 图标类型，默认success
@@ -100,9 +100,9 @@ Page({
             })
         }
 
-        else if (!this.data.postContent ) {
+        else if (!that.data.content ) {
             wx.showToast({
-                title: '请输入完整!',
+                title: '请输入内容!',
                 icon: 'error',  // 图标类型，默认success
                 duration: 1500  // 提示窗停留时间，默认1500ms
             })
@@ -115,79 +115,190 @@ Page({
             })
         }
         else {
-            var that = this;
-            app.darkin(that, 'ani', 0.7, 'rgb(67, 196, 88)', 'rgb(36, 100, 47)');
-            api.showLoading('上传中...')
-            for (let i = 0; i < that.data.images.length; i++) {
-                wx.getFileSystemManager().readFile({
-
-
-                    filePath: this.data.images[i], //选择图片返回的相对路径
-                    encoding: "base64", //这个是很重要的
-                    success: res => {
-                        //返回base64格式
-
-                        that.data.imagesBase.push(res.data);
-                        this.setData({})
-                        if (that.data.imagesBase.length == that.data.images.length) {
-                            // console.log(this.data.imagesBase[0])
-                            that.upCount();
+            app.darkin(that, 'ani', 0.7, 'rgb(215,193,168)', 'rgb(126, 113, 98)');
+            wx.showLoading({
+              title: '上传中...',
+            })
+            if (that.data.images.length == 0) {
+                var url = app.globalData.urlHome + '/community/auth/uploadPost'
+                wx.request({
+                    url: url,
+                    method: "POST",
+                    header: {
+                        'token': app.globalData.token
+                    },
+                    data: {
+                        userID: app.globalData.userInfo.id,
+                        theme: that.data.theme,
+                        content: that.data.content,
+                    },
+                    success: (loadRes) => {
+                        if(loadRes.data.code == 200){
+                            console.log(loadRes)
+                            wx.showToast({
+                            title: '发帖成功',
+                            duration: 2000,
+                            icon: 'success',
+                            })
+                            setTimeout(function () {
+                                wx.reLaunch({
+                                    url: '../communityHome/communityHome',
+                                })
+                            }, 2100)
+                        }else{
+                            wx.showToast({
+                            title: loadRes.data.msg,
+                            duration: 2000,
+                            icon: 'error'
+                            })
                         }
+                    },
+                    fail: (loadRes) => {
+                        wx.showToast({
+                            title: '服务器错误',
+                            duration: 2000,
+                            icon: 'error'
+                        })
+                    },
+                    complete: (loadRes) => {
+                        wx.hideLoading();
                     }
+
+                })
+                // that.uploadImages();
+            }
+            else{
+                //先上传图片，获取到所有上传成功的url数组后再上传帖子
+                that.uploadImages().then(res => {
+                    var url = app.globalData.urlHome + '/community/auth/uploadPost'
+                    wx.request({
+                        url: url,
+                        method: "POST",
+                        header: {
+                            'token': app.globalData.token
+                        },
+                        data: {
+                            images: res,
+                            userID: app.globalData.userInfo.id,
+                            theme: that.data.theme,
+                            content: that.data.content,
+                        },
+                        success: (loadRes) => {
+                            if(loadRes.data.code == 200){
+                                console.log(loadRes)
+                                wx.showToast({
+                                title: '发帖成功',
+                                duration: 2000,
+                                icon: 'success',
+                                })
+                                setTimeout(function () {
+                                    wx.reLaunch({
+                                        url: '../communityHome/communityHome',
+                                    })
+                                }, 2100)
+                            }else{
+                                wx.showToast({
+                                title: loadRes.data.msg,
+                                duration: 2000,
+                                icon: 'error'
+                                })
+                            }
+                            console.log(res)
+                        },
+                        fail: (loadRes) => {
+                            wx.showToast({
+                                title: '服务器错误',
+                                duration: 2000,
+                                icon: 'error'
+                            })
+                        },
+                        complete: (loadRes) => {
+                            wx.hideLoading();
+                        }
+
+                    })
+                }).catch(error => {
+                    console.log(error);
                 })
             }
+            
+            // that.upCount();
 
-            if (that.data.images.length == 0) {
-                that.upCount();
-            }
+            
         }
     },
 
-    upCount: function () {
-        var that = this
-        // wx.request({
-        //     url: getApp().globalData.urlHome + '/postBar/releasePost',
-        //     // url: 'http://121.40.227.132:8078/indeximages/uploadImages',
-        //     method: 'POST',
-        //     header: {
-        //         'content-type': 'application/json;charset=utf-8',
-        //         'x-auth-token': getApp().globalData.token
-        //     },
-        //     data: {
-        //         postTheme: this.data.theme,
-        //         postContent: this.data.postContent,
-        //         userID: getApp().globalData.openid,
-        //         userAvatarUrl: getApp().globalData.userInfo.avatarUrl,
-        //         'picType1': that.data.tmpImages[0] ? that.data.tmpImages[0].split('.')[1] : null,
-        //         'picType2': that.data.tmpImages[1] ? that.data.tmpImages[1].split('.')[1] : null,
-        //         'picType3': that.data.tmpImages[2] ? that.data.tmpImages[2].split('.')[1] : null,
-        //         'picName1': that.data.tmpImages[0] ? that.data.tmpImages[0] : null,
-        //         'picName2': that.data.tmpImages[1] ? that.data.tmpImages[1] : null,
-        //         'picName3': that.data.tmpImages[2] ? that.data.tmpImages[2] : null,
-        //         'picture1': that.data.imagesBase[0] ? that.data.imagesBase[0] : null,
-        //         'picture2': that.data.imagesBase[1] ? that.data.imagesBase[1] : null,
-        //         'picture3': that.data.imagesBase[2] ? that.data.imagesBase[2] : null,
+    uploadImages: function () {
+        var that = this;
+        var media = that.data.images;
+        var result = [];
+        var asyncList = [];
+        return new Promise((resolve, reject) => {
+            //循环发送请求上传文件
+            var flag = true;
+            var i = 0;
+
+            media.forEach(element => {
                 
-        //     },
-        //     success(r) {
-        //         wx.showToast({
-        //             title: '发布成功！', // 标题
-        //             icon: 'success',  // 图标类型，默认success
-        //             duration: 1500  // 提示窗停留时间，默认1500ms
-        //         })
-        //         api.hideLoading('上传中...')
+                var p1 = that.uploadSingleImage(element).then(function(resInfo){
+                    
+                    result.push(resInfo);
 
-        //         setTimeout(function () {
-        //             wx.reLaunch({
-        //                 url: '../home/home',
-        //             })
-        //         }, 1500)
+                }).catch(function(reason){
+                    // flag = false;
+                    result.push(reason);
+                    
+                })
+                asyncList.push(p1);
 
-        //         that.clearData()
-        //     }
-        // })
+                
+            });
+            Promise.all(asyncList).then(
+                function(res){
+                    resolve(result)
+                }
+            ).catch(
+                function(error){
+                    wx.showToast({
+                        title: reason,
+                        duration: 2000,
+                        icon: "error"
+                    })
+                    reject(result);
+                }
+            )
+        })
+        
 
     },
+    uploadSingleImage: function (imageInfo) {
+        var that = this;
+        var url = app.globalData.urlHome + '/community/auth/uploadImg';
+
+        return new Promise((resolve, reject) => {
+            wx.uploadFile({
+                filePath: imageInfo.tempFilePath,
+                name: 'file',
+                url: url,
+                header: {
+                    'token': app.globalData.token
+                },
+                success: (res) => {
+                    var data = JSON.parse(res.data);
+                    if(data.code == 200){
+                        resolve(data.data.imgUrl)
+                    }else{
+                        reject(data.msg)    
+                    }
+                },
+                fail: (res) => {
+                    reject("服务器错误")    
+
+                }
+            })
+        })
+    },
+
 
     chooseImage: function () {
         const that = this
@@ -196,16 +307,15 @@ Page({
         if (that.data.images.length < that.data.maxImg) {
 
             let images = that.data.images
-            wx.chooseImage({
+            wx.chooseMedia({
                 count: that.data.maxImg - that.data.images.length,
                 sizeType: ['original', 'compressed'],  //可选择原图或压缩后的图片
                 sourceType: ['album', 'camera'], //可选择性开放访问相册、相机
+                maxDuration: 15,
                 success: res => {
-
-
                     // console.log(res)
                     for (let i = 0; i < res.tempFiles.length; i++) {
-                        images.push(res.tempFilePaths[i]);
+                        images.push(res.tempFiles[i]);
                         this.setData({
                             images: images
                         })
@@ -215,7 +325,8 @@ Page({
         }
         else {
             wx.showToast({
-                title: "最多上传" + that.data.maxImg + "张照片！"
+                title: "最多上传" + that.data.maxImg + "张照片！",
+                duration: 2000
             })
 
         }
@@ -240,27 +351,49 @@ Page({
     handleImagePreview(e) {
         const idx = e.target.dataset.idx
         const images = this.data.images
-        wx.previewImage({
-            current: images[idx],  //当前预览的图片
-            urls: images,  //所有要预览的图片
+        var mediaUrlList = [];
+
+        console.log(images)
+        // console.log(images);
+        for(var i = 0; i < images.length; i ++){
+            var temp = {
+                url: images[i].tempFilePath,
+                type: images[i].fileType,
+                poster: images[i].thumbTempFilePath,
+            }
+            mediaUrlList.push(temp);
+        }
+        // console.log(mediaUrlList);
+
+        wx.previewMedia({
+          sources: mediaUrlList,
+          current: idx
         })
+        // for(var i = 0; i < images.length; i ++){
+        //     imageUrlList.push(images[i].tempFilePath);
+        // }
+        // wx.previewImage({
+        //     current: images[idx].tempFilePath,  //当前预览的图片
+        //     urls: imageUrlList,  //所有要预览的图片
+        // })
     },
 
-    // 图片转base64
+    // 图片转base64前操作，先把文件名拿出来
     imageToBase() {
         const that = this
 
 
-        this.setData({
+        that.setData({
             tmpImages: [],
         })
 
+        that.data.images.forEach(element => {
+            // console.log(element)
 
-        this.data.images.forEach(element => {
-
-            that.data.tmpImages.push(element.split('/')[3])
+            that.data.tmpImages.push(element.tempFilePath.split('/')[3])
 
         });
+        // console.log(that.data.tmpImages)
 
     },
 
@@ -275,7 +408,7 @@ Page({
             images: [],
             imagesBase: [],
             tmpImages: [],
-            textDown: "",
+            content: "",
         })
 
     },

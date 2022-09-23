@@ -96,7 +96,7 @@
 }
 #bodyText .pictureMngr .imageList{
     margin:25rpx;
-    width:200rpx;
+    width:180rpx;
     height:200rpx;
     border:3px solid #f0f0f0;
     border-radius:20rpx;
@@ -105,7 +105,7 @@
 #bodyText .pictureMngr .imageList .singerImage{
     z-index:10;
     height:200rpx;
-    width:200rpx
+    width:180rpx
 }
 #bodyText .pictureMngr .imageList .deleteImage{
     z-index:100;
@@ -153,13 +153,19 @@
     border-bottom:2rpx #B6A5A5 solid;
     border-top:2rpx #B6A5A5 solid;
     color: #474545;
+    background-color:#EEEAE7;
+
 }
 #lineButtom{
     background-color:#EEEAE7;
-    padding-top:30rpx;
-    margin-top:60rpx
+    padding-top:60rpx;
+    padding-bottom: 90rpx;
+    /* margin-top:60rpx; */
+    
+
 }
 #lineButtom .btn{
+    background-color:#EEEAE7;
     width:300rpx;
     height:80rpx;
     border-radius:30rpx;

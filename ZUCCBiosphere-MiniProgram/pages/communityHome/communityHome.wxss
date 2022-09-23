@@ -137,6 +137,7 @@
 }
 .imageWithContent{
     display: flex;
+    flex-wrap: wrap;
     justify-content: left;
     margin-top: 10rpx;
     padding: 0 10rpx;

@@ -11,109 +11,86 @@ Page({
     data: {
         curPage: 1,
         pageSize: 3,
+        currentIndex: 0,
         releasePostStyle: "",
         tenHotPosts: [
+
             {
                 postID: 1,
-                content: "e"
+                content: "热帖"
             },
-            {
-                postID: 2,
-                content: "ee"
-            },
+            // {
+            //     postID: 2,
+            //     content: "ee"
+            // },
         ],
         postList: [
-            // {
-            //     state: false,
-            //     click: false,
-            //     postID: 1,
-            //     userName: "yoxi",
-            //     userID: 1,
-            //     avaratUrl: "",
-            //     content: "789633",
-            //     postDate: "2022年8月19日16:44:33",
-            //     postImage: [],
-            //     commentNum: 0,
-            //     postlikeNum: 0,
-            //     postisTop: false,
-            //     postisEssential: true,
-            //     postIsLiked: false,
-            //     postTheme: "啊啊啊"
-            // },
-            // {
-            //     state: false,
-            //     click: false,
-            //     postID: 2,
-            //     userName: "啊啊啊aaaaaawcsa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊",
-            //     userID: 2,
-            //     avaratUrl: "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epdCtmKulyPGx60K2JfNGMJNa9ziakjw18puwz0fQ6ibsCl7RcmDxbpPcdq1oE99hJzAVKs7jwkLpVQ/132",
-            //     content: "ee",
-            //     postTheme: "突击",
-            //     postDate: "2022年8月19日17:45:53",
-            //     postImage: [
-            //         {
-            //             imageUrl:"https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/preview1.jpg"
-            //         },
-            //        {
-            //         imageUrl:"https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/preview1.jpg"
-            //        }
-            //     ],
-            //     commentNum: 1,
-            //     postlikeNum: 10,
-            //     postisTop: false,
-            //     postisEssential: true,
-            //     postIsLiked: true,
-            //     postisStared: false
-            // },
-            // {
-            //     state: false,
-            //     click: false,
-            //     postID: 3,
-            //     userName: "啊啊啊",
-            //     userID: 3,
-            //     avaratUrl: "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epdCtmKulyPGx60K2JfNGMJNa9ziakjw18puwz0fQ6ibsCl7RcmDxbpPcdq1oE99hJzAVKs7jwkLpVQ/132",
-            //     content: "ee",
-            //     postTheme: "突击",
-            //     postDate: "2022年8月19日17:45:53",
-            //     // postImage: [
-            //     //     {
-            //     //         imageUrl:"https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/preview1.jpg"
-            //     //     },
-            //     //    {
-            //     //     imageUrl:"https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/preview1.jpg"
-            //     //    }
-            //     // ],
-            //     imageUrlList:[
-            //         "https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/preview1.jpg",
-            //         "https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/preview2.jpg"
-            //     ],
-            //     commentNum: 3,
-            //     postlikeNum: 10,
-            //     postisTop: false,
-            //     postisEssential: true,
-            //     postIsLiked: true,
-            //     postisStared: false
-            // }
+            
             
         ],
         isLoadAllPosts: false,
         aniTime: false,
         releasePostAni: false,
     },
+
+    // 判断是否为视频
+    isVideo(target){
+        var typeTemp = target.split(".");
+        if(typeTemp[typeTemp.length - 1] == 'mp4' || typeTemp[typeTemp.length - 1] == 'mov' || typeTemp[typeTemp.length - 1] == 'wmv' || typeTemp[typeTemp.length - 1] == 'mpg' || typeTemp[typeTemp.length - 1] == 'avi'){
+            return true;
+        }
+        return false;
+    },
+
     //   查看图片
     handleImagePreview(e) {
+        var that = this;
         const idx = e.target.dataset.idx
         const idx2 = e.target.dataset.idx2
-        const images = this.data.postList[idx].imageUrlList
-        // console.log(images)
-        let toImg = []
-        images.forEach(element => {
-            toImg.push(element)
-        });
-        wx.previewImage({
-            current: toImg[idx2],  //当前预览的图片
-            urls: toImg,  //所有要预览的图片
+        const images = that.data.postList[idx].imageUrlList
+        var mediaUrlList = [];
+        // console.log(images);
+        for(var i = 0; i < images.length; i ++){
+            var type = "image";
+            if(that.isVideo(images[i])){
+                type = "video";
+            }
+            //视频图片分开判断
+            var temp;
+            if(type == "video"){
+                var position = images[i].lastIndexOf('.');
+                var posterUrl = images[i].slice(0, position) + "_0.jpg";
+                temp = {
+                    url: images[i],
+                    type: type,
+                    poster: posterUrl,
+                }
+            }
+            else{
+                temp = {
+                    url: images[i],
+                    type: type,
+                }
+            }
+            console.log(temp)
+
+            mediaUrlList.push(temp);
+        }
+        // console.log(mediaUrlList);
+
+        wx.previewMedia({
+          sources: mediaUrlList,
+          current: idx2
         })
+        // let toImg = []
+        // images.forEach(element => {
+        //     toImg.push(element)
+        // });
+        // wx.previewImage({
+        //     current: toImg[idx2],  //当前预览的图片
+        //     urls: toImg,  //所有要预览的图片
+        // })
+        
     },
 
     
@@ -127,7 +104,7 @@ Page({
     //跳转到热帖详情页面
     toHotPost: function (e) {
         wx.navigateTo({
-            url: '/pages/postDetails/postDetails?postID=' + this.data.tenHotPosts[e.currentTarget.dataset.index].postID
+            url: '/pages/postDetails/postDetails?postID=' + this.data.tenHotPosts[e.currentTarget.dataset.index].hotPost.postID
         })
     },
     /**
@@ -180,7 +157,6 @@ Page({
      */
     toReward: function (e) {
         var that = this
-        console.log(app.globalData)
         const post = that.data.postList[e.currentTarget.dataset.index]
         if (app.globalData.hasUserInfo) {
             if (app.globalData.userInfo.id == post.userID) {
@@ -257,7 +233,48 @@ Page({
         console.log("分享")
 
     },
-    
+    /**
+     * 热帖加载
+     */
+    loadHotPost() {
+        var that = this;
+
+        that.setData({
+            currentIndex: 0,
+        })
+        var url = app.globalData.urlHome + '/community/exposure/loadHotPost';
+        // if(app.globalData.hasUserInfo){
+        //     url = url + '&userID=' + app.globalData.userInfo.id;
+        // }
+        wx.request({
+            url: url,
+            method:"GET",
+            success: (res) => {
+                if(res.data.code == 200){
+                    that.setData({
+                        tenHotPosts: res.data.data.tenHotPosts,
+                    })
+
+                }else{
+                  wx.showToast({
+                      title: res.data.msg,
+                      icon: 'error',
+                      duration: 2000
+                    })
+                }
+  
+            },
+            fail: (res) => {
+                wx.showToast({
+                  title: '服务器错误',
+                  icon: 'error',
+                  duration: 2000
+                })
+            }
+          
+  
+          })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -269,7 +286,7 @@ Page({
         })
         var pageSize = that.data.pageSize;
         that.loadPost(1,pageSize);
-
+        that.loadHotPost();
     },
 
     /**
@@ -339,10 +356,13 @@ Page({
         var that = this;
         that.setData({
             curPage: 1,
-            postList: []
+            postList: [],
+            tenHotPosts: []
         })
         var pageSize = that.data.pageSize;
         that.loadPost(1,pageSize);
+        that.loadHotPost();
+
     },
 
     /**
@@ -440,6 +460,7 @@ Page({
             method:"GET",
             success: (res) => {
                 if(res.data.code == 200){
+                    console.log(res)
                     var postList2 = that.data.postList;
                     for(var item of res.data.data.postList){
                         postList2.push(item);

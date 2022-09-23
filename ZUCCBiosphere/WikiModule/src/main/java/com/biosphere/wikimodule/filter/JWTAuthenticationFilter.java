@@ -39,7 +39,7 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws IOException, ServletException {
-		log.info("-----------AuthenticationFilter Run-----------");
+		// log.info("-----------AuthenticationFilter Run-----------");
 
 		// 取出Token
 		String token = request.getHeader("token");

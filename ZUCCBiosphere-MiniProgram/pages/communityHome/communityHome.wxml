@@ -1,4 +1,18 @@
 <!--pages/commuityHome/communityHome.wxml-->
+<wxs module="func">
+      module.exports = {
+        isVideo: function (target) {
+            var typeTemp = target.split(".");
+        if(typeTemp[typeTemp.length - 1] == 'mp4' || typeTemp[typeTemp.length - 1] == 'mov' || typeTemp[typeTemp.length - 1] == 'wmv' || typeTemp[typeTemp.length - 1] == 'mpg' || typeTemp[typeTemp.length - 1] == 'avi'){
+            return true;
+        }
+        return false;
+        },
+        slice: function (target) {
+            return target.slice(0, target.lastIndexOf('.')) + '_0.jpg'
+        }
+      }
+</wxs>
 <view class="communityHome">
     <view class="homePage" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
     
@@ -8,8 +22,8 @@
                 <text class="hotText">热门讨论</text>
                 <image class="hotGif" src="https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/dancing.gif" mode="heightFix"/>
             </view>
-            <swiper class="hotPostRight" autoplay="true" interval="2500" duration="1000" circular="true" vertical="true">
-                <swiper-item item-id=""
+            <swiper class="hotPostRight" autoplay="true" interval="2500" duration="1000" circular="true" vertical="true" current="{{currentIndex}}">
+                <swiper-item 
                 class="hotPostList" 
                 wx:for="{{tenHotPosts}}"
                 wx:key="postIDKey"
@@ -63,15 +77,17 @@
                         <text class="themeColor">#{{postItem.theme}}#</text>{{postItem.content}}</text>
                     <view class="imageWithContent">
                         <view class="singleImage"
+                        wx:if="{{postItem.imageUrlList != null}}"
                         wx:for="{{postItem.imageUrlList}}"
                         wx:for-item="imageItem"
                         wx:for-index="index2"
                         wx:key="imageItemKey"
                         >
-                            <image mode="aspectFill" src="{{imageItem}}"
+                            <image mode="aspectFill" src="{{func.isVideo(imageItem) ? func.slice(imageItem):imageItem}}"
                             data-idx="{{index}}"
                             data-idx2="{{index2}}"
                             catchtap="handleImagePreview"
+                            wx:if="{{imageItem != ''}}"
                             />
                         </view>
                     </view>

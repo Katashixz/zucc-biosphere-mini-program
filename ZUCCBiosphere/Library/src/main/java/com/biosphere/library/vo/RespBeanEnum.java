@@ -19,13 +19,16 @@ public enum RespBeanEnum {
     REPEAT_CHECKIN(1005,"重复签到"),
     CHECKIN_INSERT_ERROR(1006,"签到记录插入失败"),
     //百科模块
-    GET_WIKI_ERROR(2001,"获取百科信息失败"),
+    GET_WIKI_ERROR(2001,"获取百科失败"),
     GET_GUIDE_ERROR(2002,"获取养护指南信息失败"),
-    GET_DETAIL_ERROR(2003,"获取详情信息失败"),
+    GET_DETAIL_ERROR(2003,"获取详情失败"),
     //社区模块
-    LOAD_POST_ERROR(3001,"加载帖子信息失败"),
+    LOAD_POST_ERROR(3001,"加载帖子失败"),
+    LOAD_HOT_POST_ERROR(3004,"加载热帖失败"),
     LOAD_POSTDETAIL_ERROR(3002,"该贴不存在或已被删除"),
     LOAD_COMMENT_ERROR(3003,"加载评论失败"),
+    UPLOAD_IMG_ERROR(3005,"上传图片失败"),
+    UPLOAD_POST_ERROR(3006,"上传帖子失败"),
 
     ;
 

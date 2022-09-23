@@ -65,6 +65,20 @@ public class Post implements Serializable {
     @TableField("imageUrl")
     private String imageUrl;
 
+    /**
+     * 删除标志
+     */
+    @TableField("isDeleted")
+    private Integer isDeleted;
+
+    public Integer getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Integer isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
     public Long getId() {
         return id;
     }

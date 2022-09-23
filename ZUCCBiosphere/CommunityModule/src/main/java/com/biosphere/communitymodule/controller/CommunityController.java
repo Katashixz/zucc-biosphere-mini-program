@@ -4,6 +4,8 @@ package com.biosphere.communitymodule.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.biosphere.communitymodule.service.IPostService;
 import com.biosphere.communitymodule.util.CommunityDataAutoLoadUtil;
+import com.biosphere.library.util.JwtUtil;
+import com.biosphere.library.util.TencentCosUtil;
 import com.biosphere.library.vo.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,11 +13,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -62,6 +63,24 @@ public class CommunityController implements InitializingBean {
         return res;
     }
 
+    @ApiOperation(value = "社区主页热帖加载", notes = "不需要传参")
+    @RequestMapping(value = "/exposure/loadHotPost",method = RequestMethod.GET)
+    public ResponseResult loadPostList(){
+        ResponseResult res = new ResponseResult();
+        JSONObject resData = new JSONObject();
+        List<Map<String ,Object>> hotPostVoList = postService.loadHotPosts();
+        if (Objects.isNull(hotPostVoList)) {
+            res.setCode(RespBeanEnum.LOAD_HOT_POST_ERROR.getCode());
+            res.setMsg(RespBeanEnum.LOAD_HOT_POST_ERROR.getMessage());
+            return res;
+        }
+        resData.put("tenHotPosts", hotPostVoList);
+        res.setCode(RespBean.success().getCode());
+        res.setMsg(RespBean.success().getMessage());
+        res.setData(resData);
+        return res;
+    }
+
     @ApiOperation(value = "帖子详情加载", notes = "需要传入帖子ID")
     @RequestMapping(value = "/exposure/loadPostDetail",method = RequestMethod.GET)
     public ResponseResult loadPostDetail(Long postID, Integer userID){
@@ -86,6 +105,42 @@ public class CommunityController implements InitializingBean {
         return res;
     }
 
+    @ApiOperation(value = "上传帖子", notes = "需要传入用户id、帖子主题、内容、图片BASE64")
+    @RequestMapping(value = "/auth/uploadPost",method = RequestMethod.POST)
+    public ResponseResult uploadPost(@RequestBody PostUploadVo postUploadVo){
+        ResponseResult res = postService.uploadPost(postUploadVo);
+        return res;
+    }
+
+
+    @ApiOperation(value = "上传图片", notes = "需要传入用户id、帖子主题、内容、图片BASE64")
+    @RequestMapping(value = "/auth/uploadImg",method = RequestMethod.POST)
+    public ResponseResult uploadImg(@RequestParam("file") MultipartFile file, HttpServletRequest request){
+        ResponseResult res = new ResponseResult();
+        JSONObject resData = new JSONObject();
+        // 取出Token
+        String token = request.getHeader("token");
+        String openID = new String();
+        try{
+            openID = JwtUtil.parseJWT(token).getSubject();
+        }catch (Exception e){
+            res.setCode(RespBeanEnum.UPLOAD_IMG_ERROR.getCode());
+            res.setMsg(RespBeanEnum.UPLOAD_IMG_ERROR.getMessage());
+            return res;
+        }
+        String url = postService.uploadImage(file, openID);
+        if (Objects.isNull(url)) {
+            res.setCode(RespBeanEnum.UPLOAD_IMG_ERROR.getCode());
+            res.setMsg(RespBeanEnum.UPLOAD_IMG_ERROR.getMessage());
+            return res;
+        }
+            System.out.println(url);
+        resData.put("imgUrl", url);
+        res.setCode(RespBean.success().getCode());
+        res.setMsg(RespBean.success().getMessage());
+        res.setData(resData);
+        return res;
+    }
 
     @ApiOperation(value = "评论详情加载", notes = "需要传入帖子ID")
     @RequestMapping(value = "/exposure/loadComment",method = RequestMethod.GET)
@@ -110,6 +165,7 @@ public class CommunityController implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         communityDataAutoLoadUtil.communityMainPageData();
+        communityDataAutoLoadUtil.hotPostDataAutoUpdate();
     }
 
 

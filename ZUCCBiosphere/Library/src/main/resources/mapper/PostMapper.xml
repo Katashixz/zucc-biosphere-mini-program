@@ -12,11 +12,12 @@
         <result column="isTop" property="isTop" />
         <result column="isEssential" property="isEssential" />
         <result column="imageUrl" property="imageUrl" />
+        <result column="isDeleted" property="isDeleted" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, userID, theme, content, postDate, isTop, isEssential, imageUrl
+        id, userID, theme, content, postDate, isTop, isEssential, imageUrl, isDeleted
     </sql>
 
 </mapper>

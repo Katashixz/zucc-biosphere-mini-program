@@ -1,4 +1,6 @@
 // pages/hotPostList/hotPostList.js
+const app = getApp()
+
 Page({
 
     /**
@@ -6,65 +8,64 @@ Page({
      */
     data: {
         hotPostList:[
-            {
-                rank: 1,
-                postID: 1,
-                content: "啊这肯定是带图片的假数据啊啊这肯定也是假数据啊啊这肯定也是假数据啊啊这肯定也是假数据啊aa a啊这肯定是带图片的假数据啊啊这肯定也是假数据啊啊这肯定也是假数据啊啊这肯定也是假数据啊aa a",
-                image: "https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/preview1.jpg",
-                commentNum: 20,
-                favoNum: 10,
-                heat: 9999
-
-            },
-            {
-                rank: 2,
-                postID: 2,
-                content: "啊这肯定也是假数据啊啊这肯定也是假数据啊啊这肯定也是假数据啊啊这肯定也是假数据啊啊这肯定也是假数据啊啊这肯定也是假数据啊啊这肯定也是假数据啊啊这肯定也是假数据啊啊这肯定也是假数据啊啊这肯定也是假数据啊啊这肯定也是假数据啊啊这肯定也是假数据啊啊这肯定也是假数据啊啊这肯定也是假数据啊啊这肯定也是假数据啊",
-                image: "",
-                commentNum: 20,
-                favoNum: 10,
-                heat: 999
-            },
-            {
-                rank: 3,
-                postID: 3,
-                content: "发生甚么事了",
-                image: "",
-                commentNum: 10,
-                favoNum: 15,
-                heat: 99
-            },
-            {
-                rank: 4,
-                postID: 4,
-                content: "发生甚么事了",
-                image: "",
-                commentNum: 10,
-                favoNum: 15,
-                heat: 99
-            },
-            {
-                rank: 5,
-                postID: 5,
-                content: "发生甚么事了",
-                image: "https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/postImages/2848null",
-                commentNum: 10,
-                favoNum: 15,
-                heat: 99
-            }
+            
         ]
     },
 
     toSelectedPost: function (e) {
         wx.navigateTo({
-            url: '/pages/postDetails/postDetails?postID=' + this.data.hotPostList[e.currentTarget.dataset.index].postID
+            url: '/pages/postDetails/postDetails?postID=' + this.data.hotPostList[e.currentTarget.dataset.index].hotPost.postID
         })
     },
+
+    /**
+     * 热帖加载
+     */
+    loadHotPost() {
+        var that = this;
+        var url = app.globalData.urlHome + '/community/exposure/loadHotPost';
+        // if(app.globalData.hasUserInfo){
+        //     url = url + '&userID=' + app.globalData.userInfo.id;
+        // }
+        wx.request({
+            url: url,
+            method:"GET",
+            success: (res) => {
+                if(res.data.code == 200){
+                    that.setData({
+                        hotPostList: res.data.data.tenHotPosts,
+                    })
+
+                }else{
+                  wx.showToast({
+                      title: res.data.msg,
+                      icon: 'error',
+                      duration: 2000
+                    })
+                }
+  
+            },
+            fail: (res) => {
+                wx.showToast({
+                  title: '服务器错误',
+                  icon: 'error',
+                  duration: 2000
+                })
+            }
+          
+  
+          })
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        var that = this;
+        that.setData({
+            hotPostList: [],
+        })
+        that.loadHotPost();
     },
 
     /**
@@ -99,7 +100,11 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh() {
-
+        var that = this;
+        that.setData({
+            hotPostList: [],
+        })
+        that.loadHotPost();
     },
 
     /**

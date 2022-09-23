@@ -1,25 +1,29 @@
 package com.biosphere.communitymodule.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.biosphere.communitymodule.mapper.CommentMapper;
 import com.biosphere.communitymodule.mapper.PostMapper;
+import com.biosphere.communitymodule.rabbitmq.MQSender;
 import com.biosphere.library.pojo.Comment;
 import com.biosphere.library.pojo.Post;
 import com.biosphere.communitymodule.service.IPostService;
-import com.biosphere.library.vo.CommentVo;
-import com.biosphere.library.vo.CommunityPostVo;
+import com.biosphere.library.util.TencentCosUtil;
+import com.biosphere.library.vo.*;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.SystemUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -45,6 +49,9 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
     @Autowired
     private CommentMapper commentMapper;
 
+    @Autowired
+    private MQSender mqSender;
+
     //预计要插入多少数据
     private static int size = 1000000;
     //期望的误判率
@@ -66,8 +73,8 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
             Set<Integer> postSet = redisTemplate.opsForZSet().reverseRange("postSet", left, right);
             Map<String ,Object> postMap = redisTemplate.opsForHash().entries("postMap");
             List<CommunityPostVo> postVos = new ArrayList<>();
-            for (Integer integer : postSet) {
-                postVos.add((CommunityPostVo) postMap.get(integer.toString()));
+            for (Integer id : postSet) {
+                postVos.add((CommunityPostVo) postMap.get(id.toString()));
             }
             //如果Redis里的数据加载到底了，就返回已全部加载(目前只允许浏览前1000条)
             if (postSet.size() < (right - left)) {
@@ -82,6 +89,68 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
         }
         return result;
 
+    }
+
+    @Override
+    public List<Map<String ,Object>> loadHotPosts() {
+        List<Map<String ,Object>> res = new ArrayList<>();
+        try{
+            Set<Integer> hotPostSet = redisTemplate.opsForZSet().reverseRange("hotPostSet", 0, 9);
+            Map<String ,Object> hotPostMap = redisTemplate.opsForHash().entries("hotPostMap");
+            for (Integer id : hotPostSet) {
+                res.add((Map<String, Object>) hotPostMap.get(id.toString()));
+            }
+
+        }catch (Exception e){
+            log.error("加载热帖错误：");
+            e.printStackTrace();
+            return null;
+        }
+        return res;
+    }
+
+    @Override
+    public String uploadImage(MultipartFile file, String openID) {
+        return TencentCosUtil.uploadfile(file, openID);
+    }
+
+    @Override
+    public ResponseResult uploadPost(PostUploadVo postUploadVo) {
+        ResponseResult res = new ResponseResult();
+        try{
+            Post post = new Post();
+            String url = new String();
+            //对象转换
+            post.setUserID(postUploadVo.getUserID());
+            post.setTheme(postUploadVo.getTheme());
+            post.setContent(postUploadVo.getContent());
+            post.setPostDate(new Date(System.currentTimeMillis()));
+            //处理没图片的情况和有图片的情况
+            if (!Objects.isNull(postUploadVo.getImages())) {
+                for (int i = 0; i < postUploadVo.getImages().length; i ++){
+                    if (i == 0) {
+                        url = postUploadVo.getImages()[i];
+                    }else {
+                        url += "，" + postUploadVo.getImages()[i];
+                    }
+                }
+                post.setImageUrl(url);
+            }
+            post.setIsDeleted(0);
+            post.setIsTop(0);
+            post.setIsEssential(0);
+            //生产者发送消息到消息队列
+            mqSender.sendPostMsg(JSON.toJSONString(post));
+            res.setCode(RespBean.success().getCode());
+            res.setMsg(RespBean.success().getMessage());
+        }catch (Exception e){
+            res.setMsg(RespBeanEnum.UPLOAD_POST_ERROR.getMessage());
+            res.setCode(RespBeanEnum.UPLOAD_POST_ERROR.getCode());
+        }
+
+
+
+        return res;
     }
 
     @Override
@@ -141,6 +210,7 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
         }
         return commentVos;
     }
+
 
     @Override
     public Map<String, Object> updateLike(Integer userID, Map<String, Object> post) {

@@ -39,6 +39,8 @@
                             data-idx="{{index}}"
                             data-idx2="{{index2}}"
                             catchtap="handleImagePreview"
+                            wx:if="{{imageItem != ''}}"
+
                             />
                         </view>
                     </view>

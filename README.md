@@ -52,6 +52,8 @@
   - [liin000](https://gitee.com/liin000) 
   - [李东泽](https://gitee.com/dong-ze-li) 
   - [Canian233](https://gitee.com/canian233) 
+- 解答我问题的某个前端
+  - [名字太长不好不好](https://blog.csdn.net/qq_53512708?type=blog)
 ## 其他说明
 - [项目地址](https://gitee.com/katashi/zucc-biosphere-mini-program)
 - 欢迎参观[个人博客](https://katashixz.github.io/)

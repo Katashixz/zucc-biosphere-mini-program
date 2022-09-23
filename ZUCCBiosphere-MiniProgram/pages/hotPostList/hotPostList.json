@@ -1,4 +1,6 @@
 {
     "usingComponents": {},
-    "navigationBarTitleText": "热帖"
+    "navigationBarTitleText": "热帖",
+    "enablePullDownRefresh": true
+
 }

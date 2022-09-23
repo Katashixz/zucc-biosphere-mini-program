@@ -39,7 +39,7 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws IOException, ServletException {
-		log.info("-----------AuthenticationFilter Run-----------");
+		// log.info("-----------AuthenticationFilter Run-----------");
 
 		// 取出Token
 		String token = request.getHeader("token");
@@ -55,8 +55,9 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
 				try{
 					Claims claims = JwtUtil.parseJWT(token);
 					openID = claims.getSubject();
-					log.info("用户{}请求{}方法",openID,request.getPathInfo());
+					log.info("用户{}请求{}方法",openID,request.getRequestURL());
 				}catch (Exception e1){
+					e1.printStackTrace();
 					HttpMethodUtil.responseJson(response,RespBean.error(RespBeanEnum.LOGIN_EXPIRED));
 					return;
 				}

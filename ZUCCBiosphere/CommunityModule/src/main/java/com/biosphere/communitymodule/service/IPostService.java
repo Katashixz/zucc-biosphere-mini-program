@@ -2,8 +2,8 @@ package com.biosphere.communitymodule.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.biosphere.library.pojo.Post;
-import com.biosphere.library.vo.CommentVo;
-import com.biosphere.library.vo.CommunityPostVo;
+import com.biosphere.library.vo.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -63,5 +63,31 @@ public interface IPostService extends IService<Post> {
      */
     List<CommentVo> loadComments(Long postID);
 
+    /**
+     * 功能描述: 热帖加载
+     * @param:
+     * @return:
+     * @author hyh
+     * @date: 2022/9/19 14:32
+     */
+    List<Map<String ,Object>> loadHotPosts();
+
+    /**
+     * 功能描述: 上传图片
+     * @param:
+     * @return:
+     * @author hyh
+     * @date: 2022/9/22 9:44
+     */
+    String uploadImage(MultipartFile file, String openID);
+
+    /**
+     * 功能描述: 上传帖子信息到Redis，再通过消息队列异步更新到数据库
+     * @param:
+     * @return:
+     * @author hyh
+     * @date: 2022/9/22 14:36
+     */
+    ResponseResult uploadPost(PostUploadVo postUploadVo);
 
 }

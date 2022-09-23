@@ -34,21 +34,21 @@
     </view>
     <view id="bodyText">
         <view id="textIn">
-            <textarea id="textDown" placeholder="此处输入正文" name="" cols="40" value="{{textDown}}" rows="20" bindinput="getPostContent"></textarea>
+            <textarea id="textDown" placeholder="此处输入正文" name="" cols="40" value="{{content}}" rows="20" bindinput="getPostContent"></textarea>
             
         </view>
         <view class="pictureMngr">
             <block wx:for="{{images}}" wx:key="*this">
                 <view class="imageList">
                     <!-- 图片缩略图  -->
-                    <image class="singerImage" src="{{item}}" mode="aspectFit" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+                    <image class="singerImage" src="{{item.fileType == 'image'?item.tempFilePath:item.thumbTempFilePath}}" mode="aspectFit" data-idx="{{index}}" bindtap="handleImagePreview"></image>
                     <!-- 移除图片的按钮  -->
                     <view class="deleteImage" data-idx="{{index}}" bindtap="removeImage">
                         
                     </view>
                 </view>
             </block>
-            <view id="addPho" bindtap="chooseImage" wx:if="{{images.length < 3}}">
+            <view id="addPho" bindtap="chooseImage" wx:if="{{images.length < 9}}">
                 <image src="../../icon/addPhotot2.png" />
                 <view >添加图片</view>
             </view>
