@@ -1,7 +1,6 @@
 package com.biosphere.communitymodule.handler;
 
 import com.biosphere.library.util.HttpMethodUtil;
-import com.biosphere.library.vo.RespBean;
 import com.biosphere.library.vo.RespBeanEnum;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -19,7 +18,7 @@ public class UserLoginFailureHandler implements AuthenticationFailureHandler {
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) {
-		HttpMethodUtil.responseJson(response, RespBean.error(RespBeanEnum.ERROR));
+		HttpMethodUtil.responseJson(response, RespBeanEnum.ERROR);
 
 	}
 }

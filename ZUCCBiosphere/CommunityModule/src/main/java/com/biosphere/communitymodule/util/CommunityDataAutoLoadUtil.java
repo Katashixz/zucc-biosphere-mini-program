@@ -149,6 +149,9 @@ public class CommunityDataAutoLoadUtil {
         }
 
         try{
+            if (hotPostMap.size() == 0){
+                throw new Exception("暂无时间范围内的热帖");
+            }
             redisTemplate.opsForZSet().add("hotPostSet", tempSet);
             redisTemplate.opsForHash().putAll("hotPostMap", hotPostMap);
             redisTemplate.expire("hotPostSet",6, TimeUnit.MINUTES);

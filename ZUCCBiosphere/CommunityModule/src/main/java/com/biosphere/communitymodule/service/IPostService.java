@@ -90,4 +90,13 @@ public interface IPostService extends IService<Post> {
      */
     ResponseResult uploadPost(PostUploadVo postUploadVo);
 
+    /**
+     * 功能描述: 点赞状态更改
+     * @param:
+     * @return:
+     * @author hyh
+     * @date: 2022/9/23 17:52
+     */
+    void changeLike(LikeStatusVo likeStatusVo);
+
 }

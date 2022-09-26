@@ -2,12 +2,12 @@ package com.biosphere.usermodule.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.biosphere.library.vo.ResponseResult;
 import com.biosphere.usermodule.mapper.EnergyRecordMapper;
 import com.biosphere.usermodule.mapper.UserMapper;
 import com.biosphere.library.pojo.EnergyRecord;
 import com.biosphere.library.pojo.User;
 import com.biosphere.usermodule.service.IEnergyRecordService;
-import com.biosphere.library.vo.RespBean;
 import com.biosphere.library.vo.RespBeanEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +44,10 @@ public class EnergyRecordServiceImpl extends ServiceImpl<EnergyRecordMapper, Ene
 
     @Transactional
     @Override
-    public RespBean checkIn(User user) {
+    public ResponseResult checkIn(User user) {
         // Date curDate = new Date(System.currentTimeMillis());
         if (energyRecordMapper.isCheckedInToday(user.getId()) > 0) {
-            return RespBean.error(RespBeanEnum.REPEAT_CHECKIN);
+            return ResponseResult.error(RespBeanEnum.REPEAT_CHECKIN);
         }
         EnergyRecord energyrecord = new EnergyRecord();
         energyrecord.setGetDate(new Date(System.currentTimeMillis()));
@@ -65,9 +65,9 @@ public class EnergyRecordServiceImpl extends ServiceImpl<EnergyRecordMapper, Ene
         } catch (Exception e) {
             log.info("[用户:{}{} 签到记录插入失败]",user.getUserName(),user.getOpenID());
             log.info("[错误信息:{}]",e.getMessage());
-            return RespBean.error(RespBeanEnum.CHECKIN_INSERT_ERROR);
+            return ResponseResult.error(RespBeanEnum.CHECKIN_INSERT_ERROR);
         }
-        return RespBean.success();
+        return ResponseResult.success();
     }
 
     @Override

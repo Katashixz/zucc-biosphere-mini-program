@@ -145,7 +145,7 @@ App({
                         that.globalData.hasUserInfo = true;
                         that.globalData.userInfo = res2.data.data.userInfo;
                         that.globalData.level = res2.data.data.level;
-                    console.log(that.globalData.userInfo);
+                    // console.log(that.globalData.userInfo);
 
                         wx.setStorageSync('openID', that.openID);
                         resolve("success")
@@ -159,8 +159,8 @@ App({
     },
     globalData: {
         userInfo: null,
-        urlHome: 'http://124.221.252.162:9000',
-        // urlHome: 'http://localhost:9000',
+        // urlHome: 'http://124.221.252.162:9000',
+        urlHome: 'http://localhost:9000',
         token: '',
         openID: '',
         hasUserInfo: false,

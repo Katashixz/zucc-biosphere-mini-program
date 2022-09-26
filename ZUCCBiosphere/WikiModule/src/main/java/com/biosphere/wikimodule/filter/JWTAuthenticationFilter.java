@@ -3,8 +3,8 @@ package com.biosphere.wikimodule.filter;
 import com.biosphere.library.pojo.User;
 import com.biosphere.library.util.HttpMethodUtil;
 import com.biosphere.library.util.JwtUtil;
-import com.biosphere.library.vo.RespBean;
 import com.biosphere.library.vo.RespBeanEnum;
+import com.biosphere.library.vo.ResponseResult;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,11 +58,11 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
 					log.info("用户{}请求{}方法",openID,request.getPathInfo());
 
 				}catch (Exception e1){
-					HttpMethodUtil.responseJson(response,RespBean.error(RespBeanEnum.LOGIN_EXPIRED));
+					HttpMethodUtil.responseJson(response, ResponseResult.error(RespBeanEnum.LOGIN_EXPIRED));
 					return;
 				}
 				if (!redisTemplate.hasKey("login:" + openID)) {
-					HttpMethodUtil.responseJson(response, RespBean.error(RespBeanEnum.TOKEN_ILLEGAL));
+					HttpMethodUtil.responseJson(response, ResponseResult.error(RespBeanEnum.TOKEN_ILLEGAL));
 					return;
 				}
 				user = (User) redisTemplate.opsForValue().get("login:" + openID);
@@ -70,7 +70,7 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
 			}catch (Exception e){
 				e.printStackTrace();
 				log.info("校验token错误:{}",e.getMessage());
-				HttpMethodUtil.responseJson(response,RespBean.error(RespBeanEnum.TOKEN_ILLEGAL));
+				HttpMethodUtil.responseJson(response,ResponseResult.error(RespBeanEnum.TOKEN_ILLEGAL));
 				return;
 				// throw new RuntimeException("token非法");
 			}

@@ -4,7 +4,7 @@
 - 前端技术栈
   - wxml + wxss + js
 - 后端技术栈
-  - SpringBoot + SpringSecurity + Redis + MySQL
+  - SpringBoot + SpringSecurity + Redis + MySQL + RabbitMQ
 ## 效果预览图
 ---
 
@@ -29,7 +29,7 @@
    - [x] 交流功能
       - [x] 发帖
         - [x] 图片上传
-        - [ ] 视频上传
+        - [x] 视频上传
         - [ ] 表情
       - [x] 点赞
       - [ ] 收藏
@@ -61,3 +61,4 @@
   - 小程序-燕园猫咪速查手册
   - [我的宠社](https://www.chongshe.cn/)
 - 因保护个人信息需要，所有信息都于外部文件引用，后端源码文件MyInfo会爆红，需要更改成自己的信息(如微信账号APPID、密钥、腾讯云cos密钥等)
+- 各个版本的更新说明详见[更新说明](./VERSION.md)

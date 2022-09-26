@@ -22,7 +22,7 @@
                 <text class="hotText">热门讨论</text>
                 <image class="hotGif" src="https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/dancing.gif" mode="heightFix"/>
             </view>
-            <swiper class="hotPostRight" autoplay="true" interval="2500" duration="1000" circular="true" vertical="true" current="{{currentIndex}}">
+            <swiper class="hotPostRight" autoplay="true" current="{{currentIndex}}" interval="2500" duration="1000" circular="true" vertical="true">
                 <swiper-item 
                 class="hotPostList" 
                 wx:for="{{tenHotPosts}}"
@@ -93,10 +93,10 @@
                     </view>
                 </view>
                 <view class="postLineBottom">
-                    <view class="postOperate" 
+                    <view class="postOperate"
                 catchtap="changeLike" 
                 data-index="{{index}}">
-                    <image src="{{postItem.postIsLiked ? '../../icon/like_fill_click.png':'../../icon/like.png'}}" />
+                    <image style="{{postItem.likeAnimate}}" src="{{postItem.postIsLiked ? '../../icon/like_fill_click.png':'../../icon/like.png'}}" />
                     
                     <view class="postOperateText">{{postItem.likeNum ? postItem.likeNum:''}}</view>
                     </view>

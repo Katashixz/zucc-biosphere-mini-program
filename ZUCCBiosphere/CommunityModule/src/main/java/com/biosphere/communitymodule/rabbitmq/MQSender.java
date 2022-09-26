@@ -23,4 +23,9 @@ public class MQSender {
         rabbitTemplate.convertAndSend("postExchange", "post.postMessage",msg);
     }
 
+    public void sendLikeMsg(String msg){
+        rabbitTemplate.convertAndSend("postExchange", "like.likeMessage",msg);
+    }
+
+
 }

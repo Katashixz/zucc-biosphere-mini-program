@@ -1,5 +1,6 @@
 // pages/postDetails/postDetails.js
 const app = getApp()
+const util = require('../../utils/jsUtil/jsUtil')
 
 Page({
 
@@ -17,21 +18,60 @@ Page({
         ],
         isFocus: false,
     },
-
+    // 判断是否为视频
+    isVideo(target){
+        var typeTemp = target.split(".");
+        if(typeTemp[typeTemp.length - 1] == 'mp4' || typeTemp[typeTemp.length - 1] == 'mov' || typeTemp[typeTemp.length - 1] == 'wmv' || typeTemp[typeTemp.length - 1] == 'mpg' || typeTemp[typeTemp.length - 1] == 'avi'){
+            return true;
+        }
+        return false;
+    },
     //   查看图片
     handleImagePreview(e) {
+        var that = this;
         const idx = e.target.dataset.idx
         const idx2 = e.target.dataset.idx2
-        const images = this.data.postItem.imageUrlList
-        // console.log(images)
-        let toImg = []
-        images.forEach(element => {
-            toImg.push(element)
-        });
-        wx.previewImage({
-            current: toImg[idx2],  //当前预览的图片
-            urls: toImg,  //所有要预览的图片
+        const images = that.data.postItem.imageUrlList
+        var mediaUrlList = [];
+        for(var i = 0; i < images.length; i ++){
+            var type = "image";
+            if(that.isVideo(images[i])){
+                type = "video";
+            }
+            //视频图片分开判断
+            var temp;
+            if(type == "video"){
+                var position = images[i].lastIndexOf('.');
+                var posterUrl = images[i].slice(0, position) + "_0.jpg";
+                temp = {
+                    url: images[i],
+                    type: type,
+                    poster: posterUrl,
+                }
+            }
+            else{
+                temp = {
+                    url: images[i],
+                    type: type,
+                }
+            }
+
+            mediaUrlList.push(temp);
+        }
+        // console.log(mediaUrlList);
+
+        wx.previewMedia({
+          sources: mediaUrlList,
+          current: idx2
         })
+        // let toImg = []
+        // images.forEach(element => {
+        //     toImg.push(element)
+        // });
+        // wx.previewImage({
+        //     current: toImg[idx2],  //当前预览的图片
+        //     urls: toImg,  //所有要预览的图片
+        // })
     },
     
     //刷新页面数据的封装函数
@@ -51,15 +91,77 @@ Page({
             })
             
         }else{
-            var isLiked = that.data.postItem.postIsLiked;
-            that.setData({
-                [`postItem.postIsLiked`]: !isLiked,
-            })
+            that.changeLikeFunc(e)
 
         }
-
-        
     },
+
+    /**
+     * 点赞功能节流实现
+     */
+    changeLikeFunc: util.throttle(function (e) {
+        var that = this;
+        // var index = e.currentTarget.dataset.index;
+        var isLiked = that.data.postItem.postIsLiked;
+        that.setData({
+            [`postItem.postIsLiked`]: !isLiked,
+            [`postItem.likeAnimate`]: "animation: heartBeat 1s 1;",
+
+        })
+        var url = app.globalData.urlHome + '/community/auth/changeLikeStatus';
+        wx.request({
+            url: url,
+            method:"POST",
+            header: {
+                'token': app.globalData.token
+            },
+            data: {
+                status: !isLiked,
+                userID: app.globalData.userInfo.id,
+                postID: that.data.postItem.postID
+            },
+            success: (res) => {
+                if(res.data.code == 200){
+                    
+                    var likeNum = that.data.postItem.likeNum;
+                    if(!isLiked){
+                        likeNum = likeNum + 1;
+                        that.setData({
+                            [`postItem.likeNum`]: likeNum,
+                        })
+                    }else{
+                        likeNum = likeNum - 1;
+                        that.setData({
+                            [`postItem.likeNum`]: likeNum,
+                        })
+                    }
+
+                }else{
+                  wx.showToast({
+                      title: "点赞失败",
+                      icon: 'error',
+                      duration: 2000
+                    })
+                }
+  
+            },
+            fail: (res) => {
+                wx.showToast({
+                  title: '服务器错误',
+                  icon: 'error',
+                  duration: 2000
+                })
+            }
+          
+  
+          })
+          setTimeout(() => {
+            that.setData({
+                [`postItem.likeAnimate`]: "",
+            })
+        }, 1500)
+    }, 1500),
+        
     /**
      * 打赏弹窗
      */
@@ -89,7 +191,6 @@ Page({
      * 分享此页面
      */
     onShareAppMessage: function (e) {
-        console.log(e)
         this.closeMoreOptions();
         return {
           title: '城院生态圈',
@@ -190,7 +291,7 @@ Page({
                 if(res.data.code == 200){
                     that.setData({
                         postItem: res.data.data.postDetail,
-                        postIsLiked: res.data.data.isLiked,
+                        [`postItem.postIsLiked`]: res.data.data.isLiked,
                     })
                 }else{
                   wx.showToast({

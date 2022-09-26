@@ -33,7 +33,21 @@ public class ResponseResult<T> {
         this.data = data;
     }
 
+    public static ResponseResult success(){
+        return new ResponseResult(com.biosphere.library.vo.RespBeanEnum.SUCCESS.getCode(), com.biosphere.library.vo.RespBeanEnum.SUCCESS.getMessage(),null);
+    }
 
+    public static ResponseResult success(Object obj){
+        return new ResponseResult(com.biosphere.library.vo.RespBeanEnum.SUCCESS.getCode(), com.biosphere.library.vo.RespBeanEnum.SUCCESS.getMessage(),obj);
+    }
+
+    public static ResponseResult error(com.biosphere.library.vo.RespBeanEnum respBeanEnum){
+        return new ResponseResult(respBeanEnum.getCode(),respBeanEnum.getMessage(),null);
+    }
+
+    public static ResponseResult error(com.biosphere.library.vo.RespBeanEnum respBeanEnum, Object obj){
+        return new ResponseResult(respBeanEnum.getCode(),respBeanEnum.getMessage(),obj);
+    }
     public Integer getCode() {
         return code;
     }

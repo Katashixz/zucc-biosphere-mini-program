@@ -2,6 +2,7 @@
 const app = getApp()
 var startY, endY;
 var moveFlag = true; // 判断执行滑动事件
+const util = require('../../utils/jsUtil/jsUtil')
 
 Page({
 
@@ -14,11 +15,16 @@ Page({
         currentIndex: 0,
         releasePostStyle: "",
         tenHotPosts: [
-
             {
-                postID: 1,
-                content: "热帖"
+                hotPost:{
+                    postID:-1
+                },
+                content:"暂无热帖",
             },
+            // {
+            //     postID: 1,
+            //     content: "热帖"
+            // },
             // {
             //     postID: 2,
             //     content: "ee"
@@ -72,7 +78,7 @@ Page({
                     type: type,
                 }
             }
-            console.log(temp)
+            // console.log(temp)
 
             mediaUrlList.push(temp);
         }
@@ -103,9 +109,12 @@ Page({
     },
     //跳转到热帖详情页面
     toHotPost: function (e) {
-        wx.navigateTo({
-            url: '/pages/postDetails/postDetails?postID=' + this.data.tenHotPosts[e.currentTarget.dataset.index].hotPost.postID
-        })
+        if(this.data.tenHotPosts[e.currentTarget.dataset.index].hotPost.postID != -1){
+        
+            wx.navigateTo({
+                url: '/pages/postDetails/postDetails?postID=' + this.data.tenHotPosts[e.currentTarget.dataset.index].hotPost.postID
+            })
+        }
     },
     /**
      * 搜索页面
@@ -130,20 +139,88 @@ Page({
         var that = this;
         //先判断是否登录 登录后才能点赞
         if(!app.globalData.hasUserInfo){
+                that.setData({
+                    currentIndex:0
+                });
             app.getUserProfile().finally(() => {
                 that.onPullDownRefresh();
+
             })
         }else{
-            var index = e.currentTarget.dataset.index;
-            var isLiked = that.data.postList[index].postIsLiked;
-            that.setData({
-                [`postList[${index}].postIsLiked`]: !isLiked,
-            })
-
+            that.changeLikeFunc(e)
         }
-
         
     },
+    
+    /**
+     * 点赞功能节流实现
+     */
+    changeLikeFunc: util.throttle(function (e) {
+        var that = this;
+        var index = e.currentTarget.dataset.index;
+        var isLiked = that.data.postList[index].postIsLiked;
+        // likeAnimate: "",
+
+        that.setData({
+            [`postList[${index}].postIsLiked`]: !isLiked,
+            [`postList[${index}].likeAnimate`]: "animation: heartBeat 1s 1;",
+
+        })
+        var url = app.globalData.urlHome + '/community/auth/changeLikeStatus';
+        wx.request({
+            url: url,
+            method:"POST",
+            header: {
+                'token': app.globalData.token
+            },
+            data: {
+                status: !isLiked,
+                userID: app.globalData.userInfo.id,
+                postID: that.data.postList[index].postID
+            },
+            success: (res) => {
+                if(res.data.code == 200){
+                    var likeNum = that.data.postList[index].likeNum;
+                    if(!isLiked){
+                        likeNum = likeNum + 1;
+                        that.setData({
+                            [`postList[${index}].likeNum`]: likeNum,
+                            
+
+                        })
+                    }else{
+                        likeNum = likeNum - 1;
+                        that.setData({
+                            [`postList[${index}].likeNum`]: likeNum,
+                        })
+                    }
+
+                }else{
+                  wx.showToast({
+                      title: "点赞失败",
+                      icon: 'error',
+                      duration: 2000
+                    })
+                }
+  
+            },
+            fail: (res) => {
+                wx.showToast({
+                  title: '服务器错误',
+                  icon: 'error',
+                  duration: 2000
+                })
+            }
+          
+  
+          })
+          setTimeout(() => {
+            that.setData({
+                [`postList[${index}].likeAnimate`]: "",
+            })
+        }, 1500)
+
+    }, 1500),
     /**
      * 评论功能
      */
@@ -250,17 +327,29 @@ Page({
             url: url,
             method:"GET",
             success: (res) => {
+                console.log(res)
                 if(res.data.code == 200){
                     that.setData({
                         tenHotPosts: res.data.data.tenHotPosts,
                     })
 
                 }else{
-                  wx.showToast({
-                      title: res.data.msg,
-                      icon: 'error',
-                      duration: 2000
+                    var temp = [
+                        {
+                            hotPost:{
+                                postID:-1
+                            },
+                            content:"暂无热帖",
+                        }
+                    ]
+                    that.setData({
+                        tenHotPosts: temp,
                     })
+                //   wx.showToast({
+                //       title: res.data.msg,
+                //       icon: 'error',
+                //       duration: 2000
+                //     })
                 }
   
             },
@@ -302,6 +391,10 @@ Page({
      */
     onShow: function () {
         var that = this;
+        
+        that.setData({
+            currentIndex: 0,
+        })
         if (typeof this.getTabBar === 'function' && this.getTabBar()) {
     
           this.getTabBar().setData({
@@ -460,7 +553,7 @@ Page({
             method:"GET",
             success: (res) => {
                 if(res.data.code == 200){
-                    console.log(res)
+                    // console.log(res)
                     var postList2 = that.data.postList;
                     for(var item of res.data.data.postList){
                         postList2.push(item);

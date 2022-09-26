@@ -1,6 +1,8 @@
 package com.biosphere.library.pojo;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -20,6 +22,7 @@ public class LikeRecord implements Serializable {
     /**
      * 点赞ID
      */
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**

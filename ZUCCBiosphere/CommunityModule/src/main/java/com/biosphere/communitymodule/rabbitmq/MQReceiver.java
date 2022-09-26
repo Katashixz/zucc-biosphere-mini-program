@@ -1,18 +1,23 @@
 package com.biosphere.communitymodule.rabbitmq;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.biosphere.communitymodule.mapper.LikeRecordMapper;
 import com.biosphere.communitymodule.mapper.PostMapper;
+import com.biosphere.library.pojo.LikeRecord;
 import com.biosphere.library.pojo.Post;
 import com.biosphere.library.vo.CommunityPostVo;
+import com.biosphere.library.vo.LikeStatusVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -31,6 +36,10 @@ public class MQReceiver {
     @Autowired
     private PostMapper postMapper;
 
+    @Autowired
+    private LikeRecordMapper likeRecordMapper;
+
+    @Transactional
     @RabbitListener(queues = "uploadPostQueue")
     public void postMsgReceiver(String message){
         Post post = JSON.parseObject(message,Post.class);
@@ -48,4 +57,51 @@ public class MQReceiver {
         redisTemplate.expire("postMap",1500, TimeUnit.MINUTES);
         redisTemplate.expire("postSet",1501, TimeUnit.MINUTES);
     }
+
+    @Transactional
+    @RabbitListener(queues = "uploadLikeQueue")
+    public void likeMsgReceiver(String message){
+        LikeStatusVo likeStatusVo = JSON.parseObject(message, LikeStatusVo.class);
+        // 解决以下场景-虽然节流了，但是仍可能会有对一个帖子两次点赞的情况(高峰期)，就得先查询再新增
+        LikeRecord likeRecord = new LikeRecord();
+        likeRecord.setPostID(likeStatusVo.getPostID());
+        likeRecord.setUserID(likeStatusVo.getUserID());
+        QueryWrapper<LikeRecord> likeRecordQueryWrapper = new QueryWrapper<>();
+        likeRecordQueryWrapper.select("id").eq("userID", likeStatusVo.getUserID()).eq("postID",likeStatusVo.getPostID());
+        Long count = likeRecordMapper.selectCount(likeRecordQueryWrapper);
+        if (count == 0L && likeStatusVo.getStatus()) {
+            // 如果数据库没数据并且状态为新增点赞时，才进行新增操作
+            likeRecord.setDate(new Date(System.currentTimeMillis()));
+            likeRecord.setIschecked(0);
+            // 新增到数据库
+            likeRecordMapper.insert(likeRecord);
+            // 缓存更新
+            List<Long> likeRecList = (List<Long>) redisTemplate.opsForValue().get("userID:" + likeRecord.getUserID() + ":likeRecords");
+            likeRecList.add(likeRecord.getPostID());
+            redisTemplate.opsForValue().set("userID:" + likeRecord.getUserID() + ":likeRecords", likeRecList,5761, TimeUnit.MINUTES);
+
+        }
+        else if (count > 0L && likeStatusVo.getStatus()){
+            // 如果数据库有数据并且状态为新增点赞，默认忽略此请求
+            return;
+        }
+        if (!likeStatusVo.getStatus()) {
+            // 如果是取消点赞操作
+            Map<String, Object> map = new HashMap<>();
+            map.put("userID", likeStatusVo.getUserID());
+            map.put("postID", likeStatusVo.getPostID());
+            likeRecordMapper.deleteByMap(map);
+            List<Long> likeRecList = (List<Long>) redisTemplate.opsForValue().get("userID:" + likeRecord.getUserID() + ":likeRecords");
+            likeRecList.remove(likeRecord.getPostID());
+            redisTemplate.opsForValue().set("userID:" + likeRecord.getUserID() + ":likeRecords", likeRecList,5761, TimeUnit.MINUTES);
+
+        }
+        //更新帖子点赞数
+        Long cnt = likeRecordMapper.selectCount(new QueryWrapper<LikeRecord>().eq("postID", likeStatusVo.getPostID()));
+        CommunityPostVo post = (CommunityPostVo) redisTemplate.opsForHash().get("postMap", likeStatusVo.getPostID().toString());
+        post.setLikeNum(cnt);
+        redisTemplate.opsForHash().put("postMap",likeStatusVo.getPostID().toString(),post);
+
+    }
+
 }

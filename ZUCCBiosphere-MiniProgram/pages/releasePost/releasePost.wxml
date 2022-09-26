@@ -50,7 +50,7 @@
             </block>
             <view id="addPho" bindtap="chooseImage" wx:if="{{images.length < 9}}">
                 <image src="../../icon/addPhotot2.png" />
-                <view >添加图片</view>
+                <view >添加媒体</view>
             </view>
 
         </view>
@@ -61,7 +61,7 @@
         <text >1、帖子需遵守法律法规以及相关社区条款
 
         </text>
-        <text >2、目前只支持jpg，png，gif等图片格式上传
+        <text >2、避免讨论与社区主题无关的问题
 
         </text>
         <text >3、请勿滥用帖子功能，违者将追究法律责任</text>

@@ -34,9 +34,9 @@ public class CommunityPostVo implements Serializable {
 
     private Integer isEssential;
 
-    private Integer commentNum;
+    private Long commentNum;
 
-    private Integer likeNum;
+    private Long likeNum;
 
     private String dateformat;
     @TableField(exist = false)
@@ -163,19 +163,19 @@ public class CommunityPostVo implements Serializable {
         this.isEssential = isEssential;
     }
 
-    public Integer getCommentNum() {
+    public Long getCommentNum() {
         return commentNum;
     }
 
-    public void setCommentNum(Integer commentNum) {
+    public void setCommentNum(Long commentNum) {
         this.commentNum = commentNum;
     }
 
-    public Integer getLikeNum() {
+    public Long getLikeNum() {
         return likeNum;
     }
 
-    public void setLikeNum(Integer likeNum) {
+    public void setLikeNum(Long likeNum) {
         this.likeNum = likeNum;
     }
 }

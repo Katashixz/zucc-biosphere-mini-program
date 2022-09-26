@@ -141,8 +141,8 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
             post.setIsEssential(0);
             //生产者发送消息到消息队列
             mqSender.sendPostMsg(JSON.toJSONString(post));
-            res.setCode(RespBean.success().getCode());
-            res.setMsg(RespBean.success().getMessage());
+            res.setCode(RespBeanEnum.SUCCESS.getCode());
+            res.setMsg(RespBeanEnum.SUCCESS.getMessage());
         }catch (Exception e){
             res.setMsg(RespBeanEnum.UPLOAD_POST_ERROR.getMessage());
             res.setCode(RespBeanEnum.UPLOAD_POST_ERROR.getCode());
@@ -151,6 +151,11 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
 
 
         return res;
+    }
+
+    @Override
+    public void changeLike(LikeStatusVo likeStatusVo) {
+        mqSender.sendLikeMsg(JSON.toJSONString(likeStatusVo));
     }
 
     @Override

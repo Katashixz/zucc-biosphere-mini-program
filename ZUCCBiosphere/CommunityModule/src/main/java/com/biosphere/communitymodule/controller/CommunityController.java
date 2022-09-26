@@ -4,6 +4,7 @@ package com.biosphere.communitymodule.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.biosphere.communitymodule.service.IPostService;
 import com.biosphere.communitymodule.util.CommunityDataAutoLoadUtil;
+import com.biosphere.library.pojo.LikeRecord;
 import com.biosphere.library.util.JwtUtil;
 import com.biosphere.library.util.TencentCosUtil;
 import com.biosphere.library.vo.*;
@@ -56,8 +57,8 @@ public class CommunityController implements InitializingBean {
         if (!Objects.isNull(userID)) {
             resData = postService.updateLike(userID, resData);
         }
-        res.setCode(RespBean.success().getCode());
-        res.setMsg(RespBean.success().getMessage());
+        res.setCode(RespBeanEnum.SUCCESS.getCode());
+        res.setMsg(RespBeanEnum.SUCCESS.getMessage());
         res.setData(resData);
 
         return res;
@@ -74,9 +75,14 @@ public class CommunityController implements InitializingBean {
             res.setMsg(RespBeanEnum.LOAD_HOT_POST_ERROR.getMessage());
             return res;
         }
+        if (hotPostVoList.size() == 0) {
+            res.setCode(RespBeanEnum.EMPTY_HOT_POST.getCode());
+            res.setMsg(RespBeanEnum.EMPTY_HOT_POST.getMessage());
+            return res;
+        }
         resData.put("tenHotPosts", hotPostVoList);
-        res.setCode(RespBean.success().getCode());
-        res.setMsg(RespBean.success().getMessage());
+        res.setCode(RespBeanEnum.SUCCESS.getCode());
+        res.setMsg(RespBeanEnum.SUCCESS.getMessage());
         res.setData(resData);
         return res;
     }
@@ -99,8 +105,8 @@ public class CommunityController implements InitializingBean {
         }
         resData.put("isLiked",isLiked);
         resData.put("postDetail",communityPostVo);
-        res.setCode(RespBean.success().getCode());
-        res.setMsg(RespBean.success().getMessage());
+        res.setCode(RespBeanEnum.SUCCESS.getCode());
+        res.setMsg(RespBeanEnum.SUCCESS.getMessage());
         res.setData(resData);
         return res;
     }
@@ -136,8 +142,8 @@ public class CommunityController implements InitializingBean {
         }
             System.out.println(url);
         resData.put("imgUrl", url);
-        res.setCode(RespBean.success().getCode());
-        res.setMsg(RespBean.success().getMessage());
+        res.setCode(RespBeanEnum.SUCCESS.getCode());
+        res.setMsg(RespBeanEnum.SUCCESS.getMessage());
         res.setData(resData);
         return res;
     }
@@ -154,13 +160,24 @@ public class CommunityController implements InitializingBean {
         //     return res;
         // }
         resData.put("commentList",commentVoList);
-        res.setCode(RespBean.success().getCode());
-        res.setMsg(RespBean.success().getMessage());
+        res.setCode(RespBeanEnum.SUCCESS.getCode());
+        res.setMsg(RespBeanEnum.SUCCESS.getMessage());
         res.setData(resData);
         return res;
 
     }
 
+    @ApiOperation(value = "增加点赞记录，更改点赞状态", notes = "需要传入用户id、帖子id、点赞状态")
+    @RequestMapping(value = "/auth/changeLikeStatus",method = RequestMethod.POST)
+    public ResponseResult changeLikeStatus(@RequestBody LikeStatusVo req){
+        ResponseResult res = new ResponseResult();
+        // System.out.println(req.toString());
+        //取消点赞就删除，点赞就新增，利用消息队列更新到数据库去，再更新缓存，这样数据比较安全
+        postService.changeLike(req);
+        res.setCode(RespBeanEnum.SUCCESS.getCode());
+        res.setMsg(RespBeanEnum.SUCCESS.getMessage());
+        return res;
+    }
 
     @Override
     public void afterPropertiesSet() throws Exception {

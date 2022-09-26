@@ -5,21 +5,16 @@ import com.alibaba.fastjson.JSONObject;
 import com.biosphere.usermodule.service.IUserService;
 import com.biosphere.library.pojo.User;
 import com.biosphere.usermodule.service.IEnergyRecordService;
-import com.biosphere.usermodule.service.IUserService;
 import com.biosphere.library.util.FormatUtil;
 import com.biosphere.library.vo.LoginVo;
-import com.biosphere.library.vo.RespBean;
 import com.biosphere.library.vo.RespBeanEnum;
 import com.biosphere.library.vo.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -48,15 +43,15 @@ public class UserController {
         JSONObject resData = new JSONObject();
         ResponseResult res = new ResponseResult();
         if (loginVo.getCode() == null) {
-            res.setCode(RespBean.error(RespBeanEnum.EMPTY_CODE).getCode());
-            res.setMsg(RespBean.error(RespBeanEnum.EMPTY_CODE).getMessage());
+            res.setCode(ResponseResult.error(RespBeanEnum.EMPTY_CODE).getCode());
+            res.setMsg(ResponseResult.error(RespBeanEnum.EMPTY_CODE).getMsg());
             return res;
         }
         // 从微信官方接口获取用户数据
         String openID = userService.getOpenID(loginVo.getCode());
         if (Objects.isNull(openID)) {
-            res.setCode(RespBean.error(RespBeanEnum.CODE_GET_ERROR).getCode());
-            res.setMsg(RespBean.error(RespBeanEnum.CODE_GET_ERROR).getMessage());
+            res.setCode(ResponseResult.error(RespBeanEnum.CODE_GET_ERROR).getCode());
+            res.setMsg(ResponseResult.error(RespBeanEnum.CODE_GET_ERROR).getMsg());
             return res;
         }
         //要根据openID生成JWT和token存入Redis和数据库
@@ -71,8 +66,8 @@ public class UserController {
         resData.put("token", token);
         resData.put("level", curUser.getEnergyPoint() > 0 ? curUser.getEnergyPoint()/100 : 0);
         res.setData(resData);
-        res.setMsg(RespBean.success(RespBeanEnum.SUCCESS).getMessage());
-        res.setCode(RespBean.success(RespBeanEnum.SUCCESS).getCode());
+        res.setMsg(ResponseResult.success(RespBeanEnum.SUCCESS).getMsg());
+        res.setCode(ResponseResult.success(RespBeanEnum.SUCCESS).getCode());
 
         return res;
     }
@@ -89,13 +84,13 @@ public class UserController {
             res.setMsg(RespBeanEnum.GET_USERINFO_ERROR.getMessage());
             return res;
         }
-        RespBean insertRB = energyrecordService.checkIn(curUser);
+        ResponseResult insertRB = energyrecordService.checkIn(curUser);
         Integer totalDays = energyrecordService.getDaysSum(curUser);
         JSONObject resData = new JSONObject();
         resData.put("level", curUser.getEnergyPoint() > 0 ? curUser.getEnergyPoint()/100 : 0);
         resData.put("totalDays",totalDays);
         res.setCode(insertRB.getCode());
-        res.setMsg(insertRB.getMessage());
+        res.setMsg(insertRB.getMsg());
         res.setData(resData);
 
         return res;

@@ -64,8 +64,8 @@ public class WikiDataController implements InitializingBean{
 
         }
         else {
-            res.setCode(RespBean.success().getCode());
-            res.setMsg(RespBean.success().getMessage());
+            res.setCode(RespBeanEnum.SUCCESS.getCode());
+            res.setMsg(RespBeanEnum.SUCCESS.getMessage());
             resData.put("animalData", animalData);
             resData.put("plantsData", plantsData);
             res.setData(resData);
@@ -88,8 +88,8 @@ public class WikiDataController implements InitializingBean{
                 res.setMsg(RespBeanEnum.GET_GUIDE_ERROR.getMessage());
             }
             else {
-                res.setCode(RespBean.success().getCode());
-                res.setMsg(RespBean.success().getMessage());
+                res.setCode(RespBeanEnum.SUCCESS.getCode());
+                res.setMsg(RespBeanEnum.SUCCESS.getMessage());
                 resData.put("curingGuide",curingGuideList);
                 resData.put("targetList",animalsWikiList);
                 res.setData(resData);
@@ -102,8 +102,8 @@ public class WikiDataController implements InitializingBean{
             }
 
             else {
-                res.setCode(RespBean.success().getCode());
-                res.setMsg(RespBean.success().getMessage());
+                res.setCode(RespBeanEnum.SUCCESS.getCode());
+                res.setMsg(RespBeanEnum.SUCCESS.getMessage());
                 resData.put("curingGuide",curingGuideList);
                 resData.put("targetList",plantsWikiList);
 
@@ -128,8 +128,8 @@ public class WikiDataController implements InitializingBean{
                 res.setMsg(RespBeanEnum.GET_DETAIL_ERROR.getMessage());
             }
             else {
-                res.setCode(RespBean.success().getCode());
-                res.setMsg(RespBean.success().getMessage());
+                res.setCode(RespBeanEnum.SUCCESS.getCode());
+                res.setMsg(RespBeanEnum.SUCCESS.getMessage());
                 resData.put("detail",animalDetail);
                 res.setData(resData);
             }
@@ -140,8 +140,8 @@ public class WikiDataController implements InitializingBean{
                 res.setMsg(RespBeanEnum.GET_DETAIL_ERROR.getMessage());
             }
             else {
-                res.setCode(RespBean.success().getCode());
-                res.setMsg(RespBean.success().getMessage());
+                res.setCode(RespBeanEnum.SUCCESS.getCode());
+                res.setMsg(RespBeanEnum.SUCCESS.getMessage());
                 resData.put("detail",plantDetail);
                 res.setData(resData);
             }

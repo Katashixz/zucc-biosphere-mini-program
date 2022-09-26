@@ -1,8 +1,8 @@
 package com.biosphere.usermodule.handler;
 
 import com.biosphere.library.util.HttpMethodUtil;
-import com.biosphere.library.vo.RespBean;
 import com.biosphere.library.vo.RespBeanEnum;
+import com.biosphere.library.vo.ResponseResult;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -23,7 +23,7 @@ public class UserNotLoginHandler implements AuthenticationEntryPoint {
 	public void commence(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException authException) throws IOException, ServletException {
 		// new ResponseResult<>(401, "未登录", authException.getMessage());
-		HttpMethodUtil.responseJson(response, RespBean.error(RespBeanEnum.NO_LOGIN));
+		HttpMethodUtil.responseJson(response, ResponseResult.error(RespBeanEnum.NO_LOGIN));
 
 
 	}

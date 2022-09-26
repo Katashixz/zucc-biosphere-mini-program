@@ -25,10 +25,12 @@ public enum RespBeanEnum {
     //社区模块
     LOAD_POST_ERROR(3001,"加载帖子失败"),
     LOAD_HOT_POST_ERROR(3004,"加载热帖失败"),
+    EMPTY_HOT_POST(3008,"暂无热帖"),
     LOAD_POSTDETAIL_ERROR(3002,"该贴不存在或已被删除"),
     LOAD_COMMENT_ERROR(3003,"加载评论失败"),
     UPLOAD_IMG_ERROR(3005,"上传图片失败"),
     UPLOAD_POST_ERROR(3006,"上传帖子失败"),
+    CHANGE_LIKE_STATUS_ERROR(3307, "点赞失败"),
 
     ;
 

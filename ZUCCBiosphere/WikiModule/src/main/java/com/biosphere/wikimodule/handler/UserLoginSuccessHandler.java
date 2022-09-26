@@ -1,7 +1,7 @@
 package com.biosphere.wikimodule.handler;
 
 import com.biosphere.library.util.HttpMethodUtil;
-import com.biosphere.library.vo.RespBean;
+import com.biosphere.library.vo.ResponseResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -37,7 +37,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
         // tokenMap.put("openId", sysUserDetails.getUsername());
         // ResponseUtils.responseJson(response, ResponseUtils.response(200, "登录成功", tokenMap));
         // new ResponseResult<>(402, "访问", null);
-        HttpMethodUtil.responseJson(response, RespBean.success());
+        HttpMethodUtil.responseJson(response, ResponseResult.success());
 
     }
 }

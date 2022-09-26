@@ -1,4 +1,18 @@
 <!--pages/hotPostList/hotPostList.wxml-->
+<wxs module="func">
+      module.exports = {
+        isVideo: function (target) {
+            var typeTemp = target.split(".");
+        if(typeTemp[typeTemp.length - 1] == 'mp4' || typeTemp[typeTemp.length - 1] == 'mov' || typeTemp[typeTemp.length - 1] == 'wmv' || typeTemp[typeTemp.length - 1] == 'mpg' || typeTemp[typeTemp.length - 1] == 'avi'){
+            return true;
+        }
+        return false;
+        },
+        slice: function (target) {
+            return target.slice(0, target.lastIndexOf('.')) + '_0.jpg'
+        }
+      }
+</wxs>
 <view class="hotPostList">
     <view class="homePage">
         <view class="hotPostList">
@@ -12,7 +26,7 @@
                 </view>
                 <view class="hotPostBottom">
                     <text class="content" style="{{item.imageUrl == null ? '':'width:380rpx'}}">{{item.content}}</text>
-                    <image mode="aspectFill" src="{{item.imageUrl[0]}}" hidden="{{item.imageUrl == null || item.imageUrl == ''}}" class="contentImage"></image>
+                    <image mode="aspectFill" src="{{func.isVideo(item.imageUrl[0]) ? func.slice(item.imageUrl[0]):item.imageUrl[0]}}" hidden="{{item.imageUrl == null || item.imageUrl == ''}}" class="contentImage"></image>
                 </view>
                 <view class="divide"></view>
             </view>

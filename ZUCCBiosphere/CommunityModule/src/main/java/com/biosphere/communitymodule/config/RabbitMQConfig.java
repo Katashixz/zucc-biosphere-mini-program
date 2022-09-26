@@ -16,24 +16,36 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    private static final String QUEUE = "uploadPostQueue";
-    private static final String EXCHANGE = "postExchange";
-    private static final String key = "post.#";
+    private static final String POST_QUEUE = "uploadPostQueue";
+    private static final String LIKE_QUEUE = "uploadLikeQueue";
+    private static final String COMMUNITY_EXCHANGE = "postExchange";
+    private static final String POST_KEY = "post.#";
+    private static final String LIKE_KEY = "like.#";
 
 
     @Bean
-    public Queue queue(){
-        return new Queue(QUEUE);
+    public Queue POST_QUEUE(){
+        return new Queue(POST_QUEUE);
+    }
+
+    @Bean
+    public Queue LIKE_QUEUE(){
+        return new Queue(LIKE_QUEUE);
     }
 
     @Bean
     public TopicExchange topicExchange(){
-        return new TopicExchange(EXCHANGE);
+        return new TopicExchange(COMMUNITY_EXCHANGE);
     }
 
     @Bean
-    public Binding binding(){
-        return BindingBuilder.bind(queue()).to(topicExchange()).with(key);
+    public Binding bindingPost(){
+        return BindingBuilder.bind(POST_QUEUE()).to(topicExchange()).with(POST_KEY);
+    }
+
+    @Bean
+    public Binding bindingLike(){
+        return BindingBuilder.bind(LIKE_QUEUE()).to(topicExchange()).with(LIKE_KEY);
     }
 
 }

@@ -3,7 +3,7 @@ package com.biosphere.usermodule.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.biosphere.library.pojo.EnergyRecord;
 import com.biosphere.library.pojo.User;
-import com.biosphere.library.vo.RespBean;
+import com.biosphere.library.vo.ResponseResult;
 
 /**
  * <p>
@@ -22,7 +22,7 @@ public interface IEnergyRecordService extends IService<EnergyRecord> {
      * @author hyh
      * @date: 2022/8/18 14:17
      */
-    RespBean checkIn(User user);
+    ResponseResult checkIn(User user);
 
     /**
      * 功能描述: 获取登录总天数

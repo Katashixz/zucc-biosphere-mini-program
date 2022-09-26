@@ -1,3 +1,18 @@
+
+<wxs module="func">
+      module.exports = {
+        isVideo: function (target) {
+            var typeTemp = target.split(".");
+        if(typeTemp[typeTemp.length - 1] == 'mp4' || typeTemp[typeTemp.length - 1] == 'mov' || typeTemp[typeTemp.length - 1] == 'wmv' || typeTemp[typeTemp.length - 1] == 'mpg' || typeTemp[typeTemp.length - 1] == 'avi'){
+            return true;
+        }
+        return false;
+        },
+        slice: function (target) {
+            return target.slice(0, target.lastIndexOf('.')) + '_0.jpg'
+        }
+      }
+</wxs>
 <view class="postDetails">
     <view class="homePage">
         <Dialog id="userModal"></Dialog>
@@ -35,7 +50,7 @@
                         wx:for-index="index2"
                         wx:key="imageItemKey"
                         >
-                            <image mode="aspectFill" src="{{imageItem}}"
+                            <image mode="aspectFill" src="{{func.isVideo(imageItem) ? func.slice(imageItem):imageItem}}"
                             data-idx="{{index}}"
                             data-idx2="{{index2}}"
                             catchtap="handleImagePreview"
@@ -49,7 +64,7 @@
                     <view class="postOperate" 
                 catchtap="changeLike" 
                 data-index="{{index}}">
-                    <image src="{{postIsLiked ? '../../icon/like_fill_click.png':'../../icon/like.png'}}" />
+                    <image style="{{postItem.likeAnimate}}" src="{{postItem.postIsLiked ? '../../icon/like_fill_click.png':'../../icon/like.png'}}" />
                     
                     <view class="postOperateText">{{postItem.likeNum ? postItem.likeNum:''}}</view>
                     </view>
