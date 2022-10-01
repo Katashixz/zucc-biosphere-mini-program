@@ -144,7 +144,6 @@ Page({
                 });
             app.getUserProfile().finally(() => {
                 that.onPullDownRefresh();
-
             })
         }else{
             that.changeLikeFunc(e)
@@ -242,7 +241,8 @@ Page({
                     icon: 'error',
                 })
             } else {
-                this.userModal.open();
+                // that.energyBox.open();
+                that.energyBox.open();
             }
 
         } else {
@@ -382,8 +382,7 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
-        this.userModal = this.selectComponent("#userModal");
-        // this.userModal.close();
+        this.energyBox = this.selectComponent("#energyBox");
     },
 
     /**
@@ -498,10 +497,18 @@ Page({
     },
 
     toReleasePost: function(e){
+        var that = this;
+        if (!getApp().globalData.userInfo) {
+            app.getUserProfile().finally(() => {
+                that.onPullDownRefresh();
+            })
+        }
+        else{
         wx.navigateTo({
             url: '/pages/releasePost/releasePost'
 
         })
+    }
     },
     /**
      * 用户点击右上角分享

@@ -20,11 +20,15 @@ public class MQSender {
     private RabbitTemplate rabbitTemplate;
 
     public void sendPostMsg(String msg){
-        rabbitTemplate.convertAndSend("postExchange", "post.postMessage",msg);
+        rabbitTemplate.convertAndSend("postExchange", "post.postMessage", msg);
     }
 
     public void sendLikeMsg(String msg){
-        rabbitTemplate.convertAndSend("postExchange", "like.likeMessage",msg);
+        rabbitTemplate.convertAndSend("postExchange", "like.likeMessage", msg);
+    }
+
+    public void sendCommentMsg(String msg){
+        rabbitTemplate.convertAndSend("postExchange", "comment.commentMessage", msg);
     }
 
 

@@ -68,7 +68,8 @@
                     
                     <view class="postOperateText">{{postItem.likeNum ? postItem.likeNum:''}}</view>
                     </view>
-                    <view class="postOperate" bindtap="confirmFocus">
+                    <view class="postOperate" bindtap="confirmFocus"
+                    bindtap="replyPost">
                         <image src="../../icon/comment_fill.png" />
                         <view class="postOperateText">{{postItem.commentNum?postItem.commentNum:''}}</view>
                     </view>
@@ -117,14 +118,14 @@
             <input value="{{resContent}}" 
             type='text' maxlength='100' 
             class='commentsInput' 
-            placeholder='请输入评论内容（100字以内）' 
+            placeholder="{{placeholderText}}"
             placeholder-class='phcolor' 
             bindinput='inputCommentsContentListening' 
             bindblur="inputCommentsBlur"
             bindfocus="confirmFocus"
             focus="{{isFocus}}"
             />
-            <text class='commentsBtn' bindtap='clickComments'>评论</text>
+            <text class='commentsBtn' bindtap='uploadComment'>评论</text>
         </view>
         </scroll-view>
     </view>

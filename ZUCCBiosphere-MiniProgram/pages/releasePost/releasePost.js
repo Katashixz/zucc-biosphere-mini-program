@@ -1,7 +1,10 @@
 // pages/releasePost/releasePost.js
 
 const app = getApp()
-
+/**
+ * toast提示框
+ */
+var toast = require('../../utils/toast/toast.js');
 const api = app.globalData.api
 Page({
 
@@ -18,7 +21,6 @@ Page({
         },
         images: [],
         imagesBase: [],
-        tmpImages: [],
         maxImg: 9
         
     },
@@ -80,18 +82,20 @@ Page({
 
 
 
-
-    /* 获取帖子内容 */
+    /**
+     * 获取帖子内容
+     */
     getPostContent: function (e) {
         this.setData({
             content: e.detail.value
         })
     },
 
-    /* 发布帖子 */
+    /**
+     * 发布帖子
+     */
     release: function () {
         var that = this;
-        that.imageToBase();
         if (that.data.postTheme.select == -1) {
             wx.showToast({
                 title: '请选择主题!',
@@ -134,7 +138,6 @@ Page({
                     },
                     success: (loadRes) => {
                         if(loadRes.data.code == 200){
-                            console.log(loadRes)
                             wx.showToast({
                             title: '发帖成功',
                             duration: 2000,
@@ -145,7 +148,8 @@ Page({
                                     url: '../communityHome/communityHome',
                                 })
                             }, 2100)
-                        }else{
+                        }
+                        else{
                             wx.showToast({
                             title: loadRes.data.msg,
                             duration: 2000,
@@ -196,14 +200,14 @@ Page({
                                         url: '../communityHome/communityHome',
                                     })
                                 }, 2100)
-                            }else{
+                            }
+                            else{
                                 wx.showToast({
                                 title: loadRes.data.msg,
                                 duration: 2000,
                                 icon: 'error'
                                 })
                             }
-                            console.log(res)
                         },
                         fail: (loadRes) => {
                             wx.showToast({
@@ -228,6 +232,9 @@ Page({
         }
     },
 
+    /**
+     * 上传图片
+     */
     uploadImages: function () {
         var that = this;
         var media = that.data.images;
@@ -300,6 +307,9 @@ Page({
     },
 
 
+    /**
+     * 选择图片
+     */
     chooseImage: function () {
         const that = this
         // console.log(this.data.images)
@@ -333,6 +343,9 @@ Page({
 
     },
 
+    /**
+     * 移除图片
+     */
     removeImage: function (e) {
         var that = this;
         var images = that.data.images;
@@ -348,6 +361,9 @@ Page({
         });
     },
 
+    /**
+     * 图片预览
+     */
     handleImagePreview(e) {
         const idx = e.target.dataset.idx
         const images = this.data.images
@@ -369,34 +385,11 @@ Page({
           sources: mediaUrlList,
           current: idx
         })
-        // for(var i = 0; i < images.length; i ++){
-        //     imageUrlList.push(images[i].tempFilePath);
-        // }
-        // wx.previewImage({
-        //     current: images[idx].tempFilePath,  //当前预览的图片
-        //     urls: imageUrlList,  //所有要预览的图片
-        // })
     },
 
-    // 图片转base64前操作，先把文件名拿出来
-    imageToBase() {
-        const that = this
-
-
-        that.setData({
-            tmpImages: [],
-        })
-
-        that.data.images.forEach(element => {
-            // console.log(element)
-
-            that.data.tmpImages.push(element.tempFilePath.split('/')[3])
-
-        });
-        // console.log(that.data.tmpImages)
-
-    },
-
+    /**
+     * 初始化数据
+     */
     clearData: function () {
         this.setData({
             postTheme: {
@@ -407,7 +400,6 @@ Page({
             },
             images: [],
             imagesBase: [],
-            tmpImages: [],
             content: "",
         })
 

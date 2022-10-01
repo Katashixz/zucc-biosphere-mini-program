@@ -1,6 +1,6 @@
 <!--pages/releasePost/releasePost.wxml-->
 <view class="releasePost">
-
+    <include src="../../utils/toast/toast.wxml" />
     <view id="themeSelc">
         
         <view class="top" animation="{{selectDarkAni}}" bindtap="showSelect" >

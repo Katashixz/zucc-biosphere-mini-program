@@ -10,6 +10,7 @@ Page({
     data: {
         state: false,
         click: false,
+        placeholderText: "请输入评论内容（100字以内）",
         postItem: {
             
         },
@@ -17,6 +18,7 @@ Page({
             
         ],
         isFocus: false,
+        c: -1,
     },
     // 判断是否为视频
     isVideo(target){
@@ -163,6 +165,74 @@ Page({
     }, 1500),
         
     /**
+     * 评论功能节流实现
+     */
+    uploadComment: util.throttle(function (e) {
+        var that = this;
+        if(that.data.resContent == '' || that.data.resContent == null){
+            wx.showToast({
+              title: '评论不能为空',
+              duration: 2000,
+              icon: "error"
+            })
+        }
+        else{
+            if(!app.globalData.hasUserInfo){
+                app.getUserProfile().finally(() => {
+                    that.refreshData(that.data.postID);
+                })
+                
+            }else{
+                var url = app.globalData.urlHome + '/community/auth/uploadComment';
+    
+                wx.request({
+                    url: url,
+                    method:"POST",
+                    header: {
+                        'token': app.globalData.token
+                    },
+                    data: {
+                        userID: app.globalData.userInfo.id,
+                        postID: that.data.postItem.postID,
+                        toUserID: that.data.target,
+                        content: that.data.resContent
+                    },
+                    success: (res) => {
+                        if(res.data.code == 200){
+                            wx.showToast({
+                              title: '评论成功',
+                              duration: 1000,
+                              icon: "success"
+                            })
+                            that.setData({
+                                resContent: ''
+                            })
+                            setTimeout(() => {
+                                that.refreshData(that.data.postID);
+                            }, 1500)
+                        }else{
+                            wx.showToast({
+                                title: res.data.msg,
+                                icon: 'error',
+                                duration: 2000
+                            })
+                        }
+        
+                    },
+                    fail: (res) => {
+                        wx.showToast({
+                        title: '服务器错误',
+                        icon: 'error',
+                        duration: 2000
+                        })
+                    }
+                })
+            }
+        }
+        
+    }),
+
+    /**
      * 打赏弹窗
      */
     toReward: function (e) {
@@ -233,6 +303,30 @@ Page({
 
             });
     },
+
+    /**
+     * 回复楼主
+     */
+    replyPost(e) {
+        var that = this;
+        that.setData({
+            target: that.data.postItem.userID,
+            placeholderText: "请输入评论内容（100字以内）"
+        })
+    },
+
+    /**
+     * 选择回复对象
+     */
+    setAtIndex(e) {
+        var that = this;
+        var index = e.currentTarget.dataset.index;
+        that.setData({
+            target: that.data.commentList[index].userID,
+            placeholderText: '@' + that.data.commentList[index].userName + ':'
+        })
+    },
+
     /**
      * 收藏
      */
@@ -252,9 +346,16 @@ Page({
      */
     confirmFocus(options) {
         var that = this;
-        that.setData({
-            isFocus: true,
-        })
+        if(!app.globalData.hasUserInfo){
+            app.getUserProfile().finally(() => {
+                that.refreshData(that.data.postID);
+            })
+            
+        }else{
+            that.setData({
+                isFocus: true,
+            })
+        }
     },
     
     /**
@@ -272,6 +373,9 @@ Page({
      */
     inputCommentsContentListening(options) {
         var that = this;
+        that.setData({
+            resContent: options.detail.value,
+        })
     },
 
     loadPostDetail(postID) {
@@ -292,6 +396,7 @@ Page({
                     that.setData({
                         postItem: res.data.data.postDetail,
                         [`postItem.postIsLiked`]: res.data.data.isLiked,
+                        target: res.data.data.postDetail.userID
                     })
                 }else{
                   wx.showToast({

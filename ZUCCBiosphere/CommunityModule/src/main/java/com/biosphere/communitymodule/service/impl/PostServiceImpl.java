@@ -13,6 +13,7 @@ import com.biosphere.library.pojo.Post;
 import com.biosphere.communitymodule.service.IPostService;
 import com.biosphere.library.util.TencentCosUtil;
 import com.biosphere.library.vo.*;
+import com.github.houbb.sensitive.word.core.SensitiveWordHelper;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
 import lombok.extern.slf4j.Slf4j;
@@ -117,6 +118,17 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
     @Override
     public ResponseResult uploadPost(PostUploadVo postUploadVo) {
         ResponseResult res = new ResponseResult();
+        if (Objects.isNull(postUploadVo.getContent()) || Objects.isNull(postUploadVo.getUserID()) || Objects.isNull(postUploadVo.getTheme())) {
+            res.setCode(RespBeanEnum.INFO_ERROR.getCode());
+            res.setMsg(RespBeanEnum.INFO_ERROR.getMessage());
+            return res;
+        }
+        if (SensitiveWordHelper.contains(postUploadVo.getContent())) {
+            res.setCode(RespBeanEnum.SENSITIVE_WORDS.getCode());
+            res.setMsg(RespBeanEnum.SENSITIVE_WORDS.getMessage());
+            res.setData(SensitiveWordHelper.findAll(postUploadVo.getContent()));
+            return res;
+        }
         try{
             Post post = new Post();
             String url = new String();
@@ -154,8 +166,38 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
     }
 
     @Override
-    public void changeLike(LikeStatusVo likeStatusVo) {
+    public ResponseResult changeLike(LikeStatusVo likeStatusVo) {
+        ResponseResult res = new ResponseResult();
+        if (Objects.isNull(likeStatusVo.getPostID()) || Objects.isNull(likeStatusVo.getUserID()) || Objects.isNull(likeStatusVo.getStatus())) {
+            res.setCode(RespBeanEnum.INFO_ERROR.getCode());
+            res.setMsg(RespBeanEnum.INFO_ERROR.getMessage());
+            return res;
+        }
         mqSender.sendLikeMsg(JSON.toJSONString(likeStatusVo));
+        res.setCode(RespBeanEnum.SUCCESS.getCode());
+        res.setMsg(RespBeanEnum.SUCCESS.getMessage());
+        return res;
+    }
+
+    @Override
+    public ResponseResult uploadComment(UploadCommentVo uploadCommentVo) {
+        //敏感语言检测->数据库更新->缓存更新
+        ResponseResult res = new ResponseResult();
+        if (Objects.isNull(uploadCommentVo.getPostID()) || Objects.isNull(uploadCommentVo.getUserID()) || Objects.isNull(uploadCommentVo.getToUserID())) {
+            res.setCode(RespBeanEnum.INFO_ERROR.getCode());
+            res.setMsg(RespBeanEnum.INFO_ERROR.getMessage());
+            return res;
+        }
+        if (SensitiveWordHelper.contains(uploadCommentVo.getContent())) {
+            res.setCode(RespBeanEnum.SENSITIVE_WORDS.getCode());
+            res.setMsg(RespBeanEnum.SENSITIVE_WORDS.getMessage());
+            res.setData(SensitiveWordHelper.findAll(uploadCommentVo.getContent()));
+            return res;
+        }
+        mqSender.sendCommentMsg(JSON.toJSONString(uploadCommentVo));
+        res.setCode(RespBeanEnum.SUCCESS.getCode());
+        res.setMsg(RespBeanEnum.SUCCESS.getMessage());
+        return res;
     }
 
     @Override
@@ -255,7 +297,7 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
     }
     @Scheduled(cron = "0 0/10 * * * ?")
     public void commentBloomFilterUpdate(){
-        log.info("布隆过滤器定时更新");
+        log.info("布隆过滤器更新");
         List<Long> postHasComment = commentMapper.loadPostWhichHasComments();
         for (Long aLong : postHasComment) {
             commentBloomFilter.put(aLong);

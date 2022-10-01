@@ -18,14 +18,21 @@ public class RabbitMQConfig {
 
     private static final String POST_QUEUE = "uploadPostQueue";
     private static final String LIKE_QUEUE = "uploadLikeQueue";
+    private static final String COMMENT_QUEUE = "uploadCommentQueue";
     private static final String COMMUNITY_EXCHANGE = "postExchange";
     private static final String POST_KEY = "post.#";
     private static final String LIKE_KEY = "like.#";
+    private static final String COMMENT_KEY = "comment.#";
 
 
     @Bean
     public Queue POST_QUEUE(){
         return new Queue(POST_QUEUE);
+    }
+
+    @Bean
+    public Queue COMMENT_QUEUE(){
+        return new Queue(COMMENT_QUEUE);
     }
 
     @Bean
@@ -46,6 +53,11 @@ public class RabbitMQConfig {
     @Bean
     public Binding bindingLike(){
         return BindingBuilder.bind(LIKE_QUEUE()).to(topicExchange()).with(LIKE_KEY);
+    }
+
+    @Bean
+    public Binding bindingComment(){
+        return BindingBuilder.bind(COMMENT_QUEUE()).to(topicExchange()).with(COMMENT_KEY);
     }
 
 }

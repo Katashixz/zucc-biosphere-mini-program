@@ -31,6 +31,9 @@ public enum RespBeanEnum {
     UPLOAD_IMG_ERROR(3005,"上传图片失败"),
     UPLOAD_POST_ERROR(3006,"上传帖子失败"),
     CHANGE_LIKE_STATUS_ERROR(3307, "点赞失败"),
+    SENSITIVE_WORDS(3309, "内容包含敏感词"),
+    UPLOAD_COMMENT_ERROR(3310, "上传评论失败"),
+    INFO_ERROR(3311, "传入信息有空值"),
 
     ;
 

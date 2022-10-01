@@ -170,14 +170,22 @@ public class CommunityController implements InitializingBean {
     @ApiOperation(value = "增加点赞记录，更改点赞状态", notes = "需要传入用户id、帖子id、点赞状态")
     @RequestMapping(value = "/auth/changeLikeStatus",method = RequestMethod.POST)
     public ResponseResult changeLikeStatus(@RequestBody LikeStatusVo req){
-        ResponseResult res = new ResponseResult();
-        // System.out.println(req.toString());
         //取消点赞就删除，点赞就新增，利用消息队列更新到数据库去，再更新缓存，这样数据比较安全
-        postService.changeLike(req);
-        res.setCode(RespBeanEnum.SUCCESS.getCode());
-        res.setMsg(RespBeanEnum.SUCCESS.getMessage());
+        ResponseResult res = postService.changeLike(req);
+        // System.out.println(req.toString());
+
         return res;
     }
+
+    @ApiOperation(value = "增加评论记录", notes = "需要传入评论用户id、被评论用户id、帖子id、评论内容")
+    @RequestMapping(value = "/auth/uploadComment",method = RequestMethod.POST)
+    public ResponseResult uploadComment(@RequestBody UploadCommentVo req){
+        ResponseResult res = postService.uploadComment(req);
+        return res;
+
+
+    }
+
 
     @Override
     public void afterPropertiesSet() throws Exception {

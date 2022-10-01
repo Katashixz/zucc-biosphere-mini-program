@@ -91,6 +91,20 @@
                     "query": "",
                     "launchMode": "default",
                     "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "utils/PromptBox/PromptBox",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/communityHome/communityHome",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }

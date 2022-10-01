@@ -156,9 +156,13 @@ public class CommunityDataAutoLoadUtil {
             redisTemplate.opsForHash().putAll("hotPostMap", hotPostMap);
             redisTemplate.expire("hotPostSet",6, TimeUnit.MINUTES);
             redisTemplate.expire("hotPostMap",7, TimeUnit.MINUTES);
-        }catch (Exception e){
+        }
+        catch (Exception e){
+            if (e.getMessage().equals("暂无时间范围内的热帖")) {
+                log.warn("暂无时间范围内的热帖");
+                return;
+            }
             log.info("定时加载主页热帖数据任务失败");
-            e.printStackTrace();
             return;
         }
         log.info("定时加载主页热帖数据任务结束");
