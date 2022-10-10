@@ -3,6 +3,7 @@ package com.biosphere.usermodule.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.biosphere.library.vo.ResponseResult;
+import com.biosphere.library.vo.RewardVo;
 import com.biosphere.usermodule.mapper.EnergyRecordMapper;
 import com.biosphere.usermodule.mapper.UserMapper;
 import com.biosphere.library.pojo.EnergyRecord;
@@ -93,5 +94,73 @@ public class EnergyRecordServiceImpl extends ServiceImpl<EnergyRecordMapper, Ene
             calendar.setTime(energyRecordList.get(i).getGetDate());
         }
         return sum;
+    }
+
+
+    @Override
+    @Transactional
+    public ResponseResult insertEnergyRecord(RewardVo rewardVo) {
+        ResponseResult res = new ResponseResult();
+        EnergyRecord energyRecord = new EnergyRecord();
+        energyRecord.setUserID(rewardVo.getUserID());
+        energyRecord.setPoint(rewardVo.getPoint());
+        energyRecord.setType(rewardVo.getType());
+        energyRecord.setToUserID(rewardVo.getToUserID());
+        energyRecord.setGetDate(new Date(System.currentTimeMillis()));
+        energyRecord.setIschecked(0);
+        try {
+            energyRecordMapper.insert(energyRecord);
+            if (Objects.isNull(energyRecord.getId())) {
+                //为空则插入未成功
+                res.setCode(RespBeanEnum.INSERT_REWARD_ERROR.getCode());
+                res.setMsg(RespBeanEnum.INSERT_REWARD_ERROR.getMessage());
+            }else {
+                res.setCode(RespBeanEnum.SUCCESS.getCode());
+                res.setMsg(RespBeanEnum.SUCCESS.getMessage());
+            }
+        }catch (Exception e){
+            log.error("能量值插入失败:{}",e);
+            res.setCode(RespBeanEnum.INSERT_REWARD_ERROR.getCode());
+            res.setMsg(RespBeanEnum.INSERT_REWARD_ERROR.getMessage());
+        }
+        return res;
+    }
+
+    @Override
+    @Transactional
+    public ResponseResult updateUserEnergy(Integer userID, Integer point, Integer type) {
+        ResponseResult res = new ResponseResult();
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.select("openID,energyPoint").eq("id", userID);
+        Integer finalPoint = 0;
+        User user = userMapper.selectOne(userQueryWrapper);
+
+        if (type == 0) {
+            finalPoint = user.getEnergyPoint() - point;
+            //先要检查剩余能量是否够减
+            if (finalPoint < 0) {
+                res.setCode(RespBeanEnum.ENERGY_NOT_ENOUGH.getCode());
+                res.setMsg(RespBeanEnum.ENERGY_NOT_ENOUGH.getMessage());
+                return res;
+            }
+        } else if (type == 1) {
+            finalPoint = user.getEnergyPoint() + point;
+        }
+        Integer num = userMapper.updateEnergyPoint(finalPoint, userID);
+        if (num <= 0) {
+            res.setCode(RespBeanEnum.UPDATE_USER_ENERGY_ERROR.getCode());
+            res.setMsg(RespBeanEnum.UPDATE_USER_ENERGY_ERROR.getMessage());
+        }else {
+            //查看缓存，这个用户如果有数据就更新，没有就不更新
+            if (redisTemplate.hasKey("login:" + user.getOpenID())){
+                User userInRedis = (User) redisTemplate.opsForValue().get("login:" + user.getOpenID());
+                userInRedis.setEnergyPoint(finalPoint);
+                redisTemplate.opsForValue().set("login:" + userInRedis.getOpenID(),userInRedis,5760,TimeUnit.MINUTES);
+            }
+
+            res.setCode(RespBeanEnum.SUCCESS.getCode());
+            res.setMsg(RespBeanEnum.SUCCESS.getMessage());
+        }
+        return res;
     }
 }

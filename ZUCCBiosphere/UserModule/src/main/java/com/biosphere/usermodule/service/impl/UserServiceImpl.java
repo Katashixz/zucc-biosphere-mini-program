@@ -71,7 +71,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
                 userMapper.insert(curUser);
                 log.info("[用户:{}{} 注册成功]",curUser.getOpenID(),curUser.getUserName());
             }else{
-                //更新最后登录时间与人品值(后期在设置)
+                //更新最后登录时间与人品值
                 curUser = userMapper.selectOne(userQueryWrapper);
                 curUser.setLatestLoginTime(new Date(System.currentTimeMillis()));
                 userMapper.updateById(curUser);

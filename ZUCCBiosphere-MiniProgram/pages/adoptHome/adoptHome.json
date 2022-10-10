@@ -1,3 +1,9 @@
 {
-    "usingComponents": {}
+    "usingComponents": {
+        "promptBox":"../../utils/promptBox/promptBox"
+        
+    },
+    "navigationBarTitleText": "云领养",
+    "enablePullDownRefresh": true
+
 }

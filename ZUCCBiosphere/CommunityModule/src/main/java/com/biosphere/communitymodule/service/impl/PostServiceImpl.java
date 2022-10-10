@@ -9,6 +9,7 @@ import com.biosphere.communitymodule.mapper.CommentMapper;
 import com.biosphere.communitymodule.mapper.PostMapper;
 import com.biosphere.communitymodule.rabbitmq.MQSender;
 import com.biosphere.library.pojo.Comment;
+import com.biosphere.library.pojo.EnergyRecord;
 import com.biosphere.library.pojo.Post;
 import com.biosphere.communitymodule.service.IPostService;
 import com.biosphere.library.util.TencentCosUtil;
@@ -24,6 +25,7 @@ import org.springframework.core.annotation.AliasFor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
@@ -116,6 +118,7 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
     }
 
     @Override
+    @Transactional
     public ResponseResult uploadPost(PostUploadVo postUploadVo) {
         ResponseResult res = new ResponseResult();
         if (Objects.isNull(postUploadVo.getContent()) || Objects.isNull(postUploadVo.getUserID()) || Objects.isNull(postUploadVo.getTheme())) {
@@ -166,6 +169,7 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
     }
 
     @Override
+    @Transactional
     public ResponseResult changeLike(LikeStatusVo likeStatusVo) {
         ResponseResult res = new ResponseResult();
         if (Objects.isNull(likeStatusVo.getPostID()) || Objects.isNull(likeStatusVo.getUserID()) || Objects.isNull(likeStatusVo.getStatus())) {
@@ -180,6 +184,7 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
     }
 
     @Override
+    @Transactional
     public ResponseResult uploadComment(UploadCommentVo uploadCommentVo) {
         //敏感语言检测->数据库更新->缓存更新
         ResponseResult res = new ResponseResult();
@@ -199,6 +204,23 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
         res.setMsg(RespBeanEnum.SUCCESS.getMessage());
         return res;
     }
+
+    @Override
+    public List<Map<String, Object>> postSearch(String content) {
+        List<Map<String, Object>> maps = postMapper.postSearch(content);
+        //图片数据需要转化成数组
+        for (Map<String, Object> map : maps) {
+            if (map.containsKey("imageUrl")){
+                map.put("imageUrlList",((String) map.get("imageUrl")).split("，"));
+            }else {
+                map.put("imageUrlList",null);
+
+            }
+
+        }
+        return maps;
+    }
+
 
     @Override
     public CommunityPostVo loadPostDetail(Long postID) {
@@ -260,6 +282,7 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
 
 
     @Override
+    @Transactional
     public Map<String, Object> updateLike(Integer userID, Map<String, Object> post) {
         try{
             // List<Long> likeRecords = (List<Long>) redisTemplate.opsForHash().get("likeRecords", userID.toString());

@@ -104,7 +104,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(
                         "/user/login",
                         "/user/test",
-                        "/wikiData/exposure/**",
                         "/css/**",
                         "/js/**",
                         "/webjars/**",

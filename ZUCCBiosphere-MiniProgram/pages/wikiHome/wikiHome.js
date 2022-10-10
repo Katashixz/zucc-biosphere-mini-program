@@ -7,7 +7,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        
+        type: 0,
         tabs:[
             "动物",
             "植物"
@@ -140,9 +140,9 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
-        console.log("onShow")
-    
+        var that = this;
+        that.data.type = 0;
+        
         if (typeof this.getTabBar === 'function' && this.getTabBar()) {
     
           this.getTabBar().setData({

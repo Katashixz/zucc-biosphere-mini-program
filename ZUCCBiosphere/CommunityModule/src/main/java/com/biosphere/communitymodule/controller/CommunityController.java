@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -182,9 +183,22 @@ public class CommunityController implements InitializingBean {
     public ResponseResult uploadComment(@RequestBody UploadCommentVo req){
         ResponseResult res = postService.uploadComment(req);
         return res;
-
-
     }
+
+    @ApiOperation(value = "返回论坛搜索结果", notes = "需要传入搜索类型、搜索内容")
+    @RequestMapping(value = "/exposure/search",method = RequestMethod.GET)
+    public ResponseResult uploadComment(Integer type, String content){
+        ResponseResult res = new ResponseResult();
+        JSONObject resData = new JSONObject();
+        List<Map<String, Object>> postSearch = postService.postSearch(content);
+        resData.put("searchResult",postSearch);
+        res.setData(resData);
+        res.setCode(RespBeanEnum.SUCCESS.getCode());
+        res.setMsg(RespBeanEnum.SUCCESS.getMessage());
+
+        return res;
+    }
+
 
 
     @Override

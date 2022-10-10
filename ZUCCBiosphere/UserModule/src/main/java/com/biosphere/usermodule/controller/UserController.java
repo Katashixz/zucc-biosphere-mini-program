@@ -2,6 +2,7 @@ package com.biosphere.usermodule.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.biosphere.library.vo.RewardVo;
 import com.biosphere.usermodule.service.IUserService;
 import com.biosphere.library.pojo.User;
 import com.biosphere.usermodule.service.IEnergyRecordService;
@@ -116,8 +117,37 @@ public class UserController {
 
     }
 
+    @ApiOperation(value = "新增能量值记录", notes = "需要传入打赏者id，被打赏者id，能量值，打赏类型")
+    @RequestMapping(value = "/insertEnergyRecord",method = RequestMethod.POST)
+    public ResponseResult insertEnergyRecord(@RequestBody RewardVo rewardVo){
+        ResponseResult res = new ResponseResult();
+        // 如果是打赏类型，则要对两个用户的能量值进行更新
+        if (rewardVo.getType() == 1){
 
+            // res2为打赏者能量值减少状态
+            ResponseResult res2 = energyrecordService.updateUserEnergy(rewardVo.getUserID(),rewardVo.getPoint(),0);
+            // 如果报错直接返回
+            if (res2.getCode() != 200){
+                return res2;
+            }
+            // res3为被打赏者能量值增加状态
+            ResponseResult res3 = energyrecordService.updateUserEnergy(rewardVo.getToUserID(),rewardVo.getPoint(),1);
+            if (res3.getCode() != 200){
+                return res3;
+            }
+            // if (res1.getCode() == 200 && res2.getCode() == 200 && res3.getCode() == 200) {
+            //     return res1;
+            // }else{
+            //     return res1.getCode() == 200 ? (res2.getCode() == 200 ? res3 : res2) : res1;
+            // }
+        }
+        ResponseResult res1 = energyrecordService.insertEnergyRecord(rewardVo);
 
+        
+
+        return res1;
+
+    }
 
 
 

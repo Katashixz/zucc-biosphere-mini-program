@@ -108,5 +108,14 @@ public interface IPostService extends IService<Post> {
      */
     ResponseResult uploadComment(UploadCommentVo uploadCommentVo);
 
+    /**
+     * 功能描述: 获取搜索结果
+     * @param:
+     * @return:
+     * @author hyh
+     * @date: 2022/10/10 11:40
+     */
+    List<Map<String, Object>> postSearch(String content);
+
 
 }

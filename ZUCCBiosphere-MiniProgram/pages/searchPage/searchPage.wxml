@@ -1,39 +1,74 @@
 <!--pages/searchPage/searchPage.wxml-->
+<wxs module="func">
+      module.exports = {
+        isVideo: function (target) {
+            var typeTemp = target.split(".");
+        if(typeTemp[typeTemp.length - 1] == 'mp4' || typeTemp[typeTemp.length - 1] == 'mov' || typeTemp[typeTemp.length - 1] == 'wmv' || typeTemp[typeTemp.length - 1] == 'mpg' || typeTemp[typeTemp.length - 1] == 'avi'){
+            return true;
+        }
+        return false;
+        },
+        slice: function (target) {
+            return target.slice(0, target.lastIndexOf('.')) + '_0.jpg'
+        }
+      }
+</wxs>
 <view class="searchPage">
     <view class="homePage">
         <image class="catIcon" src="../../icon/catSearchPage.png"></image>
+        <promptBox id="promptBox"></promptBox>
         
-        <searchBar placeHolderContent="请输入帖子关键词"></searchBar>
+        <searchBar id="searchBar" placeHolderContent="{{typeText}}" searchType="{{pageData.type}}" searchContent="{{searchContent}}" bind:changeNaviIndex="onGetData" bind:errorBar="showErrorBar"></searchBar>
         <view class="searchResult">
-            <view class="resultItem" wx:for="{{searchResult}}" wx:key="resultKey" data-index="{{index}}" wx:for-item="postItem">
-                <view class="postLineTop">
-                    <view class="avatar" >
-                        <image mode="aspectFill" src="{{postItem.userAvatarUrl}}" />
+            <view class="postRes" wx:if="{{pageData.type == 1}}">
+                <view class="resultItem" wx:for="{{searchResult}}" wx:key="resultKey" data-index="{{index}}" wx:for-item="postItem" bindtap="toPost">
+                    <view class="postLineTop">
+                        <view class="avatar" >
+                            <image mode="aspectFill" src="{{postItem.avatarUrl}}" />
+                        </view>
+                        <view class="nameAndPostTime">
+                            <view class="postManName">{{postItem.userName}}</view>
+                            <view class="postTime">发布于{{postItem.dateformat}}</view>
+                        </view>
                     </view>
-                    <view class="nameAndPostTime">
-                        <view class="postManName">{{postItem.userID}}</view>
-                        <view class="postTime">发布于{{postItem.postDate}}</view>
-                    </view>
-                </view>
-                <view class="postLineMid" bindtap="toPost" data-index="{{index}}">
-                    <text>
-                        <text class="themeColor">#{{postItem.postTheme}}#</text>{{postItem.postContent}}</text>
-                    <view class="imageWithContent">
-                        <view class="singleImage"
-                        wx:for="{{postItem.postImage}}"
-                        wx:for-item="imageItem"
-                        wx:for-index="index2"
-                        wx:key="imageItemKey"
-                        >
-                            <image mode="aspectFill" src="{{imageItem.imageUrl}}"
-                            data-idx="{{index}}"
-                            data-idx2="{{index2}}"
-                            catchtap="handleImagePreview"
-                            />
+                    <view class="postLineMid" bindtap="toPost" data-index="{{index}}">
+                        <text>
+                            <text class="themeColor">#{{postItem.theme}}#</text>{{postItem.content}}</text>
+                            <view class="imageWithContent">
+                                <view class="singleImage"
+                                wx:if="{{postItem.imageUrlList != null}}"
+                                wx:for="{{postItem.imageUrlList}}"
+                                wx:for-item="imageItem"
+                                wx:for-index="index2"
+                                wx:key="imageItemKey"
+                                >
+                                    <image mode="aspectFill" src="{{func.isVideo(imageItem) ? func.slice(imageItem):imageItem}}"
+                                    data-idx="{{index}}"
+                                    data-idx2="{{index2}}"
+                                    catchtap="handleImagePreview"
+                                    wx:if="{{imageItem != ''}}"
+                                    />
+                                </view>
                         </view>
                     </view>
                 </view>
             </view>
+            <view class="wikiRes" wx:if="{{pageData.type == 2}}">
+                <view class="itemList"> 
+                    <view wx:for="{{searchResult}}" wx:for-item="listItem" data-index="{{index}}" wx:key="targetListKey" bindtap="toWikiDetail">
+                        <view class="listItem" wx:if="{{index == 0}}" style="margin-top: 0rpx;">
+                            <image src="{{listItem.image}}" mode="aspectFill"></image>
+                            <text>{{listItem.nickName}}</text>
+                        </view>
+                        <view class="listItem" wx:if="{{index > 0}}">
+                            <image src="{{listItem.image}}" mode="aspectFill"></image>
+                            <text>{{listItem.nickName}}</text>
+                        </view>
+                    </view>
+                </view>
+
+            </view>
+            <text class="endText inCenter" wx:if="{{isResEmpty == true}}">—暂无搜索结果—</text>
         </view>
     </view>
 </view>

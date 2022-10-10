@@ -83,6 +83,7 @@
         <!-- <text class="endText" style="left: 160rpx; top: 60rpx;">————没有内容了哦————</text> -->
         <view style="height: 182rpx;"></view>
     </view>
+    <promptBox id="promptBox"></promptBox>
     
 
 </view>

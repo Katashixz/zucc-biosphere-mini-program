@@ -1,6 +1,6 @@
 <!--pages/wikiHome.wxml-->
 <view class="homePage">
-    <searchBar placeHolderContent="请输入名称" ></searchBar>
+    <searchBar placeHolderContent="请输入名称" searchType="{{type}}"></searchBar>
 
     <view class="selectTable">
     <view id="tabs">

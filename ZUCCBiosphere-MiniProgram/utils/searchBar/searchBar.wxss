@@ -32,14 +32,23 @@
 }
 .searchInput{
     height: 55rpx;
-    width: 480rpx;
+    width: 500rpx;
     position: relative;
-    left: 10rpx;
+    /* left: 10rpx; */
+    margin-left: 10rpx;
 }
 
 .cancle{
-    width: 100rpx;
+    width: 60rpx;
     text-align: center;
     line-height: 50rpx;
     color: #8a8a8a;
+}
+.confirm{
+    width: 100rpx !important;
+    background-color: rgb(215,193,168) !important;
+    /* margin-left: 20rpx; */
+    height: 55rpx;
+    border-radius: 30rpx;
+    font-size: 29rpx !important;
 }

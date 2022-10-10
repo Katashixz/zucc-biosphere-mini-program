@@ -10,6 +10,7 @@ import org.springframework.security.core.parameters.P;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -51,5 +52,14 @@ public interface PostMapper extends BaseMapper<Post> {
             "LEFT JOIN `user` u on p.userID = u.id\n" +
             "WHERE p.id = #{id}")
     CommunityPostVo findOne(@Param("id")Long id);
+
+    @Select("SELECT p.id as postID, p.userID as userID, u.avatarUrl as avatarUrl, u.userName as userName,p.theme as theme, p.content as content, p.postDate as postDate, p.isTop as isTop, p.isEssential as isEssential, p.imageUrl, DATE_FORMAT(p.postDate,\"%Y-%m-%d %H:%m\") as dateformat\n" +
+            "FROM post p\n" +
+            "LEFT JOIN `user` u on p.userID = u.id\n" +
+            "WHERE p.content like CONCAT('%',#{content},'%')\n" +
+            "ORDER BY p.postDate DESC")
+    List<Map<String, Object>> postSearch(@Param("content") String content);
+
+
 
 }

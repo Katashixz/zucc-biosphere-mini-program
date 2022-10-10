@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.biosphere.library.pojo.EnergyRecord;
 import com.biosphere.library.pojo.User;
 import com.biosphere.library.vo.ResponseResult;
+import com.biosphere.library.vo.RewardVo;
 
 /**
  * <p>
@@ -33,4 +34,21 @@ public interface IEnergyRecordService extends IService<EnergyRecord> {
      */
     Integer getDaysSum(User user);
 
+    /**
+     * 功能描述: 新增能量值记录
+     * @param:
+     * @return:
+     * @author hyh
+     * @date: 2022/10/10 14:39
+     */
+    ResponseResult insertEnergyRecord(RewardVo rewardVo);
+
+    /**
+     * 功能描述: 用户能量值变化，type为1代表增加，0代表减去
+     * @param:
+     * @return:
+     * @author hyh
+     * @date: 2022/10/10 15:10
+     */
+    ResponseResult updateUserEnergy(Integer userID, Integer point, Integer type);
 }

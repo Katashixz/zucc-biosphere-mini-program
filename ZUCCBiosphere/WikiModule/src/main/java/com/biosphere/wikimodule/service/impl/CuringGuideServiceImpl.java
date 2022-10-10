@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * <p>
@@ -28,6 +26,9 @@ public class CuringGuideServiceImpl extends ServiceImpl<CuringGuideMapper, Curin
 
     @Autowired
     private RedisTemplate redisTemplate;
+
+    @Autowired
+    private CuringGuideMapper curingGuideMapper;
 
     @Override
     public List<CuringGuideWithKeyContent> getCuringGuideData(String familyID) {
@@ -70,5 +71,22 @@ public class CuringGuideServiceImpl extends ServiceImpl<CuringGuideMapper, Curin
 
         }
 
+    }
+
+    @Override
+    public List<Map<String, Object>> getSearchResult(String content) {
+        // 从动物外号、学名模糊搜索
+        List<Map<String, Object>> maps = curingGuideMapper.animalSearch(content);
+        // 从植物外号、学名、别名搜索
+        maps.addAll(curingGuideMapper.plantSearch(content));
+        for (Map<String, Object> map : maps) {
+            // 如果有图片数据
+            if (map.containsKey("image")){
+                if (!Objects.isNull(map.get("image"))){
+                    map.put("image",((String) map.get("image")).split("，")[0]);
+                }
+            }
+        }
+        return maps;
     }
 }

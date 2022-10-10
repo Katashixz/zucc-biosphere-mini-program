@@ -31,7 +31,7 @@ public class PlantsWikiServiceImpl extends ServiceImpl<PlantsWikiMapper, PlantsW
     private RedisTemplate redisTemplate;
 
     @Override
-    public List<MainPageDataVo> getMainPageAnimalData() {
+    public List<MainPageDataVo> getMainPagePlantsData() {
 
         try{
             List<MainPageDataVo> mainPageDataVoList = (List<MainPageDataVo>) redisTemplate.opsForValue().get("plantsDataVoList");

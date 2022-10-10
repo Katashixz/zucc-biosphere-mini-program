@@ -67,10 +67,12 @@
 }
 .imageWithContent{
     display: flex;
+    flex-wrap: wrap;
     justify-content: left;
     margin-top: 10rpx;
     padding: 0 10rpx;
 }
+
 .postManName{
     display: -webkit-box;
     -webkit-line-clamp: 1; /*限制文本行数*/
@@ -87,4 +89,37 @@
     border-radius: 20rpx;
     width: 209rpx;
     height: 200rpx;
+}
+
+.itemList{
+    position: relative;
+    /* margin-top: 12rpx; */
+    margin-top: 32rpx;
+    width: 680rpx;
+    /* height: 550rpx; */
+    height: 50%;
+    left: 15rpx;
+    overflow: scroll;
+}
+
+.listItem{
+    height: 144rpx;
+    display: flex;
+    margin-top: 20rpx;
+    background-color: #ffffff;
+    border-radius: 24rpx;
+
+}
+.listItem image{
+    margin-top: 15rpx;
+    margin-left: 20rpx;
+    width: 114rpx;
+    height: 114rpx;
+    border-radius: 100rpx;
+}
+.listItem text{
+    margin-top: 40rpx;
+    font-size: 48rpx;
+    margin-left: 30rpx;
+    color: #6E5D52;
 }

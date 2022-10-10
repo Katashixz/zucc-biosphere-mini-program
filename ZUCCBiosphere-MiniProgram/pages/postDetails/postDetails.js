@@ -235,27 +235,102 @@ Page({
     /**
      * 打赏弹窗
      */
+    
     toReward: function (e) {
-        var that = this;
-
+        var that = this
         const post = that.data.postItem
         if (app.globalData.hasUserInfo) {
             if (app.globalData.userInfo.id == post.userID) {
-                wx.showToast({
-                    title: '不能给自己打赏',
-                    icon: 'error',
-                    duration: 2000,
-                })
+                // wx.showToast({
+                //     title: '不能给自己打赏',
+                //     icon: 'error',
+                // })
+                var obj = {
+                    msg: "不能给自己打赏",
+                    type: "error"
+                }
+                that.promptBox.open(obj);
             } else {
-                this.userModal.open();
+                // that.energyBox.open();
+                that.energyBox.open(post);
             }
 
         } else {
             app.getUserProfile().finally(() => {
-                that.refreshData(that.data.postID);
+                that.onPullDownRefresh();
             })
-
         }
+    },
+    rewardOperation: function (e) {
+        var that = this;
+        var energy = parseInt(e.detail.energy);
+        var toUserID = e.detail.toUserID;
+        if(energy == -1){
+            var obj = {
+                msg: "请选择能量值",
+                type: "tip"
+            }
+            that.promptBox.open(obj);
+        }
+        else if(isNaN(energy)){
+            var obj = {
+                msg: "请输入正确的数字",
+                type: "error"
+            }
+            that.promptBox.open(obj);
+        }
+        else if(toUserID == -1){
+            var obj = {
+                msg: "打赏对象有误",
+                type: "error"
+            }
+            that.promptBox.open(obj);
+        }
+        else{
+            wx.request({
+                method: 'POST',
+                url: app.globalData.urlHome + '/user/insertEnergyRecord/',
+                header: {
+                    'content-type': 'application/json',
+                    'token': app.globalData.token
+                },
+                data:{
+                    point: energy,
+                    type: 1,
+                    userID: app.globalData.userInfo.id,
+                    toUserID: toUserID
+                },
+                success: (res) => {
+                    if(res.data.code == 200){
+                        wx.showToast({
+                            title: '打赏成功',
+                            icon: 'success',
+                            duration: 1500
+                          });
+                          setTimeout(() => {
+                              that.energyBox.close();
+                          }, 1500);
+                    }
+                    else{
+                        var obj = {
+                            msg: res.data.msg,
+                            type: "error"
+                        }
+                        that.promptBox.open(obj);
+                    }
+                    
+
+                },
+                fail: (res) => {
+                    wx.showToast({
+                    title: '服务器错误',
+                    icon: 'error',
+                    duration: 1500
+                    })
+                }
+            })
+        }
+        
     },
     /**
      * 分享此页面
@@ -474,6 +549,8 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
+        this.energyBox = this.selectComponent("#energyBox");
+        this.promptBox = this.selectComponent("#promptBox");
     },
 
     /**
@@ -481,6 +558,7 @@ Page({
      */
     onShow() {
         this.userModal = this.selectComponent("#userModal");
+        this.energyBox = this.selectComponent("#energyBox");
 
     },
 

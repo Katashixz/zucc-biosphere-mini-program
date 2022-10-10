@@ -15,7 +15,8 @@
 </wxs>
 <view class="postDetails">
     <view class="homePage">
-        <Dialog id="userModal"></Dialog>
+        <Dialog id="energyBox" bind:getEnergy="rewardOperation"></Dialog>
+        <promptBox id="promptBox"></promptBox>
         <scroll-view scroll-y="{{true}}" >
             <view class="post">
                 <view class="postLineTop">

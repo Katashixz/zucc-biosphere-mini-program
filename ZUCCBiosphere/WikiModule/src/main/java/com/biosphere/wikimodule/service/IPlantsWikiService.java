@@ -23,7 +23,7 @@ public interface IPlantsWikiService extends IService<PlantsWiki> {
      * @author hyh
      * @date: 2022/9/5 09:56
      */
-    List<MainPageDataVo> getMainPageAnimalData();
+    List<MainPageDataVo> getMainPagePlantsData();
 
     /**
      * 功能描述: 获取养护指南植物列表

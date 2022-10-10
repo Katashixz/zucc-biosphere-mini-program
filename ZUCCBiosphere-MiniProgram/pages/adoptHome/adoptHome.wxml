@@ -1,2 +1,3 @@
 <!--pages/adoptHome/adoptHome.wxml-->
 <text>pages/adoptHome/adoptHome.wxml</text>
+<promptBox id="promptBox"></promptBox>

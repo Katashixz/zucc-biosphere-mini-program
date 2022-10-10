@@ -20,7 +20,7 @@
                     </view>
                     <input class="{{currentTarget == -2 ? 'selectedEnergyInput':'energyInput'}}" type="number" placeholder="其他" placeholder-class="{{currentTarget == -2 ? 'selectedInputPlaceholder':''}}" bindinput="energySelected" bindfocus="energySelected"/>
                 </view>
-                <button type="default" class="sumbitButton">确定</button>
+                <button type="default" class="sumbitButton" bindtap="confirmReward">确定</button>
             </scroll-view>
         </view>
     </view>

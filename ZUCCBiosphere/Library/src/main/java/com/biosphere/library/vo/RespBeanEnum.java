@@ -34,7 +34,11 @@ public enum RespBeanEnum {
     SENSITIVE_WORDS(3309, "内容包含敏感词"),
     UPLOAD_COMMENT_ERROR(3310, "上传评论失败"),
     INFO_ERROR(3311, "传入信息有空值"),
-
+    //其他
+    INSERT_REWARD_ERROR(4001,"能量值插入失败"),
+    UPDATE_USER_ENERGY_ERROR(4002,"用户能量值更新失败"),
+    USER_ID_ERROR(4003,"用户ID异常"),
+    ENERGY_NOT_ENOUGH(4004,"能量值不足啦"),
     ;
 
     private final Integer code;

@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -57,7 +59,7 @@ public class WikiDataController implements InitializingBean{
         JSONObject resData = new JSONObject();
 
         List<MainPageDataVo> animalData = animalsWikiService.getMainPageAnimalData();
-        List<MainPageDataVo> plantsData = plantsWikiService.getMainPageAnimalData();
+        List<MainPageDataVo> plantsData = plantsWikiService.getMainPagePlantsData();
         if (Objects.isNull(animalData) || Objects.isNull(plantsData)) {
             res.setCode(RespBeanEnum.GET_WIKI_ERROR.getCode());
             res.setMsg(RespBeanEnum.GET_WIKI_ERROR.getMessage());
@@ -148,6 +150,22 @@ public class WikiDataController implements InitializingBean{
         }
         return res;
     }
+
+
+    @ApiOperation(value = "返回百科搜索结果", notes = "需要传入搜索类型、搜索内容")
+    @RequestMapping(value = "/exposure/search",method = RequestMethod.GET)
+    public ResponseResult uploadComment(Integer type, String content){
+        ResponseResult res = new ResponseResult();
+        JSONObject resData = new JSONObject();
+        List<Map<String, Object>> searchRes = curingGuideService.getSearchResult(content);
+        resData.put("searchResult",searchRes);
+        res.setData(resData);
+        res.setCode(RespBeanEnum.SUCCESS.getCode());
+        res.setMsg(RespBeanEnum.SUCCESS.getMessage());
+
+        return res;
+    }
+
     @Override
     public void afterPropertiesSet() throws Exception {
         dataAutoLoadUtil.wikiMainPageData();

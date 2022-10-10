@@ -5,6 +5,7 @@ import com.biosphere.library.pojo.CuringGuide;
 import com.biosphere.library.vo.CuringGuideWithKeyContent;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -25,4 +26,12 @@ public interface ICuringGuideService extends IService<CuringGuide> {
      */
     List<CuringGuideWithKeyContent> getCuringGuideData(String familyID);
 
+    /**
+     * 功能描述: 获取百科搜索结果
+     * @param:
+     * @return:
+     * @author hyh
+     * @date: 2022/10/9 17:05
+     */
+    List<Map<String,Object>> getSearchResult(String content);
 }

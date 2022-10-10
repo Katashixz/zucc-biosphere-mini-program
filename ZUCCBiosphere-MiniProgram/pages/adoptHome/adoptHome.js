@@ -12,14 +12,23 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        var that = this;
+        
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
+        var that = this;
 
+        this.promptBox = this.selectComponent("#promptBox");
+        
+        var obj = {
+            msg: "还没做完",
+            type: "tip"
+        }
+        that.promptBox.open(obj);
     },
 
     /**

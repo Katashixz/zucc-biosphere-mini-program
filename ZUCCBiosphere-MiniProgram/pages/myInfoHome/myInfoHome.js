@@ -136,15 +136,24 @@ Page({
                     that.onPullDownRefresh();
                 }
                 else if (res.data.code == 1005) {
-                    toast.showToastWithMaskAndImage(that, "出错啦", "重复签到了哦","../../icon/error.png")
+                    var obj = {
+                        msg: "重复签到了哦",
+                        type: "tip"
+                    }
+                    that.promptBox.open(obj);
+                    // toast.showToastWithMaskAndImage(that, "出错啦", "重复签到了哦","../../icon/error.png")
                     that.setData({
                         isCheckedIn:true,
                         totalDays:res.data.data.totalDays,
                     })
                 }
                 else{
-                    toast.showToastWithMaskAndImage(that, "出错啦", "请重新签到","../../icon/error.png")
-
+                    // toast.showToastWithMaskAndImage(that, "出错啦", "请重新签到","../../icon/error.png")
+                    var obj = {
+                        msg: "出错啦,请重新签到",
+                        type: "error"
+                    }
+                    that.promptBox.open(obj);
                 }
             },
             complete: (res) =>{
@@ -166,7 +175,7 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
-
+        this.promptBox = this.selectComponent("#promptBox");
     },
 
     /**

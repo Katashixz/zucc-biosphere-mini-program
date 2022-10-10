@@ -139,8 +139,8 @@
         <image class="releasePostShowImage" src="../../icon/release.png"></image>
         <text class="releasePostShowText"> 发帖</text>
         </view>
-        <!-- <Dialog id="energyBox"></Dialog> -->
-        <promptBox id="energyBox"></promptBox>
+        <Dialog id="energyBox" bind:getEnergy="rewardOperation"></Dialog>
+        <promptBox id="promptBox"></promptBox>
     </view>
    
     

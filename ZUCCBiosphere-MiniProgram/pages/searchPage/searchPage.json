@@ -1,5 +1,6 @@
 {
     "usingComponents": {
+        "promptBox":"../../utils/promptBox/promptBox",
         "searchBar":"../../utils/searchBar/searchBar"
 
     },

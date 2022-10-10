@@ -1,4 +1,6 @@
 let app = getApp();
+const util = require('../../utils/jsUtil/jsUtil')
+
 Component({
     options: {
         multipleSlots: true // 在组件定义时的选项中启用多slot支持
@@ -30,8 +32,17 @@ Component({
         recoedDalogflash:null,
         energy: -1,
         currentTarget: -1,
+        toUserID: -1,
     },
     methods: {
+        confirmReward: util.throttle(function (e) {
+            var that = this;
+            var obj = {
+                energy: that.data.energy,
+                toUserID: that.data.toUserID,
+            }
+            that.triggerEvent('getEnergy',obj)
+        }),
         openrecoedModal(status) {
             let that = this;
             let animation = wx.createAnimation({
@@ -62,7 +73,11 @@ Component({
             }
         },
 
-        open:function(){
+        open:function(e){
+            var that = this;
+            that.setData({
+                toUserID: e.userID,
+            })
             this.openrecoedModal(true);
             
         },

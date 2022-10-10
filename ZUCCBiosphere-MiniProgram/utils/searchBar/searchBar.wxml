@@ -3,6 +3,9 @@
     <view class="searchIconPosition">
         <image src="/icon/searchIcon.png" class="searchIcon"></image>
     </view>
-    <input class="searchInput" placeholder="{{placeHolderContent}}" bindconfirm="confirmTap"bindfocus="clickFocus" bindblur="clickBlur" bindinput="updateContent" value="{{searchContent}}"/>
-    <view class="cancle" style="{{isClick? 'display:true':'display:none'}}" bindtap="clearInput">取消</view>
+    <input class="searchInput" placeholder="{{placeHolderContent}}" bindconfirm="confirmTap" bindfocus="clickFocus" bindblur="clickBlur" bindinput="updateContent" value="{{searchContent}}"/>
+    <view class="cancle" style="{{isClick? 'display:true':'display:none'}}" bindtap="clearInput">×</view>
+    
 </view>
+<!-- <button class="confirm" size="mini" type="primary" bindtap="confirmTap">
+            确定</button> -->

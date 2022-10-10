@@ -121,7 +121,7 @@ Page({
      */
     toSearch: function (e) {
         wx.navigateTo({
-            url: '/pages/searchPage/searchPage'
+            url: '/pages/searchPage/searchPage?type=1'
         })
     },
     /**
@@ -220,6 +220,7 @@ Page({
         }, 1500)
 
     }, 1500),
+    
     /**
      * 评论功能
      */
@@ -236,13 +237,18 @@ Page({
         const post = that.data.postList[e.currentTarget.dataset.index]
         if (app.globalData.hasUserInfo) {
             if (app.globalData.userInfo.id == post.userID) {
-                wx.showToast({
-                    title: '不能给自己打赏',
-                    icon: 'error',
-                })
+                // wx.showToast({
+                //     title: '不能给自己打赏',
+                //     icon: 'error',
+                // })
+                var obj = {
+                    msg: "不能给自己打赏",
+                    type: "error"
+                }
+                that.promptBox.open(obj);
             } else {
                 // that.energyBox.open();
-                that.energyBox.open();
+                that.energyBox.open(post);
             }
 
         } else {
@@ -250,6 +256,77 @@ Page({
                 that.onPullDownRefresh();
             })
         }
+    },
+    rewardOperation: function (e) {
+        var that = this;
+        var energy = parseInt(e.detail.energy);
+        var toUserID = e.detail.toUserID;
+        if(energy == -1){
+            var obj = {
+                msg: "请选择能量值",
+                type: "tip"
+            }
+            that.promptBox.open(obj);
+        }
+        else if(isNaN(energy)){
+            var obj = {
+                msg: "请输入正确的数字",
+                type: "error"
+            }
+            that.promptBox.open(obj);
+        }
+        else if(toUserID == -1){
+            var obj = {
+                msg: "打赏对象有误",
+                type: "error"
+            }
+            that.promptBox.open(obj);
+        }
+        else{
+            wx.request({
+                method: 'POST',
+                url: app.globalData.urlHome + '/user/insertEnergyRecord/',
+                header: {
+                    'content-type': 'application/json',
+                    'token': app.globalData.token
+                },
+                data:{
+                    point: energy,
+                    type: 1,
+                    userID: app.globalData.userInfo.id,
+                    toUserID: toUserID
+                },
+                success: (res) => {
+                    if(res.data.code == 200){
+                        wx.showToast({
+                            title: '打赏成功',
+                            icon: 'success',
+                            duration: 1500
+                          });
+                          setTimeout(() => {
+                              that.energyBox.close();
+                          }, 1500);
+                    }
+                    else{
+                        var obj = {
+                            msg: res.data.msg,
+                            type: "error"
+                        }
+                        that.promptBox.open(obj);
+                    }
+                    
+
+                },
+                fail: (res) => {
+                    wx.showToast({
+                    title: '服务器错误',
+                    icon: 'error',
+                    duration: 1500
+                    })
+                }
+            })
+        }
+        
     },
     /**
      * 更多选择的动画
@@ -383,6 +460,7 @@ Page({
      */
     onReady() {
         this.energyBox = this.selectComponent("#energyBox");
+        this.promptBox = this.selectComponent("#promptBox");
     },
 
     /**
@@ -548,9 +626,9 @@ Page({
 	// 帖子加载事件
     loadPost(curPage, pageSize){
         var that = this;
-        wx.showLoading({
-          title: '加载中',
-        })
+        // wx.showLoading({
+        //   title: '加载中',
+        // })
         var url = app.globalData.urlHome + '/community/exposure/loadPostList?curPage=' + curPage + '&pageSize=' + pageSize;
         if(app.globalData.hasUserInfo){
             url = url + '&userID=' + app.globalData.userInfo.id;
@@ -581,7 +659,7 @@ Page({
   
             },
             complete: (res) =>{
-              wx.hideLoading();
+            //   wx.hideLoading();
             },
             fail: (res) => {
                 wx.showToast({
