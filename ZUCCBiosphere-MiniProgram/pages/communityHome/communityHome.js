@@ -11,7 +11,7 @@ Page({
      */
     data: {
         curPage: 1,
-        pageSize: 3,
+        pageSize: 7,
         currentIndex: 0,
         releasePostStyle: "",
         tenHotPosts: [
@@ -39,7 +39,9 @@ Page({
         releasePostAni: false,
     },
 
-    // 判断是否为视频
+    /**
+     * 判断是否为视频
+     */
     isVideo(target){
         var typeTemp = target.split(".");
         if(typeTemp[typeTemp.length - 1] == 'mp4' || typeTemp[typeTemp.length - 1] == 'mov' || typeTemp[typeTemp.length - 1] == 'wmv' || typeTemp[typeTemp.length - 1] == 'mpg' || typeTemp[typeTemp.length - 1] == 'avi'){
@@ -48,7 +50,9 @@ Page({
         return false;
     },
 
-    //   查看图片
+     /**
+     * 查看图片
+     */
     handleImagePreview(e) {
         var that = this;
         const idx = e.target.dataset.idx
@@ -101,7 +105,9 @@ Page({
 
     
     
-    //跳转到帖子详情页面
+    /**
+     * 跳转到帖子详情页面
+     */
     toPost: function (e) {
         wx.navigateTo({
             url: '/pages/postDetails/postDetails?postID=' + this.data.postList[e.currentTarget.dataset.index].postID
@@ -133,15 +139,34 @@ Page({
         })
     },
     /**
+     * 打开领养日记
+     */
+    toAdoptionDiary: function (e) {
+        var that = this;
+        var obj = {
+            msg: "功能暂未开放",
+            type: "tip"
+        }
+        that.promptBox.open(obj);
+    },
+    /**
+     * 打开商城
+     */
+    toShop: function (e) {
+        var that = this;
+        var obj = {
+            msg: "功能暂未开放",
+            type: "tip"
+        }
+        that.promptBox.open(obj);
+    },
+    /**
      * 点赞功能
      */
     changeLike: function (e) {
         var that = this;
         //先判断是否登录 登录后才能点赞
         if(!app.globalData.hasUserInfo){
-                that.setData({
-                    currentIndex:0
-                });
             app.getUserProfile().finally(() => {
                 that.onPullDownRefresh();
             })
@@ -332,6 +357,7 @@ Page({
      * 更多选择的动画
      */
     moreOptions: function(e){
+        // console.log(e)
         var index = e.currentTarget.dataset.index
         var list_state = this.data.postList[index].state,
           first_state = this.data.postList[index].click;
@@ -370,9 +396,58 @@ Page({
     /**
      * 收藏
      */
-    star(options) {
-        console.log("收藏")
-    },
+
+    star: util.throttle(function (e) {
+        var that = this;
+        var index = e.currentTarget.dataset.index
+        //先判断是否登录 登录后才能点赞
+        if(!app.globalData.hasUserInfo){
+            app.getUserProfile().finally(() => {
+                that.onPullDownRefresh();
+            })
+        }else{
+            wx.request({
+                method: 'POST',
+                url: app.globalData.urlHome + '/community/auth/starPost/',
+                header: {
+                    'content-type': 'application/json',
+                    'token': app.globalData.token
+                },
+                data:{
+                    postID: that.data.postList[index].postID,
+                    userID: app.globalData.userInfo.id,
+                },
+                success: (res) => {
+                    if(res.data.code == 200){
+                        wx.showToast({
+                            title: '收藏成功',
+                            icon: 'success',
+                            duration: 1500
+                          });
+                    }
+                    else{
+                        var obj = {
+                            msg: res.data.msg,
+                            type: "error"
+                        }
+                        that.promptBox.open(obj);
+                    }
+
+                },
+                fail: (res) => {
+                    wx.showToast({
+                    title: '服务器错误',
+                    icon: 'error',
+                    duration: 1500
+                    })
+                },
+                complete: (res) => {
+                    that.closeMoreOptions(e);
+
+                }
+            })
+        }
+    },1500),
     /**
      * 举报
      */
@@ -404,7 +479,6 @@ Page({
             url: url,
             method:"GET",
             success: (res) => {
-                console.log(res)
                 if(res.data.code == 200){
                     that.setData({
                         tenHotPosts: res.data.data.tenHotPosts,
@@ -446,6 +520,7 @@ Page({
      */
     onLoad(options) {
         var that = this;
+        
         that.setData({
             curPage: 1,
             postList: [],
@@ -527,7 +602,8 @@ Page({
         that.setData({
             curPage: 1,
             postList: [],
-            tenHotPosts: []
+            tenHotPosts: [],
+            currentIndex:0
         })
         var pageSize = that.data.pageSize;
         that.loadPost(1,pageSize);

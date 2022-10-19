@@ -24,7 +24,7 @@
                     <text>{{listItem.nickName}}</text>
                 </view>
             </view>
-            <text class="endText" style="left: 120rpx;">————没有内容了哦————</text>
+            <text class="endText inCenter" style="margin-top: 20rpx;">—没有内容了哦—</text>
         </view>
     </view>
 </view>

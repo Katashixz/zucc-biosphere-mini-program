@@ -7,11 +7,13 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.biosphere.communitymodule.mapper.CommentMapper;
 import com.biosphere.communitymodule.mapper.PostMapper;
+import com.biosphere.communitymodule.mapper.StarRecordMapper;
 import com.biosphere.communitymodule.rabbitmq.MQSender;
 import com.biosphere.library.pojo.Comment;
 import com.biosphere.library.pojo.EnergyRecord;
 import com.biosphere.library.pojo.Post;
 import com.biosphere.communitymodule.service.IPostService;
+import com.biosphere.library.pojo.StarRecord;
 import com.biosphere.library.util.TencentCosUtil;
 import com.biosphere.library.vo.*;
 import com.github.houbb.sensitive.word.core.SensitiveWordHelper;
@@ -22,12 +24,15 @@ import org.apache.commons.lang3.SystemUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AliasFor;
+import org.springframework.data.redis.core.DefaultTypedTuple;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -55,34 +60,68 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
     @Autowired
     private MQSender mqSender;
 
-    //预计要插入多少数据
+    @Autowired
+    private StarRecordMapper starRecordMapper;
+
+    // 预计要插入多少数据
     private static int size = 1000000;
-    //期望的误判率
+    // 期望的误判率
     private static double fpp = 0.01;
-    //创建布隆过滤器
+    // 创建评论的布隆过滤器
     private static BloomFilter<Long> commentBloomFilter = BloomFilter.create(Funnels.longFunnel(), size, fpp);
 
+    // 创建帖子的布隆过滤器
+    private static BloomFilter<Long> postBloomFilter = BloomFilter.create(Funnels.longFunnel(), size, fpp);
 
     @Override
     public Map<String ,Object> loadPost(Integer curPage, Integer pageSize) {
-        //根据页号加载帖子
+        // 根据页号加载帖子, 从left开始拿right条数据
         Integer left = (curPage - 1) * pageSize;
         Integer right = curPage * pageSize - 1;
-        log.info("加载数据 {}-{}",left,right);
+        log.info("加载数据 {}-{}",left,curPage * pageSize - 1);
         Map<String ,Object> result = new HashMap<>();
-        //帖子数据是否加载完毕
+        // 帖子数据是否加载完毕
         Boolean isEnd = false;
         try{
             Set<Integer> postSet = redisTemplate.opsForZSet().reverseRange("postSet", left, right);
             Map<String ,Object> postMap = redisTemplate.opsForHash().entries("postMap");
             List<CommunityPostVo> postVos = new ArrayList<>();
-            for (Integer id : postSet) {
-                postVos.add((CommunityPostVo) postMap.get(id.toString()));
-            }
-            //如果Redis里的数据加载到底了，就返回已全部加载(目前只允许浏览前1000条)
+
+            // 如果Redis里的数据加载到底了，就返回已全部加载(目前只允许浏览前1000条) 【老版本】
+            // 如果Redis里的数据加载到底了，去数据库查，再存入Redis，如果数据库也没了，就返回已全部加载【新版本】
             if (postSet.size() < (right - left)) {
-                isEnd = true;
+                // limit是从left开始拿pageSize条数据
+                List<CommunityPostVo> postVoListFromDB = postMapper.loadPostWithPage(left, pageSize);
+                // 处理数据库
+                if (postVoListFromDB.size() < (right - left)){
+                    isEnd = true;
+                }
+                if (postVoListFromDB.size() != 0) {
+                    //有数据就存入缓存
+                    Set<ZSetOperations.TypedTuple<Long>> tempSet = new HashSet<>();
+
+                    for (CommunityPostVo communityPostVo : postVoListFromDB) {
+                        //先处理图片
+                        if (!Objects.isNull(communityPostVo.getImageUrl()))
+                            communityPostVo.setImageUrlList(communityPostVo.getImageUrl().split("，"));
+                        ZSetOperations.TypedTuple<Long> temp = new DefaultTypedTuple<>(communityPostVo.getPostID(),Double.valueOf(communityPostVo.getPostDate().getTime()));
+                        tempSet.add(temp);
+                        postMap.put(communityPostVo.getPostID().toString(),communityPostVo);
+
+                    }
+                    postVos.addAll(postVoListFromDB);
+                    redisTemplate.opsForZSet().add("postSet",tempSet);
+                    redisTemplate.opsForHash().putAll("postMap", postMap);
+
+                }
+
+            }else{
+                // 从Redis里取出的数量必须等于right-left才能直接返回
+                for (Integer id : postSet) {
+                    postVos.add((CommunityPostVo) postMap.get(id.toString()));
+                }
             }
+
             result.put("postList", postVos);
             result.put("isEnd", isEnd);
         }catch (Exception e){
@@ -221,12 +260,54 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
         return maps;
     }
 
+    @Override
+    @Transactional
+    public ResponseResult changeStar(Integer userID, Long postID) {
+        // 先检测缓存中有没有此帖的收藏，有就报提示，没有就收藏成功
+        ResponseResult res = new ResponseResult();
+        StarRecord starRecord = new StarRecord();
+        List<StarRecord> starRecords = (List<StarRecord>) redisTemplate.opsForHash().get("userID:" + userID,"starRecords");
+        for (StarRecord record : starRecords) {
+            if (record.getPostID().equals(postID)) {
+                res.setCode(RespBeanEnum.REPEAT_STAR.getCode());
+                res.setMsg(RespBeanEnum.REPEAT_STAR.getMessage());
+                return res;
+            }
+        }
+        starRecord.setPostID(postID);
+        starRecord.setUserID(userID);
+        starRecord.setStarDate(new Date(System.currentTimeMillis()));
+        try{
+            starRecordMapper.insert(starRecord);
+            //更新缓存
+            starRecords.add(starRecord);
+            redisTemplate.opsForHash().put("userID:" + userID,"starRecords",starRecords);
+            res.setCode(RespBeanEnum.SUCCESS.getCode());
+            res.setMsg(RespBeanEnum.SUCCESS.getMessage());
+        }catch (Exception e){
+            log.error("插入收藏记录失败:",e);
+            res.setCode(RespBeanEnum.STAR_INSERT_ERROR.getCode());
+            res.setMsg(RespBeanEnum.STAR_INSERT_ERROR.getMessage());
+        }
+        return res;
+    }
+
 
     @Override
     public CommunityPostVo loadPostDetail(Long postID) {
         CommunityPostVo res = new CommunityPostVo();
         try{
             res = (CommunityPostVo) redisTemplate.opsForHash().get("postMap", postID.toString());
+            // 如果缓存没有就去数据库取，先过滤
+            if (Objects.isNull(res)) {
+                if (!postBloomFilter.mightContain(postID)) {
+                    return null;
+                }
+                res = postMapper.findOne(postID);
+                if (!Objects.isNull(res.getImageUrl()))
+                    res.setImageUrlList(res.getImageUrl().split("，"));
+                redisTemplate.opsForHash().put("postMap", postID.toString(), res);
+            }
         }catch (Exception e){
             log.error("加载帖子详情失败：");
             e.printStackTrace();
@@ -240,7 +321,9 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
         if (Objects.isNull(userID)) return false;
         try{
             // List<Long> likeRecords = (List<Long>) redisTemplate.opsForHash().get("likeRecords", userID.toString());
-            List<Long> likeRecords = (List<Long>) redisTemplate.opsForValue().get("userID:" + userID + ":likeRecords");
+            // List<Long> likeRecords = (List<Long>) redisTemplate.opsForValue().get("userID:" + userID + ":likeRecords");
+            List<Long> likeRecords = (List<Long>) redisTemplate.opsForHash().get("userID:" + userID, "likeRecords");
+
             if (!Objects.isNull(likeRecords) && likeRecords.contains(postID))
                 return true;
 
@@ -286,7 +369,7 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
     public Map<String, Object> updateLike(Integer userID, Map<String, Object> post) {
         try{
             // List<Long> likeRecords = (List<Long>) redisTemplate.opsForHash().get("likeRecords", userID.toString());
-            List<Long> likeRecords = (List<Long>) redisTemplate.opsForValue().get("userID:" + userID + ":likeRecords");
+            List<Long> likeRecords = (List<Long>) redisTemplate.opsForHash().get("userID:" + userID,"likeRecords");
 
             if (Objects.isNull(likeRecords)) {
                 return post;
@@ -312,8 +395,12 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
     public void afterPropertiesSet() throws Exception {
         log.info("布隆过滤器初始化");
         List<Long> postHasComment = commentMapper.loadPostWhichHasComments();
+        List<Long> postID = postMapper.loadAllPostID();
         for (Long aLong : postHasComment) {
             commentBloomFilter.put(aLong);
+        }
+        for (Long aLong : postID) {
+            postBloomFilter.put(aLong);
         }
         log.info("布隆过滤器初始化完成");
 
@@ -322,8 +409,12 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
     public void commentBloomFilterUpdate(){
         log.info("布隆过滤器更新");
         List<Long> postHasComment = commentMapper.loadPostWhichHasComments();
+        List<Long> postID = postMapper.loadAllPostID();
         for (Long aLong : postHasComment) {
             commentBloomFilter.put(aLong);
+        }
+        for (Long aLong : postID) {
+            postBloomFilter.put(aLong);
         }
         log.info("布隆过滤器更新完成");
 

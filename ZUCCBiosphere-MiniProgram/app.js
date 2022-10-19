@@ -159,7 +159,7 @@ App({
     },
     globalData: {
         userInfo: null,
-        // urlHome: 'http://124.221.252.162:9000',
+        // urlHome: 'https://124.221.252.162:9000',
         urlHome: 'http://localhost:9000',
         token: '',
         openID: '',

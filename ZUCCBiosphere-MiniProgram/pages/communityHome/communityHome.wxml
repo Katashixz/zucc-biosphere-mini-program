@@ -43,7 +43,7 @@
             <button class="adoptionDiary btn" type="primary" bindtap="toAdoptionDiary">
             领养日记
             </button>
-        <button class="shop btn" type="primary" disabled="{{disabled}}" bindtap="tobioinfo">
+        <button class="shop btn" type="primary" disabled="{{disabled}}" bindtap="toShop">
             商城
         </button>
         </view>
@@ -64,7 +64,7 @@
                             <view class="optionListItemsMask" bindtap='closeMoreOptions' style="display:{{postItem.state? 'true':'none'}}" data-index="{{index}}"></view>
                             
                             <view class="optionListItems">
-                                <button class="optionItemStyle" bindtap="star">收藏</button>
+                                <button class="optionItemStyle" bindtap="star" data-index="{{index}}">收藏</button>
                                 <button class="optionItemStyle" open-type="share">分享</button>
                                 <button class="optionItemStyle" bindtap="report" style="border-bottom: 1rpx solid rgb(211, 211, 211);">举报</button>
                             </view>

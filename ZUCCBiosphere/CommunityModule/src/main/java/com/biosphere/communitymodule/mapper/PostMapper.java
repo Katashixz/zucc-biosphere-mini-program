@@ -60,6 +60,9 @@ public interface PostMapper extends BaseMapper<Post> {
             "ORDER BY p.postDate DESC")
     List<Map<String, Object>> postSearch(@Param("content") String content);
 
-
+    @Select("select id\n" +
+            "from post\n" +
+            "GROUP BY id")
+    List<Long> loadAllPostID();
 
 }

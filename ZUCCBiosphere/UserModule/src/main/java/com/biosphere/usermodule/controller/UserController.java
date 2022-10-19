@@ -2,20 +2,18 @@ package com.biosphere.usermodule.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.biosphere.library.vo.RewardVo;
+import com.biosphere.library.vo.*;
 import com.biosphere.usermodule.service.IUserService;
 import com.biosphere.library.pojo.User;
 import com.biosphere.usermodule.service.IEnergyRecordService;
 import com.biosphere.library.util.FormatUtil;
-import com.biosphere.library.vo.LoginVo;
-import com.biosphere.library.vo.RespBeanEnum;
-import com.biosphere.library.vo.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -55,15 +53,20 @@ public class UserController {
             res.setMsg(ResponseResult.error(RespBeanEnum.CODE_GET_ERROR).getMsg());
             return res;
         }
-        //要根据openID生成JWT和token存入Redis和数据库
+        // 要根据openID生成JWT和token存入Redis和数据库
         User curUser = userService.checkUserInfo(openID, loginVo.getAvatarUrl(),loginVo.getNickName());
         resData.put("userInfo",curUser);
         resData.put("LatestLoginDate", FormatUtil.DateFormat(curUser.getLatestLoginTime()));
-        //生成token
+        // 生成token
         String token = userService.tokenGenerate(curUser);
-        //点赞数据存入缓存
+        // 个人发帖存入缓存
+        userService.saveUserPostRecords(curUser.getId());
+        // 个人评论存入缓存
+        userService.saveUserCommentRecords(curUser.getId());
+        // 点赞数据存入缓存
         userService.saveUserLikeRecords(curUser.getId());
-
+        // 收藏数据存入缓存
+        userService.saveUserStarRecords(curUser.getId());
         resData.put("token", token);
         resData.put("level", curUser.getEnergyPoint() > 0 ? curUser.getEnergyPoint()/100 : 0);
         res.setData(resData);
@@ -135,11 +138,6 @@ public class UserController {
             if (res3.getCode() != 200){
                 return res3;
             }
-            // if (res1.getCode() == 200 && res2.getCode() == 200 && res3.getCode() == 200) {
-            //     return res1;
-            // }else{
-            //     return res1.getCode() == 200 ? (res2.getCode() == 200 ? res3 : res2) : res1;
-            // }
         }
         ResponseResult res1 = energyrecordService.insertEnergyRecord(rewardVo);
 
@@ -147,6 +145,24 @@ public class UserController {
 
         return res1;
 
+    }
+
+    @ApiOperation(value = "加载我的帖子", notes = "需要传入userID")
+    @RequestMapping(value = "/loadMyPost",method = RequestMethod.GET)
+    public ResponseResult loadMyPost(Integer userID){
+        ResponseResult res = new ResponseResult();
+        JSONObject resData = new JSONObject();
+        List<SimplePostVo> simplePostVos = userService.loadMyPost(userID);
+        if (simplePostVos.size() == 0 || Objects.isNull(simplePostVos)) {
+            res.setMsg(ResponseResult.success(RespBeanEnum.NO_POST).getMsg());
+            res.setCode(ResponseResult.success(RespBeanEnum.NO_POST).getCode());
+            return res;
+        }
+        resData.put("postList",simplePostVos);
+        res.setData(resData);
+        res.setMsg(ResponseResult.success(RespBeanEnum.SUCCESS).getMsg());
+        res.setCode(ResponseResult.success(RespBeanEnum.SUCCESS).getCode());
+        return res;
     }
 
 

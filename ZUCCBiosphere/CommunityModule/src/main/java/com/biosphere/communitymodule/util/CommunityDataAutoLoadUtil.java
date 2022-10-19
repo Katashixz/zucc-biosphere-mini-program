@@ -57,7 +57,7 @@ public class CommunityDataAutoLoadUtil {
 
         log.info("定时加载主页帖子数据任务启动");
         //每天凌晨四点更新缓存，把数据库里前1000条更新到缓存里。(没人能这么闲看完这么多帖子吧)
-        List<CommunityPostVo> communityPostVo = postMapper.loadPostWithPage(0,999);
+        List<CommunityPostVo> communityPostVo = postMapper.loadPostWithPage(0,3);
         Map<String, Object> postMap = new HashMap<>();
         Set<ZSetOperations.TypedTuple<Long>> tempSet = new HashSet<>();
         for (CommunityPostVo postVo : communityPostVo) {

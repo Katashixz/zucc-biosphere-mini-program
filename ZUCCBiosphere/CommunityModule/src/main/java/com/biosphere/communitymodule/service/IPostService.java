@@ -117,5 +117,12 @@ public interface IPostService extends IService<Post> {
      */
     List<Map<String, Object>> postSearch(String content);
 
-
+    /**
+     * 功能描述: 收藏帖子
+     * @param:
+     * @return:
+     * @author hyh
+     * @date: 2022/10/13 9:31
+     */
+    ResponseResult changeStar(Integer userID, Long postID);
 }

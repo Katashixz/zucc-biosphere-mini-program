@@ -98,6 +98,7 @@ public class PlantsWikiServiceImpl extends ServiceImpl<PlantsWikiMapper, PlantsW
         content.add(plantsWikis.getLocation());
         content.add(scientificName.getPhylumID());
         content.add(scientificName.getClassID());
+        content.add(scientificName.getOrderID());
         content.add(scientificName.getFamilyID());
         content.add(scientificName.getGenusID());
         content.add(scientificName.getSpeciesID());

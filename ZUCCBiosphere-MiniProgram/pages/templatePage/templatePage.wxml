@@ -1,0 +1,74 @@
+<!--pages/templatePage/templatePage.wxml-->
+<wxs module="func">
+      module.exports = {
+        isVideo: function (target) {
+            var typeTemp = target.split(".");
+        if(typeTemp[typeTemp.length - 1] == 'mp4' || typeTemp[typeTemp.length - 1] == 'mov' || typeTemp[typeTemp.length - 1] == 'wmv' || typeTemp[typeTemp.length - 1] == 'mpg' || typeTemp[typeTemp.length - 1] == 'avi'){
+            return true;
+        }
+        return false;
+        },
+        slice: function (target) {
+            return target.slice(0, target.lastIndexOf('.')) + '_0.jpg'
+        }
+      }
+</wxs>
+<view class="templatePage">
+    <view class="homePage">
+        <promptBox id="promptBox"></promptBox>
+
+        <view class="postList">
+            <view class="post" wx:for="{{postList}}" wx:key="postIDListKey"
+        wx:for-item="postItem" data-index="{{index}}" wx:if="{{!isEmpty}}">
+                <view class="postLineTop">
+                    <view class="avatar" >
+                        <image mode="aspectFill" src="{{postItem.avatarUrl}}" />
+                    </view>
+                    <view class="nameAndPostTime">
+                        <view class="postManName">{{postItem.userName}}</view>
+                        <view class="postTime">发布于{{postItem.dateFormat}}</view>
+                    </view>
+                    
+                </view>
+                <view class="postLineMid" bindtap="toPost" data-index="{{index}}">
+                    <text>
+                        <text class="themeColor">#{{postItem.theme}}#</text>{{postItem.content}}</text>
+                    <view class="imageWithContent">
+                        <view class="singleImage"
+                        wx:if="{{postItem.imageUrlList != null}}"
+                        wx:for="{{postItem.imageUrlList}}"
+                        wx:for-item="imageItem"
+                        wx:for-index="index2"
+                        wx:key="imageItemKey"
+                        >
+                            <image mode="aspectFill" src="{{func.isVideo(imageItem) ? func.slice(imageItem):imageItem}}"
+                            data-idx="{{index}}"
+                            data-idx2="{{index2}}"
+                            catchtap="handleImagePreview"
+                            wx:if="{{imageItem != ''}}"
+                            />
+                        </view>
+                    </view>
+                </view>
+
+            </view>
+           
+             <!-- <view style="background-color: #EEEAE7;"> -->
+                <!-- <view class="loadTips" hidden="{{aniTime}}">
+                <text wx:if="{{isLoadAllPosts}}">已经加载了所有贴子啦</text>
+                <text wx:else>上拉加载更多贴子</text>
+                </view>
+                <view class="loadAni inCenter" hidden="{{!aniTime}}">
+                    <image src="https://assets.materialup.com/uploads/e21b405b-4e2a-48dc-9181-625a37c1eae8/preview.gif" mode="aspectFit" />
+                </view>
+                
+                
+                <view style="height: 100rpx;"></view> -->
+
+            <!-- </view>  -->
+
+        </view>
+        <text class="endText inCenter" style="margin-bottom: 20rpx;">—暂无更多内容—</text>
+
+    </view>
+</view>

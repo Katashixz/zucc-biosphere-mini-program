@@ -2,6 +2,10 @@ package com.biosphere.usermodule.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.biosphere.library.pojo.User;
+import com.biosphere.library.vo.CommunityPostVo;
+import com.biosphere.library.vo.SimplePostVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -56,6 +60,41 @@ public interface IUserService extends IService<User> {
      * @date: 2022/9/16 14:14
      */
     void saveUserLikeRecords(Integer userID);
+    /**
+     * 功能描述: 获取用户收藏数据存入缓存
+     * @param:
+     * @return:
+     * @author hyh
+     * @date: 2022/10/13 16:15
+     */
+    void saveUserStarRecords(Integer userID);
+
+    /**
+     * 功能描述: 获取用户发帖数据存入缓存
+     * @param:
+     * @return:
+     * @author hyh
+     * @date: 2022/10/19 11:32
+     */
+    void saveUserPostRecords(Integer userID);
+
+    /**
+     * 功能描述: 获取用户评论数据存入缓存
+     * @param:
+     * @return:
+     * @author hyh
+     * @date: 2022/10/19 11:32
+     */
+    void saveUserCommentRecords(Integer userID);
+
+    /**
+     * 功能描述: 返回该用户发布的所有帖子
+     * @param:
+     * @return:
+     * @author hyh
+     * @date: 2022/10/19 13:57
+     */
+    List<SimplePostVo> loadMyPost(Integer userID);
 
 
 }

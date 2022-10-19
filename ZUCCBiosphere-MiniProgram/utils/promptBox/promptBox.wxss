@@ -5,7 +5,7 @@
     bottom: 0;
     right: 0;
     background: rgba(0,0,0,0.6);
-    z-index: 100;
+    z-index: 1100;
     opacity: 1;
     animation: opc 0.2s linear forwards;
 }
@@ -31,7 +31,7 @@
     right: 0;
     /* bottom: -630rpx; */
     margin: auto;
-    z-index: 1000;
+    z-index: 1200;
     opacity: 0;
 }
 

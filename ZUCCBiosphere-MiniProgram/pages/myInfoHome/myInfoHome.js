@@ -36,78 +36,6 @@ Page({
 
             })
         })
-        // var that = this;
-        
-        // wx.getUserProfile({
-        //     desc: '获取您的openID用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-        //     success: (res) => {
-        //         app.globalData.userInfo = res.userInfo;
-        //         app.globalData.hasUserInfo = true;
-        //         that.setData({
-        //             // hasUserInfo: true,
-        //             userInfo: res.userInfo
-        //         })
-        //         // console.log(res);
-        //         that.userLogin();
-        //     },
-
-        // })
-    },
-
-    userLogin() {
-        var that = this;
-        wx.showLoading({
-            title: '加载中',
-          })
-        // 登录
-        wx.login({
-            success: (res) => {
-                // console.log(app.globalData.userInfo);
-
-                wx.request({
-                method:"POST",
-                url: app.globalData.urlHome + '/user/login',
-                data:{
-                    code: res.code,
-                    avatarUrl: app.globalData.userInfo.avatarUrl,
-                    nickName: app.globalData.userInfo.nickName
-                },
-                complete: (res) =>{
-                    wx.hideLoading();
-                },
-                success: (res2) => {
-                    if(res2.data.code != 200) {
-                        wx.showToast({
-                        title: '请重新登录！',
-                        icon: 'error',
-                        duration: 4000
-                        }),
-                        that.setData({
-                            hasUserInfo: false,
-                        })
-                    }
-                    else{
-                        app.globalData.openID = res2.data.data.userInfo.openID;
-                        app.globalData.userInfo = res2.data.data.userInfo;
-
-                        app.globalData.token = res2.data.data.token;
-                        app.globalData.hasUserInfo = true;
-
-                        that.setData({
-                            hasUserInfo: true,
-                            userInfo: res2.data.data.userInfo,
-
-                        })
-                        wx.setStorageSync('openID', app.globalData.openID);
-                    
-
-                    }
-                    
-                }
-                })
-            }
-        })
-
     },
 
     checkIn() {
@@ -164,6 +92,20 @@ Page({
 
     
     /**
+     * 我的帖子
+     */
+    toMyPost: function (e) {
+        var that = this;
+        if(!app.globalData.hasUserInfo){
+            that.getUserProfile()
+        }else{
+            wx.navigateTo({
+                url: '/pages/templatePage/templatePage?type=1&userID=' + that.data.userInfo.id,
+            })
+        }
+    },
+
+    /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
@@ -203,7 +145,7 @@ Page({
                 level: app.globalData.level,
             })
         }
-        console.log(that.data)
+        // console.log(that.data)
       },
 
     /**

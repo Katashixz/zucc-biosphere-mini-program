@@ -201,6 +201,17 @@ public class CommunityController implements InitializingBean {
 
 
 
+    @ApiOperation(value = "收藏帖子", notes = "需要传入用户id,帖子id")
+    @RequestMapping(value = "/auth/starPost",method = RequestMethod.POST)
+    public ResponseResult starPost(@RequestBody JSONObject req){
+        Integer userID = (Integer) req.get("userID");
+        Long postID = Long.valueOf(req.get("postID").toString());
+
+        return postService.changeStar(userID,postID);
+    }
+
+
+
     @Override
     public void afterPropertiesSet() throws Exception {
         communityDataAutoLoadUtil.communityMainPageData();

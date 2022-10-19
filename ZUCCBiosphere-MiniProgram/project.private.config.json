@@ -105,6 +105,13 @@
                     "query": "",
                     "launchMode": "default",
                     "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/templatePage/templatePage",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }

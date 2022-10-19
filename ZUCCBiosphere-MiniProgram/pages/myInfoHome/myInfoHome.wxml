@@ -34,37 +34,37 @@
             </view>
         </view>
         <view class="myList">
-            <view class="myPosts listItem">
+            <view class="myPosts listItem" bindtap="toMyPost">
                 <image class="itemIcon" src="../../icon/myPost.png" style="width: 125rpx;margin-left: 8rpx;"></image>
                 <text class="itemText" style="left: 13rpx;">我的帖子</text>
                 <image class="itemGo" src="../../icon/goTo.png"></image>
             </view>
             <view class="listItemLine"></view>
-            <view class="myComments listItem">
+            <view class="myComments listItem" bindtap="toMyComment">
                 <image class="itemIcon" src="../../icon/myComments.png"></image>
                 <text class="itemText">我的评论</text>
                 <image class="itemGo" src="../../icon/goTo.png"></image>
             </view>
             <view class="listItemLine"></view>
-            <view class="myLikes listItem">
+            <view class="myLikes listItem" bindtap="toMyLike">
                 <image class="itemIcon" src="../../icon/myLikes.png"></image>
                 <text class="itemText">我的点赞</text>
                 <image class="itemGo" src="../../icon/goTo.png"></image>
             </view>
             <view class="listItemLine"></view>
-            <view class="myStars listItem">
+            <view class="myStars listItem" bindtap="toMyStar">
                 <image class="itemIcon" src="../../icon/myStars.png"></image>
                 <text class="itemText">我的收藏</text>
                 <image class="itemGo" src="../../icon/goTo.png"></image>
             </view>
             <view class="listItemLine"></view>
-            <view class="myAnimals listItem">
+            <view class="myAnimals listItem" bindtap="toMyAdopt">
                 <image class="itemIcon" src="../../icon/myAnimals.png"></image>
                 <text class="itemText">我的领养</text>
                 <image class="itemGo" src="../../icon/goTo.png"></image>
             </view>
             <view class="listItemLine"></view>
-            <view class="community listItem">
+            <view class="community listItem" bindtap="toCommunityRuleList">
                 <image class="itemIcon" src="../../icon/rules.png"></image>
                 <text class="itemText">社区守则</text>
                 <image class="itemGo" src="../../icon/goTo.png"></image>

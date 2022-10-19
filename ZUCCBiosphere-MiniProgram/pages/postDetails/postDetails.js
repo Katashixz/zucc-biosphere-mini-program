@@ -170,11 +170,11 @@ Page({
     uploadComment: util.throttle(function (e) {
         var that = this;
         if(that.data.resContent == '' || that.data.resContent == null){
-            wx.showToast({
-              title: '评论不能为空',
-              duration: 2000,
-              icon: "error"
-            })
+            var obj = {
+                msg: "评论不能为空",
+                type: "tip"
+            }
+            that.promptBox.open(obj);
         }
         else{
             if(!app.globalData.hasUserInfo){
@@ -211,11 +211,11 @@ Page({
                                 that.refreshData(that.data.postID);
                             }, 1500)
                         }else{
-                            wx.showToast({
-                                title: res.data.msg,
-                                icon: 'error',
-                                duration: 2000
-                            })
+                            var obj = {
+                                msg: res.data.msg,
+                                type: "tip"
+                            }
+                            that.promptBox.open(obj);
                         }
         
                     },
@@ -405,9 +405,57 @@ Page({
     /**
      * 收藏
      */
-    star(options) {
-        console.log("收藏")
-    },
+    star: util.throttle(function (e) {
+        var that = this;
+        // var index = e.currentTarget.dataset.index
+        //先判断是否登录 登录后才能点赞
+        if(!app.globalData.hasUserInfo){
+            app.getUserProfile().finally(() => {
+                that.onPullDownRefresh();
+            })
+        }else{
+            wx.request({
+                method: 'POST',
+                url: app.globalData.urlHome + '/community/auth/starPost/',
+                header: {
+                    'content-type': 'application/json',
+                    'token': app.globalData.token
+                },
+                data:{
+                    postID: that.data.postItem.postID,
+                    userID: app.globalData.userInfo.id,
+                },
+                success: (res) => {
+                    if(res.data.code == 200){
+                        wx.showToast({
+                            title: '收藏成功',
+                            icon: 'success',
+                            duration: 1500
+                          });
+                    }
+                    else{
+                        var obj = {
+                            msg: res.data.msg,
+                            type: "error"
+                        }
+                        that.promptBox.open(obj);
+                    }
+
+                },
+                fail: (res) => {
+                    wx.showToast({
+                    title: '服务器错误',
+                    icon: 'error',
+                    duration: 1500
+                    })
+                },
+                complete: (res) => {
+                    that.closeMoreOptions(e);
+
+                }
+            })
+        }
+    },1500),
     /**
      * 举报
      */
@@ -474,11 +522,11 @@ Page({
                         target: res.data.data.postDetail.userID
                     })
                 }else{
-                  wx.showToast({
-                      title: '详情加载错误',
-                      icon: 'error',
-                      duration: 2000
-                    })
+                    var obj = {
+                        msg: res.data.msg,
+                        type: "error"
+                    }
+                    that.promptBox.open(obj);
                 }
   
             },
@@ -549,16 +597,16 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
-        this.energyBox = this.selectComponent("#energyBox");
-        this.promptBox = this.selectComponent("#promptBox");
+        // this.energyBox = this.selectComponent("#energyBox");
+        // this.promptBox = this.selectComponent("#promptBox");
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        this.userModal = this.selectComponent("#userModal");
         this.energyBox = this.selectComponent("#energyBox");
+        this.promptBox = this.selectComponent("#promptBox");
 
     },
 

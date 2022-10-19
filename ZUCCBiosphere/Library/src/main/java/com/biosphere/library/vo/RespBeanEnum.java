@@ -18,6 +18,7 @@ public enum RespBeanEnum {
     GET_USERINFO_ERROR(1004,"获取用户信息失败"),
     REPEAT_CHECKIN(1005,"重复签到"),
     CHECKIN_INSERT_ERROR(1006,"签到记录插入失败"),
+    NO_POST(1007,"还未发布过帖子哦"),
     //百科模块
     GET_WIKI_ERROR(2001,"获取百科失败"),
     GET_GUIDE_ERROR(2002,"获取养护指南信息失败"),
@@ -34,6 +35,8 @@ public enum RespBeanEnum {
     SENSITIVE_WORDS(3309, "内容包含敏感词"),
     UPLOAD_COMMENT_ERROR(3310, "上传评论失败"),
     INFO_ERROR(3311, "传入信息有空值"),
+    STAR_INSERT_ERROR(3312,"收藏帖子失败"),
+    REPEAT_STAR(3313,"已经收藏过啦"),
     //其他
     INSERT_REWARD_ERROR(4001,"能量值插入失败"),
     UPDATE_USER_ENERGY_ERROR(4002,"用户能量值更新失败"),

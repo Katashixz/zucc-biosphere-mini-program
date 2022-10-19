@@ -1,0 +1,105 @@
+/* pages/templatePage/templatePage.wxss */
+
+.postList{
+    margin-top: 30rpx;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+}
+.post{
+    padding: 30rpx 20rpx 10rpx;
+    background-color: #fff;
+    border-radius: 40rpx;
+    margin-bottom: 30rpx;
+    z-index: 20;
+}
+.postLineTop{
+    height: 100rpx;
+    display: flex;
+    padding: 0 10rpx;
+}
+.avatar{
+    margin-right: 20rpx;
+
+}
+.avatar image{
+    z-index: 105;
+    border-radius: 100rpx;
+    width: 100rpx;
+    height: 100rpx;
+}
+.nameAndPostTime{
+    margin-top: 10rpx;
+    display: flex;
+    flex: 3;
+    flex-direction: column;
+}
+.postTime{
+    font-size: 28rpx;
+    color: #bbb;
+}
+.postLineMid{
+    padding: 10rpx 0rpx;
+
+}
+.postLineMid text{
+    padding: 0 20rpx;
+    display: -webkit-box;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:3;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+.themeColor{
+    color: #14bb22;
+    margin-right: 10rpx;
+    font-weight: 500;
+}
+.imageWithContent{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    margin-top: 10rpx;
+    padding: 0 10rpx;
+}
+.imageWithContent image{
+    z-index: 105;
+    margin: 5rpx;
+    border-radius: 20rpx;
+    width: 209rpx;
+    height: 200rpx;
+}
+
+.loadTips{
+    height: 60rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #249e2e;
+    font-weight: 500;
+    margin-bottom: 30rpx;
+    background-color: #EEEAE7;
+}
+.loadTips text{
+    background-color: #fff;
+    border-radius: 20rpx;
+    padding: 10rpx;
+}
+.loadAni{
+    position: relative;
+    bottom: 20rpx;
+    height: 90rpx;
+    overflow: hidden;
+    background: #EEEAE7;
+    border-radius: 90rpx;
+    width: 90rpx;
+    margin-left: 315rpx;
+    text-align: center;
+}
+.loadAni image{
+    background-color: #fff;
+    height: 120rpx;
+    /* position: relative; */
+    /* bottom: 17rpx; */
+    /* margin-bottom: 17rpx; */
+    /* right: 275rpx; */
+}

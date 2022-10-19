@@ -10,10 +10,7 @@ import com.biosphere.communitymodule.mapper.PostMapper;
 import com.biosphere.library.pojo.Comment;
 import com.biosphere.library.pojo.LikeRecord;
 import com.biosphere.library.pojo.Post;
-import com.biosphere.library.vo.CommentVo;
-import com.biosphere.library.vo.CommunityPostVo;
-import com.biosphere.library.vo.LikeStatusVo;
-import com.biosphere.library.vo.UploadCommentVo;
+import com.biosphere.library.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,8 +52,14 @@ public class MQReceiver {
         CommunityPostVo postVo = postMapper.findOne(post.getId());
         if (!Objects.isNull(postVo.getImageUrl()))
             postVo.setImageUrlList(postVo.getImageUrl().split("，"));
-        //更新到缓存
-        // postMap.put(post.getId().toString(), post);
+
+        //更新到个人缓存
+        List<SimplePostVo> myPost = (List<SimplePostVo>) redisTemplate.opsForHash().get("userID:" + postVo.getUserID(),"myPost");
+        SimplePostVo simplePostVo = new SimplePostVo(postVo);
+        myPost.add(0,simplePostVo);
+        redisTemplate.opsForHash().put("userID:" + postVo.getUserID(),"myPost",myPost);
+
+        //更新到全局缓存
         redisTemplate.opsForHash().put("postMap",postVo.getPostID().toString(),postVo);
         redisTemplate.opsForZSet().add("postSet",postVo.getPostID(),Double.valueOf(postVo.getPostDate().getTime()));
         redisTemplate.expire("postMap",1500, TimeUnit.MINUTES);
@@ -78,12 +81,18 @@ public class MQReceiver {
             // 如果数据库没数据并且状态为新增点赞时，才进行新增操作
             likeRecord.setDate(new Date(System.currentTimeMillis()));
             likeRecord.setIschecked(0);
-            // 新增到数据库
-            likeRecordMapper.insert(likeRecord);
-            // 缓存更新
-            List<Long> likeRecList = (List<Long>) redisTemplate.opsForValue().get("userID:" + likeRecord.getUserID() + ":likeRecords");
-            likeRecList.add(likeRecord.getPostID());
-            redisTemplate.opsForValue().set("userID:" + likeRecord.getUserID() + ":likeRecords", likeRecList,5761, TimeUnit.MINUTES);
+
+            try{
+                // 新增到数据库
+                likeRecordMapper.insert(likeRecord);
+                // 缓存更新
+                List<Long> likeRecList = (List<Long>) redisTemplate.opsForHash().get("userID:" + likeRecord.getUserID(), "likeRecords");
+                likeRecList.add(likeRecord.getPostID());
+                redisTemplate.opsForHash().put("userID:" + likeRecord.getUserID(),"likeRecords", likeRecList);
+
+            }catch (Exception e){
+                log.error("点赞数据更新错误");
+            }
 
         }
         else if (count > 0L && likeStatusVo.getStatus()){
@@ -95,10 +104,15 @@ public class MQReceiver {
             Map<String, Object> map = new HashMap<>();
             map.put("userID", likeStatusVo.getUserID());
             map.put("postID", likeStatusVo.getPostID());
-            likeRecordMapper.deleteByMap(map);
-            List<Long> likeRecList = (List<Long>) redisTemplate.opsForValue().get("userID:" + likeRecord.getUserID() + ":likeRecords");
-            likeRecList.remove(likeRecord.getPostID());
-            redisTemplate.opsForValue().set("userID:" + likeRecord.getUserID() + ":likeRecords", likeRecList,5761, TimeUnit.MINUTES);
+            try{
+
+                likeRecordMapper.deleteByMap(map);
+                List<Long> likeRecList = (List<Long>) redisTemplate.opsForHash().get("userID:" + likeRecord.getUserID(), "likeRecords");
+                likeRecList.remove(likeRecord.getPostID());
+                redisTemplate.opsForHash().put("userID:" + likeRecord.getUserID(),"likeRecords", likeRecList);
+            }catch (Exception e){
+                log.error("删除错误");
+            }
 
         }
         //更新帖子点赞数

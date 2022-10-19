@@ -11,7 +11,8 @@
         "pages/postDetails/postDetails",
         "pages/hotPostList/hotPostList",
         "pages/searchPage/searchPage",
-        "utils/searchBar/searchBar"
+        "utils/searchBar/searchBar",
+        "pages/templatePage/templatePage"
     ],
     "window": {
         "backgroundTextStyle": "light",

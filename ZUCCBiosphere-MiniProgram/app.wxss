@@ -28,7 +28,7 @@
 .endText{
     position: relative;
     height: 40rpx;
-    top: 20rpx;
+    /* top: 20rpx; */
     color: #6E5D52;
     font-size: 30rpx;
     text-align: center;
