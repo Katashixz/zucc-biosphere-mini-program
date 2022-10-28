@@ -144,6 +144,10 @@ Page({
                       icon: 'error',
                       duration: 2000
                     })
+                    if(res.data.code == 300){
+                        app.clearUserData();
+                        
+                    }
                 }
   
             },
@@ -216,6 +220,10 @@ Page({
                                 type: "tip"
                             }
                             that.promptBox.open(obj);
+                            if(res.data.code == 300){
+                                app.clearUserData();
+                                
+                            }
                         }
         
                     },
@@ -289,7 +297,7 @@ Page({
         else{
             wx.request({
                 method: 'POST',
-                url: app.globalData.urlHome + '/user/insertEnergyRecord/',
+                url: app.globalData.urlHome + '/user/auth/insertEnergyRecord/',
                 header: {
                     'content-type': 'application/json',
                     'token': app.globalData.token
@@ -317,6 +325,10 @@ Page({
                             type: "error"
                         }
                         that.promptBox.open(obj);
+                        if(res.data.code == 300){
+                            app.clearUserData();
+                            
+                        }
                     }
                     
 
@@ -439,6 +451,10 @@ Page({
                             type: "error"
                         }
                         that.promptBox.open(obj);
+                        if(res.data.code == 300){
+                            app.clearUserData();
+                            
+                        }
                     }
 
                 },
@@ -514,6 +530,7 @@ Page({
             url: url,
             method:"GET",
             success: (res) => {
+                console.log(res)
                 wx.hideLoading();
                 if(res.data.code == 200){
                     that.setData({

@@ -1,0 +1,7 @@
+<!--pages/myComments/myComments.wxml-->
+<view class="myComments">
+    <view class="homePage">
+        <promptBox id="promptBox"></promptBox>
+
+    </view>
+</view>

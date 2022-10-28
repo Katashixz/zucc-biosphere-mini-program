@@ -12,7 +12,8 @@
         "pages/hotPostList/hotPostList",
         "pages/searchPage/searchPage",
         "utils/searchBar/searchBar",
-        "pages/templatePage/templatePage"
+        "pages/myPostOrMyStarPage/myPostOrMyStarPage",
+        "pages/myComments/myComments"
     ],
     "window": {
         "backgroundTextStyle": "light",

@@ -15,10 +15,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +33,7 @@ import java.util.Objects;
 @RestController
 @Api(tags = "百科模块")
 @Slf4j
+@CrossOrigin
 @RequestMapping("/wikiData")
 public class WikiDataController implements InitializingBean{
 

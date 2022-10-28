@@ -103,7 +103,7 @@ App({
 
                     wx.request({
                     method:"POST",
-                    url: that.globalData.urlHome + '/user/login',
+                    url: that.globalData.urlHome + '/user/exposure/login',
                     data:{
                         code: res.code,
                         avatarUrl: that.globalData.userInfo.avatarUrl,
@@ -116,9 +116,8 @@ App({
                             icon: 'error',
                             duration: 4000
                         }),
-                        that.setData({
-                            hasUserInfo: false,
-                        })
+                        that.globalData.hasUserInfo = false;
+
                         reject("error")
                     },
                     success: (res2) => {
@@ -129,9 +128,7 @@ App({
                             icon: 'error',
                             duration: 4000
                         }),
-                        that.setData({
-                            hasUserInfo: false,
-                        })
+                        that.globalData.hasUserInfo = false;
                         reject("error")
                     }
                     else{
@@ -157,10 +154,23 @@ App({
             })
         })
     },
+    /**
+     * 清除登录数据
+     */
+    clearUserData() {
+        var that = this;
+        that.globalData.hasUserInfo = false;
+        that.globalData.userInfo = null;
+        that.globalData.token = '';
+        that.globalData.openID = '';
+        that.globalData.level = 0;
+    },
+    
     globalData: {
         userInfo: null,
         // urlHome: 'http://124.221.252.162:9000',
-        urlHome: 'http://localhost:9000',
+        // urlHome: 'http://localhost:9000',
+        urlHome: 'https://katashix.top',
         token: '',
         openID: '',
         hasUserInfo: false,

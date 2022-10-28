@@ -1,9 +1,12 @@
 package com.biosphere.usermodule.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.biosphere.library.pojo.Post;
 import com.biosphere.library.pojo.User;
 import com.biosphere.library.vo.CommunityPostVo;
+import com.biosphere.library.vo.ResponseResult;
 import com.biosphere.library.vo.SimplePostVo;
+import com.biosphere.library.vo.StarPostVo;
 
 import java.util.List;
 
@@ -96,5 +99,34 @@ public interface IUserService extends IService<User> {
      */
     List<SimplePostVo> loadMyPost(Integer userID);
 
+    /**
+     * 功能描述: 返回该用户收藏的所有帖子
+     * @param:
+     * @return:
+     * @author hyh
+     * @date: 2022/10/21 10:38
+     */
+    List<StarPostVo> loadMyStar(Integer userID);
+
+    /**
+     * 功能描述: 删除帖子
+     * @param:
+     * @return:
+     * @author hyh
+     * @date: 2022/10/21 14:01
+     */
+    ResponseResult deletePost(Long postID, Integer userID);
+
+    /**
+     * 功能描述: 删除收藏
+     * @param:
+     * @return:
+     * @author hyh
+     * @date: 2022/10/28 10:25
+     */
+    ResponseResult deleteStar(Long postID, Integer userID);
+
+
+    List<Post> test(Long postID, Integer userID);
 
 }

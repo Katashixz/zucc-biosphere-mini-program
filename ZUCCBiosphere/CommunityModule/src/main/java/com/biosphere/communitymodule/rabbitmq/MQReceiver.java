@@ -43,7 +43,7 @@ public class MQReceiver {
     @Autowired
     private CommentMapper commentMapper;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @RabbitListener(queues = "uploadPostQueue")
     public void postMsgReceiver(String message) throws Exception{
         Post post = JSON.parseObject(message,Post.class);
@@ -66,7 +66,7 @@ public class MQReceiver {
         redisTemplate.expire("postSet",1501, TimeUnit.MINUTES);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @RabbitListener(queues = "uploadLikeQueue")
     public void likeMsgReceiver(String message) throws Exception{
         LikeStatusVo likeStatusVo = JSON.parseObject(message, LikeStatusVo.class);
@@ -91,7 +91,7 @@ public class MQReceiver {
                 redisTemplate.opsForHash().put("userID:" + likeRecord.getUserID(),"likeRecords", likeRecList);
 
             }catch (Exception e){
-                log.error("点赞数据更新错误");
+                throw new Exception("点赞数据更新错误");
             }
 
         }
@@ -111,7 +111,7 @@ public class MQReceiver {
                 likeRecList.remove(likeRecord.getPostID());
                 redisTemplate.opsForHash().put("userID:" + likeRecord.getUserID(),"likeRecords", likeRecList);
             }catch (Exception e){
-                log.error("删除错误");
+                throw new Exception("删除错误");
             }
 
         }
@@ -123,7 +123,7 @@ public class MQReceiver {
 
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @RabbitListener(queues = "uploadCommentQueue")
     public void commentMsgReceiver(String message) throws Exception{
         long a = System.currentTimeMillis();
@@ -132,7 +132,7 @@ public class MQReceiver {
         Comment comment = new Comment();
         comment.setCommentDate(new Date(System.currentTimeMillis()));
         comment.setCommentToUser(req.getToUserID());
-        comment.setIschecked(0);
+        comment.setIsChecked(0);
         comment.setPostID(req.getPostID());
         comment.setUserID(req.getUserID());
         comment.setContent(req.getContent());

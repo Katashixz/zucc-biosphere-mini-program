@@ -57,7 +57,20 @@ public class Comment implements Serializable {
     /**
      * 0代表未查看，1代表已查看
      */
-    private Integer ischecked;
+    private Integer isChecked;
+
+    /**
+     * 0代表未删除，1代表已删除
+     */
+    private Integer isDeleted;
+
+    public Integer getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Integer isDeleted) {
+        this.isDeleted = isDeleted;
+    }
 
     public Integer getId() {
         return id;
@@ -101,12 +114,12 @@ public class Comment implements Serializable {
     public void setCommentToUser(Integer commentToUser) {
         this.commentToUser = commentToUser;
     }
-    public Integer getIschecked() {
-        return ischecked;
+    public Integer getIsChecked() {
+        return isChecked;
     }
 
-    public void setIschecked(Integer ischecked) {
-        this.ischecked = ischecked;
+    public void setIsChecked(Integer ischecked) {
+        this.isChecked = ischecked;
     }
 
     @Override
@@ -118,7 +131,7 @@ public class Comment implements Serializable {
             ", commentDate=" + commentDate +
             ", content=" + content +
             ", commentToUser=" + commentToUser +
-            ", ischecked=" + ischecked +
+            ", isChecked=" + isChecked +
         "}";
     }
 }

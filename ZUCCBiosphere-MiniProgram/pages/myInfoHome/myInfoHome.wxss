@@ -71,7 +71,8 @@
     left: 35rpx;
     border-radius: 30rpx;
     width: 680rpx;
-    height: 760rpx;
+    /* height: 760rpx; */
+    height: 655rpx;
     background-color: #ffffff;
     display: flex;
     flex-direction: column;

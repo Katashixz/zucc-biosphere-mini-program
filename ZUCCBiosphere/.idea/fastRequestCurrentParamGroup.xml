@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="fastRequestCurrentParamGroup">
+    <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+    <option name="method" value="dele" />
+    <option name="methodDescription" value="测试" />
+    <option name="methodType" value="POST" />
+    <option name="module" value="UserModule" />
+    <option name="originUrl" value="/user/exposure/dele" />
+    <option name="url" value="/user/exposure/dele" />
+  </component>
+</project>

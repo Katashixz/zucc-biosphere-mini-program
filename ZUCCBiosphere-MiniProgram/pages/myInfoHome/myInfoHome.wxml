@@ -30,7 +30,7 @@
                 <text class="left">等级</text>
                 <text class="right">{{level}}</text>
                 <text class="left">能量值</text>
-                <text class="right">{{userInfo.energyPoint}}</text>
+                <text class="right">{{userInfo == null ? energyPoint:userInfo.energyPoint}}</text>
             </view>
         </view>
         <view class="myList">
@@ -45,12 +45,12 @@
                 <text class="itemText">我的评论</text>
                 <image class="itemGo" src="../../icon/goTo.png"></image>
             </view>
-            <view class="listItemLine"></view>
-            <view class="myLikes listItem" bindtap="toMyLike">
+            <!-- <view class="listItemLine"></view> -->
+            <!-- <view class="myLikes listItem" bindtap="toMyLike">
                 <image class="itemIcon" src="../../icon/myLikes.png"></image>
                 <text class="itemText">我的点赞</text>
                 <image class="itemGo" src="../../icon/goTo.png"></image>
-            </view>
+            </view> -->
             <view class="listItemLine"></view>
             <view class="myStars listItem" bindtap="toMyStar">
                 <image class="itemIcon" src="../../icon/myStars.png"></image>

@@ -65,8 +65,10 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
 
     // 预计要插入多少数据
     private static int size = 1000000;
+
     // 期望的误判率
     private static double fpp = 0.01;
+
     // 创建评论的布隆过滤器
     private static BloomFilter<Long> commentBloomFilter = BloomFilter.create(Funnels.longFunnel(), size, fpp);
 
@@ -157,7 +159,6 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
     }
 
     @Override
-    @Transactional
     public ResponseResult uploadPost(PostUploadVo postUploadVo) {
         ResponseResult res = new ResponseResult();
         if (Objects.isNull(postUploadVo.getContent()) || Objects.isNull(postUploadVo.getUserID()) || Objects.isNull(postUploadVo.getTheme())) {
@@ -208,7 +209,6 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
     }
 
     @Override
-    @Transactional
     public ResponseResult changeLike(LikeStatusVo likeStatusVo) {
         ResponseResult res = new ResponseResult();
         if (Objects.isNull(likeStatusVo.getPostID()) || Objects.isNull(likeStatusVo.getUserID()) || Objects.isNull(likeStatusVo.getStatus())) {
@@ -223,7 +223,6 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
     }
 
     @Override
-    @Transactional
     public ResponseResult uploadComment(UploadCommentVo uploadCommentVo) {
         //敏感语言检测->数据库更新->缓存更新
         ResponseResult res = new ResponseResult();
@@ -261,13 +260,13 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public ResponseResult changeStar(Integer userID, Long postID) {
         // 先检测缓存中有没有此帖的收藏，有就报提示，没有就收藏成功
         ResponseResult res = new ResponseResult();
         StarRecord starRecord = new StarRecord();
-        List<StarRecord> starRecords = (List<StarRecord>) redisTemplate.opsForHash().get("userID:" + userID,"starRecords");
-        for (StarRecord record : starRecords) {
+        List<StarPostVo> starRecords = (List<StarPostVo>) redisTemplate.opsForHash().get("userID:" + userID,"starRecords");
+        for (StarPostVo record : starRecords) {
             if (record.getPostID().equals(postID)) {
                 res.setCode(RespBeanEnum.REPEAT_STAR.getCode());
                 res.setMsg(RespBeanEnum.REPEAT_STAR.getMessage());
@@ -277,15 +276,17 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
         starRecord.setPostID(postID);
         starRecord.setUserID(userID);
         starRecord.setStarDate(new Date(System.currentTimeMillis()));
-        try{
-            starRecordMapper.insert(starRecord);
-            //更新缓存
-            starRecords.add(starRecord);
-            redisTemplate.opsForHash().put("userID:" + userID,"starRecords",starRecords);
+        starRecordMapper.insert(starRecord);
+        //更新缓存
+        StarPostVo starPostVo = starRecordMapper.getOneStaredPost(starRecord.getId());
+        if (!Objects.isNull(starPostVo.getImageUrl()))
+            starPostVo.setImageUrlList(starPostVo.getImageUrl().split("，"));
+        starRecords.add(0,starPostVo);
+        redisTemplate.opsForHash().put("userID:" + userID,"starRecords", starRecords);
+        if (starRecord.getPostID() > 0) {
             res.setCode(RespBeanEnum.SUCCESS.getCode());
             res.setMsg(RespBeanEnum.SUCCESS.getMessage());
-        }catch (Exception e){
-            log.error("插入收藏记录失败:",e);
+        }else {
             res.setCode(RespBeanEnum.STAR_INSERT_ERROR.getCode());
             res.setMsg(RespBeanEnum.STAR_INSERT_ERROR.getMessage());
         }
@@ -304,6 +305,9 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
                     return null;
                 }
                 res = postMapper.findOne(postID);
+                if (Objects.isNull(res.getPostID())) {
+                    return null;
+                }
                 if (!Objects.isNull(res.getImageUrl()))
                     res.setImageUrlList(res.getImageUrl().split("，"));
                 redisTemplate.opsForHash().put("postMap", postID.toString(), res);
@@ -365,7 +369,6 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
 
 
     @Override
-    @Transactional
     public Map<String, Object> updateLike(Integer userID, Map<String, Object> post) {
         try{
             // List<Long> likeRecords = (List<Long>) redisTemplate.opsForHash().get("likeRecords", userID.toString());

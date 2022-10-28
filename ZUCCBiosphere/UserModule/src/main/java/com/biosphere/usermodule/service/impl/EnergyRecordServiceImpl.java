@@ -43,7 +43,7 @@ public class EnergyRecordServiceImpl extends ServiceImpl<EnergyRecordMapper, Ene
     @Autowired
     private RedisTemplate redisTemplate;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public ResponseResult checkIn(User user) {
         // Date curDate = new Date(System.currentTimeMillis());
@@ -58,17 +58,15 @@ public class EnergyRecordServiceImpl extends ServiceImpl<EnergyRecordMapper, Ene
         energyrecord.setUserID(user.getId());
         energyrecord.setType(0);
         user.setEnergyPoint(user.getEnergyPoint() + 20);
-        userMapper.updateById(user);
+        int userNum = userMapper.updateById(user);
         redisTemplate.opsForValue().set("login:" + user.getOpenID(), user, 1, TimeUnit.DAYS);
-        try {
-            energyRecordMapper.insert(energyrecord);
-
-        } catch (Exception e) {
+        energyRecordMapper.insert(energyrecord);
+        if (energyrecord.getId() > 0 && userNum > 0) {
+            return ResponseResult.success();
+        }else {
             log.info("[用户:{}{} 签到记录插入失败]",user.getUserName(),user.getOpenID());
-            log.info("[错误信息:{}]",e.getMessage());
             return ResponseResult.error(RespBeanEnum.CHECKIN_INSERT_ERROR);
         }
-        return ResponseResult.success();
     }
 
     @Override
@@ -98,7 +96,7 @@ public class EnergyRecordServiceImpl extends ServiceImpl<EnergyRecordMapper, Ene
 
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public ResponseResult insertEnergyRecord(RewardVo rewardVo) {
         ResponseResult res = new ResponseResult();
         EnergyRecord energyRecord = new EnergyRecord();
@@ -108,18 +106,12 @@ public class EnergyRecordServiceImpl extends ServiceImpl<EnergyRecordMapper, Ene
         energyRecord.setToUserID(rewardVo.getToUserID());
         energyRecord.setGetDate(new Date(System.currentTimeMillis()));
         energyRecord.setIschecked(0);
-        try {
-            energyRecordMapper.insert(energyRecord);
-            if (Objects.isNull(energyRecord.getId())) {
-                //为空则插入未成功
-                res.setCode(RespBeanEnum.INSERT_REWARD_ERROR.getCode());
-                res.setMsg(RespBeanEnum.INSERT_REWARD_ERROR.getMessage());
-            }else {
-                res.setCode(RespBeanEnum.SUCCESS.getCode());
-                res.setMsg(RespBeanEnum.SUCCESS.getMessage());
-            }
-        }catch (Exception e){
-            log.error("能量值插入失败:{}",e);
+        energyRecordMapper.insert(energyRecord);
+        if (energyRecord.getId() > 0) {
+            res.setCode(RespBeanEnum.SUCCESS.getCode());
+            res.setMsg(RespBeanEnum.SUCCESS.getMessage());
+        }else {
+            log.error("能量值插入失败");
             res.setCode(RespBeanEnum.INSERT_REWARD_ERROR.getCode());
             res.setMsg(RespBeanEnum.INSERT_REWARD_ERROR.getMessage());
         }
@@ -127,7 +119,7 @@ public class EnergyRecordServiceImpl extends ServiceImpl<EnergyRecordMapper, Ene
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public ResponseResult updateUserEnergy(Integer userID, Integer point, Integer type) {
         ResponseResult res = new ResponseResult();
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();

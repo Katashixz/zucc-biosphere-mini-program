@@ -32,13 +32,14 @@ public interface CommentMapper extends BaseMapper<Comment> {
             "\tLEFT OUTER JOIN `user` u1 ON ( c.userID = u1.id )\n" +
             "\tLEFT OUTER JOIN `user` u2 ON ( c.commentToUser = u2.id )\n" +
             "WHERE\n" +
-            "\tc.postID = #{postID}\n" +
+            "\tc.postID = #{postID} AND c.isDeleted = 0\n" +
             "\tORDER BY\n" +
             "\tc.commentDate ASC")
     List<CommentVo> loadCommentByPostID(@Param("postID") Long postID);
 
-    @Select("select postID\n" +
-            "from `comment`\n" +
+    @Select("SELECT postID\n" +
+            "FROM `comment`\n" +
+            "WHERE isDeleted = 0\n" +
             "GROUP BY postID")
     List<Long> loadPostWhichHasComments();
 

@@ -34,6 +34,7 @@ import java.util.Objects;
 @Api(tags = "社区模块")
 @Slf4j
 @RestController
+@CrossOrigin
 @RequestMapping("/community")
 public class CommunityController implements InitializingBean {
 

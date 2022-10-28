@@ -3,6 +3,7 @@ package com.biosphere.usermodule.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.biosphere.library.pojo.Comment;
 import com.biosphere.library.vo.CommentVo;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -37,8 +38,8 @@ public interface CommentMapper extends BaseMapper<Comment> {
             "\tc.commentDate ASC")
     List<CommentVo> loadCommentByPostID(@Param("postID") Long postID);
 
-    @Select("select postID\n" +
-            "from `comment`\n" +
+    @Select("SELECT postID\n" +
+            "FROM `comment`\n" +
             "GROUP BY postID")
     List<Long> loadPostWhichHasComments();
 
@@ -60,5 +61,15 @@ public interface CommentMapper extends BaseMapper<Comment> {
             "\tORDER BY\n" +
             "\tc.commentDate ASC")
     List<CommentVo> loadCommentByUserID(@Param("userID") Integer userID);
+
+    @Delete("<script>" +
+            "DELETE\n" +
+            "FROM `comment`\n" +
+            "WHERE postID in " +
+            "<foreach item=\"item\"  collection=\"idList\"  index=\"index\" open=\"(\" close=\")\" separator=\",\">\n" +
+            "            #{item}\n" +
+            "</foreach>" +
+            "</script>")
+    Integer deleteComments(@Param("idList")List<Long> idList);
 
 }

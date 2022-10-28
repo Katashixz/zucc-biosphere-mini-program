@@ -155,6 +155,10 @@ Page({
                             duration: 2000,
                             icon: 'error'
                             })
+                            if(res.data.code == 300){
+                                app.clearUserData();
+                                
+                            }
                         }
                     },
                     fail: (loadRes) => {
@@ -207,6 +211,10 @@ Page({
                                 duration: 2000,
                                 icon: 'error'
                                 })
+                                if(res.data.code == 300){
+                                    app.clearUserData();
+                                    
+                                }
                             }
                         },
                         fail: (loadRes) => {
@@ -296,6 +304,10 @@ Page({
                         resolve(data.data.imgUrl)
                     }else{
                         reject(data.msg)    
+                        if(res.data.code == 300){
+                            app.clearUserData();
+                            
+                        }
                     }
                 },
                 fail: (res) => {

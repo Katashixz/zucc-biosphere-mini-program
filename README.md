@@ -57,8 +57,8 @@
      - [ ] 私聊通知
    - [x] 我的帖子
    - [ ] 我的评论
-   - [ ] 我的点赞
-   - [ ] 我的收藏
+   - [ ] ~~我的点赞~~
+   - [x] 我的收藏
    - [ ] 我的领养
    - [ ] 社区守则
    - [x] 意见反馈
@@ -71,7 +71,8 @@
 - 解答我问题的某个前端
   - [名字太长不好不好](https://blog.csdn.net/qq_53512708?type=blog)
 ## 其他说明
-- [项目地址](https://gitee.com/katashi/zucc-biosphere-mini-program)
+- [Gitee项目地址](https://gitee.com/katashi/zucc-biosphere-mini-program)
+- [Github项目地址](https://github.com/Katashixz/zucc-biosphere-mini-program)
 - 欢迎参观[个人博客](https://katashixz.github.io/)
 - 本项目灵感来源
   - 小程序-燕园猫咪速查手册

@@ -11,15 +11,12 @@ Page({
      */
     data: {
 
-        userInfo: {
-            energyPoint: 0,
-        //     userName: "蟹黄宝宝宝宝宝宝宝宝宝",
-        //     avatarUrl: "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132"
-        },
+        userInfo: null,
         level: 0,
         hasUserInfo: false,
         isCheckedIn: false,
         totalDays: 0,
+        energyPoint: 0,
         
     },
     
@@ -46,7 +43,7 @@ Page({
         
         wx.request({
             method: 'POST',
-            url: app.globalData.urlHome + '/user/checkIn',
+            url: app.globalData.urlHome + '/user/auth/checkIn',
             header: {
                 'content-type': 'application/json',
                 'token': app.globalData.token
@@ -65,23 +62,29 @@ Page({
                 }
                 else if (res.data.code == 1005) {
                     var obj = {
-                        msg: "重复签到了哦",
+                        msg: res.data.msg,
                         type: "tip"
                     }
                     that.promptBox.open(obj);
-                    // toast.showToastWithMaskAndImage(that, "出错啦", "重复签到了哦","../../icon/error.png")
                     that.setData({
                         isCheckedIn:true,
                         totalDays:res.data.data.totalDays,
                     })
                 }
                 else{
-                    // toast.showToastWithMaskAndImage(that, "出错啦", "请重新签到","../../icon/error.png")
                     var obj = {
-                        msg: "出错啦,请重新签到",
+                        msg: res.data.msg,
                         type: "error"
                     }
                     that.promptBox.open(obj);
+                    if(res.data.code == 300){
+                        app.clearUserData();
+                        that.setData({
+                            userInfo: null,
+                            level: 0,
+                            hasUserInfo:false,
+                        })
+                    }
                 }
             },
             complete: (res) =>{
@@ -100,11 +103,52 @@ Page({
             that.getUserProfile()
         }else{
             wx.navigateTo({
-                url: '/pages/templatePage/templatePage?type=1&userID=' + that.data.userInfo.id,
+                url: '/pages/myPostOrMyStarPage/myPostOrMyStarPage?type=1&userID=' + that.data.userInfo.id,
             })
         }
     },
 
+    /**
+     * 我的收藏
+     */
+    toMyStar: function (e) {
+        var that = this;
+        if(!app.globalData.hasUserInfo){
+            that.getUserProfile()
+        }else{
+            wx.navigateTo({
+                url: '/pages/myPostOrMyStarPage/myPostOrMyStarPage?type=2&userID=' + that.data.userInfo.id,
+            })
+        }
+    },
+    
+    /**
+     * 我的评论
+     */
+    toMyComment: function (e) {
+        var that = this;
+        if(!app.globalData.hasUserInfo){
+            that.getUserProfile()
+        }else{
+            wx.navigateTo({
+                url: '/pages/myComments/myComments',
+            })
+        }
+    },
+    /**
+     * 跳转到帖子详情页面
+     */
+    toMyAdopt: function (e) {
+        // wx.navigateTo({
+        //     url: '/pages/postDetails/postDetails?postID=' + this.data.postList[e.currentTarget.dataset.index].postID
+        // })
+        var that = this;
+        var obj = {
+            msg: "页面暂未开放",
+            type: "error"
+        }
+        that.promptBox.open(obj);
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -126,7 +170,8 @@ Page({
     onShow: function () {
 
         // console.log("onShow")
-    
+        var that = this;
+        that.onPullDownRefresh();
         if (typeof this.getTabBar === 'function' && this.getTabBar()) {
     
           this.getTabBar().setData({
@@ -136,8 +181,6 @@ Page({
           })
     
         }
-        
-        var that = this;
         if(app.globalData.hasUserInfo){
             that.setData({
                 hasUserInfo: true,
@@ -167,13 +210,13 @@ Page({
      */
     onPullDownRefresh() {
         var that = this;
-        wx.showLoading({
-            title: '加载中',
-          })
         if(that.data.hasUserInfo == true){
+            wx.showLoading({
+                title: '加载中',
+              })
             wx.request({
                 method: 'GET',
-                url: app.globalData.urlHome + '/user/getUserInfo/' + app.globalData.openID,
+                url: app.globalData.urlHome + '/user/auth/getUserInfo/' + app.globalData.openID,
                 header: {
                     'content-type': 'application/json',
                     'token': app.globalData.token
@@ -186,25 +229,35 @@ Page({
                             userInfo: res.data.data.userInfo,
                             level: res.data.data.level,
                         })
-                    }else{
-                        wx.showToast({
-                          title: res.data.msg,
-                          duration: 2000,
-                          icon: 'error'
-                        })
+                    }
+                    else{
+                        var obj = {
+                            msg: res.data.msg,
+                            type: "error"
+                        }
+                        that.promptBox.open(obj);
+                        if(res.data.code == 300){
+                            app.clearUserData();
+                            that.setData({
+                                userInfo: null,
+                                level: 0,
+                                hasUserInfo:false,
+                            })
+                        }
                     }
                 },
                 complete: (res)=>{
                     wx.hideLoading();
                 }
             })
-        }else{
-            wx.showToast({
-              title: '请先登录！',
-              icon: 'error',
-              duration: 2000
-            })
         }
+        // else{
+        //     wx.showToast({
+        //       title: '请先登录！',
+        //       icon: 'error',
+        //       duration: 2000
+        //     })
+        // }
     },
 
     /**

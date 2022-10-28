@@ -58,11 +58,11 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
 					log.info("用户{}请求{}方法",openID,request.getRequestURL());
 				}catch (Exception e1){
 					e1.printStackTrace();
-					HttpMethodUtil.responseJson(response, ResponseResult.error(RespBeanEnum.LOGIN_EXPIRED));
+					HttpMethodUtil.responseJson(response, ResponseResult.error(RespBeanEnum.NO_LOGIN));
 					return;
 				}
 				if (!redisTemplate.hasKey("login:" + openID)) {
-					HttpMethodUtil.responseJson(response, ResponseResult.error(RespBeanEnum.TOKEN_ILLEGAL));
+					HttpMethodUtil.responseJson(response, ResponseResult.error(RespBeanEnum.NO_LOGIN));
 					return;
 				}
 				user = (User) redisTemplate.opsForValue().get("login:" + openID);

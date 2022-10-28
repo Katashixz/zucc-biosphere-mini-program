@@ -10,12 +10,13 @@
         <result column="commentDate" property="commentDate" />
         <result column="content" property="content" />
         <result column="commentToUser" property="commentToUser" />
-        <result column="ischecked" property="ischecked" />
+        <result column="isChecked" property="isChecked" />
+        <result column="isDeleted" property="isDeleted" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, userID, postID, commentDate, content, commentToUser, ischecked
+        id, userID, postID, commentDate, content, commentToUser, isChecked, isDeleted
     </sql>
 
 </mapper>

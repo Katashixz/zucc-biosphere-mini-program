@@ -103,6 +103,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests() // 权限配置
                 .antMatchers(
                         "/user/login",
+                        "/user/exposure/**",
                         "/user/test",
                         "/css/**",
                         "/js/**",

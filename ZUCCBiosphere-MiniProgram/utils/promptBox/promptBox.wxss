@@ -20,6 +20,7 @@
 .dialog-content{
     position: fixed;
     display: flex;
+    /* align-self: center; */
     flex-direction: column;
     width: 90%;
 

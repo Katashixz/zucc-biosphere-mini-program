@@ -1,3 +1,4 @@
+
 //节流函数
 function throttle(fn, gapTimes) {
     const gapTime = gapTimes || 1500

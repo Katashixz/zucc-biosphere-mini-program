@@ -11,6 +11,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +28,7 @@ import java.util.Objects;
 @Api(tags = "用户模块")
 @Slf4j
 @RestController
+@CrossOrigin
 @RequestMapping("/user")
 public class UserController {
     @Autowired
@@ -36,7 +38,7 @@ public class UserController {
     private IEnergyRecordService energyrecordService;
 
     @ApiOperation(value = "用户登录", notes = "wx.login上传加密字符串即可")
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/exposure/login",method = RequestMethod.POST)
     public ResponseResult userLogin(@RequestBody LoginVo loginVo){
         // Map<String,Object> resData = new HashMap<>();
         JSONObject resData = new JSONObject();
@@ -77,7 +79,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "每日签到", notes = "传入openID")
-    @RequestMapping(value = "/checkIn",method = RequestMethod.POST)
+    @RequestMapping(value = "/auth/checkIn",method = RequestMethod.POST)
     public ResponseResult checkIn(@RequestBody JSONObject req){
         String openID = req.getString("openID");
         ResponseResult res = new ResponseResult();
@@ -101,7 +103,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "获取用户信息", notes = "传入openID")
-    @RequestMapping(value = "/getUserInfo/{openID}",method = RequestMethod.GET)
+    @RequestMapping(value = "/auth/getUserInfo/{openID}",method = RequestMethod.GET)
     public ResponseResult getUserInfo(@PathVariable("openID") String openID){
         User userInfo = userService.getUserInfoByOpenId(openID);
         ResponseResult res = new ResponseResult();
@@ -121,7 +123,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "新增能量值记录", notes = "需要传入打赏者id，被打赏者id，能量值，打赏类型")
-    @RequestMapping(value = "/insertEnergyRecord",method = RequestMethod.POST)
+    @RequestMapping(value = "/auth/insertEnergyRecord",method = RequestMethod.POST)
     public ResponseResult insertEnergyRecord(@RequestBody RewardVo rewardVo){
         ResponseResult res = new ResponseResult();
         // 如果是打赏类型，则要对两个用户的能量值进行更新
@@ -148,12 +150,12 @@ public class UserController {
     }
 
     @ApiOperation(value = "加载我的帖子", notes = "需要传入userID")
-    @RequestMapping(value = "/loadMyPost",method = RequestMethod.GET)
+    @RequestMapping(value = "/auth/loadMyPost",method = RequestMethod.GET)
     public ResponseResult loadMyPost(Integer userID){
         ResponseResult res = new ResponseResult();
         JSONObject resData = new JSONObject();
         List<SimplePostVo> simplePostVos = userService.loadMyPost(userID);
-        if (simplePostVos.size() == 0 || Objects.isNull(simplePostVos)) {
+        if (simplePostVos.size() == 0) {
             res.setMsg(ResponseResult.success(RespBeanEnum.NO_POST).getMsg());
             res.setCode(ResponseResult.success(RespBeanEnum.NO_POST).getCode());
             return res;
@@ -165,6 +167,45 @@ public class UserController {
         return res;
     }
 
+    @ApiOperation(value = "加载我的收藏", notes = "需要传入userID")
+    @RequestMapping(value = "/auth/loadMyStar",method = RequestMethod.GET)
+    public ResponseResult loadMyStar(Integer userID){
+        ResponseResult res = new ResponseResult();
+        JSONObject resData = new JSONObject();
+        List<StarPostVo> stars = userService.loadMyStar(userID);
+        if (stars.size() == 0) {
+            res.setMsg(ResponseResult.success(RespBeanEnum.NO_Star).getMsg());
+            res.setCode(ResponseResult.success(RespBeanEnum.NO_Star).getCode());
+            return res;
+        }
+        resData.put("postList",stars);
+        res.setData(resData);
+        res.setMsg(ResponseResult.success(RespBeanEnum.SUCCESS).getMsg());
+        res.setCode(ResponseResult.success(RespBeanEnum.SUCCESS).getCode());
+        return res;
+    }
 
 
+    @ApiOperation(value = "删除帖子", notes = "需要传入postID、userID")
+    @RequestMapping(value = "/auth/deletePost",method = RequestMethod.POST)
+    public ResponseResult deletePost(@RequestBody JSONObject req){
+        ResponseResult res = userService.deletePost(req.getLong("postID"), req.getInteger("userID"));
+        return res;
+    }
+
+    @ApiOperation(value = "删除收藏", notes = "需要传入postID、userID")
+    @RequestMapping(value = "/auth/deleteStar",method = RequestMethod.POST)
+    public ResponseResult deleteStar(@RequestBody JSONObject req){
+        ResponseResult res = userService.deleteStar(req.getLong("postID"), req.getInteger("userID"));
+        return res;
+    }
+
+    @ApiOperation(value = "测试", notes = "需要传入postID")
+    @RequestMapping(value = "/exposure/dele",method = RequestMethod.POST)
+    public ResponseResult dele(@RequestBody JSONObject req){
+
+        ResponseResult res = new ResponseResult();
+        res.setData(userService.test(req.getLong("postID"), req.getInteger("userID")));
+        return res;
+    }
 }
