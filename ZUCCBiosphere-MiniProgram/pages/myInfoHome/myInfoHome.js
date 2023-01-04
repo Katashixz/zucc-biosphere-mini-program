@@ -10,7 +10,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        hasMsg: true,
         userInfo: null,
         level: 0,
         hasUserInfo: false,
@@ -20,6 +20,35 @@ Page({
         
     },
     
+    /**
+     * 跳转到个人信息修改
+     */
+    toUpdateInfo(){
+        var that = this;
+        if(!app.globalData.hasUserInfo){
+            that.getUserProfile()
+        }else{
+            wx.navigateTo({
+                url: '/pages/updateInfo/updateInfo?nickName=' + that.data.userInfo.userName  + '&avatarUrl=' + that.data.userInfo.avatarUrl + '&userID=' + that.data.userInfo.id,
+            })
+        }
+    },
+    /**
+     * 跳转到关于我们
+     */
+    toAboutUs(){
+        wx.navigateTo({
+            url: '/pages/aboutUs/aboutUs',
+        })
+    },
+    /**
+     * 跳转到社区守则
+     */
+    toCommunityRuleList(){
+        wx.navigateTo({
+            url: '/pages/communityRule/communityRule',
+        })
+    },
     /**
      * 微信登录
      */
@@ -89,7 +118,14 @@ Page({
             },
             complete: (res) =>{
                 wx.hideLoading();
-              }
+              },
+            fail: (res) => {
+                wx.showToast({
+                    title: '服务器错误',
+                    duration: 2000,
+                    icon: 'error'
+                })
+            },
         })
         },
 
@@ -108,6 +144,19 @@ Page({
         }
     },
 
+    /**
+     * 通知
+     */
+    toMyMsg: function (e) {
+        var that = this;
+        if(!app.globalData.hasUserInfo){
+            that.getUserProfile()
+        }else{
+            wx.navigateTo({
+                url: '/pages/noticePage/noticePage?userID=' + that.data.userInfo.id,
+            })
+        }
+    },
     /**
      * 我的收藏
      */
@@ -131,7 +180,7 @@ Page({
             that.getUserProfile()
         }else{
             wx.navigateTo({
-                url: '/pages/myComments/myComments',
+                url: '/pages/myComments/myComments?&userID=' + that.data.userInfo.id,
             })
         }
     },
@@ -248,7 +297,14 @@ Page({
                 },
                 complete: (res)=>{
                     wx.hideLoading();
-                }
+                },
+                fail: (res) => {
+                    wx.showToast({
+                        title: '服务器错误',
+                        duration: 2000,
+                        icon: 'error'
+                    })
+                },
             })
         }
         // else{

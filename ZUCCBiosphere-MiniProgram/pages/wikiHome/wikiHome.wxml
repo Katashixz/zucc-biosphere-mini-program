@@ -1,7 +1,7 @@
 <!--pages/wikiHome.wxml-->
 <view class="homePage">
+    <promptBox id="promptBox"></promptBox>
     <searchBar placeHolderContent="请输入名称" searchType="{{type}}"></searchBar>
-
     <view class="selectTable">
     <view id="tabs">
     <view wx:for="{{tabs}}" data-idx="{{index}}"  

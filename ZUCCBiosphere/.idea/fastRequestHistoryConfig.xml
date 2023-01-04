@@ -8,540 +8,547 @@
           <option name="code" value="200" />
           <option name="enableEnv" value="dev" />
           <option name="enableProject" value="biosphere" />
-          <option name="method" value="dele" />
-          <option name="methodType" value="POST" />
-          <option name="name" value="测试" />
+          <option name="method" value="loadMyComment" />
+          <option name="methodType" value="GET" />
+          <option name="name" value="加载我的评论" />
           <option name="paramGroup">
             <ParamGroupCollection>
-              <option name="bodyKeyValueListJson" value="{&#10;  &quot;postID&quot;: 1,&#10;  &quot;userID&quot;: 1&#10;}" />
               <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-              <option name="method" value="dele" />
-              <option name="methodDescription" value="测试" />
-              <option name="methodType" value="POST" />
+              <option name="method" value="loadMyComment" />
+              <option name="methodDescription" value="加载我的评论" />
               <option name="multipartKeyValueListJson" value="[]" />
-              <option name="originUrl" value="/user/exposure/dele" />
+              <option name="originUrl" value="/user/auth/loadMyComment" />
               <option name="pathParamsKeyValueListJson" value="[]" />
-              <option name="url" value="/user/exposure/dele" />
+              <option name="returnDocument" value="null" />
+              <option name="url" value="/user/auth/loadMyComment" />
               <option name="urlEncodedKeyValueListJson" value="[]" />
-              <option name="urlParamsKeyValueListJson" value="[]" />
+              <option name="urlParamsKeyValueListJson" value="[{&quot;comment&quot;:&quot;&quot;,&quot;customFlag&quot;:2,&quot;enabled&quot;:true,&quot;key&quot;:&quot;userID&quot;,&quot;type&quot;:&quot;Number&quot;,&quot;value&quot;:&quot;2&quot;}]" />
+              <option name="urlParamsKeyValueListText" value="userID=2" />
             </ParamGroupCollection>
           </option>
-          <option name="requestInfo" value="Request Url: http://localhost:9000/user/exposure/dele&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 23&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&quot;postID&quot;:1,&quot;userID&quot;:1}&#13;&#10;" />
-          <option name="response" value="{&quot;data&quot;:[{&quot;id&quot;:2,&quot;userID&quot;:2,&quot;theme&quot;:&quot;晒动物&quot;,&quot;content&quot;:&quot;偷偷用别人的号测试&quot;,&quot;postDate&quot;:&quot;2022-09-09T07:30:33.000+00:00&quot;,&quot;isTop&quot;:0,&quot;isEssential&quot;:0,&quot;imageUrl&quot;:&quot;https://bkimg.cdn.bcebos.com/pic/279759ee3d6d55fbd39691f66f224f4a21a4dd8a?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U4MA==,g_7,xp_5,yp_5/format,f_auto，https://bkimg.cdn.bcebos.com/pic/c9fcc3cec3fdfc03a8464657d63f8794a4c22626?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U5Mg==,g_7,xp_5,yp_5/format,f_auto&quot;,&quot;isDeleted&quot;:0},{&quot;id&quot;:3,&quot;userID&quot;:1,&quot;theme&quot;:&quot;吐槽&quot;,&quot;content&quot;:&quot;社区模块开发 启动！2&quot;,&quot;postDate&quot;:&quot;2022-09-09T04:29:11.000+00:00&quot;,&quot;isTop&quot;:0,&quot;isEssential&quot;:0,&quot;imageUrl&quot;:null,&quot;isDeleted&quot;:0}]}" />
-          <option name="url" value="/user/exposure/dele" />
-        </ResponseHistory>
-        <ResponseHistory>
-          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-          <option name="code" value="500" />
-          <option name="enableEnv" value="dev" />
-          <option name="enableProject" value="biosphere" />
-          <option name="method" value="dele" />
-          <option name="methodType" value="POST" />
-          <option name="name" value="测试" />
-          <option name="paramGroup">
-            <ParamGroupCollection>
-              <option name="bodyKeyValueListJson" value="{&#10;  &quot;postID&quot;: 1,&#10;  &quot;userID&quot;: 1&#10;}" />
-              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-              <option name="method" value="dele" />
-              <option name="methodDescription" value="测试" />
-              <option name="methodType" value="POST" />
-              <option name="multipartKeyValueListJson" value="[]" />
-              <option name="originUrl" value="/user/exposure/dele" />
-              <option name="pathParamsKeyValueListJson" value="[]" />
-              <option name="url" value="/user/exposure/dele" />
-              <option name="urlEncodedKeyValueListJson" value="[]" />
-              <option name="urlParamsKeyValueListJson" value="[]" />
-            </ParamGroupCollection>
-          </option>
-          <option name="requestInfo" value="Request Url: http://localhost:9000/user/exposure/dele&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 23&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&quot;postID&quot;:1,&quot;userID&quot;:1}&#13;&#10;" />
-          <option name="response" value="{&quot;timestamp&quot;:&quot;2022-10-28T01:51:34.658+00:00&quot;,&quot;status&quot;:500,&quot;error&quot;:&quot;Internal Server Error&quot;,&quot;path&quot;:&quot;/user/exposure/dele&quot;}" />
-          <option name="url" value="/user/exposure/dele" />
+          <option name="requestInfo" value="Request Url: http://localhost:9000/user/auth/loadMyComment?userID=2&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyY2FiYmFiYTI1ZDY0OWFmYjFkZjRjODg5OWQ3ZTlkZCIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY3MDU0ODAyOCwiZXhwIjoxNjcwNjM0NDI4fQ.HImY9h1UfDnAnsecF25p0oID6vPEsygMdZ9A1QmpWR8&#13;&#10;Request Body: &#13;&#10;    null&#13;&#10;" />
+          <option name="response" value="{&quot;code&quot;:400,&quot;msg&quot;:&quot;请检查传入信息&quot;}&#13;&#10;" />
+          <option name="url" value="/user/auth/loadMyComment" />
         </ResponseHistory>
         <ResponseHistory>
           <option name="className" value="com.biosphere.usermodule.controller.UserController" />
           <option name="code" value="200" />
           <option name="enableEnv" value="dev" />
           <option name="enableProject" value="biosphere" />
-          <option name="method" value="dele" />
-          <option name="methodType" value="POST" />
-          <option name="name" value="测试" />
+          <option name="method" value="loadMyComment" />
+          <option name="methodType" value="GET" />
+          <option name="name" value="加载我的评论" />
           <option name="paramGroup">
             <ParamGroupCollection>
-              <option name="bodyKeyValueListJson" value="{&#10;  &quot;postID&quot;: 1,&#10;  &quot;userID&quot;: 1&#10;}" />
               <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-              <option name="method" value="dele" />
-              <option name="methodDescription" value="测试" />
-              <option name="methodType" value="POST" />
+              <option name="method" value="loadMyComment" />
+              <option name="methodDescription" value="加载我的评论" />
               <option name="multipartKeyValueListJson" value="[]" />
-              <option name="originUrl" value="/user/exposure/dele" />
+              <option name="originUrl" value="/user/auth/loadMyComment" />
               <option name="pathParamsKeyValueListJson" value="[]" />
-              <option name="url" value="/user/exposure/dele" />
+              <option name="returnDocument" value="null" />
+              <option name="url" value="/user/auth/loadMyComment" />
               <option name="urlEncodedKeyValueListJson" value="[]" />
-              <option name="urlParamsKeyValueListJson" value="[]" />
+              <option name="urlParamsKeyValueListJson" value="[{&quot;comment&quot;:&quot;&quot;,&quot;customFlag&quot;:2,&quot;enabled&quot;:true,&quot;key&quot;:&quot;userID&quot;,&quot;type&quot;:&quot;Number&quot;,&quot;value&quot;:&quot;1&quot;}]" />
+              <option name="urlParamsKeyValueListText" value="userID=1" />
             </ParamGroupCollection>
           </option>
-          <option name="requestInfo" value="Request Url: http://localhost:9000/user/exposure/dele&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 23&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&quot;postID&quot;:1,&quot;userID&quot;:1}&#13;&#10;" />
-          <option name="response" value="{&quot;data&quot;:[{&quot;id&quot;:2,&quot;userID&quot;:2,&quot;theme&quot;:&quot;晒动物&quot;,&quot;content&quot;:&quot;偷偷用别人的号测试&quot;,&quot;postDate&quot;:&quot;2022-09-09T07:30:33.000+00:00&quot;,&quot;isTop&quot;:0,&quot;isEssential&quot;:0,&quot;imageUrl&quot;:&quot;https://bkimg.cdn.bcebos.com/pic/279759ee3d6d55fbd39691f66f224f4a21a4dd8a?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U4MA==,g_7,xp_5,yp_5/format,f_auto，https://bkimg.cdn.bcebos.com/pic/c9fcc3cec3fdfc03a8464657d63f8794a4c22626?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U5Mg==,g_7,xp_5,yp_5/format,f_auto&quot;,&quot;isDeleted&quot;:0},{&quot;id&quot;:3,&quot;userID&quot;:1,&quot;theme&quot;:&quot;吐槽&quot;,&quot;content&quot;:&quot;社区模块开发 启动！2&quot;,&quot;postDate&quot;:&quot;2022-09-09T04:29:11.000+00:00&quot;,&quot;isTop&quot;:0,&quot;isEssential&quot;:0,&quot;imageUrl&quot;:null,&quot;isDeleted&quot;:0}]}" />
-          <option name="url" value="/user/exposure/dele" />
-        </ResponseHistory>
-        <ResponseHistory>
-          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-          <option name="code" value="500" />
-          <option name="enableEnv" value="dev" />
-          <option name="enableProject" value="biosphere" />
-          <option name="method" value="dele" />
-          <option name="methodType" value="POST" />
-          <option name="name" value="测试" />
-          <option name="paramGroup">
-            <ParamGroupCollection>
-              <option name="bodyKeyValueListJson" value="{&#10;  &quot;postID&quot;: 1,&#10;  &quot;userID&quot;: 1&#10;}" />
-              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-              <option name="method" value="dele" />
-              <option name="methodDescription" value="测试" />
-              <option name="methodType" value="POST" />
-              <option name="multipartKeyValueListJson" value="[]" />
-              <option name="originUrl" value="/user/exposure/dele" />
-              <option name="pathParamsKeyValueListJson" value="[]" />
-              <option name="url" value="/user/exposure/dele" />
-              <option name="urlEncodedKeyValueListJson" value="[]" />
-              <option name="urlParamsKeyValueListJson" value="[]" />
-            </ParamGroupCollection>
-          </option>
-          <option name="requestInfo" value="Request Url: http://localhost:9000/user/exposure/dele&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 23&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&quot;postID&quot;:1,&quot;userID&quot;:1}&#13;&#10;" />
-          <option name="response" value="{&quot;timestamp&quot;:&quot;2022-10-28T01:49:50.771+00:00&quot;,&quot;status&quot;:500,&quot;error&quot;:&quot;Internal Server Error&quot;,&quot;path&quot;:&quot;/user/exposure/dele&quot;}" />
-          <option name="url" value="/user/exposure/dele" />
-        </ResponseHistory>
-        <ResponseHistory>
-          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-          <option name="code" value="500" />
-          <option name="enableEnv" value="dev" />
-          <option name="enableProject" value="biosphere" />
-          <option name="method" value="dele" />
-          <option name="methodType" value="POST" />
-          <option name="name" value="测试" />
-          <option name="paramGroup">
-            <ParamGroupCollection>
-              <option name="bodyKeyValueListJson" value="{&#10;  &quot;postID&quot;: 1,&#10;  &quot;userID&quot;: 1&#10;}" />
-              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-              <option name="method" value="dele" />
-              <option name="methodDescription" value="测试" />
-              <option name="methodType" value="POST" />
-              <option name="multipartKeyValueListJson" value="[]" />
-              <option name="originUrl" value="/user/exposure/dele" />
-              <option name="pathParamsKeyValueListJson" value="[]" />
-              <option name="url" value="/user/exposure/dele" />
-              <option name="urlEncodedKeyValueListJson" value="[]" />
-              <option name="urlParamsKeyValueListJson" value="[]" />
-            </ParamGroupCollection>
-          </option>
-          <option name="requestInfo" value="Request Url: http://localhost:9000/user/exposure/dele&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 23&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&quot;postID&quot;:1,&quot;userID&quot;:1}&#13;&#10;" />
-          <option name="response" value="{&quot;timestamp&quot;:&quot;2022-10-28T01:42:30.913+00:00&quot;,&quot;status&quot;:500,&quot;error&quot;:&quot;Internal Server Error&quot;,&quot;path&quot;:&quot;/user/exposure/dele&quot;}" />
-          <option name="url" value="/user/exposure/dele" />
-        </ResponseHistory>
-        <ResponseHistory>
-          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-          <option name="code" value="500" />
-          <option name="enableEnv" value="dev" />
-          <option name="enableProject" value="biosphere" />
-          <option name="method" value="dele" />
-          <option name="methodType" value="POST" />
-          <option name="name" value="测试" />
-          <option name="paramGroup">
-            <ParamGroupCollection>
-              <option name="bodyKeyValueListJson" value="{&#10;  &quot;postID&quot;: 1,&#10;  &quot;userID&quot;: 1&#10;}" />
-              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-              <option name="method" value="dele" />
-              <option name="methodDescription" value="测试" />
-              <option name="methodType" value="POST" />
-              <option name="multipartKeyValueListJson" value="[]" />
-              <option name="originUrl" value="/user/exposure/dele" />
-              <option name="pathParamsKeyValueListJson" value="[]" />
-              <option name="url" value="/user/exposure/dele" />
-              <option name="urlEncodedKeyValueListJson" value="[]" />
-              <option name="urlParamsKeyValueListJson" value="[]" />
-            </ParamGroupCollection>
-          </option>
-          <option name="requestInfo" value="Request Url: http://localhost:9000/user/exposure/dele&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 23&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&quot;postID&quot;:1,&quot;userID&quot;:1}&#13;&#10;" />
-          <option name="response" value="{&quot;timestamp&quot;:&quot;2022-10-28T01:42:05.613+00:00&quot;,&quot;status&quot;:500,&quot;error&quot;:&quot;Internal Server Error&quot;,&quot;path&quot;:&quot;/user/exposure/dele&quot;}" />
-          <option name="url" value="/user/exposure/dele" />
-        </ResponseHistory>
-        <ResponseHistory>
-          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-          <option name="code" value="500" />
-          <option name="enableEnv" value="dev" />
-          <option name="enableProject" value="biosphere" />
-          <option name="method" value="dele" />
-          <option name="methodType" value="POST" />
-          <option name="name" value="测试" />
-          <option name="paramGroup">
-            <ParamGroupCollection>
-              <option name="bodyKeyValueListJson" value="{&#10;  &quot;postID&quot;: 1,&#10;  &quot;userID&quot;: 1&#10;}" />
-              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-              <option name="method" value="dele" />
-              <option name="methodDescription" value="测试" />
-              <option name="methodType" value="POST" />
-              <option name="multipartKeyValueListJson" value="[]" />
-              <option name="originUrl" value="/user/exposure/dele" />
-              <option name="pathParamsKeyValueListJson" value="[]" />
-              <option name="url" value="/user/exposure/dele" />
-              <option name="urlEncodedKeyValueListJson" value="[]" />
-              <option name="urlParamsKeyValueListJson" value="[]" />
-            </ParamGroupCollection>
-          </option>
-          <option name="requestInfo" value="Request Url: http://localhost:9000/user/exposure/dele&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 23&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&quot;postID&quot;:1,&quot;userID&quot;:1}&#13;&#10;" />
-          <option name="response" value="{&quot;timestamp&quot;:&quot;2022-10-28T01:38:13.686+00:00&quot;,&quot;status&quot;:500,&quot;error&quot;:&quot;Internal Server Error&quot;,&quot;path&quot;:&quot;/user/exposure/dele&quot;}" />
-          <option name="url" value="/user/exposure/dele" />
-        </ResponseHistory>
-        <ResponseHistory>
-          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-          <option name="code" value="500" />
-          <option name="enableEnv" value="dev" />
-          <option name="enableProject" value="biosphere" />
-          <option name="method" value="dele" />
-          <option name="methodType" value="POST" />
-          <option name="name" value="测试" />
-          <option name="paramGroup">
-            <ParamGroupCollection>
-              <option name="bodyKeyValueListJson" value="{&#10;  &quot;postID&quot;: 1,&#10;  &quot;userID&quot;: 1&#10;}" />
-              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-              <option name="method" value="dele" />
-              <option name="methodDescription" value="测试" />
-              <option name="methodType" value="POST" />
-              <option name="multipartKeyValueListJson" value="[]" />
-              <option name="originUrl" value="/user/exposure/dele" />
-              <option name="pathParamsKeyValueListJson" value="[]" />
-              <option name="url" value="/user/exposure/dele" />
-              <option name="urlEncodedKeyValueListJson" value="[]" />
-              <option name="urlParamsKeyValueListJson" value="[]" />
-            </ParamGroupCollection>
-          </option>
-          <option name="requestInfo" value="Request Url: http://localhost:9000/user/exposure/dele&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 23&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&quot;postID&quot;:1,&quot;userID&quot;:1}&#13;&#10;" />
-          <option name="response" value="{&quot;timestamp&quot;:&quot;2022-10-28T01:37:30.887+00:00&quot;,&quot;status&quot;:500,&quot;error&quot;:&quot;Internal Server Error&quot;,&quot;path&quot;:&quot;/user/exposure/dele&quot;}" />
-          <option name="url" value="/user/exposure/dele" />
-        </ResponseHistory>
-        <ResponseHistory>
-          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-          <option name="code" value="500" />
-          <option name="enableEnv" value="dev" />
-          <option name="enableProject" value="biosphere" />
-          <option name="method" value="dele" />
-          <option name="methodType" value="POST" />
-          <option name="name" value="测试" />
-          <option name="paramGroup">
-            <ParamGroupCollection>
-              <option name="bodyKeyValueListJson" value="{&#10;  &quot;postID&quot;: 1,&#10;  &quot;userID&quot;: 1&#10;}" />
-              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-              <option name="method" value="dele" />
-              <option name="methodDescription" value="测试" />
-              <option name="methodType" value="POST" />
-              <option name="multipartKeyValueListJson" value="[]" />
-              <option name="originUrl" value="/user/exposure/dele" />
-              <option name="pathParamsKeyValueListJson" value="[]" />
-              <option name="url" value="/user/exposure/dele" />
-              <option name="urlEncodedKeyValueListJson" value="[]" />
-              <option name="urlParamsKeyValueListJson" value="[]" />
-            </ParamGroupCollection>
-          </option>
-          <option name="requestInfo" value="Request Url: http://localhost:9000/user/exposure/dele&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 23&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&quot;postID&quot;:1,&quot;userID&quot;:1}&#13;&#10;" />
-          <option name="response" value="{&quot;timestamp&quot;:&quot;2022-10-28T01:31:44.314+00:00&quot;,&quot;status&quot;:500,&quot;error&quot;:&quot;Internal Server Error&quot;,&quot;path&quot;:&quot;/user/exposure/dele&quot;}" />
-          <option name="url" value="/user/exposure/dele" />
-        </ResponseHistory>
-        <ResponseHistory>
-          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-          <option name="code" value="500" />
-          <option name="enableEnv" value="dev" />
-          <option name="enableProject" value="biosphere" />
-          <option name="method" value="dele" />
-          <option name="methodType" value="POST" />
-          <option name="name" value="测试" />
-          <option name="paramGroup">
-            <ParamGroupCollection>
-              <option name="bodyKeyValueListJson" value="{&#10;  &quot;postID&quot;: 1,&#10;  &quot;userID&quot;: 1&#10;}" />
-              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-              <option name="method" value="dele" />
-              <option name="methodDescription" value="测试" />
-              <option name="methodType" value="POST" />
-              <option name="multipartKeyValueListJson" value="[]" />
-              <option name="originUrl" value="/user/exposure/dele" />
-              <option name="pathParamsKeyValueListJson" value="[]" />
-              <option name="url" value="/user/exposure/dele" />
-              <option name="urlEncodedKeyValueListJson" value="[]" />
-              <option name="urlParamsKeyValueListJson" value="[]" />
-            </ParamGroupCollection>
-          </option>
-          <option name="requestInfo" value="Request Url: http://localhost:9000/user/exposure/dele&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 23&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&quot;postID&quot;:1,&quot;userID&quot;:1}&#13;&#10;" />
-          <option name="response" value="{&quot;timestamp&quot;:&quot;2022-10-28T01:24:04.893+00:00&quot;,&quot;status&quot;:500,&quot;error&quot;:&quot;Internal Server Error&quot;,&quot;path&quot;:&quot;/user/exposure/dele&quot;}" />
-          <option name="url" value="/user/exposure/dele" />
-        </ResponseHistory>
-        <ResponseHistory>
-          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-          <option name="code" value="500" />
-          <option name="enableEnv" value="dev" />
-          <option name="enableProject" value="biosphere" />
-          <option name="method" value="dele" />
-          <option name="methodType" value="POST" />
-          <option name="name" value="测试" />
-          <option name="paramGroup">
-            <ParamGroupCollection>
-              <option name="bodyKeyValueListJson" value="{&#10;  &quot;postID&quot;: 1,&#10;  &quot;userID&quot;: 1&#10;}" />
-              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-              <option name="method" value="dele" />
-              <option name="methodDescription" value="测试" />
-              <option name="methodType" value="POST" />
-              <option name="multipartKeyValueListJson" value="[]" />
-              <option name="originUrl" value="/user/exposure/dele" />
-              <option name="pathParamsKeyValueListJson" value="[]" />
-              <option name="url" value="/user/exposure/dele" />
-              <option name="urlEncodedKeyValueListJson" value="[]" />
-              <option name="urlParamsKeyValueListJson" value="[]" />
-            </ParamGroupCollection>
-          </option>
-          <option name="requestInfo" value="Request Url: http://localhost:9000/user/exposure/dele&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 23&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&quot;postID&quot;:1,&quot;userID&quot;:1}&#13;&#10;" />
-          <option name="response" value="{&quot;timestamp&quot;:&quot;2022-10-28T01:14:29.992+00:00&quot;,&quot;status&quot;:500,&quot;error&quot;:&quot;Internal Server Error&quot;,&quot;path&quot;:&quot;/user/exposure/dele&quot;}" />
-          <option name="url" value="/user/exposure/dele" />
-        </ResponseHistory>
-        <ResponseHistory>
-          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-          <option name="code" value="500" />
-          <option name="enableEnv" value="dev" />
-          <option name="enableProject" value="biosphere" />
-          <option name="method" value="dele" />
-          <option name="methodType" value="POST" />
-          <option name="name" value="测试" />
-          <option name="paramGroup">
-            <ParamGroupCollection>
-              <option name="bodyKeyValueListJson" value="{&#10;  &quot;postID&quot;: 1,&#10;  &quot;userID&quot;: 1&#10;}" />
-              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-              <option name="method" value="dele" />
-              <option name="methodDescription" value="测试" />
-              <option name="methodType" value="POST" />
-              <option name="multipartKeyValueListJson" value="[]" />
-              <option name="originUrl" value="/user/exposure/dele" />
-              <option name="pathParamsKeyValueListJson" value="[]" />
-              <option name="url" value="/user/exposure/dele" />
-              <option name="urlEncodedKeyValueListJson" value="[]" />
-              <option name="urlParamsKeyValueListJson" value="[]" />
-            </ParamGroupCollection>
-          </option>
-          <option name="requestInfo" value="Request Url: http://localhost:9000/user/exposure/dele&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 23&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&quot;postID&quot;:1,&quot;userID&quot;:1}&#13;&#10;" />
-          <option name="response" value="{&quot;timestamp&quot;:&quot;2022-10-28T01:13:17.394+00:00&quot;,&quot;status&quot;:500,&quot;error&quot;:&quot;Internal Server Error&quot;,&quot;path&quot;:&quot;/user/exposure/dele&quot;}" />
-          <option name="url" value="/user/exposure/dele" />
-        </ResponseHistory>
-        <ResponseHistory>
-          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-          <option name="code" value="500" />
-          <option name="enableEnv" value="dev" />
-          <option name="enableProject" value="biosphere" />
-          <option name="method" value="dele" />
-          <option name="methodType" value="POST" />
-          <option name="name" value="测试" />
-          <option name="paramGroup">
-            <ParamGroupCollection>
-              <option name="bodyKeyValueListJson" value="{&#10;  &quot;postID&quot;: 1,&#10;  &quot;userID&quot;: 1&#10;}" />
-              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-              <option name="method" value="dele" />
-              <option name="methodDescription" value="测试" />
-              <option name="methodType" value="POST" />
-              <option name="multipartKeyValueListJson" value="[]" />
-              <option name="originUrl" value="/user/exposure/dele" />
-              <option name="pathParamsKeyValueListJson" value="[]" />
-              <option name="url" value="/user/exposure/dele" />
-              <option name="urlEncodedKeyValueListJson" value="[]" />
-              <option name="urlParamsKeyValueListJson" value="[]" />
-            </ParamGroupCollection>
-          </option>
-          <option name="requestInfo" value="Request Url: http://localhost:9000/user/exposure/dele&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 23&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&quot;postID&quot;:1,&quot;userID&quot;:1}&#13;&#10;" />
-          <option name="response" value="{&quot;timestamp&quot;:&quot;2022-10-28T01:07:35.854+00:00&quot;,&quot;status&quot;:500,&quot;error&quot;:&quot;Internal Server Error&quot;,&quot;path&quot;:&quot;/user/exposure/dele&quot;}" />
-          <option name="url" value="/user/exposure/dele" />
-        </ResponseHistory>
-        <ResponseHistory>
-          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-          <option name="code" value="500" />
-          <option name="enableEnv" value="dev" />
-          <option name="enableProject" value="biosphere" />
-          <option name="method" value="dele" />
-          <option name="methodType" value="POST" />
-          <option name="name" value="测试" />
-          <option name="paramGroup">
-            <ParamGroupCollection>
-              <option name="bodyKeyValueListJson" value="{&#10;  &quot;postID&quot;: 1,&#10;  &quot;userID&quot;: 1&#10;}" />
-              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-              <option name="method" value="dele" />
-              <option name="methodDescription" value="测试" />
-              <option name="methodType" value="POST" />
-              <option name="multipartKeyValueListJson" value="[]" />
-              <option name="originUrl" value="/user/exposure/dele" />
-              <option name="pathParamsKeyValueListJson" value="[]" />
-              <option name="url" value="/user/exposure/dele" />
-              <option name="urlEncodedKeyValueListJson" value="[]" />
-              <option name="urlParamsKeyValueListJson" value="[]" />
-            </ParamGroupCollection>
-          </option>
-          <option name="requestInfo" value="Request Url: http://localhost:9000/user/exposure/dele&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 23&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&quot;postID&quot;:1,&quot;userID&quot;:1}&#13;&#10;" />
-          <option name="response" value="{&quot;timestamp&quot;:&quot;2022-10-28T01:04:15.083+00:00&quot;,&quot;status&quot;:500,&quot;error&quot;:&quot;Internal Server Error&quot;,&quot;path&quot;:&quot;/user/exposure/dele&quot;}" />
-          <option name="url" value="/user/exposure/dele" />
-        </ResponseHistory>
-        <ResponseHistory>
-          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-          <option name="code" value="500" />
-          <option name="enableEnv" value="dev" />
-          <option name="enableProject" value="biosphere" />
-          <option name="method" value="dele" />
-          <option name="methodType" value="POST" />
-          <option name="name" value="测试" />
-          <option name="paramGroup">
-            <ParamGroupCollection>
-              <option name="bodyKeyValueListJson" value="{&#10;  &quot;postID&quot;: 1,&#10;  &quot;userID&quot;: 1&#10;}" />
-              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-              <option name="method" value="dele" />
-              <option name="methodDescription" value="测试" />
-              <option name="methodType" value="POST" />
-              <option name="multipartKeyValueListJson" value="[]" />
-              <option name="originUrl" value="/user/exposure/dele" />
-              <option name="pathParamsKeyValueListJson" value="[]" />
-              <option name="url" value="/user/exposure/dele" />
-              <option name="urlEncodedKeyValueListJson" value="[]" />
-              <option name="urlParamsKeyValueListJson" value="[]" />
-            </ParamGroupCollection>
-          </option>
-          <option name="requestInfo" value="Request Url: http://localhost:9000/user/exposure/dele&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 23&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&quot;postID&quot;:1,&quot;userID&quot;:1}&#13;&#10;" />
-          <option name="response" value="{&quot;timestamp&quot;:&quot;2022-10-28T00:59:27.707+00:00&quot;,&quot;status&quot;:500,&quot;error&quot;:&quot;Internal Server Error&quot;,&quot;path&quot;:&quot;/user/exposure/dele&quot;}" />
-          <option name="url" value="/user/exposure/dele" />
+          <option name="requestInfo" value="Request Url: http://localhost:9000/user/auth/loadMyComment?userID=1&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyY2FiYmFiYTI1ZDY0OWFmYjFkZjRjODg5OWQ3ZTlkZCIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY3MDU0ODAyOCwiZXhwIjoxNjcwNjM0NDI4fQ.HImY9h1UfDnAnsecF25p0oID6vPEsygMdZ9A1QmpWR8&#13;&#10;Request Body: &#13;&#10;    null&#13;&#10;" />
+          <option name="response" value="{&quot;code&quot;:200,&quot;msg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;commentList&quot;:[{&quot;id&quot;:49,&quot;postID&quot;:17,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;屑黄宝&quot;,&quot;commentDate&quot;:&quot;2022-12-09 16:27:01&quot;,&quot;commentAccessID&quot;:1,&quot;content&quot;:&quot;az&quot;,&quot;image&quot;:&quot;https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/BiospherePostImage/a4384c8b488baf812739acc730a24957_98031666146322876.mp4&quot;,&quot;postText&quot;:&quot;爱咋咋&quot;},{&quot;id&quot;:48,&quot;postID&quot;:9,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;屑黄宝&quot;,&quot;commentDate&quot;:&quot;2022-11-10 10:43:30&quot;,&quot;commentAccessID&quot;:1,&quot;content&quot;:&quot;kew&quot;,&quot;image&quot;:null,&quot;postText&quot;:&quot;3333&quot;},{&quot;id&quot;:26,&quot;postID&quot;:15,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;\uD83C\uDF7C喝前摇依瑶〜&quot;,&quot;commentDate&quot;:&quot;2022-11-10 09:17:05&quot;,&quot;commentAccessID&quot;:4,&quot;content&quot;:&quot;这个呢&quot;,&quot;image&quot;:&quot;https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/BiospherePostImage/a1d1f477acd0373c036387e69b57c1d1_45701663921985330.jpg&quot;,&quot;postText&quot;:&quot;哈哈哈嗨&quot;},{&quot;id&quot;:23,&quot;postID&quot;:22,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;屑黄宝&quot;,&quot;commentDate&quot;:&quot;2022-11-10 09:14:22&quot;,&quot;commentAccessID&quot;:1,&quot;content&quot;:&quot;不行&quot;,&quot;image&quot;:null,&quot;postText&quot;:null},{&quot;id&quot;:21,&quot;postID&quot;:22,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;屑黄宝&quot;,&quot;commentDate&quot;:&quot;2022-11-10 09:09:43&quot;,&quot;commentAccessID&quot;:1,&quot;content&quot;:&quot;啊啊&quot;,&quot;image&quot;:null,&quot;postText&quot;:null},{&quot;id&quot;:16,&quot;postID&quot;:2,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;PALo-Caller&quot;,&quot;commentDate&quot;:&quot;2022-09-28 16:01:23&quot;,&quot;commentAccessID&quot;:2,&quot;content&quot;:&quot;e&quot;,&quot;image&quot;:&quot;https://bkimg.cdn.bcebos.com/pic/279759ee3d6d55fbd39691f66f224f4a21a4dd8a?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U4MA==,g_7,xp_5,yp_5/format,f_auto&quot;,&quot;postText&quot;:&quot;偷偷用别人的号测试&quot;},{&quot;id&quot;:11,&quot;postID&quot;:16,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;\uD83C\uDF7C喝前摇依瑶〜&quot;,&quot;commentDate&quot;:&quot;2022-09-28 15:47:44&quot;,&quot;commentAccessID&quot;:4,&quot;content&quot;:&quot;我&quot;,&quot;image&quot;:&quot;https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/BiospherePostImage/a1d1f477acd0373c036387e69b57c1d1_60511663922182922.jpg&quot;,&quot;postText&quot;:&quot;好喝！&quot;},{&quot;id&quot;:4,&quot;postID&quot;:2,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;屑黄宝&quot;,&quot;commentDate&quot;:&quot;2022-09-09 11:30:24&quot;,&quot;commentAccessID&quot;:1,&quot;content&quot;:&quot;qwe&quot;,&quot;image&quot;:&quot;https://bkimg.cdn.bcebos.com/pic/279759ee3d6d55fbd39691f66f224f4a21a4dd8a?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U4MA==,g_7,xp_5,yp_5/format,f_auto&quot;,&quot;postText&quot;:&quot;偷偷用别人的号测试&quot;}]}}" />
+          <option name="url" value="/user/auth/loadMyComment" />
         </ResponseHistory>
         <ResponseHistory>
           <option name="className" value="com.biosphere.usermodule.controller.UserController" />
           <option name="code" value="200" />
           <option name="enableEnv" value="dev" />
           <option name="enableProject" value="biosphere" />
-          <option name="method" value="deletePost" />
-          <option name="methodType" value="POST" />
-          <option name="name" value="删除帖子" />
+          <option name="method" value="loadMyComment" />
+          <option name="methodType" value="GET" />
+          <option name="name" value="加载我的评论" />
           <option name="paramGroup">
             <ParamGroupCollection>
-              <option name="bodyKeyValueListJson" value="{&#10;  &quot;postID&quot;:24,&#10;  &quot;userID&quot;: 1&#10;}" />
               <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-              <option name="method" value="deletePost" />
-              <option name="methodDescription" value="删除帖子" />
+              <option name="method" value="loadMyComment" />
+              <option name="methodDescription" value="加载我的评论" />
+              <option name="multipartKeyValueListJson" value="[]" />
+              <option name="originUrl" value="/user/auth/loadMyComment" />
+              <option name="pathParamsKeyValueListJson" value="[]" />
+              <option name="returnDocument" value="null" />
+              <option name="url" value="/user/auth/loadMyComment" />
+              <option name="urlEncodedKeyValueListJson" value="[]" />
+              <option name="urlParamsKeyValueListJson" value="[{&quot;comment&quot;:&quot;&quot;,&quot;customFlag&quot;:2,&quot;enabled&quot;:true,&quot;key&quot;:&quot;userID&quot;,&quot;type&quot;:&quot;Number&quot;,&quot;value&quot;:&quot;2&quot;}]" />
+              <option name="urlParamsKeyValueListText" value="userID=2" />
+            </ParamGroupCollection>
+          </option>
+          <option name="requestInfo" value="Request Url: http://localhost:9000/user/auth/loadMyComment?userID=2&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyY2FiYmFiYTI1ZDY0OWFmYjFkZjRjODg5OWQ3ZTlkZCIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY3MDU0ODAyOCwiZXhwIjoxNjcwNjM0NDI4fQ.HImY9h1UfDnAnsecF25p0oID6vPEsygMdZ9A1QmpWR8&#13;&#10;Request Body: &#13;&#10;    null&#13;&#10;" />
+          <option name="response" value="{&quot;code&quot;:400,&quot;msg&quot;:&quot;请检查传入信息&quot;}&#13;&#10;" />
+          <option name="url" value="/user/auth/loadMyComment" />
+        </ResponseHistory>
+        <ResponseHistory>
+          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+          <option name="code" value="200" />
+          <option name="enableEnv" value="dev" />
+          <option name="enableProject" value="biosphere" />
+          <option name="method" value="loadMyComment" />
+          <option name="methodType" value="GET" />
+          <option name="name" value="加载我的评论" />
+          <option name="paramGroup">
+            <ParamGroupCollection>
+              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+              <option name="method" value="loadMyComment" />
+              <option name="methodDescription" value="加载我的评论" />
+              <option name="multipartKeyValueListJson" value="[]" />
+              <option name="originUrl" value="/user/auth/loadMyComment" />
+              <option name="pathParamsKeyValueListJson" value="[]" />
+              <option name="returnDocument" value="null" />
+              <option name="url" value="/user/auth/loadMyComment" />
+              <option name="urlEncodedKeyValueListJson" value="[]" />
+              <option name="urlParamsKeyValueListJson" value="[{&quot;comment&quot;:&quot;&quot;,&quot;customFlag&quot;:2,&quot;enabled&quot;:true,&quot;key&quot;:&quot;userID&quot;,&quot;type&quot;:&quot;Number&quot;,&quot;value&quot;:&quot;2&quot;}]" />
+              <option name="urlParamsKeyValueListText" value="userID=2" />
+            </ParamGroupCollection>
+          </option>
+          <option name="requestInfo" value="Request Url: http://localhost:9000/user/auth/loadMyComment?userID=2&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyY2FiYmFiYTI1ZDY0OWFmYjFkZjRjODg5OWQ3ZTlkZCIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY3MDU0ODAyOCwiZXhwIjoxNjcwNjM0NDI4fQ.HImY9h1UfDnAnsecF25p0oID6vPEsygMdZ9A1QmpWR8&#13;&#10;Request Body: &#13;&#10;    null&#13;&#10;" />
+          <option name="response" value="{&quot;code&quot;:400,&quot;msg&quot;:&quot;请检查传入信息&quot;}&#13;&#10;" />
+          <option name="url" value="/user/auth/loadMyComment" />
+        </ResponseHistory>
+        <ResponseHistory>
+          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+          <option name="code" value="200" />
+          <option name="enableEnv" value="dev" />
+          <option name="enableProject" value="biosphere" />
+          <option name="method" value="loadMyComment" />
+          <option name="methodType" value="GET" />
+          <option name="name" value="加载我的评论" />
+          <option name="paramGroup">
+            <ParamGroupCollection>
+              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+              <option name="method" value="loadMyComment" />
+              <option name="methodDescription" value="加载我的评论" />
+              <option name="multipartKeyValueListJson" value="[]" />
+              <option name="originUrl" value="/user/auth/loadMyComment" />
+              <option name="pathParamsKeyValueListJson" value="[]" />
+              <option name="returnDocument" value="null" />
+              <option name="url" value="/user/auth/loadMyComment" />
+              <option name="urlEncodedKeyValueListJson" value="[]" />
+              <option name="urlParamsKeyValueListJson" value="[{&quot;comment&quot;:&quot;&quot;,&quot;customFlag&quot;:2,&quot;enabled&quot;:true,&quot;key&quot;:&quot;userID&quot;,&quot;type&quot;:&quot;Number&quot;,&quot;value&quot;:&quot;1&quot;}]" />
+              <option name="urlParamsKeyValueListText" value="userID=1" />
+            </ParamGroupCollection>
+          </option>
+          <option name="requestInfo" value="Request Url: http://localhost:9000/user/auth/loadMyComment?userID=1&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyY2FiYmFiYTI1ZDY0OWFmYjFkZjRjODg5OWQ3ZTlkZCIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY3MDU0ODAyOCwiZXhwIjoxNjcwNjM0NDI4fQ.HImY9h1UfDnAnsecF25p0oID6vPEsygMdZ9A1QmpWR8&#13;&#10;Request Body: &#13;&#10;    null&#13;&#10;" />
+          <option name="response" value="{&quot;code&quot;:200,&quot;msg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;commentList&quot;:[{&quot;id&quot;:49,&quot;postID&quot;:17,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;屑黄宝&quot;,&quot;commentDate&quot;:&quot;2022-12-09 16:27:01&quot;,&quot;commentAccessID&quot;:1,&quot;content&quot;:&quot;az&quot;,&quot;image&quot;:&quot;https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/BiospherePostImage/a4384c8b488baf812739acc730a24957_98031666146322876.mp4&quot;,&quot;postText&quot;:&quot;爱咋咋&quot;},{&quot;id&quot;:48,&quot;postID&quot;:9,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;屑黄宝&quot;,&quot;commentDate&quot;:&quot;2022-11-10 10:43:30&quot;,&quot;commentAccessID&quot;:1,&quot;content&quot;:&quot;kew&quot;,&quot;image&quot;:null,&quot;postText&quot;:&quot;3333&quot;},{&quot;id&quot;:26,&quot;postID&quot;:15,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;\uD83C\uDF7C喝前摇依瑶〜&quot;,&quot;commentDate&quot;:&quot;2022-11-10 09:17:05&quot;,&quot;commentAccessID&quot;:4,&quot;content&quot;:&quot;这个呢&quot;,&quot;image&quot;:&quot;https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/BiospherePostImage/a1d1f477acd0373c036387e69b57c1d1_45701663921985330.jpg&quot;,&quot;postText&quot;:&quot;哈哈哈嗨&quot;},{&quot;id&quot;:23,&quot;postID&quot;:22,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;屑黄宝&quot;,&quot;commentDate&quot;:&quot;2022-11-10 09:14:22&quot;,&quot;commentAccessID&quot;:1,&quot;content&quot;:&quot;不行&quot;,&quot;image&quot;:null,&quot;postText&quot;:null},{&quot;id&quot;:21,&quot;postID&quot;:22,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;屑黄宝&quot;,&quot;commentDate&quot;:&quot;2022-11-10 09:09:43&quot;,&quot;commentAccessID&quot;:1,&quot;content&quot;:&quot;啊啊&quot;,&quot;image&quot;:null,&quot;postText&quot;:null},{&quot;id&quot;:16,&quot;postID&quot;:2,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;PALo-Caller&quot;,&quot;commentDate&quot;:&quot;2022-09-28 16:01:23&quot;,&quot;commentAccessID&quot;:2,&quot;content&quot;:&quot;e&quot;,&quot;image&quot;:&quot;https://bkimg.cdn.bcebos.com/pic/279759ee3d6d55fbd39691f66f224f4a21a4dd8a?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U4MA==,g_7,xp_5,yp_5/format,f_auto&quot;,&quot;postText&quot;:&quot;偷偷用别人的号测试&quot;},{&quot;id&quot;:11,&quot;postID&quot;:16,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;\uD83C\uDF7C喝前摇依瑶〜&quot;,&quot;commentDate&quot;:&quot;2022-09-28 15:47:44&quot;,&quot;commentAccessID&quot;:4,&quot;content&quot;:&quot;我&quot;,&quot;image&quot;:&quot;https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/BiospherePostImage/a1d1f477acd0373c036387e69b57c1d1_60511663922182922.jpg&quot;,&quot;postText&quot;:&quot;好喝！&quot;},{&quot;id&quot;:4,&quot;postID&quot;:2,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;屑黄宝&quot;,&quot;commentDate&quot;:&quot;2022-09-09 11:30:24&quot;,&quot;commentAccessID&quot;:1,&quot;content&quot;:&quot;qwe&quot;,&quot;image&quot;:&quot;https://bkimg.cdn.bcebos.com/pic/279759ee3d6d55fbd39691f66f224f4a21a4dd8a?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U4MA==,g_7,xp_5,yp_5/format,f_auto&quot;,&quot;postText&quot;:&quot;偷偷用别人的号测试&quot;}]}}" />
+          <option name="url" value="/user/auth/loadMyComment" />
+        </ResponseHistory>
+        <ResponseHistory>
+          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+          <option name="code" value="200" />
+          <option name="enableEnv" value="dev" />
+          <option name="enableProject" value="biosphere" />
+          <option name="method" value="loadMyStar" />
+          <option name="methodType" value="GET" />
+          <option name="name" value="加载我的收藏" />
+          <option name="paramGroup">
+            <ParamGroupCollection>
+              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+              <option name="method" value="loadMyStar" />
+              <option name="methodDescription" value="加载我的收藏" />
+              <option name="multipartKeyValueListJson" value="[]" />
+              <option name="originUrl" value="/user/auth/loadMyStar" />
+              <option name="pathParamsKeyValueListJson" value="[]" />
+              <option name="returnDocument" value="null" />
+              <option name="url" value="/user/auth/loadMyStar" />
+              <option name="urlEncodedKeyValueListJson" value="[]" />
+              <option name="urlParamsKeyValueListJson" value="[{&quot;comment&quot;:&quot;&quot;,&quot;customFlag&quot;:2,&quot;enabled&quot;:true,&quot;key&quot;:&quot;userID&quot;,&quot;type&quot;:&quot;Number&quot;,&quot;value&quot;:&quot;1&quot;}]" />
+              <option name="urlParamsKeyValueListText" value="userID=1" />
+            </ParamGroupCollection>
+          </option>
+          <option name="requestInfo" value="Request Url: http://localhost:9000/user/auth/loadMyStar?userID=1&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyY2FiYmFiYTI1ZDY0OWFmYjFkZjRjODg5OWQ3ZTlkZCIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY3MDU0ODAyOCwiZXhwIjoxNjcwNjM0NDI4fQ.HImY9h1UfDnAnsecF25p0oID6vPEsygMdZ9A1QmpWR8&#13;&#10;Request Body: &#13;&#10;    null&#13;&#10;" />
+          <option name="response" value="{&quot;code&quot;:1008,&quot;msg&quot;:&quot;还未收藏过帖子哦&quot;}" />
+          <option name="url" value="/user/auth/loadMyStar" />
+        </ResponseHistory>
+        <ResponseHistory>
+          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+          <option name="code" value="200" />
+          <option name="enableEnv" value="dev" />
+          <option name="enableProject" value="biosphere" />
+          <option name="method" value="loadMyStar" />
+          <option name="methodType" value="GET" />
+          <option name="name" value="加载我的收藏" />
+          <option name="paramGroup">
+            <ParamGroupCollection>
+              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+              <option name="method" value="loadMyStar" />
+              <option name="methodDescription" value="加载我的收藏" />
+              <option name="multipartKeyValueListJson" value="[]" />
+              <option name="originUrl" value="/user/auth/loadMyStar" />
+              <option name="pathParamsKeyValueListJson" value="[]" />
+              <option name="returnDocument" value="null" />
+              <option name="url" value="/user/auth/loadMyStar" />
+              <option name="urlEncodedKeyValueListJson" value="[]" />
+              <option name="urlParamsKeyValueListJson" value="[{&quot;comment&quot;:&quot;&quot;,&quot;customFlag&quot;:2,&quot;enabled&quot;:true,&quot;key&quot;:&quot;userID&quot;,&quot;type&quot;:&quot;Number&quot;,&quot;value&quot;:&quot;1&quot;}]" />
+              <option name="urlParamsKeyValueListText" value="userID=1" />
+            </ParamGroupCollection>
+          </option>
+          <option name="requestInfo" value="Request Url: http://localhost:9000/user/auth/loadMyStar?userID=1&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyY2FiYmFiYTI1ZDY0OWFmYjFkZjRjODg5OWQ3ZTlkZCIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY3MDU0ODAyOCwiZXhwIjoxNjcwNjM0NDI4fQ.HImY9h1UfDnAnsecF25p0oID6vPEsygMdZ9A1QmpWR8&#13;&#10;Request Body: &#13;&#10;    null&#13;&#10;" />
+          <option name="response" value="{&quot;code&quot;:1008,&quot;msg&quot;:&quot;还未收藏过帖子哦&quot;}" />
+          <option name="url" value="/user/auth/loadMyStar" />
+        </ResponseHistory>
+        <ResponseHistory>
+          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+          <option name="code" value="200" />
+          <option name="enableEnv" value="dev" />
+          <option name="enableProject" value="biosphere" />
+          <option name="method" value="loadMyStar" />
+          <option name="methodType" value="GET" />
+          <option name="name" value="加载我的收藏" />
+          <option name="paramGroup">
+            <ParamGroupCollection>
+              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+              <option name="method" value="loadMyStar" />
+              <option name="methodDescription" value="加载我的收藏" />
+              <option name="multipartKeyValueListJson" value="[]" />
+              <option name="originUrl" value="/user/auth/loadMyStar" />
+              <option name="pathParamsKeyValueListJson" value="[]" />
+              <option name="returnDocument" value="null" />
+              <option name="url" value="/user/auth/loadMyStar" />
+              <option name="urlEncodedKeyValueListJson" value="[]" />
+              <option name="urlParamsKeyValueListJson" value="[{&quot;comment&quot;:&quot;&quot;,&quot;customFlag&quot;:2,&quot;enabled&quot;:true,&quot;key&quot;:&quot;userID&quot;,&quot;type&quot;:&quot;Number&quot;,&quot;value&quot;:&quot;1&quot;}]" />
+              <option name="urlParamsKeyValueListText" value="userID=1" />
+            </ParamGroupCollection>
+          </option>
+          <option name="requestInfo" value="Request Url: http://localhost:9000/user/auth/loadMyStar?userID=1&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyY2FiYmFiYTI1ZDY0OWFmYjFkZjRjODg5OWQ3ZTlkZCIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY3MDU0ODAyOCwiZXhwIjoxNjcwNjM0NDI4fQ.HImY9h1UfDnAnsecF25p0oID6vPEsygMdZ9A1QmpWR8&#13;&#10;Request Body: &#13;&#10;    null&#13;&#10;" />
+          <option name="response" value="{&quot;code&quot;:1008,&quot;msg&quot;:&quot;还未收藏过帖子哦&quot;}" />
+          <option name="url" value="/user/auth/loadMyStar" />
+        </ResponseHistory>
+        <ResponseHistory>
+          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+          <option name="code" value="500" />
+          <option name="enableEnv" value="dev" />
+          <option name="enableProject" value="biosphere" />
+          <option name="method" value="loadMyStar" />
+          <option name="methodType" value="GET" />
+          <option name="name" value="加载我的收藏" />
+          <option name="paramGroup">
+            <ParamGroupCollection>
+              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+              <option name="method" value="loadMyStar" />
+              <option name="methodDescription" value="加载我的收藏" />
+              <option name="multipartKeyValueListJson" value="[]" />
+              <option name="originUrl" value="/user/auth/loadMyStar" />
+              <option name="pathParamsKeyValueListJson" value="[]" />
+              <option name="returnDocument" value="null" />
+              <option name="url" value="/user/auth/loadMyStar" />
+              <option name="urlEncodedKeyValueListJson" value="[]" />
+              <option name="urlParamsKeyValueListJson" value="[{&quot;comment&quot;:&quot;&quot;,&quot;customFlag&quot;:2,&quot;enabled&quot;:true,&quot;key&quot;:&quot;userID&quot;,&quot;type&quot;:&quot;Number&quot;,&quot;value&quot;:&quot;1&quot;}]" />
+              <option name="urlParamsKeyValueListText" value="userID=1" />
+            </ParamGroupCollection>
+          </option>
+          <option name="requestInfo" value="Request Url: http://localhost:9000/user/auth/loadMyStar?userID=1&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyY2FiYmFiYTI1ZDY0OWFmYjFkZjRjODg5OWQ3ZTlkZCIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY3MDU0ODAyOCwiZXhwIjoxNjcwNjM0NDI4fQ.HImY9h1UfDnAnsecF25p0oID6vPEsygMdZ9A1QmpWR8&#13;&#10;Request Body: &#13;&#10;    null&#13;&#10;" />
+          <option name="response" value="{&quot;timestamp&quot;:1670567464062,&quot;status&quot;:500,&quot;error&quot;:&quot;Internal Server Error&quot;,&quot;path&quot;:&quot;/user/auth/loadMyStar&quot;}" />
+          <option name="url" value="/user/auth/loadMyStar" />
+        </ResponseHistory>
+        <ResponseHistory>
+          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+          <option name="code" value="200" />
+          <option name="enableEnv" value="dev" />
+          <option name="enableProject" value="biosphere" />
+          <option name="method" value="loadMyComment" />
+          <option name="methodType" value="GET" />
+          <option name="name" value="加载我的评论" />
+          <option name="paramGroup">
+            <ParamGroupCollection>
+              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+              <option name="method" value="loadMyComment" />
+              <option name="methodDescription" value="加载我的评论" />
+              <option name="multipartKeyValueListJson" value="[]" />
+              <option name="originUrl" value="/user/auth/loadMyComment" />
+              <option name="pathParamsKeyValueListJson" value="[]" />
+              <option name="returnDocument" value="null" />
+              <option name="url" value="/user/auth/loadMyComment" />
+              <option name="urlEncodedKeyValueListJson" value="[]" />
+              <option name="urlParamsKeyValueListJson" value="[{&quot;comment&quot;:&quot;&quot;,&quot;customFlag&quot;:2,&quot;enabled&quot;:true,&quot;key&quot;:&quot;userID&quot;,&quot;type&quot;:&quot;Number&quot;,&quot;value&quot;:&quot;1&quot;}]" />
+              <option name="urlParamsKeyValueListText" value="userID=1" />
+            </ParamGroupCollection>
+          </option>
+          <option name="requestInfo" value="Request Url: http://localhost:9000/user/auth/loadMyComment?userID=1&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyY2FiYmFiYTI1ZDY0OWFmYjFkZjRjODg5OWQ3ZTlkZCIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY3MDU0ODAyOCwiZXhwIjoxNjcwNjM0NDI4fQ.HImY9h1UfDnAnsecF25p0oID6vPEsygMdZ9A1QmpWR8&#13;&#10;Request Body: &#13;&#10;    null&#13;&#10;" />
+          <option name="response" value="{&quot;code&quot;:200,&quot;msg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;commentList&quot;:[{&quot;id&quot;:48,&quot;postID&quot;:9,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;屑黄宝&quot;,&quot;commentDate&quot;:&quot;2022-11-10 10:43:30&quot;,&quot;commentAccessID&quot;:1,&quot;content&quot;:&quot;kew&quot;,&quot;image&quot;:null,&quot;postText&quot;:&quot;3333&quot;},{&quot;id&quot;:27,&quot;postID&quot;:15,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;\uD83C\uDF7C喝前摇依瑶〜&quot;,&quot;commentDate&quot;:&quot;2022-11-10 09:30:08&quot;,&quot;commentAccessID&quot;:4,&quot;content&quot;:&quot;啊啊&quot;,&quot;image&quot;:&quot;https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/BiospherePostImage/a1d1f477acd0373c036387e69b57c1d1_45701663921985330.jpg&quot;,&quot;postText&quot;:&quot;哈哈哈嗨&quot;},{&quot;id&quot;:26,&quot;postID&quot;:15,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;\uD83C\uDF7C喝前摇依瑶〜&quot;,&quot;commentDate&quot;:&quot;2022-11-10 09:17:05&quot;,&quot;commentAccessID&quot;:4,&quot;content&quot;:&quot;这个呢&quot;,&quot;image&quot;:&quot;https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/BiospherePostImage/a1d1f477acd0373c036387e69b57c1d1_45701663921985330.jpg&quot;,&quot;postText&quot;:&quot;哈哈哈嗨&quot;},{&quot;id&quot;:25,&quot;postID&quot;:17,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;屑黄宝&quot;,&quot;commentDate&quot;:&quot;2022-11-10 09:15:13&quot;,&quot;commentAccessID&quot;:1,&quot;content&quot;:&quot;好像又&quot;,&quot;image&quot;:&quot;https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/BiospherePostImage/a4384c8b488baf812739acc730a24957_98031666146322876.mp4&quot;,&quot;postText&quot;:&quot;爱咋咋&quot;},{&quot;id&quot;:23,&quot;postID&quot;:22,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;屑黄宝&quot;,&quot;commentDate&quot;:&quot;2022-11-10 09:14:22&quot;,&quot;commentAccessID&quot;:1,&quot;content&quot;:&quot;不行&quot;,&quot;image&quot;:null,&quot;postText&quot;:null},{&quot;id&quot;:21,&quot;postID&quot;:22,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;屑黄宝&quot;,&quot;commentDate&quot;:&quot;2022-11-10 09:09:43&quot;,&quot;commentAccessID&quot;:1,&quot;content&quot;:&quot;啊啊&quot;,&quot;image&quot;:null,&quot;postText&quot;:null},{&quot;id&quot;:20,&quot;postID&quot;:22,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;屑黄宝&quot;,&quot;commentDate&quot;:&quot;2022-11-10 09:09:03&quot;,&quot;commentAccessID&quot;:1,&quot;content&quot;:&quot;评论&quot;,&quot;image&quot;:null,&quot;postText&quot;:null},{&quot;id&quot;:16,&quot;postID&quot;:2,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;PALo-Caller&quot;,&quot;commentDate&quot;:&quot;2022-09-28 16:01:23&quot;,&quot;commentAccessID&quot;:2,&quot;content&quot;:&quot;e&quot;,&quot;image&quot;:&quot;https://bkimg.cdn.bcebos.com/pic/279759ee3d6d55fbd39691f66f224f4a21a4dd8a?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U4MA==,g_7,xp_5,yp_5/format,f_auto&quot;,&quot;postText&quot;:&quot;偷偷用别人的号测试&quot;},{&quot;id&quot;:11,&quot;postID&quot;:16,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;\uD83C\uDF7C喝前摇依瑶〜&quot;,&quot;commentDate&quot;:&quot;2022-09-28 15:47:44&quot;,&quot;commentAccessID&quot;:4,&quot;content&quot;:&quot;我&quot;,&quot;image&quot;:&quot;https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/BiospherePostImage/a1d1f477acd0373c036387e69b57c1d1_60511663922182922.jpg&quot;,&quot;postText&quot;:&quot;好喝！&quot;},{&quot;id&quot;:4,&quot;postID&quot;:2,&quot;userID&quot;:1,&quot;userName&quot;:&quot;屑黄宝&quot;,&quot;userAvatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;commentAccessName&quot;:&quot;屑黄宝&quot;,&quot;commentDate&quot;:&quot;2022-09-09 11:30:24&quot;,&quot;commentAccessID&quot;:1,&quot;content&quot;:&quot;qwe&quot;,&quot;image&quot;:&quot;https://bkimg.cdn.bcebos.com/pic/279759ee3d6d55fbd39691f66f224f4a21a4dd8a?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U4MA==,g_7,xp_5,yp_5/format,f_auto&quot;,&quot;postText&quot;:&quot;偷偷用别人的号测试&quot;}]}}" />
+          <option name="url" value="/user/auth/loadMyComment" />
+        </ResponseHistory>
+        <ResponseHistory>
+          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+          <option name="code" value="500" />
+          <option name="enableEnv" value="dev" />
+          <option name="enableProject" value="biosphere" />
+          <option name="method" value="loadMyStar" />
+          <option name="methodType" value="GET" />
+          <option name="name" value="加载我的收藏" />
+          <option name="paramGroup">
+            <ParamGroupCollection>
+              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+              <option name="method" value="loadMyStar" />
+              <option name="methodDescription" value="加载我的收藏" />
+              <option name="multipartKeyValueListJson" value="[]" />
+              <option name="originUrl" value="/user/auth/loadMyStar" />
+              <option name="pathParamsKeyValueListJson" value="[]" />
+              <option name="returnDocument" value="null" />
+              <option name="url" value="/user/auth/loadMyStar" />
+              <option name="urlEncodedKeyValueListJson" value="[]" />
+              <option name="urlParamsKeyValueListJson" value="[{&quot;comment&quot;:&quot;&quot;,&quot;customFlag&quot;:2,&quot;enabled&quot;:true,&quot;key&quot;:&quot;userID&quot;,&quot;type&quot;:&quot;Number&quot;,&quot;value&quot;:&quot;1&quot;}]" />
+              <option name="urlParamsKeyValueListText" value="userID=1" />
+            </ParamGroupCollection>
+          </option>
+          <option name="requestInfo" value="Request Url: http://localhost:9000/user/auth/loadMyStar?userID=1&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyY2FiYmFiYTI1ZDY0OWFmYjFkZjRjODg5OWQ3ZTlkZCIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY3MDU0ODAyOCwiZXhwIjoxNjcwNjM0NDI4fQ.HImY9h1UfDnAnsecF25p0oID6vPEsygMdZ9A1QmpWR8&#13;&#10;Request Body: &#13;&#10;    null&#13;&#10;" />
+          <option name="response" value="{&quot;timestamp&quot;:1670567429327,&quot;status&quot;:500,&quot;error&quot;:&quot;Internal Server Error&quot;,&quot;path&quot;:&quot;/user/auth/loadMyStar&quot;}" />
+          <option name="url" value="/user/auth/loadMyStar" />
+        </ResponseHistory>
+        <ResponseHistory>
+          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+          <option name="code" value="200" />
+          <option name="enableEnv" value="dev" />
+          <option name="enableProject" value="biosphere" />
+          <option name="method" value="loadMyStar" />
+          <option name="methodType" value="GET" />
+          <option name="name" value="加载我的收藏" />
+          <option name="paramGroup">
+            <ParamGroupCollection>
+              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+              <option name="method" value="loadMyStar" />
+              <option name="methodDescription" value="加载我的收藏" />
+              <option name="multipartKeyValueListJson" value="[]" />
+              <option name="originUrl" value="/user/auth/loadMyStar" />
+              <option name="pathParamsKeyValueListJson" value="[]" />
+              <option name="returnDocument" value="null" />
+              <option name="url" value="/user/auth/loadMyStar" />
+              <option name="urlEncodedKeyValueListJson" value="[]" />
+              <option name="urlParamsKeyValueListJson" value="[{&quot;comment&quot;:&quot;&quot;,&quot;customFlag&quot;:2,&quot;enabled&quot;:true,&quot;key&quot;:&quot;userID&quot;,&quot;type&quot;:&quot;Number&quot;,&quot;value&quot;:&quot;1&quot;}]" />
+              <option name="urlParamsKeyValueListText" value="userID=1" />
+            </ParamGroupCollection>
+          </option>
+          <option name="requestInfo" value="Request Url: http://localhost:9000/user/auth/loadMyStar?userID=1&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyY2FiYmFiYTI1ZDY0OWFmYjFkZjRjODg5OWQ3ZTlkZCIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY3MDU0ODAyOCwiZXhwIjoxNjcwNjM0NDI4fQ.HImY9h1UfDnAnsecF25p0oID6vPEsygMdZ9A1QmpWR8&#13;&#10;Request Body: &#13;&#10;    null&#13;&#10;" />
+          <option name="response" value="{&quot;code&quot;:1008,&quot;msg&quot;:&quot;还未收藏过帖子哦&quot;}" />
+          <option name="url" value="/user/auth/loadMyStar" />
+        </ResponseHistory>
+        <ResponseHistory>
+          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+          <option name="code" value="200" />
+          <option name="enableEnv" value="dev" />
+          <option name="enableProject" value="biosphere" />
+          <option name="method" value="loadMyStar" />
+          <option name="methodType" value="GET" />
+          <option name="name" value="加载我的收藏" />
+          <option name="paramGroup">
+            <ParamGroupCollection>
+              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+              <option name="method" value="loadMyStar" />
+              <option name="methodDescription" value="加载我的收藏" />
+              <option name="multipartKeyValueListJson" value="[]" />
+              <option name="originUrl" value="/user/auth/loadMyStar" />
+              <option name="pathParamsKeyValueListJson" value="[]" />
+              <option name="returnDocument" value="null" />
+              <option name="url" value="/user/auth/loadMyStar" />
+              <option name="urlEncodedKeyValueListJson" value="[]" />
+              <option name="urlParamsKeyValueListJson" value="[{&quot;comment&quot;:&quot;&quot;,&quot;customFlag&quot;:2,&quot;enabled&quot;:true,&quot;key&quot;:&quot;userID&quot;,&quot;type&quot;:&quot;Number&quot;,&quot;value&quot;:&quot;1&quot;}]" />
+              <option name="urlParamsKeyValueListText" value="userID=1" />
+            </ParamGroupCollection>
+          </option>
+          <option name="requestInfo" value="Request Url: http://localhost:9000/user/auth/loadMyStar?userID=1&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyY2FiYmFiYTI1ZDY0OWFmYjFkZjRjODg5OWQ3ZTlkZCIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY3MDU0ODAyOCwiZXhwIjoxNjcwNjM0NDI4fQ.HImY9h1UfDnAnsecF25p0oID6vPEsygMdZ9A1QmpWR8&#13;&#10;Request Body: &#13;&#10;    null&#13;&#10;" />
+          <option name="response" value="{&quot;code&quot;:200,&quot;msg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;postList&quot;:[{&quot;postID&quot;:14,&quot;content&quot;:&quot;哈哈哈可以发视频了&quot;,&quot;theme&quot;:&quot;吐槽&quot;,&quot;imageUrl&quot;:&quot;https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/BiospherePostImage/a4384c8b488baf812739acc730a24957_61841663914606798.mp4&quot;,&quot;imageUrlList&quot;:[&quot;https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/BiospherePostImage/a4384c8b488baf812739acc730a24957_61841663914606798.mp4&quot;],&quot;avatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;dateFormat&quot;:&quot;2022-09-23 14:30&quot;,&quot;starDateformat&quot;:&quot;2022-11-10 10:43&quot;,&quot;userName&quot;:&quot;屑黄宝&quot;},{&quot;postID&quot;:13,&quot;content&quot;:&quot;哈哈哈可以发图片了&quot;,&quot;theme&quot;:&quot;晒动物&quot;,&quot;imageUrl&quot;:&quot;https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/BiospherePostImage/a4384c8b488baf812739acc730a24957_15061663914549803.jpg&quot;,&quot;imageUrlList&quot;:[&quot;https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/BiospherePostImage/a4384c8b488baf812739acc730a24957_15061663914549803.jpg&quot;],&quot;avatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eobfn8t4BNhx1KDDpoZyQHTxW3II5D5cw6DibYcSVPJsd8xntgXmK6rMVTMlfE2lQaFmUM5AvQQ4kg/132&quot;,&quot;dateFormat&quot;:&quot;2022-09-23 14:29&quot;,&quot;starDateformat&quot;:&quot;2022-10-13 16:44&quot;,&quot;userName&quot;:&quot;屑黄宝&quot;},{&quot;postID&quot;:15,&quot;content&quot;:&quot;哈哈哈嗨&quot;,&quot;theme&quot;:&quot;吐槽&quot;,&quot;imageUrl&quot;:&quot;https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/BiospherePostImage/a1d1f477acd0373c036387e69b57c1d1_45701663921985330.jpg&quot;,&quot;imageUrlList&quot;:[&quot;https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/BiospherePostImage/a1d1f477acd0373c036387e69b57c1d1_45701663921985330.jpg&quot;],&quot;avatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLiajC2F4ZBM6ic9RdKuib9p8smIR2dmSvWibpqNCsKl3mwb4Xva5bOP1kTel6KZA1h8tJdahGQrwjvDQ/132&quot;,&quot;dateFormat&quot;:&quot;2022-09-23 16:33&quot;,&quot;starDateformat&quot;:&quot;2022-10-13 16:38&quot;,&quot;userName&quot;:&quot;\uD83C\uDF7C喝前摇依瑶〜&quot;},{&quot;postID&quot;:16,&quot;content&quot;:&quot;好喝！&quot;,&quot;theme&quot;:&quot;吐槽&quot;,&quot;imageUrl&quot;:&quot;https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/BiospherePostImage/a1d1f477acd0373c036387e69b57c1d1_60511663922182922.jpg&quot;,&quot;imageUrlList&quot;:[&quot;https://zucc-1308480699.cos.ap-nanjing.myqcloud.com/BiospherePostImage/a1d1f477acd0373c036387e69b57c1d1_60511663922182922.jpg&quot;],&quot;avatarUrl&quot;:&quot;https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLiajC2F4ZBM6ic9RdKuib9p8smIR2dmSvWibpqNCsKl3mwb4Xva5bOP1kTel6KZA1h8tJdahGQrwjvDQ/132&quot;,&quot;dateFormat&quot;:&quot;2022-09-23 16:36&quot;,&quot;starDateformat&quot;:&quot;2022-10-13 10:27&quot;,&quot;userName&quot;:&quot;\uD83C\uDF7C喝前摇依瑶〜&quot;}]}}" />
+          <option name="url" value="/user/auth/loadMyStar" />
+        </ResponseHistory>
+        <ResponseHistory>
+          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+          <option name="code" value="500" />
+          <option name="enableEnv" value="dev" />
+          <option name="enableProject" value="biosphere" />
+          <option name="method" value="loadMyStar" />
+          <option name="methodType" value="GET" />
+          <option name="name" value="加载我的收藏" />
+          <option name="paramGroup">
+            <ParamGroupCollection>
+              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+              <option name="method" value="loadMyStar" />
+              <option name="methodDescription" value="加载我的收藏" />
+              <option name="multipartKeyValueListJson" value="[]" />
+              <option name="originUrl" value="/user/auth/loadMyStar" />
+              <option name="pathParamsKeyValueListJson" value="[]" />
+              <option name="returnDocument" value="null" />
+              <option name="url" value="/user/auth/loadMyStar" />
+              <option name="urlEncodedKeyValueListJson" value="[]" />
+              <option name="urlParamsKeyValueListJson" value="[{&quot;comment&quot;:&quot;&quot;,&quot;customFlag&quot;:2,&quot;enabled&quot;:true,&quot;key&quot;:&quot;userID&quot;,&quot;type&quot;:&quot;Number&quot;,&quot;value&quot;:&quot;2&quot;}]" />
+              <option name="urlParamsKeyValueListText" value="userID=2" />
+            </ParamGroupCollection>
+          </option>
+          <option name="requestInfo" value="Request Url: http://localhost:9000/user/auth/loadMyStar?userID=2&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyY2FiYmFiYTI1ZDY0OWFmYjFkZjRjODg5OWQ3ZTlkZCIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY3MDU0ODAyOCwiZXhwIjoxNjcwNjM0NDI4fQ.HImY9h1UfDnAnsecF25p0oID6vPEsygMdZ9A1QmpWR8&#13;&#10;Request Body: &#13;&#10;    null&#13;&#10;" />
+          <option name="response" value="{&quot;code&quot;:500,&quot;msg&quot;:&quot;服务端异常&quot;}" />
+          <option name="url" value="/user/auth/loadMyStar" />
+        </ResponseHistory>
+        <ResponseHistory>
+          <option name="className" value="com.biosphere.communitymodule.controller.CommunityController" />
+          <option name="code" value="200" />
+          <option name="enableEnv" value="dev" />
+          <option name="enableProject" value="biosphere" />
+          <option name="method" value="uploadPost" />
+          <option name="methodType" value="POST" />
+          <option name="name" value="上传帖子" />
+          <option name="paramGroup">
+            <ParamGroupCollection>
+              <option name="bodyKeyValueListJson" value="{&#10;  &quot;theme&quot;: &quot;&quot;,&#10;  &quot;content&quot;: &quot;sz&quot;,&#10;  &quot;userID&quot;: 1&#10;}" />
+              <option name="className" value="com.biosphere.communitymodule.controller.CommunityController" />
+              <option name="jsonDocument" value="{&#10;  &quot;theme&quot;: &quot;No comment,Value =theme_liphe&quot;,&#10;  &quot;content&quot;: &quot;No comment,Value =content_g7r0m&quot;,&#10;  &quot;userID&quot;: &quot;No comment,Value =1&quot;,&#10;  &quot;images&quot;: [&#10;    &quot;No comment,Value =images_m7eoe&quot;&#10;  ]&#10;}" />
+              <option name="method" value="uploadPost" />
+              <option name="methodDescription" value="上传帖子" />
               <option name="methodType" value="POST" />
               <option name="multipartKeyValueListJson" value="[]" />
-              <option name="originUrl" value="/user/auth/deletePost" />
+              <option name="originUrl" value="/community/auth/uploadPost" />
               <option name="pathParamsKeyValueListJson" value="[]" />
-              <option name="url" value="/user/auth/deletePost" />
+              <option name="url" value="/community/auth/uploadPost" />
               <option name="urlEncodedKeyValueListJson" value="[]" />
               <option name="urlParamsKeyValueListJson" value="[]" />
             </ParamGroupCollection>
           </option>
-          <option name="requestInfo" value="Request Url: http://localhost:9000/user/auth/deletePost&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 24&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&quot;postID&quot;:24,&quot;userID&quot;:1}&#13;&#10;" />
+          <option name="requestInfo" value="Request Url: http://localhost:9000/community/auth/uploadPost&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 51&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyY2FiYmFiYTI1ZDY0OWFmYjFkZjRjODg5OWQ3ZTlkZCIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY3MDU0ODAyOCwiZXhwIjoxNjcwNjM0NDI4fQ.HImY9h1UfDnAnsecF25p0oID6vPEsygMdZ9A1QmpWR8&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&#10;  &quot;theme&quot;: &quot;&quot;,&#10;  &quot;content&quot;: &quot;sz&quot;,&#10;  &quot;userID&quot;: 1&#10;}&#13;&#10;" />
+          <option name="response" value="{&quot;code&quot;:400,&quot;msg&quot;:&quot;请检查传入信息&quot;,&quot;data&quot;:&quot;主题不能为空&quot;}" />
+          <option name="url" value="/community/auth/uploadPost" />
+        </ResponseHistory>
+        <ResponseHistory>
+          <option name="className" value="com.biosphere.communitymodule.controller.CommunityController" />
+          <option name="code" value="200" />
+          <option name="enableEnv" value="dev" />
+          <option name="enableProject" value="biosphere" />
+          <option name="method" value="uploadPost" />
+          <option name="methodType" value="POST" />
+          <option name="name" value="上传帖子" />
+          <option name="paramGroup">
+            <ParamGroupCollection>
+              <option name="bodyKeyValueListJson" value="{&#10;  &quot;theme&quot;: &quot;&quot;,&#10;  &quot;content&quot;: &quot;sz&quot;,&#10;  &quot;userID&quot;: 1&#10;}" />
+              <option name="className" value="com.biosphere.communitymodule.controller.CommunityController" />
+              <option name="jsonDocument" value="{&#10;  &quot;theme&quot;: &quot;No comment,Value =theme_liphe&quot;,&#10;  &quot;content&quot;: &quot;No comment,Value =content_g7r0m&quot;,&#10;  &quot;userID&quot;: &quot;No comment,Value =1&quot;,&#10;  &quot;images&quot;: [&#10;    &quot;No comment,Value =images_m7eoe&quot;&#10;  ]&#10;}" />
+              <option name="method" value="uploadPost" />
+              <option name="methodDescription" value="上传帖子" />
+              <option name="methodType" value="POST" />
+              <option name="multipartKeyValueListJson" value="[]" />
+              <option name="originUrl" value="/community/auth/uploadPost" />
+              <option name="pathParamsKeyValueListJson" value="[]" />
+              <option name="url" value="/community/auth/uploadPost" />
+              <option name="urlEncodedKeyValueListJson" value="[]" />
+              <option name="urlParamsKeyValueListJson" value="[]" />
+            </ParamGroupCollection>
+          </option>
+          <option name="requestInfo" value="Request Url: http://localhost:9000/community/auth/uploadPost&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 51&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyY2FiYmFiYTI1ZDY0OWFmYjFkZjRjODg5OWQ3ZTlkZCIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY3MDU0ODAyOCwiZXhwIjoxNjcwNjM0NDI4fQ.HImY9h1UfDnAnsecF25p0oID6vPEsygMdZ9A1QmpWR8&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&#10;  &quot;theme&quot;: &quot;&quot;,&#10;  &quot;content&quot;: &quot;sz&quot;,&#10;  &quot;userID&quot;: 1&#10;}&#13;&#10;" />
+          <option name="response" value="{&quot;code&quot;:400,&quot;msg&quot;:&quot;请检查传入信息&quot;,&quot;data&quot;:&quot;主题不能为空&quot;}" />
+          <option name="url" value="/community/auth/uploadPost" />
+        </ResponseHistory>
+        <ResponseHistory>
+          <option name="className" value="com.biosphere.communitymodule.controller.CommunityController" />
+          <option name="code" value="200" />
+          <option name="enableEnv" value="dev" />
+          <option name="enableProject" value="biosphere" />
+          <option name="method" value="uploadPost" />
+          <option name="methodType" value="POST" />
+          <option name="name" value="上传帖子" />
+          <option name="paramGroup">
+            <ParamGroupCollection>
+              <option name="bodyKeyValueListJson" value="{&#10;  &quot;theme&quot;: &quot;&quot;,&#10;  &quot;content&quot;: &quot;&quot;,&#10;  &quot;userID&quot;: 1&#10;}" />
+              <option name="className" value="com.biosphere.communitymodule.controller.CommunityController" />
+              <option name="jsonDocument" value="{&#10;  &quot;theme&quot;: &quot;No comment,Value =theme_liphe&quot;,&#10;  &quot;content&quot;: &quot;No comment,Value =content_g7r0m&quot;,&#10;  &quot;userID&quot;: &quot;No comment,Value =1&quot;,&#10;  &quot;images&quot;: [&#10;    &quot;No comment,Value =images_m7eoe&quot;&#10;  ]&#10;}" />
+              <option name="method" value="uploadPost" />
+              <option name="methodDescription" value="上传帖子" />
+              <option name="methodType" value="POST" />
+              <option name="multipartKeyValueListJson" value="[]" />
+              <option name="originUrl" value="/community/auth/uploadPost" />
+              <option name="pathParamsKeyValueListJson" value="[]" />
+              <option name="url" value="/community/auth/uploadPost" />
+              <option name="urlEncodedKeyValueListJson" value="[]" />
+              <option name="urlParamsKeyValueListJson" value="[]" />
+            </ParamGroupCollection>
+          </option>
+          <option name="requestInfo" value="Request Url: http://localhost:9000/community/auth/uploadPost&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 49&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyY2FiYmFiYTI1ZDY0OWFmYjFkZjRjODg5OWQ3ZTlkZCIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY3MDU0ODAyOCwiZXhwIjoxNjcwNjM0NDI4fQ.HImY9h1UfDnAnsecF25p0oID6vPEsygMdZ9A1QmpWR8&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&#10;  &quot;theme&quot;: &quot;&quot;,&#10;  &quot;content&quot;: &quot;&quot;,&#10;  &quot;userID&quot;: 1&#10;}&#13;&#10;" />
+          <option name="response" value="{&quot;code&quot;:400,&quot;msg&quot;:&quot;请检查传入信息&quot;,&quot;data&quot;:&quot;内容不能为空; 主题不能为空&quot;}" />
+          <option name="url" value="/community/auth/uploadPost" />
+        </ResponseHistory>
+        <ResponseHistory>
+          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+          <option name="code" value="200" />
+          <option name="enableEnv" value="dev" />
+          <option name="enableProject" value="biosphere" />
+          <option name="method" value="userLogin" />
+          <option name="methodType" value="POST" />
+          <option name="name" value="用户登录" />
+          <option name="paramGroup">
+            <ParamGroupCollection>
+              <option name="bodyKeyValueListJson" value="{&#10;  &quot;code&quot;: &quot;&quot;,&#10;  &quot;avatarUrl&quot;: &quot;avatarUrl_bv44p&quot;,&#10;  &quot;nickName&quot;: &quot;nickName_8tc52&quot;&#10;}" />
+              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+              <option name="jsonDocument" value="{&#10;  &quot;code&quot;: &quot;No comment,Value =code_bjs4v&quot;,&#10;  &quot;avatarUrl&quot;: &quot;No comment,Value =avatarUrl_bv44p&quot;,&#10;  &quot;nickName&quot;: &quot;No comment,Value =nickName_8tc52&quot;&#10;}" />
+              <option name="method" value="userLogin" />
+              <option name="methodDescription" value="用户登录" />
+              <option name="methodType" value="POST" />
+              <option name="multipartKeyValueListJson" value="[]" />
+              <option name="originUrl" value="/user/exposure/login" />
+              <option name="pathParamsKeyValueListJson" value="[]" />
+              <option name="returnDocument" value="null" />
+              <option name="url" value="/user/exposure/login" />
+              <option name="urlEncodedKeyValueListJson" value="[]" />
+              <option name="urlParamsKeyValueListJson" value="[]" />
+            </ParamGroupCollection>
+          </option>
+          <option name="requestInfo" value="Request Url: http://localhost:9000/user/exposure/login&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 82&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyY2FiYmFiYTI1ZDY0OWFmYjFkZjRjODg5OWQ3ZTlkZCIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY3MDU0ODAyOCwiZXhwIjoxNjcwNjM0NDI4fQ.HImY9h1UfDnAnsecF25p0oID6vPEsygMdZ9A1QmpWR8&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&#10;  &quot;code&quot;: &quot;&quot;,&#10;  &quot;avatarUrl&quot;: &quot;avatarUrl_bv44p&quot;,&#10;  &quot;nickName&quot;: &quot;nickName_8tc52&quot;&#10;}&#13;&#10;" />
+          <option name="response" value="{&quot;code&quot;:400,&quot;msg&quot;:&quot;请检查传入信息&quot;,&quot;data&quot;:&quot;头像地址有误; code值不能为空&quot;}" />
+          <option name="url" value="/user/exposure/login" />
+        </ResponseHistory>
+        <ResponseHistory>
+          <option name="className" value="com.biosphere.communitymodule.controller.CommunityController" />
+          <option name="code" value="200" />
+          <option name="enableEnv" value="dev" />
+          <option name="enableProject" value="biosphere" />
+          <option name="method" value="uploadPost" />
+          <option name="methodType" value="POST" />
+          <option name="name" value="上传帖子" />
+          <option name="paramGroup">
+            <ParamGroupCollection>
+              <option name="bodyKeyValueListJson" value="{&#10;  &quot;theme&quot;: &quot;&quot;,&#10;  &quot;content&quot;: &quot;content_gbww3&quot;,&#10;  &quot;userID&quot;: 1&#10;}" />
+              <option name="className" value="com.biosphere.communitymodule.controller.CommunityController" />
+              <option name="jsonDocument" value="{&#10;  &quot;theme&quot;: &quot;No comment,Value =theme_dg3l0&quot;,&#10;  &quot;content&quot;: &quot;No comment,Value =content_gbww3&quot;,&#10;  &quot;userID&quot;: &quot;No comment,Value =1&quot;,&#10;  &quot;images&quot;: [&#10;    &quot;No comment,Value =images_utice&quot;&#10;  ]&#10;}" />
+              <option name="method" value="uploadPost" />
+              <option name="methodDescription" value="上传帖子" />
+              <option name="methodType" value="POST" />
+              <option name="multipartKeyValueListJson" value="[]" />
+              <option name="originUrl" value="/community/auth/uploadPost" />
+              <option name="pathParamsKeyValueListJson" value="[]" />
+              <option name="url" value="/community/auth/uploadPost" />
+              <option name="urlEncodedKeyValueListJson" value="[]" />
+              <option name="urlParamsKeyValueListJson" value="[]" />
+            </ParamGroupCollection>
+          </option>
+          <option name="requestInfo" value="Request Url: http://localhost:9000/community/auth/uploadPost&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 62&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyY2FiYmFiYTI1ZDY0OWFmYjFkZjRjODg5OWQ3ZTlkZCIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY3MDU0ODAyOCwiZXhwIjoxNjcwNjM0NDI4fQ.HImY9h1UfDnAnsecF25p0oID6vPEsygMdZ9A1QmpWR8&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&#10;  &quot;theme&quot;: &quot;&quot;,&#10;  &quot;content&quot;: &quot;content_gbww3&quot;,&#10;  &quot;userID&quot;: 1&#10;}&#13;&#10;" />
           <option name="response" value="{&quot;code&quot;:200,&quot;msg&quot;:&quot;SUCCESS&quot;}" />
-          <option name="url" value="/user/auth/deletePost" />
+          <option name="url" value="/community/auth/uploadPost" />
         </ResponseHistory>
         <ResponseHistory>
-          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
+          <option name="className" value="com.biosphere.communitymodule.controller.CommunityController" />
           <option name="code" value="200" />
           <option name="enableEnv" value="dev" />
           <option name="enableProject" value="biosphere" />
-          <option name="method" value="deletePost" />
+          <option name="method" value="uploadPost" />
           <option name="methodType" value="POST" />
-          <option name="name" value="删除帖子" />
+          <option name="name" value="上传帖子" />
           <option name="paramGroup">
             <ParamGroupCollection>
-              <option name="bodyKeyValueListJson" value="{&#10;  &quot;postID&quot;:23 ,&#10;  &quot;userID&quot;: 1&#10;}" />
-              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-              <option name="method" value="deletePost" />
-              <option name="methodDescription" value="删除帖子" />
+              <option name="bodyKeyValueListJson" value="{&#10;  &quot;theme&quot;: &quot;&quot;,&#10;  &quot;content&quot;: &quot;content_gbww3&quot;,&#10;  &quot;userID&quot;: 1&#10;}" />
+              <option name="className" value="com.biosphere.communitymodule.controller.CommunityController" />
+              <option name="jsonDocument" value="{&#10;  &quot;theme&quot;: &quot;No comment,Value =theme_dg3l0&quot;,&#10;  &quot;content&quot;: &quot;No comment,Value =content_gbww3&quot;,&#10;  &quot;userID&quot;: &quot;No comment,Value =1&quot;,&#10;  &quot;images&quot;: [&#10;    &quot;No comment,Value =images_utice&quot;&#10;  ]&#10;}" />
+              <option name="method" value="uploadPost" />
+              <option name="methodDescription" value="上传帖子" />
               <option name="methodType" value="POST" />
               <option name="multipartKeyValueListJson" value="[]" />
-              <option name="originUrl" value="/user/auth/deletePost" />
+              <option name="originUrl" value="/community/auth/uploadPost" />
               <option name="pathParamsKeyValueListJson" value="[]" />
-              <option name="url" value="/user/auth/deletePost" />
+              <option name="url" value="/community/auth/uploadPost" />
               <option name="urlEncodedKeyValueListJson" value="[]" />
               <option name="urlParamsKeyValueListJson" value="[]" />
             </ParamGroupCollection>
           </option>
-          <option name="requestInfo" value="Request Url: http://localhost:9000/user/auth/deletePost&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 24&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&quot;postID&quot;:23,&quot;userID&quot;:1}&#13;&#10;" />
+          <option name="requestInfo" value="Request Url: http://localhost:9000/community/auth/uploadPost&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 62&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyY2FiYmFiYTI1ZDY0OWFmYjFkZjRjODg5OWQ3ZTlkZCIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY3MDU0ODAyOCwiZXhwIjoxNjcwNjM0NDI4fQ.HImY9h1UfDnAnsecF25p0oID6vPEsygMdZ9A1QmpWR8&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&#10;  &quot;theme&quot;: &quot;&quot;,&#10;  &quot;content&quot;: &quot;content_gbww3&quot;,&#10;  &quot;userID&quot;: 1&#10;}&#13;&#10;" />
           <option name="response" value="{&quot;code&quot;:200,&quot;msg&quot;:&quot;SUCCESS&quot;}" />
-          <option name="url" value="/user/auth/deletePost" />
-        </ResponseHistory>
-        <ResponseHistory>
-          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-          <option name="code" value="200" />
-          <option name="enableEnv" value="dev" />
-          <option name="enableProject" value="biosphere" />
-          <option name="method" value="deletePost" />
-          <option name="methodType" value="POST" />
-          <option name="name" value="删除帖子" />
-          <option name="paramGroup">
-            <ParamGroupCollection>
-              <option name="bodyKeyValueListJson" value="{&#10;  &quot;postID&quot;:24 ,&#10;  &quot;userID&quot;: 1&#10;}" />
-              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-              <option name="method" value="deletePost" />
-              <option name="methodDescription" value="删除帖子" />
-              <option name="methodType" value="POST" />
-              <option name="multipartKeyValueListJson" value="[]" />
-              <option name="originUrl" value="/user/auth/deletePost" />
-              <option name="pathParamsKeyValueListJson" value="[]" />
-              <option name="url" value="/user/auth/deletePost" />
-              <option name="urlEncodedKeyValueListJson" value="[]" />
-              <option name="urlParamsKeyValueListJson" value="[]" />
-            </ParamGroupCollection>
-          </option>
-          <option name="requestInfo" value="Request Url: http://localhost:9000/user/auth/deletePost&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 24&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&quot;postID&quot;:24,&quot;userID&quot;:1}&#13;&#10;" />
-          <option name="response" value="{&quot;code&quot;:200,&quot;msg&quot;:&quot;SUCCESS&quot;}" />
-          <option name="url" value="/user/auth/deletePost" />
-        </ResponseHistory>
-        <ResponseHistory>
-          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-          <option name="code" value="200" />
-          <option name="enableEnv" value="dev" />
-          <option name="enableProject" value="biosphere" />
-          <option name="method" value="deletePost" />
-          <option name="methodType" value="POST" />
-          <option name="name" value="删除帖子" />
-          <option name="paramGroup">
-            <ParamGroupCollection>
-              <option name="bodyKeyValueListJson" value="{&#10;  &quot;postID&quot;:23 ,&#10;  &quot;userID&quot;: 1&#10;}" />
-              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-              <option name="method" value="deletePost" />
-              <option name="methodDescription" value="删除帖子" />
-              <option name="methodType" value="POST" />
-              <option name="multipartKeyValueListJson" value="[]" />
-              <option name="originUrl" value="/user/auth/deletePost" />
-              <option name="pathParamsKeyValueListJson" value="[]" />
-              <option name="url" value="/user/auth/deletePost" />
-              <option name="urlEncodedKeyValueListJson" value="[]" />
-              <option name="urlParamsKeyValueListJson" value="[]" />
-            </ParamGroupCollection>
-          </option>
-          <option name="requestInfo" value="Request Url: http://localhost:9000/user/auth/deletePost&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 24&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&quot;postID&quot;:23,&quot;userID&quot;:1}&#13;&#10;" />
-          <option name="response" value="{&quot;code&quot;:200,&quot;msg&quot;:&quot;SUCCESS&quot;}" />
-          <option name="url" value="/user/auth/deletePost" />
-        </ResponseHistory>
-        <ResponseHistory>
-          <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-          <option name="code" value="200" />
-          <option name="enableEnv" value="dev" />
-          <option name="enableProject" value="biosphere" />
-          <option name="method" value="deletePost" />
-          <option name="methodType" value="POST" />
-          <option name="name" value="删除帖子" />
-          <option name="paramGroup">
-            <ParamGroupCollection>
-              <option name="bodyKeyValueListJson" value="{&#10;  &quot;postID&quot;:24 ,&#10;  &quot;userID&quot;: 1&#10;}" />
-              <option name="className" value="com.biosphere.usermodule.controller.UserController" />
-              <option name="method" value="deletePost" />
-              <option name="methodDescription" value="删除帖子" />
-              <option name="methodType" value="POST" />
-              <option name="multipartKeyValueListJson" value="[]" />
-              <option name="originUrl" value="/user/auth/deletePost" />
-              <option name="pathParamsKeyValueListJson" value="[]" />
-              <option name="url" value="/user/auth/deletePost" />
-              <option name="urlEncodedKeyValueListJson" value="[]" />
-              <option name="urlParamsKeyValueListJson" value="[]" />
-            </ParamGroupCollection>
-          </option>
-          <option name="requestInfo" value="Request Url: http://localhost:9000/user/auth/deletePost&#13;&#10;Request Headers: &#13;&#10;    Accept: application/json,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#13;&#10;    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36 Hutool&#13;&#10;    Accept-Encoding: gzip, deflate&#13;&#10;    Accept-Language: zh-CN,zh;q=0.8&#13;&#10;    Content-Length: 24&#13;&#10;    token: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI&#13;&#10;    Content-Type: application/json;charset=UTF-8&#13;&#10;Request Body: &#13;&#10;    {&quot;postID&quot;:24,&quot;userID&quot;:1}&#13;&#10;" />
-          <option name="response" value="{&quot;code&quot;:200,&quot;msg&quot;:&quot;SUCCESS&quot;}" />
-          <option name="url" value="/user/auth/deletePost" />
+          <option name="url" value="/community/auth/uploadPost" />
         </ResponseHistory>
       </list>
     </option>

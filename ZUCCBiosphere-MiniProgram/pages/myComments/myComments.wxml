@@ -1,7 +1,53 @@
 <!--pages/myComments/myComments.wxml-->
+<wxs module="func">
+      module.exports = {
+        isVideo: function (target) {
+            var typeTemp = target.split(".");
+        if(typeTemp[typeTemp.length - 1] == 'mp4' || typeTemp[typeTemp.length - 1] == 'mov' || typeTemp[typeTemp.length - 1] == 'wmv' || typeTemp[typeTemp.length - 1] == 'mpg' || typeTemp[typeTemp.length - 1] == 'avi'){
+            return true;
+        }
+        return false;
+        },
+        slice: function (target) {
+            return target.slice(0, target.lastIndexOf('.')) + '_0.jpg'
+        }
+      }
+</wxs>
 <view class="myComments">
     <view class="homePage">
         <promptBox id="promptBox"></promptBox>
+
+
+        <view class="commentList">
+            <view class="comment {{commentItem.isTouchMove ? 'touch-move-active' : ''}}" wx:for="{{commentList}}" wx:key="commentIDListKey" 
+        wx:for-item="commentItem" data-index="{{index}}" wx:if="{{!isEmpty}}">
+                <view class="item-left" data-index="{{index}}" bindtap="toPost" bindtouchstart="touchStart" bindtouchmove="touchMove">
+                    <view class="commentDetail">
+                        <view class="titleAndContent">
+                            <view class="title">
+                                <text class="user">{{commentItem.userName}}</text>
+                                <text class="content" decode="{{true}}">回复</text>
+                                <text class="user">{{commentItem.commentAccessName}}</text>
+                            </view>
+                            
+                            <text class="content">{{commentItem.content}}</text>
+                            <view class="commentTime">{{commentItem.commentDate}}</view>
+                            
+                        </view>
+                        <view class="imgContent">
+                            <image wx:if="{{commentItem.image != null}}" mode="aspectFill" src="{{func.isVideo(commentItem.image) ? func.slice(commentItem.image):commentItem.image}}" class="img"></image>
+                            <text wx:if="{{commentItem.image == null}}" class="noImageText">{{commentItem.postText == null ? '帖子不存在或已删除':commentItem.postText}}</text>
+
+                        </view>
+                        
+                    </view>
+                </view>
+                <view class="delete" data-index="{{index}}" bindtap="delItem">
+                    <image class="deleteImg" src="../../icon/delete.png"></image>
+                </view>
+            </view>
+        </view>
+        <text class="endText inCenter" style="margin-bottom: 20rpx;">—暂无更多内容—</text>
 
     </view>
 </view>

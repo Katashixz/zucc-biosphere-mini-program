@@ -13,7 +13,12 @@
         "pages/searchPage/searchPage",
         "utils/searchBar/searchBar",
         "pages/myPostOrMyStarPage/myPostOrMyStarPage",
-        "pages/myComments/myComments"
+        "pages/myComments/myComments",
+        "pages/noticePage/noticePage",
+        "pages/communityRule/communityRule",
+        "pages/aboutUs/aboutUs",
+        "pages/myNotice/myNotice",
+        "pages/updateInfo/updateInfo"
     ],
     "window": {
         "backgroundTextStyle": "light",

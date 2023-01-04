@@ -15,7 +15,7 @@
                     <image class="tipImage" src="../../icon/cuteError.png"></image>
                     <text class="tipSentence">{{tipContent}}</text>
                 </view>
-                <button type="default" class="sumbitButton" bindtap="buttonClick">知道了你好烦</button>
+                <button type="default" class="sumbitButton" hover-class="sumbitButtonOnClick" bindtap="buttonClick">知道了你好烦</button>
             </scroll-view>
         </view>
     </view>

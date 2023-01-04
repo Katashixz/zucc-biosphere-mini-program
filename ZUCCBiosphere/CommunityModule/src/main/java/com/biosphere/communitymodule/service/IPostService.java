@@ -88,7 +88,7 @@ public interface IPostService extends IService<Post> {
      * @author hyh
      * @date: 2022/9/22 14:36
      */
-    ResponseResult uploadPost(PostUploadVo postUploadVo);
+    void uploadPost(PostUploadVo postUploadVo);
 
     /**
      * 功能描述: 点赞状态更改
@@ -97,7 +97,7 @@ public interface IPostService extends IService<Post> {
      * @author hyh
      * @date: 2022/9/23 17:52
      */
-    ResponseResult changeLike(LikeStatusVo likeStatusVo);
+    void changeLike(LikeStatusVo likeStatusVo);
 
     /**
      * 功能描述: 评论检测以及上传
@@ -106,7 +106,7 @@ public interface IPostService extends IService<Post> {
      * @author hyh
      * @date: 2022/9/28 9:01
      */
-    ResponseResult uploadComment(UploadCommentVo uploadCommentVo);
+    void uploadComment(UploadCommentVo uploadCommentVo);
 
     /**
      * 功能描述: 获取搜索结果
@@ -124,5 +124,6 @@ public interface IPostService extends IService<Post> {
      * @author hyh
      * @date: 2022/10/13 9:31
      */
-    ResponseResult changeStar(Integer userID, Long postID);
+    void changeStar(Integer userID, Long postID);
+
 }

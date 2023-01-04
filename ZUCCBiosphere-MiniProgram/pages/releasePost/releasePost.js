@@ -137,6 +137,7 @@ Page({
                         content: that.data.content,
                     },
                     success: (loadRes) => {
+                        console.log(loadRes)
                         if(loadRes.data.code == 200){
                             wx.showToast({
                             title: '发帖成功',
@@ -150,12 +151,12 @@ Page({
                             }, 2100)
                         }
                         else{
-                            wx.showToast({
-                            title: loadRes.data.msg,
-                            duration: 2000,
-                            icon: 'error'
-                            })
-                            if(res.data.code == 300){
+                            var obj = {
+                                msg: loadRes.data.msg,
+                                type: "error"
+                            }
+                            that.promptBox.open(obj);
+                            if(loadRes.data.code == 300){
                                 app.clearUserData();
                                 
                             }
@@ -207,10 +208,10 @@ Page({
                             }
                             else{
                                 wx.showToast({
-                                title: loadRes.data.msg,
-                                duration: 2000,
-                                icon: 'error'
-                                })
+                                    title: loadRes.data.msg,
+                                    duration: 2000,
+                                    icon: 'error'
+                                    })
                                 if(res.data.code == 300){
                                     app.clearUserData();
                                     
@@ -398,7 +399,12 @@ Page({
           current: idx
         })
     },
-
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady() {
+        this.promptBox = this.selectComponent("#promptBox");
+    },
     /**
      * 初始化数据
      */

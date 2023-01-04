@@ -1,5 +1,7 @@
 package com.biosphere.library.vo;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 /**
@@ -12,8 +14,13 @@ public class PostUploadVo {
     // userID: app.globalData.userInfo.id,
     // theme: that.data.theme,
     // content: that.data.content,
+    @NotBlank(message = "主题不能为空")
     private String theme;
+
+    @NotBlank(message = "内容不能为空")
     private String content;
+
+    @NotNull(message = "无效的用户")
     private Integer userID;
     private String[] images;
 

@@ -3,10 +3,7 @@ package com.biosphere.usermodule.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.biosphere.library.pojo.Post;
 import com.biosphere.library.pojo.User;
-import com.biosphere.library.vo.CommunityPostVo;
-import com.biosphere.library.vo.ResponseResult;
-import com.biosphere.library.vo.SimplePostVo;
-import com.biosphere.library.vo.StarPostVo;
+import com.biosphere.library.vo.*;
 
 import java.util.List;
 
@@ -35,7 +32,8 @@ public interface IUserService extends IService<User> {
      * @author hyh
      * @date: 2022/8/12 13:46
      */
-    User checkUserInfo(String openID,String url,String nickName);
+    // User checkUserInfo(String openID,String url,String nickName);
+    User checkUserInfo(String openID);
 
     /**
      * 功能描述: 生成token并存入Redis
@@ -109,13 +107,22 @@ public interface IUserService extends IService<User> {
     List<StarPostVo> loadMyStar(Integer userID);
 
     /**
+     * 功能描述: 返回该用户评论的评论记录
+     * @param:
+     * @return:
+     * @author hyh
+     * @date: 2022/11/7 15:36
+     */
+    List<CommentVo> loadMyComment(Integer userID);
+
+    /**
      * 功能描述: 删除帖子
      * @param:
      * @return:
      * @author hyh
      * @date: 2022/10/21 14:01
      */
-    ResponseResult deletePost(Long postID, Integer userID);
+    void deletePost(Long postID, Integer userID);
 
     /**
      * 功能描述: 删除收藏
@@ -124,7 +131,25 @@ public interface IUserService extends IService<User> {
      * @author hyh
      * @date: 2022/10/28 10:25
      */
-    ResponseResult deleteStar(Long postID, Integer userID);
+    void deleteStar(Long postID, Integer userID);
+
+    /**
+     * 功能描述: 删除评论
+     * @param:
+     * @return:
+     * @author hyh
+     * @date: 2022/11/7 16:38
+     */
+    void deleteComment(Long postID, Integer id, Integer userID);
+
+    /**
+     * 功能描述: 更新用户名称和头像
+     * @param:
+     * @return:
+     * @author hyh
+     * @date: 2022/11/11 16:40
+     */
+    void updateInfo(Integer id, String nickName, String avatar, String openID);
 
 
     List<Post> test(Long postID, Integer userID);

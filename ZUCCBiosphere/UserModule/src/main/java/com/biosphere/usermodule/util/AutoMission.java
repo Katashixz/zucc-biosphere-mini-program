@@ -48,7 +48,7 @@ public class AutoMission {
     public void deletePost(){
         log.info("定时删除标记帖任务启动");
         Integer postNum = postMapper.deleteMarkedPost();
-        Integer commentNum = 0;
+        Integer commentNum = commentMapper.deleteMarkedComments();
         Integer likeNum = 0;
         Integer starNum = 0;
         // int a = 1/0;
@@ -60,13 +60,13 @@ public class AutoMission {
             size = redisTemplate.opsForList().size("deleteQueue");
         }
         if (postToBeDeleted.size() > 0){
-             commentNum = commentMapper.deleteComments(postToBeDeleted);
-             likeNum = likeRecordMapper.deleteLikes(postToBeDeleted);
-             starNum = starRecordMapper.deleteStars(postToBeDeleted);
+             commentNum += commentMapper.deleteComments(postToBeDeleted);
+             likeNum += likeRecordMapper.deleteLikes(postToBeDeleted);
+             starNum += starRecordMapper.deleteStars(postToBeDeleted);
 
         }
 
-        log.info("定时删除标记帖任务结束，删除了{}个帖子，{}条评论，{}条收藏，{}条点赞", postNum, commentNum, starNum, likeNum);
+        log.info("定时删除帖和评论任务结束，删除了{}个帖子，{}条评论，{}条收藏，{}条点赞", postNum, commentNum, starNum, likeNum);
 
     }
 

@@ -1,0 +1,72 @@
+/* pages/updateInfo/updateInfo.wxss */
+.bar{
+    display: flex;
+    flex-direction: column;
+}
+.avatar{
+    position: relative !important;
+    display: flex !important;
+    height: 110rpx !important;
+    border-bottom: 1rpx solid rgb(199, 199, 199) !important;
+    position: relative !important;
+    width: 100% !important;
+    background-color: rgb(238, 234, 231);
+}
+.assistView{
+    height: 100%;
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+.title{
+    font-weight: 500;
+    font-size: 35rpx;
+}
+.symbol{
+    position: absolute;
+    right: 5rpx;
+    /* top: 40rpx; */
+    width: 50rpx;
+    height: 50rpx;
+}
+.avatar-wrapper{
+    position: absolute;
+    right: 55rpx;
+    /* top: 40rpx; */
+    width: 90rpx !important; 
+    height: 90rpx !important;
+    border-radius: 50rpx;
+}
+.avatarImage{
+    position: absolute;
+    right: 55rpx;
+    width: 90rpx; 
+    height: 90rpx;
+    border-radius: 50rpx;
+}
+.nickName{
+    position: absolute;
+    right: 45rpx;
+    width: 160rpx;
+}
+.tips{
+    color: rgb(136, 136, 136);
+    margin-left: 45rpx;
+    margin-top: 10rpx;
+    font-size: small;
+}
+.sumbit{
+    margin-top: 50rpx;
+    width: 450rpx !important;
+    height: 90rpx !important;
+    border-radius: 20rpx;
+    color: #ffffff;
+    background-color: rgb(215,193,168) !important;
+}
+
+.sumbitClick{
+    color: #ffffff;
+    background-color: rgb(224, 210, 192) !important;
+}

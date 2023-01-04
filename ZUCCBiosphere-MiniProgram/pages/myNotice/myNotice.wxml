@@ -1,0 +1,10 @@
+<!--pages/myNotice/myNotice.wxml-->
+<view class="myNotice">
+    <view class="homePage">
+        <view class="noticeList">
+            <view>
+            
+            </view>
+        </view>
+    </view>
+</view>

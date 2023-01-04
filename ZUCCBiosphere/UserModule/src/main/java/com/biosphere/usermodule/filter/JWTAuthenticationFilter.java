@@ -39,7 +39,7 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws IOException, ServletException {
-		log.info("-----------AuthenticationFilter Run-----------");
+		// log.info("-----------AuthenticationFilter Run-----------");
 
 		// 取出Token
 		String token = request.getHeader("token");
@@ -66,7 +66,13 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
 					return;
 				}
 				user = (User) redisTemplate.opsForValue().get("login:" + openID);
-
+				// 防止利用自己的token但是传他人userID参数的行为
+				if (request.getParameter("userID") != null) {
+					if (Integer.valueOf(request.getParameter("userID")) != user.getId()){
+						HttpMethodUtil.responseJson(response, ResponseResult.error(RespBeanEnum.ERROR_INFO));
+						return;
+					}
+				}
 			}catch (Exception e){
 				e.printStackTrace();
 				log.info("校验token错误:{}",e.getMessage());

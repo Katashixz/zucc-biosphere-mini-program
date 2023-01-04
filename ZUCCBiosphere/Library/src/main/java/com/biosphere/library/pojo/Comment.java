@@ -57,11 +57,13 @@ public class Comment implements Serializable {
     /**
      * 0代表未查看，1代表已查看
      */
+    @TableField("isChecked")
     private Integer isChecked;
 
     /**
      * 0代表未删除，1代表已删除
      */
+    @TableField("isDeleted")
     private Integer isDeleted;
 
     public Integer getIsDeleted() {

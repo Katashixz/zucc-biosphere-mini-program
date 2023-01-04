@@ -41,7 +41,7 @@ public interface IEnergyRecordService extends IService<EnergyRecord> {
      * @author hyh
      * @date: 2022/10/10 14:39
      */
-    ResponseResult insertEnergyRecord(RewardVo rewardVo);
+    void insertEnergyRecord(RewardVo rewardVo);
 
     /**
      * 功能描述: 用户能量值变化，type为1代表增加，0代表减去
@@ -50,5 +50,5 @@ public interface IEnergyRecordService extends IService<EnergyRecord> {
      * @author hyh
      * @date: 2022/10/10 15:10
      */
-    ResponseResult updateUserEnergy(Integer userID, Integer point, Integer type);
+    void updateUserEnergy(Integer userID, Integer point, Integer type);
 }

@@ -45,7 +45,7 @@ public class MQReceiver {
 
     @Transactional(rollbackFor = Exception.class)
     @RabbitListener(queues = "uploadPostQueue")
-    public void postMsgReceiver(String message) throws Exception{
+    public void postMsgReceiver(String message) {
         Post post = JSON.parseObject(message,Post.class);
         //更新到数据库
         postMapper.insert(post);
@@ -126,32 +126,36 @@ public class MQReceiver {
     @Transactional(rollbackFor = Exception.class)
     @RabbitListener(queues = "uploadCommentQueue")
     public void commentMsgReceiver(String message) throws Exception{
-        long a = System.currentTimeMillis();
         UploadCommentVo req = JSON.parseObject(message, UploadCommentVo.class);
         // 先上传数据库，检测缓存里是否有这个帖子的评论缓存（一般能评论都是已经有缓存），如果有就更新缓存，没有就不作操作。最后更新评论数
         Comment comment = new Comment();
         comment.setCommentDate(new Date(System.currentTimeMillis()));
         comment.setCommentToUser(req.getToUserID());
         comment.setIsChecked(0);
+        comment.setIsDeleted(0);
         comment.setPostID(req.getPostID());
         comment.setUserID(req.getUserID());
         comment.setContent(req.getContent());
         commentMapper.insert(comment);
         //缓存检测
-        Boolean hasRec = redisTemplate.opsForHash().hasKey("commentRecords", comment.getPostID().toString());
-        if (hasRec) {
-            //缓存有就更新缓存
-            List<CommentVo> commentList = commentMapper.loadCommentByPostID(comment.getPostID());
-            redisTemplate.opsForHash().put("commentRecords",comment.getPostID().toString(),commentList);
-        }
+        // Boolean hasRec = redisTemplate.opsForHash().hasKey("commentRecords", comment.getPostID().toString());
+        // if (hasRec) {
+        //更新缓存
+        List<CommentVo> commentList = commentMapper.loadCommentByPostID(comment.getPostID());
+        redisTemplate.opsForHash().put("commentRecords", comment.getPostID().toString(), commentList);
+        // }
         //评论数更新
-        Long cnt = commentMapper.selectCount(new QueryWrapper<Comment>().eq("postID", comment.getPostID()));
+        Long cnt = commentMapper.selectCount(new QueryWrapper<Comment>().eq("postID", comment.getPostID()).eq("isDeleted",0));
         CommunityPostVo post = (CommunityPostVo) redisTemplate.opsForHash().get("postMap", comment.getPostID().toString());
         post.setCommentNum(cnt);
         redisTemplate.opsForHash().put("postMap",comment.getPostID().toString(),post);
-        long b = System.currentTimeMillis();
-        System.out.println(b-a);
-
+        //更新到个人缓存
+        List<CommentVo> commentVos = commentMapper.loadCommentByUserID(req.getUserID());
+        for (CommentVo commentVo : commentList) {
+            if (!Objects.isNull(commentVo.getImage()))
+                commentVo.setImage(commentVo.getImage().split("，")[0]);
+        }
+        redisTemplate.opsForHash().put("userID:" + req.getUserID().toString(),"myComment", commentVos);
 
 
     }

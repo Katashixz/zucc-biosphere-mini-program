@@ -1,16 +1,11 @@
 package com.biosphere.communitymodule.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.biosphere.communitymodule.mapper.CommentMapper;
 import com.biosphere.communitymodule.mapper.PostMapper;
 import com.biosphere.communitymodule.mapper.StarRecordMapper;
 import com.biosphere.communitymodule.rabbitmq.MQSender;
-import com.biosphere.library.pojo.Comment;
-import com.biosphere.library.pojo.EnergyRecord;
 import com.biosphere.library.pojo.Post;
 import com.biosphere.communitymodule.service.IPostService;
 import com.biosphere.library.pojo.StarRecord;
@@ -20,10 +15,8 @@ import com.github.houbb.sensitive.word.core.SensitiveWordHelper;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.SystemUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.AliasFor;
 import org.springframework.data.redis.core.DefaultTypedTuple;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
@@ -32,7 +25,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -159,18 +151,12 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
     }
 
     @Override
-    public ResponseResult uploadPost(PostUploadVo postUploadVo) {
-        ResponseResult res = new ResponseResult();
+    public void uploadPost(PostUploadVo postUploadVo) {
         if (Objects.isNull(postUploadVo.getContent()) || Objects.isNull(postUploadVo.getUserID()) || Objects.isNull(postUploadVo.getTheme())) {
-            res.setCode(RespBeanEnum.INFO_ERROR.getCode());
-            res.setMsg(RespBeanEnum.INFO_ERROR.getMessage());
-            return res;
+            throw new ExceptionLogVo(RespBeanEnum.INFO_ERROR);
         }
         if (SensitiveWordHelper.contains(postUploadVo.getContent())) {
-            res.setCode(RespBeanEnum.SENSITIVE_WORDS.getCode());
-            res.setMsg(RespBeanEnum.SENSITIVE_WORDS.getMessage());
-            res.setData(SensitiveWordHelper.findAll(postUploadVo.getContent()));
-            return res;
+            throw new ExceptionNoLogVo(RespBeanEnum.SENSITIVE_WORDS,SensitiveWordHelper.findAll(postUploadVo.getContent()));
         }
         try{
             Post post = new Post();
@@ -196,51 +182,23 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
             post.setIsEssential(0);
             //生产者发送消息到消息队列
             mqSender.sendPostMsg(JSON.toJSONString(post));
-            res.setCode(RespBeanEnum.SUCCESS.getCode());
-            res.setMsg(RespBeanEnum.SUCCESS.getMessage());
         }catch (Exception e){
-            res.setMsg(RespBeanEnum.UPLOAD_POST_ERROR.getMessage());
-            res.setCode(RespBeanEnum.UPLOAD_POST_ERROR.getCode());
+            throw new ExceptionLogVo(RespBeanEnum.UPLOAD_POST_ERROR);
         }
-
-
-
-        return res;
     }
 
     @Override
-    public ResponseResult changeLike(LikeStatusVo likeStatusVo) {
-        ResponseResult res = new ResponseResult();
-        if (Objects.isNull(likeStatusVo.getPostID()) || Objects.isNull(likeStatusVo.getUserID()) || Objects.isNull(likeStatusVo.getStatus())) {
-            res.setCode(RespBeanEnum.INFO_ERROR.getCode());
-            res.setMsg(RespBeanEnum.INFO_ERROR.getMessage());
-            return res;
-        }
+    public void changeLike(LikeStatusVo likeStatusVo) {
         mqSender.sendLikeMsg(JSON.toJSONString(likeStatusVo));
-        res.setCode(RespBeanEnum.SUCCESS.getCode());
-        res.setMsg(RespBeanEnum.SUCCESS.getMessage());
-        return res;
     }
 
     @Override
-    public ResponseResult uploadComment(UploadCommentVo uploadCommentVo) {
+    public void uploadComment(UploadCommentVo uploadCommentVo) {
         //敏感语言检测->数据库更新->缓存更新
-        ResponseResult res = new ResponseResult();
-        if (Objects.isNull(uploadCommentVo.getPostID()) || Objects.isNull(uploadCommentVo.getUserID()) || Objects.isNull(uploadCommentVo.getToUserID())) {
-            res.setCode(RespBeanEnum.INFO_ERROR.getCode());
-            res.setMsg(RespBeanEnum.INFO_ERROR.getMessage());
-            return res;
-        }
         if (SensitiveWordHelper.contains(uploadCommentVo.getContent())) {
-            res.setCode(RespBeanEnum.SENSITIVE_WORDS.getCode());
-            res.setMsg(RespBeanEnum.SENSITIVE_WORDS.getMessage());
-            res.setData(SensitiveWordHelper.findAll(uploadCommentVo.getContent()));
-            return res;
+            throw new ExceptionNoLogVo(RespBeanEnum.SENSITIVE_WORDS,SensitiveWordHelper.findAll(uploadCommentVo.getContent()));
         }
         mqSender.sendCommentMsg(JSON.toJSONString(uploadCommentVo));
-        res.setCode(RespBeanEnum.SUCCESS.getCode());
-        res.setMsg(RespBeanEnum.SUCCESS.getMessage());
-        return res;
     }
 
     @Override
@@ -261,16 +219,13 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ResponseResult changeStar(Integer userID, Long postID) {
+    public void changeStar(Integer userID, Long postID) {
         // 先检测缓存中有没有此帖的收藏，有就报提示，没有就收藏成功
-        ResponseResult res = new ResponseResult();
         StarRecord starRecord = new StarRecord();
         List<StarPostVo> starRecords = (List<StarPostVo>) redisTemplate.opsForHash().get("userID:" + userID,"starRecords");
         for (StarPostVo record : starRecords) {
             if (record.getPostID().equals(postID)) {
-                res.setCode(RespBeanEnum.REPEAT_STAR.getCode());
-                res.setMsg(RespBeanEnum.REPEAT_STAR.getMessage());
-                return res;
+                throw new ExceptionNoLogVo(RespBeanEnum.REPEAT_STAR);
             }
         }
         starRecord.setPostID(postID);
@@ -283,14 +238,9 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
             starPostVo.setImageUrlList(starPostVo.getImageUrl().split("，"));
         starRecords.add(0,starPostVo);
         redisTemplate.opsForHash().put("userID:" + userID,"starRecords", starRecords);
-        if (starRecord.getPostID() > 0) {
-            res.setCode(RespBeanEnum.SUCCESS.getCode());
-            res.setMsg(RespBeanEnum.SUCCESS.getMessage());
-        }else {
-            res.setCode(RespBeanEnum.STAR_INSERT_ERROR.getCode());
-            res.setMsg(RespBeanEnum.STAR_INSERT_ERROR.getMessage());
+        if (starRecord.getPostID() <= 0) {
+            throw new ExceptionLogVo(RespBeanEnum.STAR_INSERT_ERROR);
         }
-        return res;
     }
 
 
@@ -395,6 +345,7 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
         return post;
     }
     @Override
+    @Scheduled(cron = "0 0 3 1/1 * ? ")
     public void afterPropertiesSet() throws Exception {
         log.info("布隆过滤器初始化");
         List<Long> postHasComment = commentMapper.loadPostWhichHasComments();

@@ -2,14 +2,12 @@ package com.biosphere.usermodule.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.biosphere.library.vo.ResponseResult;
-import com.biosphere.library.vo.RewardVo;
+import com.biosphere.library.vo.*;
 import com.biosphere.usermodule.mapper.EnergyRecordMapper;
 import com.biosphere.usermodule.mapper.UserMapper;
 import com.biosphere.library.pojo.EnergyRecord;
 import com.biosphere.library.pojo.User;
 import com.biosphere.usermodule.service.IEnergyRecordService;
-import com.biosphere.library.vo.RespBeanEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -65,7 +63,7 @@ public class EnergyRecordServiceImpl extends ServiceImpl<EnergyRecordMapper, Ene
             return ResponseResult.success();
         }else {
             log.info("[用户:{}{} 签到记录插入失败]",user.getUserName(),user.getOpenID());
-            return ResponseResult.error(RespBeanEnum.CHECKIN_INSERT_ERROR);
+            throw new ExceptionLogVo(RespBeanEnum.CHECKIN_INSERT_ERROR);
         }
     }
 
@@ -97,8 +95,7 @@ public class EnergyRecordServiceImpl extends ServiceImpl<EnergyRecordMapper, Ene
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ResponseResult insertEnergyRecord(RewardVo rewardVo) {
-        ResponseResult res = new ResponseResult();
+    public void insertEnergyRecord(RewardVo rewardVo) {
         EnergyRecord energyRecord = new EnergyRecord();
         energyRecord.setUserID(rewardVo.getUserID());
         energyRecord.setPoint(rewardVo.getPoint());
@@ -107,21 +104,16 @@ public class EnergyRecordServiceImpl extends ServiceImpl<EnergyRecordMapper, Ene
         energyRecord.setGetDate(new Date(System.currentTimeMillis()));
         energyRecord.setIschecked(0);
         energyRecordMapper.insert(energyRecord);
-        if (energyRecord.getId() > 0) {
-            res.setCode(RespBeanEnum.SUCCESS.getCode());
-            res.setMsg(RespBeanEnum.SUCCESS.getMessage());
-        }else {
+        if (energyRecord.getId() <= 0) {
             log.error("能量值插入失败");
-            res.setCode(RespBeanEnum.INSERT_REWARD_ERROR.getCode());
-            res.setMsg(RespBeanEnum.INSERT_REWARD_ERROR.getMessage());
+            throw new ExceptionNoLogVo(RespBeanEnum.ENERGY_NOT_ENOUGH);
+
         }
-        return res;
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ResponseResult updateUserEnergy(Integer userID, Integer point, Integer type) {
-        ResponseResult res = new ResponseResult();
+    public void updateUserEnergy(Integer userID, Integer point, Integer type) {
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
         userQueryWrapper.select("openID,energyPoint").eq("id", userID);
         Integer finalPoint = 0;
@@ -131,17 +123,16 @@ public class EnergyRecordServiceImpl extends ServiceImpl<EnergyRecordMapper, Ene
             finalPoint = user.getEnergyPoint() - point;
             //先要检查剩余能量是否够减
             if (finalPoint < 0) {
-                res.setCode(RespBeanEnum.ENERGY_NOT_ENOUGH.getCode());
-                res.setMsg(RespBeanEnum.ENERGY_NOT_ENOUGH.getMessage());
-                return res;
+                throw new ExceptionNoLogVo(RespBeanEnum.ENERGY_NOT_ENOUGH);
+
             }
         } else if (type == 1) {
             finalPoint = user.getEnergyPoint() + point;
         }
         Integer num = userMapper.updateEnergyPoint(finalPoint, userID);
         if (num <= 0) {
-            res.setCode(RespBeanEnum.UPDATE_USER_ENERGY_ERROR.getCode());
-            res.setMsg(RespBeanEnum.UPDATE_USER_ENERGY_ERROR.getMessage());
+            throw new ExceptionLogVo(RespBeanEnum.UPDATE_USER_ENERGY_ERROR);
+
         }else {
             //查看缓存，这个用户如果有数据就更新，没有就不更新
             if (redisTemplate.hasKey("login:" + user.getOpenID())){
@@ -149,10 +140,6 @@ public class EnergyRecordServiceImpl extends ServiceImpl<EnergyRecordMapper, Ene
                 userInRedis.setEnergyPoint(finalPoint);
                 redisTemplate.opsForValue().set("login:" + userInRedis.getOpenID(),userInRedis,5760,TimeUnit.MINUTES);
             }
-
-            res.setCode(RespBeanEnum.SUCCESS.getCode());
-            res.setMsg(RespBeanEnum.SUCCESS.getMessage());
         }
-        return res;
     }
 }

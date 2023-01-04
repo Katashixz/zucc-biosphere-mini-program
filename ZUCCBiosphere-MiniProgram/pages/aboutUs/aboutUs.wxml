@@ -1,0 +1,25 @@
+<!--pages/aboutUs/aboutUs.wxml-->
+<view class="aboutUs">
+    <!-- <view class="homePage" style="background-color: #F6F4EF;"> -->
+        <view class="logo inCenter">
+            <view class="logoOutSide inCenter">
+                <image class="logoImage" src="../../icon/logo.png" mode="aspectFill"></image>
+            </view>
+            <text class="version">{{version}}</text>
+            <!-- <text class="name">{{name}}</text> -->
+            <image class="titleImage" src="../../icon/titleLogo.png"></image>
+                <view class="splitLine"></view>
+        </view>
+        <view class="content">
+            <view class="describe" wx:for="{{QAList}}" wx:for-item="item" 
+            wx:for-index="index" wx:key="index">
+                <text class="question" decode="{{true}}">{{index+1}}.&nbsp;{{item.question}}</text>
+                <text class="answer">{{item.answer}}</text>
+                <view class="answer" style="color: rgb(58, 146, 248);" wx:if="{{item.question == '项目地址'}}" bindtap="copyAddress">点击复制</view>
+            </view>
+            <text class="endText inCenter" style="margin-top: 30rpx;margin-bottom: 20rpx;">—已经到底啦—</text>
+
+        </view>       
+
+    <!-- </view> -->
+</view>

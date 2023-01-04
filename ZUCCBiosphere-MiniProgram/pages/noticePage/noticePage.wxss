@@ -1,0 +1,56 @@
+/* pages/noticePage/noticePage.wxss */
+.options{
+    display: flex;
+    position: relative;
+    width: 100%;
+    margin-top: 40rpx;
+    height: 200rpx;
+}
+.option-item{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.text{
+    margin-top: 15rpx;
+    color: #6E5D52;
+}
+.background{
+    position: relative;
+    display: flex;
+    width: 140rpx;
+    height: 140rpx;
+    border-radius: 80rpx;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.icon{
+    width: 80rpx;
+    height: 80rpx;
+}
+.splitLineOut{
+    margin-top: 20rpx;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.redPoint{
+    position: absolute;
+    right: 20rpx;
+    top: 30rpx;
+    background-color: rgb(255, 68, 68);
+    border-radius: 180rpx;
+    width: 15rpx;
+    height: 15rpx;
+}
+.splitLine{
+    display: flex;
+    position: relative;
+    border-top: 1rpx solid rgb(180, 180, 180);
+    width: 80%;
+}

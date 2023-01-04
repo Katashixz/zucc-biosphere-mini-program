@@ -18,4 +18,9 @@ public interface UserMapper extends BaseMapper<User> {
             "SET energyPoint = #{point}\n" +
             "WHERE id = #{id}")
     Integer updateEnergyPoint(@Param("point") Integer point, @Param("id") Integer id);
+
+    @Update("UPDATE `user`\n" +
+            "SET userName = #{nickName}, avatarUrl = #{avatar}\n" +
+            "WHERE id = #{id}")
+    Integer updateInfo(@Param("id") Integer id, @Param("nickName") String nickName, @Param("avatar") String avatar);
 }

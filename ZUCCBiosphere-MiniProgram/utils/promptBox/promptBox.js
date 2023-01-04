@@ -17,7 +17,7 @@ Component({
     lifetimes: {
         ready: function () {
             if(this.data.isShow){
-                this.open();
+                // this.open();
             }
         },
         detached: function () {
@@ -76,7 +76,8 @@ Component({
 
         open:function(e){
             console.log(e)
-            this.openrecoedModal(true, e);
+            if(e != undefined)
+                this.openrecoedModal(true, e);
             
             
         },

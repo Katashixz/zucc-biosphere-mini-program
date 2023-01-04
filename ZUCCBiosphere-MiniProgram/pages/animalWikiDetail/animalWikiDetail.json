@@ -1,3 +1,5 @@
 {
-    "usingComponents": {}
+    "usingComponents": {
+        "promptBox":"../../utils/promptBox/promptBox"
+    }
 }

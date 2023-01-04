@@ -1,5 +1,6 @@
 package com.biosphere.library.vo;
 
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 
 /**
@@ -8,10 +9,13 @@ import java.io.Serializable;
  * @Version 1.0
  */
 public class RewardVo implements Serializable {
+    @Min(value = 1,message = "userID传值有误")
     private Integer userID;
 
+    @Min(value = 1,message = "toUserID传值有误")
     private Integer toUserID;
 
+    @Min(value = 1,message = "point传值有误")
     private Integer point;
 
     private Integer type;

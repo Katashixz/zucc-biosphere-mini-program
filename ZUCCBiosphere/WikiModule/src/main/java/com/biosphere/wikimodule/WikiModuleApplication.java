@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @MapperScan({"com.biosphere.wikimodule.mapper"})
+@ComponentScan(basePackages = {"com.biosphere.wikimodule","com.biosphere.library"})
 @EnableScheduling //开启基于注解的定时任务
 @EnableTransactionManagement
 public class WikiModuleApplication {

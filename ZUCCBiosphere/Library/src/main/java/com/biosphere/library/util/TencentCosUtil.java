@@ -45,6 +45,28 @@ public class TencentCosUtil {
         return MyInfo.URL+fileName;
     }
 
+    public static String uploadAvatar(MultipartFile file, String openID){
+        // 创建 COS 客户端连接
+        COSClient cosClient = new COSClient(credentials,clientConfig);
+        String fileName = file.getOriginalFilename();
+        try {
+            String substring = fileName.substring(fileName.lastIndexOf("."));
+            File localFile = File.createTempFile(String.valueOf(System.currentTimeMillis()),substring);
+            file.transferTo(localFile);
+            Random random = new Random();
+            fileName =MyInfo.prefix + openID + "_" + "avatar" + ".jpeg";
+            // 将 文件上传至 COS
+            PutObjectRequest objectRequest = new PutObjectRequest(MyInfo.bucketName,fileName,localFile);
+            cosClient.putObject(objectRequest);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }finally {
+            cosClient.shutdown();
+        }
+        return MyInfo.URL+fileName;
+    }
+
     public static String uploadfile(File file,String fileName){
         // 创建 COS 客户端连接
         COSClient cosClient = new COSClient(credentials,clientConfig);

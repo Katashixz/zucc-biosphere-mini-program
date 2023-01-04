@@ -73,11 +73,11 @@ Page({
             method:"GET",
             success: (res) => {
                 if(res.data.code != 200){
-                    wx.showToast({
-                        title: '服务器错误',
-                        icon: 'error',
-                        duration: 2000
-                      })
+                    var obj = {
+                        msg: res.data.msg,
+                        type: "error"
+                    }
+                    that.promptBox.open(obj);
                 }
                 else{
                     console.log(res)
@@ -119,6 +119,7 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
+        this.promptBox = this.selectComponent("#promptBox");
 
     },
 

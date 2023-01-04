@@ -1,0 +1,57 @@
+/* pages/communityRule/communityRule.wxss */
+.title{
+    margin-top: 30rpx;
+    width: 100%;
+
+}
+.titleImage{
+    position: relative;
+    width: 600rpx;
+    height: 200rpx;
+
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-left: 5%;
+    justify-content: left;
+    align-items: left;
+    align-self: left;
+}
+.content-bar{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10rpx;
+    font-size: 30rpx;
+    
+    /* line-height: 50rpx; */
+}
+.lastUpdateTime{
+    flex-direction: column;
+}
+.lastUpdateTimeText{
+    color: gray;
+    padding-left: 20rpx;
+    border-left:  thick solid rgb(175, 175, 175);
+}
+
+.description{
+    margin-left: 20rpx;
+    margin-top: 5rpx;
+    font-size: 30rpx;
+    color: rgb(82, 82, 82);
+
+}
+.introduction{
+    color: rgb(82, 82, 82);
+    margin-top: 20rpx;
+    line-height: 45rpx;
+    font-size: 30rpx;
+
+}
+.number{
+    font-weight: 700;
+    font-size: medium;
+    color: rgb(75, 75, 75);
+}

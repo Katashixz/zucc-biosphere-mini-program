@@ -1,0 +1,24 @@
+<!--pages/communityRule/communityRule.wxml-->
+<view class="communityRule">
+    <view class="homePage">
+        <view class="title inCenter">
+            <image class="titleImage" src="../../icon/communityRule.png"></image>
+        </view>
+
+        <view class="lastUpdateTime inCenter">
+            <text class="lastUpdateTimeText">最后更新时间: {{lastUpdateTime}}</text>
+        </view>
+        <view class="content">
+            <view class="introduction">
+                <text>{{introduction}}</text>
+            </view>
+            <view class="content-bar" wx:for="{{ruleList}}" wx:for-item="item" 
+            data-index="index" wx:key="index">
+                <text class="number" decode="{{true}}">{{index+1}}&nbsp;{{item.title}}</text>
+                <text class="description" wx:for="{{item.content}}" wx:for-item="itemContent" wx:for-index="indexContent" decode="{{true}}" wx:key="indexContent">{{index+1}}.{{indexContent+1}}&nbsp;{{itemContent}}</text>
+            </view>
+        </view>
+        <text class="endText inCenter" style="margin-top: 20rpx;margin-bottom: 20rpx;">—暂无更多内容—</text>
+
+    </view>
+</view>

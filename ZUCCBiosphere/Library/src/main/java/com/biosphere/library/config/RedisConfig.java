@@ -1,4 +1,4 @@
-package com.biosphere.wikimodule.config;
+package com.biosphere.library.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,12 +31,4 @@ public class RedisConfig {
         return redisTemplate;
     }
 
-    // @Bean
-    // public DefaultRedisScript<Long> script(){
-    //     DefaultRedisScript<Long> redisScript = new DefaultRedisScript<>();
-    //     //lock.lua脚本位置和application.yml同级目录
-    //     redisScript.setLocation(new ClassPathResource("stock.lua"));
-    //     redisScript.setResultType(Long.class);
-    //     return redisScript;
-    // }
 }

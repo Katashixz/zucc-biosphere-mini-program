@@ -1,5 +1,8 @@
 package com.biosphere.library.vo;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 /**
  * @Author Administrator
  * @Date 2022/9/28 9:06
@@ -7,12 +10,16 @@ package com.biosphere.library.vo;
  */
 public class UploadCommentVo {
 
+    @NotNull(message = "传入信息有空值")
     private Integer userID;
 
+    @NotNull(message = "传入信息有空值")
     private Long postID;
 
+    @NotBlank(message = "评论内容不能为空")
     private String content;
 
+    @NotNull(message = "传入信息有空值")
     private Integer toUserID;
 
     public Integer getUserID() {

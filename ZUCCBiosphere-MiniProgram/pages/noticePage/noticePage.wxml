@@ -1,0 +1,22 @@
+<!--pages/noticePage/noticePage.wxml-->
+<view class="noticePage">
+    <view class="homePage">
+        <view class="options">
+            <view class="option-item" wx:for="{{optionList}}" wx:key="index" data-index="index" wx:for-item="item">
+                <view class="background" style="background-color: {{item.backgroundColor}};">
+                    <view class="redPoint" wx:if="{{item.hasMsg}}"></view>
+                    <image class="icon" src="{{item.iconPath}}"></image>
+                </view>
+                <text class="text">{{item.text}}</text>
+            </view>
+        </view>
+        <view class="splitLineOut">
+            <view class="splitLine">
+            </view>
+         </view>
+
+        <view class="chatList">
+        
+        </view>
+    </view>
+</view>

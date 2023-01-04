@@ -1,6 +1,7 @@
 <!--pages/curingGuide/curingGuide.wxml-->
 <view class="curingGuide">
     <view class="homePage"> 
+        <promptBox id="promptBox"></promptBox>
         <view class="curingGuideContext">
             <!-- <view class="title">养护指南</view> -->
             <image class="guideTitle" src="../../icon/curingGuide.png"></image>

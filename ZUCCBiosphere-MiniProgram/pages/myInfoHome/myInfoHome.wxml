@@ -7,12 +7,13 @@
         </view>
         <view wx:else="{{!hasUserInfo}}" class="userInfo">
             <view class="message">
-                <image src="../../icon/message.png"></image>
+                <view class="redPoint" wx:if="{{hasMsg}}"></view>
+                <image bindtap="toMyMsg" src="../../icon/message.png"></image>
             </view>
-            <text class="userName">{{userInfo.userName}}</text>
+            <text class="userName" bindtap="toUpdateInfo">{{userInfo.userName}}</text>
             
             <view class="userAvatar">
-                <image src="{{userInfo.avatarUrl}}"></image>
+                <image src="{{userInfo.avatarUrl}}" bindtap="toUpdateInfo"  mode="aspectFill"></image>
             </view>
             <view class="checkIn" wx:if="{{!isCheckedIn}}" bindtap="checkIn">
                 <image src="../../icon/checkIn.png"></image>
@@ -70,6 +71,12 @@
                 <image class="itemGo" src="../../icon/goTo.png"></image>
             </view>
             <view class="listItemLine"></view>
+            <view class="community listItem" bindtap="toAboutUs">
+                <image class="itemIcon" src="../../icon/aboutUs.png"></image>
+                <text class="itemText">关于我们</text>
+                <image class="itemGo" src="../../icon/goTo.png"></image>
+            </view>
+            <view class="listItemLine"></view>
             <button class="emailMe" open-type="feedback" >
                 <!-- <view class="myAnimals listItem"> -->
                     <image class="itemIcon" src="../../icon/emailMe.png"></image>
@@ -78,7 +85,7 @@
                 <!-- </view> -->
             </button>
 
-            <view class="listItemLine"></view>
+            <!-- <view class="listItemLine"></view> -->
         </view>
         <!-- <text class="endText" style="left: 160rpx; top: 60rpx;">————没有内容了哦————</text> -->
         <view style="height: 182rpx;"></view>

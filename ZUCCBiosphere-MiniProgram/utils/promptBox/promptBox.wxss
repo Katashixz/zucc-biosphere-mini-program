@@ -111,3 +111,15 @@
     text-align: center !important;
     line-height: 45rpx;
 }
+.sumbitButtonOnClick{
+    position: absolute !important;
+    bottom: 5rpx !important;
+    left: 30rpx !important;
+    height: 80rpx !important;
+    width: 90% !important;
+    /* margin-top: 25rpx; */
+    background: #9b8473 !important;
+    color: #fff !important;
+    text-align: center !important;
+    line-height: 45rpx;
+}

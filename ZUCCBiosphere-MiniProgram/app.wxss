@@ -18,7 +18,7 @@
     height: 100vh;
     /* height: 100vh; */
 
-    background: #EEEAE7;
+    background: rgb(238, 234, 231);
     /* border-radius: 40rpx; */
     border-top-left-radius: 40rpx;
     border-top-right-radius: 40rpx;

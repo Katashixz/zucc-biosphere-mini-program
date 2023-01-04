@@ -6,28 +6,30 @@ Component({
      */
     data: {
         selected: 0,
+        selectedColor: "#fff",
+        color: "#7A685B",
         list: [
             {
                 "pagePath": "/pages/wikiHome/wikiHome",
-                "text": "",
+                "text": "百科",
                 "iconPath": "/icon/Wiki.png",
                 "selectedIconPath": "/icon/bWiki.png"
             },
             {
                 "pagePath": "/pages/adoptHome/adoptHome",
-                "text": "",
+                "text": "云领养",
                 "iconPath": "/icon/CatDog.png",
                 "selectedIconPath": "/icon/bCatDog.png"
             },
             {
                 "pagePath": "/pages/communityHome/communityHome",
-                "text": "",
+                "text": "社区",
                 "iconPath": "/icon/Community.png",
                 "selectedIconPath": "/icon/bCommunity.png"
             },
             {
                 "pagePath": "/pages/myInfoHome/myInfoHome",
-                "text": "",
+                "text": "我的",
                 "iconPath": "/icon/Info.png",
                 "selectedIconPath": "/icon/bInfo.png"
             }

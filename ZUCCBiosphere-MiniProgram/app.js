@@ -70,25 +70,50 @@ App({
 
     //封装登录
     getUserProfile:function(){
+        console.log("login")
         var that = this;
-
         return new Promise((resolve, reject) => {
-            wx.getUserProfile({
-                desc: '获取您的openID用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-                success: (res) => {
-                    that.globalData.userInfo = res.userInfo;
-                    // that.globalData.hasUserInfo = true;
-                    that.userLogin().then(res => {
-                        resolve(res)
-                    }).catch(error => {
-                        reject(error)
-                    })
+            // wx.getUserProfile({
+            //     desc: '获取您的openID用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+            //     success: (res) => {
+            //         console.log(res);
+            //         that.globalData.userInfo = res.userInfo;
+            //         // that.globalData.hasUserInfo = true;
+            //         that.userLogin().then(res => {
+            //             resolve(res)
+            //         }).catch(error => {
+            //             reject(error)
+            //         })
+            //     },
+            //     fail: (res) =>{
+            //         reject("error")
+
+            //     }
+            // }) 
+            // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.record" 这个 scope
+            wx.getSetting({
+                success(res) {
+                    console.log(res.authSetting);
+                    // if (!res.authSetting['scope.userInfo']) {
+                        wx.authorize({
+                            scope: 'scope.werun',
+                            success () {
+                                that.userLogin().then(res => {
+                                resolve(res)
+                                }).catch(error => {
+                                    reject(error)
+                                })
+                            }
+                        })
+                    // }
+                    // else{
+                        // resolve(res);
+                    // }
                 },
                 fail: (res) =>{
-                    reject("error")
-
+                    reject("error");
                 }
-            })            
+            })           
         })
     },
     userLogin() {
@@ -100,14 +125,12 @@ App({
             })
             wx.login({
                 success: (res) => {
-
+                    console.log(res);
                     wx.request({
                     method:"POST",
                     url: that.globalData.urlHome + '/user/exposure/login',
                     data:{
                         code: res.code,
-                        avatarUrl: that.globalData.userInfo.avatarUrl,
-                        nickName: that.globalData.userInfo.nickName
                     },
                     fail: (res2) =>{
                         wx.hideLoading();
@@ -121,6 +144,7 @@ App({
                         reject("error")
                     },
                     success: (res2) => {
+                        console.log(res2);
                         wx.hideLoading();
                     if(res2.data.code != 200) {
                         wx.showToast({
@@ -169,8 +193,8 @@ App({
     globalData: {
         userInfo: null,
         // urlHome: 'http://124.221.252.162:9000',
-        // urlHome: 'http://localhost:9000',
-        urlHome: 'https://katashix.top',
+        urlHome: 'http://localhost:9000',
+        // urlHome: 'https://katashix.top',
         token: '',
         openID: '',
         hasUserInfo: false,

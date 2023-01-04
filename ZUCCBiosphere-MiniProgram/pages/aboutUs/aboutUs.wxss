@@ -1,0 +1,61 @@
+/* pages/aboutUs/aboutUs.wxss */
+.logo{
+    margin-top: 60rpx;
+    flex-direction: column;
+    /* height: 580rpx; */
+
+}
+.logoOutSide{
+    width: 300rpx;
+    height: 350rpx;
+    background-color: #ffffff;
+    border-radius: 70rpx;
+}
+.logoImage{
+    width: 250rpx;
+    height: 300rpx;
+}
+.version{
+    color: gray;
+    padding-left: 20rpx;
+    margin-top: 10rpx;
+}
+.titleImage{
+    width: 730rpx;
+    height: 100rpx;
+}
+.splitLine{
+    display: flex;
+    margin-top: 20rpx;
+    position: relative;
+    border-bottom: 1rpx solid rgb(180, 180, 180);
+    width: 60%;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+    width: 90%;
+    background-color: #ffffff;
+    border-radius: 40rpx;
+    margin-top: 20rpx;
+}
+.describe{
+    margin-top: 20rpx;
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+
+    display: flex;
+    flex-direction: column;
+}
+.question{
+    font-weight: 700;
+    font-size: 50rpx;
+    color: rgb(75, 75, 75);
+}
+.answer{
+    margin-left: 20rpx;
+    margin-top: 5rpx;
+    font-size: 35rpx;
+    color: rgb(82, 82, 82);
+}

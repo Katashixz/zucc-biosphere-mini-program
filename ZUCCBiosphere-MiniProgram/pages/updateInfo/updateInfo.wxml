@@ -1,0 +1,30 @@
+<!--pages/updateInfo/updateInfo.wxml-->
+<view class="updateInfo">
+    <view class="homePage" style="border-top-left-radius: 0;border-top-right-radius: 0;">
+        <promptBox id="promptBox"></promptBox>
+        <view class="bar">
+            <button class="avatar" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+                <view class="assistView">
+                    <text class="title">设置头像</text>
+                    <image class="avatarImage" src="{{avatarUrl}}"></image>
+                    <image class="symbol" src="../../icon/goTo.png"></image>
+                </view>
+            </button>
+            <view class="avatar">
+                <view class="assistView">
+                    <text class="title" style="padding-left: 45rpx;">设置名称</text>
+                    <input type="nickname" class="nickName" placeholder="{{input}}" maxlength="15" confirm-type="done"	style="width:{{inputLength}}rpx" bindinput="changeWidth" bindkeyboardheightchange="changeWidth" />
+                    <image class="symbol" src="../../icon/goTo.png"></image>
+                </view>
+            </view>
+            <view class="tips">昵称最大长度限制15位</view>
+            <button class="sumbit" hover-class="sumbitClick" bindtap="sumbit">确认</button>
+            <!-- <view class="avatar">
+                <view class="assistView">
+                    <text class="title">设置手机号</text>
+                    <image class="symbol" src="../../icon/goTo.png"></image>
+                </view>
+            </view> -->
+        </view>
+    </view>
+</view>

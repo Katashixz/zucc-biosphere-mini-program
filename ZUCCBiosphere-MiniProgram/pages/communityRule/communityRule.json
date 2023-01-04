@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "promptBox":"../../utils/promptBox/promptBox"
+    },
+    "navigationBarTitleText": "社区守则",
+    "enablePullDownRefresh": true
+
+}

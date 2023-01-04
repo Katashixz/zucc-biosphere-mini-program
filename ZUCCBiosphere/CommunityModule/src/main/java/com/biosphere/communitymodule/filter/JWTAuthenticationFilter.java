@@ -66,6 +66,13 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
 					return;
 				}
 				user = (User) redisTemplate.opsForValue().get("login:" + openID);
+				// 防止利用自己的token但是传他人userID参数的行为
+				if (request.getParameter("userID") != null) {
+					if (Integer.valueOf(request.getParameter("userID")) != user.getId()){
+						HttpMethodUtil.responseJson(response, ResponseResult.error(RespBeanEnum.ERROR_INFO));
+						return;
+					}
+				}
 
 			}catch (Exception e){
 				e.printStackTrace();

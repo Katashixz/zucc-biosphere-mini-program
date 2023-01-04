@@ -1,6 +1,7 @@
 <!--pages/wikiDetail/wikiDetail.wxml-->
 <view class="wikiDetail">
     <view class="homePage" >
+    <promptBox id="promptBox"></promptBox>
     <view class="imageList">
         <swiper class="imageSwiper" autoplay="true" interval="3000" circular="true" indicator-dots="true" indicator-color="white" indicator-active-color="#aabbcc" wx:key="imageSwiperKey">
             <swiper-item wx:for="{{imageList}}" data-index="{{index}}" wx:key="imageListKey">

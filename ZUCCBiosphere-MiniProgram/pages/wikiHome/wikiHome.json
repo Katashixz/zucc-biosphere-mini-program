@@ -1,6 +1,7 @@
 {
     "usingComponents": {
-        "searchBar":"../../utils/searchBar/searchBar"
+        "searchBar":"../../utils/searchBar/searchBar",
+        "promptBox":"../../utils/promptBox/promptBox"
 
     },
     "navigationBarTitleText": "动植物图鉴"

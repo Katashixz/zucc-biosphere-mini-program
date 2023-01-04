@@ -1,5 +1,6 @@
 <!--pages/releasePost/releasePost.wxml-->
 <view class="releasePost">
+    <promptBox id="promptBox"></promptBox>
     <include src="../../utils/toast/toast.wxml" />
     <view id="themeSelc">
         

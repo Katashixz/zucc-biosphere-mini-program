@@ -72,10 +72,11 @@
     border-radius: 30rpx;
     width: 680rpx;
     /* height: 760rpx; */
-    height: 655rpx;
+    /* height: 655rpx; */
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
+    overflow-y: hidden;
 }
 .listItem{
     width: 670rpx;
@@ -134,6 +135,7 @@
 
 }
 .userName{
+    z-index: 999;
     font-size: 60rpx;
     position: relative;
     width: 350rpx;
@@ -179,4 +181,14 @@
     top: -15rpx;
     left: 10rpx;
     
+}
+.redPoint{
+    position: absolute;
+    right: 23rpx;
+    top: 15rpx;
+    background-color: rgb(255, 68, 68);
+    border-radius: 180rpx;
+    width: 15rpx;
+    z-index: 100;
+    height: 15rpx;
 }

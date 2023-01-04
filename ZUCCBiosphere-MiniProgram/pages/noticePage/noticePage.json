@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "promptBox":"../../utils/promptBox/promptBox"
+    },
+    "navigationBarTitleText": "通知",
+    "enablePullDownRefresh": true
+}

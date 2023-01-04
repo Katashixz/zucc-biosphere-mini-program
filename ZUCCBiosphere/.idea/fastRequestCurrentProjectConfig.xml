@@ -4,13 +4,5 @@
     <option name="domain" value="localhost:9000" />
     <option name="enableEnv" value="dev" />
     <option name="enableProject" value="biosphere" />
-    <option name="headerList">
-      <list>
-        <DataMapping>
-          <option name="type" value="token" />
-          <option name="value" value="eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1ZGRjNjZkOWFkNzY0ZWY3YWNmYzczZmQzNGZmOTc3OSIsInN1YiI6ImE0Mzg0YzhiNDg4YmFmODEyNzM5YWNjNzMwYTI0OTU3IiwiaXNzIjoiWlVDQ0JJT1NQSEVSRSIsImlhdCI6MTY2Njg1OTExOSwiZXhwIjoxNjY2OTQ1NTE5fQ.85KXXpxGTjKesh3NdqlcvfWKHUuniybc1OkbTEjkQVI" />
-        </DataMapping>
-      </list>
-    </option>
   </component>
 </project>

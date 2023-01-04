@@ -93,97 +93,112 @@ Page({
         var postID = that.data.postList[index].postID;
         var userID = app.globalData.userInfo.id;
         // 删除帖子
-        if(that.data.pageData.type == 1){
-            wx.request({
-                url: app.globalData.urlHome + '/user/auth/deletePost',
-                method: "POST",
-                header: {
-                    'token': app.globalData.token
-                },
-                data: {
-                    postID: postID,
-                    userID: userID,
-                },
-                success: (res) => {
-                    if(res.data.code == 200){
-                        wx.showToast({
-                        title: '删除成功',
-                        duration: 2000,
-                        icon: 'success',
-                        })
-                        setTimeout(function () {
-                            that.onPullDownRefresh();
-                        }, 2100)
-                    }
-                    else{
-                        var obj = {
-                            msg: res.data.msg,
-                            type: "error"
-                        }
-                        that.promptBox.open(obj);
-
-                        if(res.data.code == 300){
-                            app.clearUserData();
-                            
-                        }
-                    }
-                },
-                fail: (res) => {
-                    wx.showToast({
-                        title: '服务器错误',
-                        duration: 2000,
-                        icon: 'error'
+        wx.showModal({
+            content:'是否确定删除',
+            success:({confirm})=>{
+              if(confirm){
+                if(that.data.pageData.type == 1){
+                    wx.request({
+                        url: app.globalData.urlHome + '/user/auth/deletePost',
+                        method: "POST",
+                        header: {
+                            'token': app.globalData.token
+                        },
+                        data: {
+                            postID: postID,
+                            userID: userID,
+                        },
+                        success: (res) => {
+                            if(res.data.code == 200){
+                                wx.showToast({
+                                title: '删除成功',
+                                duration: 2000,
+                                icon: 'success',
+                                })
+                                setTimeout(function () {
+                                    that.onPullDownRefresh();
+                                }, 2100)
+                            }
+                            else{
+                                var obj = {
+                                    msg: res.data.msg,
+                                    type: "error"
+                                }
+                                that.promptBox.open(obj);
+        
+                                if(res.data.code == 300){
+                                    app.clearUserData();
+                                    
+                                }
+                            }
+                        },
+                        fail: (res) => {
+                            wx.showToast({
+                                title: '服务器错误',
+                                duration: 2000,
+                                icon: 'error'
+                            })
+                        },
+        
                     })
-                },
-
-            })
-        }
-        // 删除收藏
-        else if(that.data.pageData.type == 2){
-            wx.request({
-                url: app.globalData.urlHome + '/user/auth/deleteStar',
-                method: "POST",
-                header: {
-                    'token': app.globalData.token
-                },
-                data: {
-                    postID: postID,
-                    userID: userID,
-                },
-                success: (res) => {
-                    if(res.data.code == 200){
-                        wx.showToast({
-                        title: '删除成功',
-                        duration: 2000,
-                        icon: 'success',
-                        })
-                        setTimeout(function () {
-                            that.onPullDownRefresh();
-                        }, 2100)
-                    }
-                    else{
-                        var obj = {
-                            msg: res.data.msg,
-                            type: "error"
-                        }
-                        that.promptBox.open(obj);
-
-                        if(res.data.code == 300){
-                            app.clearUserData();
-                            
-                        }
-                    }
-                },
-                fail: (res) => {
-                    wx.showToast({
-                        title: '服务器错误',
-                        duration: 2000,
-                        icon: 'error'
+                }
+                // 删除收藏
+                else if(that.data.pageData.type == 2){
+                    wx.request({
+                        url: app.globalData.urlHome + '/user/auth/deleteStar',
+                        method: "POST",
+                        header: {
+                            'token': app.globalData.token
+                        },
+                        data: {
+                            postID: postID,
+                            userID: userID,
+                        },
+                        success: (res) => {
+                            if(res.data.code == 200){
+                                wx.showToast({
+                                title: '删除成功',
+                                duration: 2000,
+                                icon: 'success',
+                                })
+                                setTimeout(function () {
+                                    that.onPullDownRefresh();
+                                }, 2100)
+                            }
+                            else{
+                                var obj = {
+                                    msg: res.data.msg,
+                                    type: "error"
+                                }
+                                that.promptBox.open(obj);
+        
+                                if(res.data.code == 300){
+                                    app.clearUserData();
+                                    
+                                }
+                            }
+                        },
+                        fail: (res) => {
+                            wx.showToast({
+                                title: '服务器错误',
+                                duration: 2000,
+                                icon: 'error'
+                            })
+                        },
+        
                     })
-                },
-
+                }
+              }
+            },
+          fail: () => { 
+            wx.showToast({
+                title: '服务器错误',
+                duration: 2000,
+                icon: 'error'
             })
-        }
+          },     
+          })
+        
     },
 
     /**
@@ -202,6 +217,10 @@ Page({
     loadPost(){
         var that = this;
         var userID = that.data.pageData.userID;
+        // 加载前清空
+        that.setData({
+            postList: [],
+        })
         if(that.data.pageData.type == 1){
             var url = app.globalData.urlHome + '/user/auth/loadMyPost?userID=' + userID;
         }

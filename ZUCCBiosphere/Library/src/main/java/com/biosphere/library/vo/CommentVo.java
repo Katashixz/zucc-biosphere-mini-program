@@ -7,6 +7,8 @@ package com.biosphere.library.vo;
  */
 public class CommentVo {
 
+    private Integer id;
+
     private Long postID;
 
     private Integer userID;
@@ -22,6 +24,34 @@ public class CommentVo {
     private Integer commentAccessID;
 
     private String content;
+
+    private String image;
+
+    private String postText;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getPostText() {
+        return postText;
+    }
+
+    public void setPostText(String postText) {
+        this.postText = postText;
+    }
 
     public String getUserName() {
         return userName;

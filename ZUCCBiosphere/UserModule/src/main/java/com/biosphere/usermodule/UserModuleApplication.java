@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication()
+@ComponentScan(basePackages = {"com.biosphere.usermodule","com.biosphere.library"})
 @MapperScan({"com.biosphere.usermodule.mapper"})
 @EnableScheduling //开启基于注解的定时任务
 @EnableTransactionManagement

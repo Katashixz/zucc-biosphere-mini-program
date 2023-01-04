@@ -4,21 +4,18 @@ package com.biosphere.communitymodule.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.biosphere.communitymodule.service.IPostService;
 import com.biosphere.communitymodule.util.CommunityDataAutoLoadUtil;
-import com.biosphere.library.pojo.LikeRecord;
 import com.biosphere.library.util.JwtUtil;
-import com.biosphere.library.util.TencentCosUtil;
 import com.biosphere.library.vo.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -35,6 +32,7 @@ import java.util.Objects;
 @Slf4j
 @RestController
 @CrossOrigin
+@Validated
 @RequestMapping("/community")
 public class CommunityController implements InitializingBean {
 
@@ -46,53 +44,37 @@ public class CommunityController implements InitializingBean {
 
     @ApiOperation(value = "社区主页帖子分页加载", notes = "需要传入当前页数和页大小")
     @RequestMapping(value = "/exposure/loadPostList",method = RequestMethod.GET)
-    public ResponseResult loadPostList(Integer curPage, Integer pageSize, Integer userID){
-        ResponseResult res = new ResponseResult();
+    public Map<String, Object> loadPostList(Integer curPage, Integer pageSize, Integer userID){
         Map<String, Object> resData = postService.loadPost(curPage, pageSize);
 
         if (Objects.isNull(resData)) {
-            res.setCode(RespBeanEnum.LOAD_POST_ERROR.getCode());
-            res.setMsg(RespBeanEnum.LOAD_POST_ERROR.getMessage());
-            return res;
+            throw new ExceptionLogVo(RespBeanEnum.LOAD_POST_ERROR);
         }
         //如果用户登录了，就要加载他点赞过哪些帖子
         if (!Objects.isNull(userID)) {
             resData = postService.updateLike(userID, resData);
         }
-        res.setCode(RespBeanEnum.SUCCESS.getCode());
-        res.setMsg(RespBeanEnum.SUCCESS.getMessage());
-        res.setData(resData);
-
-        return res;
+        return resData;
     }
 
     @ApiOperation(value = "社区主页热帖加载", notes = "不需要传参")
     @RequestMapping(value = "/exposure/loadHotPost",method = RequestMethod.GET)
-    public ResponseResult loadPostList(){
-        ResponseResult res = new ResponseResult();
+    public JSONObject loadPostList(){
         JSONObject resData = new JSONObject();
         List<Map<String ,Object>> hotPostVoList = postService.loadHotPosts();
         if (Objects.isNull(hotPostVoList)) {
-            res.setCode(RespBeanEnum.LOAD_HOT_POST_ERROR.getCode());
-            res.setMsg(RespBeanEnum.LOAD_HOT_POST_ERROR.getMessage());
-            return res;
+            throw new ExceptionLogVo(RespBeanEnum.LOAD_HOT_POST_ERROR);
         }
         if (hotPostVoList.size() == 0) {
-            res.setCode(RespBeanEnum.EMPTY_HOT_POST.getCode());
-            res.setMsg(RespBeanEnum.EMPTY_HOT_POST.getMessage());
-            return res;
+            throw new ExceptionNoLogVo(RespBeanEnum.EMPTY_HOT_POST);
         }
         resData.put("tenHotPosts", hotPostVoList);
-        res.setCode(RespBeanEnum.SUCCESS.getCode());
-        res.setMsg(RespBeanEnum.SUCCESS.getMessage());
-        res.setData(resData);
-        return res;
+        return resData;
     }
 
     @ApiOperation(value = "帖子详情加载", notes = "需要传入帖子ID")
     @RequestMapping(value = "/exposure/loadPostDetail",method = RequestMethod.GET)
-    public ResponseResult loadPostDetail(Long postID, Integer userID){
-        ResponseResult res = new ResponseResult();
+    public JSONObject loadPostDetail(Long postID, Integer userID){
         JSONObject resData = new JSONObject();
         boolean isLiked = false;
         CommunityPostVo communityPostVo = postService.loadPostDetail(postID);
@@ -101,30 +83,23 @@ public class CommunityController implements InitializingBean {
             isLiked = postService.isLiked(postID, userID);
         }
         if (Objects.isNull(communityPostVo)) {
-            res.setCode(RespBeanEnum.LOAD_POSTDETAIL_ERROR.getCode());
-            res.setMsg(RespBeanEnum.LOAD_POSTDETAIL_ERROR.getMessage());
-            return res;
+            throw new ExceptionNoLogVo(RespBeanEnum.LOAD_POSTDETAIL_ERROR);
         }
         resData.put("isLiked",isLiked);
         resData.put("postDetail",communityPostVo);
-        res.setCode(RespBeanEnum.SUCCESS.getCode());
-        res.setMsg(RespBeanEnum.SUCCESS.getMessage());
-        res.setData(resData);
-        return res;
+        return resData;
     }
 
-    @ApiOperation(value = "上传帖子", notes = "需要传入用户id、帖子主题、内容、图片BASE64")
+    @ApiOperation(value = "上传帖子", notes = "需要传入用户id、帖子主题、内容、[选]图片BASE64")
     @RequestMapping(value = "/auth/uploadPost",method = RequestMethod.POST)
-    public ResponseResult uploadPost(@RequestBody PostUploadVo postUploadVo){
-        ResponseResult res = postService.uploadPost(postUploadVo);
-        return res;
+    public void uploadPost(@Validated @RequestBody PostUploadVo postUploadVo){
+        postService.uploadPost(postUploadVo);
     }
 
 
-    @ApiOperation(value = "上传图片", notes = "需要传入用户id、帖子主题、内容、图片BASE64")
+    @ApiOperation(value = "上传图片", notes = "需要传入图片文件")
     @RequestMapping(value = "/auth/uploadImg",method = RequestMethod.POST)
-    public ResponseResult uploadImg(@RequestParam("file") MultipartFile file, HttpServletRequest request){
-        ResponseResult res = new ResponseResult();
+    public JSONObject uploadImg(@RequestParam("file") MultipartFile file, HttpServletRequest request){
         JSONObject resData = new JSONObject();
         // 取出Token
         String token = request.getHeader("token");
@@ -132,86 +107,55 @@ public class CommunityController implements InitializingBean {
         try{
             openID = JwtUtil.parseJWT(token).getSubject();
         }catch (Exception e){
-            res.setCode(RespBeanEnum.UPLOAD_IMG_ERROR.getCode());
-            res.setMsg(RespBeanEnum.UPLOAD_IMG_ERROR.getMessage());
-            return res;
+            throw new ExceptionLogVo(RespBeanEnum.UPLOAD_IMG_ERROR);
         }
         String url = postService.uploadImage(file, openID);
         if (Objects.isNull(url)) {
-            res.setCode(RespBeanEnum.UPLOAD_IMG_ERROR.getCode());
-            res.setMsg(RespBeanEnum.UPLOAD_IMG_ERROR.getMessage());
-            return res;
+            throw new ExceptionLogVo(RespBeanEnum.UPLOAD_IMG_ERROR);
         }
-            System.out.println(url);
         resData.put("imgUrl", url);
-        res.setCode(RespBeanEnum.SUCCESS.getCode());
-        res.setMsg(RespBeanEnum.SUCCESS.getMessage());
-        res.setData(resData);
-        return res;
+        return resData;
     }
 
     @ApiOperation(value = "评论详情加载", notes = "需要传入帖子ID")
     @RequestMapping(value = "/exposure/loadComment",method = RequestMethod.GET)
-    public ResponseResult loadComment(Long postID){
-        ResponseResult res = new ResponseResult();
+    public JSONObject loadComment(Long postID){
         JSONObject resData = new JSONObject();
         List<CommentVo> commentVoList = postService.loadComments(postID);
-        // if (Objects.isNull(commentVoList)) {
-        //     res.setCode(RespBeanEnum.LOAD_POSTDETAIL_ERROR.getCode());
-        //     res.setMsg(RespBeanEnum.LOAD_POSTDETAIL_ERROR.getMessage());
-        //     return res;
-        // }
         resData.put("commentList",commentVoList);
-        res.setCode(RespBeanEnum.SUCCESS.getCode());
-        res.setMsg(RespBeanEnum.SUCCESS.getMessage());
-        res.setData(resData);
-        return res;
+        return resData;
 
     }
 
     @ApiOperation(value = "增加点赞记录，更改点赞状态", notes = "需要传入用户id、帖子id、点赞状态")
     @RequestMapping(value = "/auth/changeLikeStatus",method = RequestMethod.POST)
-    public ResponseResult changeLikeStatus(@RequestBody LikeStatusVo req){
+    public void changeLikeStatus(@Validated @RequestBody LikeStatusVo req){
         //取消点赞就删除，点赞就新增，利用消息队列更新到数据库去，再更新缓存，这样数据比较安全
-        ResponseResult res = postService.changeLike(req);
-        // System.out.println(req.toString());
-
-        return res;
+       postService.changeLike(req);
     }
 
     @ApiOperation(value = "增加评论记录", notes = "需要传入评论用户id、被评论用户id、帖子id、评论内容")
     @RequestMapping(value = "/auth/uploadComment",method = RequestMethod.POST)
-    public ResponseResult uploadComment(@RequestBody UploadCommentVo req){
-        ResponseResult res = postService.uploadComment(req);
-        return res;
+    public void uploadComment(@Validated @RequestBody UploadCommentVo req){
+        postService.uploadComment(req);
     }
 
     @ApiOperation(value = "返回论坛搜索结果", notes = "需要传入搜索类型、搜索内容")
     @RequestMapping(value = "/exposure/search",method = RequestMethod.GET)
-    public ResponseResult uploadComment(Integer type, String content){
-        ResponseResult res = new ResponseResult();
+    public JSONObject search(Integer type, String content){
         JSONObject resData = new JSONObject();
         List<Map<String, Object>> postSearch = postService.postSearch(content);
         resData.put("searchResult",postSearch);
-        res.setData(resData);
-        res.setCode(RespBeanEnum.SUCCESS.getCode());
-        res.setMsg(RespBeanEnum.SUCCESS.getMessage());
-
-        return res;
+        return resData;
     }
-
-
 
     @ApiOperation(value = "收藏帖子", notes = "需要传入用户id,帖子id")
     @RequestMapping(value = "/auth/starPost",method = RequestMethod.POST)
-    public ResponseResult starPost(@RequestBody JSONObject req){
+    public void starPost(@RequestBody JSONObject req){
         Integer userID = (Integer) req.get("userID");
         Long postID = Long.valueOf(req.get("postID").toString());
-
-        return postService.changeStar(userID,postID);
+        postService.changeStar(userID,postID);
     }
-
-
 
     @Override
     public void afterPropertiesSet() throws Exception {

@@ -2,7 +2,7 @@
 
 .tab-bar-cat-ears{
     width: 100%;
-    height: 182rpx;
+    height: 180rpx;
     display: flex;
 }
 
@@ -20,14 +20,17 @@
 
 .tab-bar {
     position: fixed;
-    bottom: -20rpx;
+    bottom: 0rpx;
+    /* bottom: -20rpx; */
     left: 0;
     right: 0;
-    padding-top: 32rpx;
+    padding-top: 0.5rpx;
     background: #DDD8D0;
     /* display: flex; */
     /* padding-bottom: env(safe-area-inset-bottom); */
-    border-radius: 30rpx;
+    /* border-radius: 30rpx; */
+    border-top-left-radius: 30rpx;
+    border-top-right-radius: 30rpx;
     display: column;
   }
   .tab-bar-border {
@@ -56,12 +59,19 @@
     height: 27px; */
     width: 86rpx;
     height: 86rpx;
-    margin-bottom: 35rpx;
-    margin-top: -20rpx;
+    /* margin-bottom: 35rpx; */
+    /* margin-top: -20rpx; */
+    margin-top: 5rpx;
     
 }
    
   .tab-bar-item cover-view {
     font-size: 10rpx;
     
+  }
+  .text{
+      margin-top: -18rpx;
+      margin-bottom: 6rpx;
+      font-size: small;
+      /* font-weight: 700; */
   }
