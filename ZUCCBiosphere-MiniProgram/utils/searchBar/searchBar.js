@@ -113,7 +113,7 @@ Component({
                     wx.navigateTo({
                         url: '/pages/searchPage/searchPage?type=2' + (content == "" ? "" : ('&searchContent=' + content))
                     })
-                }, 700)
+                }, 900)
             }else{
                 //输入为空需要做处理
                 if(content == ""){

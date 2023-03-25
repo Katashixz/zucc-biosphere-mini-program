@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="03e3aba5-35b2-47a4-819e-bf25b6561c1f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_all_4_1_42_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/pojo/ChatRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/pojo/NotifyEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/pojo/ViewChatMsg.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/ChatMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/CommandEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/MessageVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/NotifyMsgVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Library/src/main/resources/mapper/ChatRecordMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Library/src/main/resources/mapper/NotifyEventMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Library/src/main/resources/mapper/ViewChatMsgMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/config/NettyConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/controller/MessageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/handler/CommandHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/handler/WebSocketHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/mapper/ChatRecordMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/mapper/NotifyEventMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/mapper/ViewChatMsgMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/service/IMessageService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/service/impl/MessageService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/util/NettyServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VERSION.md" beforeDir="false" afterPath="$PROJECT_DIR$/../VERSION.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/custom-tab-bar/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/custom-tab-bar/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/custom-tab-bar/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/custom-tab-bar/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/communityHome/communityHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/communityHome/communityHome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/curingGuide/curingGuide.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/curingGuide/curingGuide.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/myInfoHome/myInfoHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/myInfoHome/myInfoHome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/noticePage/noticePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/noticePage/noticePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/noticePage/noticePage.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/noticePage/noticePage.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/noticePage/noticePage.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/noticePage/noticePage.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/postDetails/postDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/postDetails/postDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/updateInfo/updateInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/updateInfo/updateInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/project.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/project.private.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/project.private.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/utils/jsUtil/jsUtil.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/utils/jsUtil/jsUtil.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/utils/searchBar/searchBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/utils/searchBar/searchBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/util/CommonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/util/CommonUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/RespBeanEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/RespBeanEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserModule/UserModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/UserModule/UserModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserModule/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/UserModule/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/controller/UserController.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="2JqzKvwp9YyEoqXuw2DP8E4CrJu" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Library/src/main/resources/mapper" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\大学\毕设\项目\zucc-biosphere-mini-program\ZUCCBiosphere\Library\src\main\resources\mapper" />
+      <recent name="D:\大学\毕设\项目\zucc-biosphere-mini-program\ZUCCBiosphere\Library\src\main\resources" />
+      <recent name="D:\大学\毕设\项目\zucc-biosphere-mini-program\ZUCCBiosphere\UserModule\src\main\java\com\biosphere\usermodule" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.biosphere.usermodule.mapper" />
+      <recent name="com.biosphere.library.pojo" />
+      <recent name="com.biosphere.usermodule.config" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.CommunityModuleApplication">
+    <configuration name="CommunityModuleApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="CommunityModule" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.biosphere.communitymodule.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.biosphere.communitymodule.CommunityModuleApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LibraryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="Library" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.biosphere.library.LibraryApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserModuleApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="UserModule" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.biosphere.usermodule.UserModuleApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WikiModuleApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="WikiModule" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.biosphere.wikimodule.WikiModuleApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.CommunityModuleApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="03e3aba5-35b2-47a4-819e-bf25b6561c1f" name="Changes" comment="" />
+      <created>1672820341703</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1672820341703</updated>
+      <workItem from="1672820343023" duration="4969000" />
+      <workItem from="1672990305976" duration="24000" />
+      <workItem from="1674032155068" duration="2187000" />
+      <workItem from="1674193539618" duration="15077000" />
+      <workItem from="1674289343955" duration="4423000" />
+      <workItem from="1674315053388" duration="48000" />
+      <workItem from="1674370130395" duration="4807000" />
+      <workItem from="1674454184453" duration="19748000" />
+      <workItem from="1674542201234" duration="2560000" />
+      <workItem from="1674974502694" duration="3000" />
+      <workItem from="1675061946666" duration="9672000" />
+      <workItem from="1675145152400" duration="3523000" />
+      <workItem from="1675234657740" duration="6762000" />
+      <workItem from="1675241858798" duration="1182000" />
+      <workItem from="1675243081767" duration="749000" />
+      <workItem from="1675319868240" duration="317000" />
+      <workItem from="1678353988488" duration="8218000" />
+      <workItem from="1678417903720" duration="11275000" />
+      <workItem from="1678797939144" duration="399000" />
+      <workItem from="1678947494452" duration="674000" />
+      <workItem from="1679386912441" duration="5194000" />
+      <workItem from="1679469482379" duration="6755000" />
+      <workItem from="1679487189420" duration="992000" />
+      <workItem from="1679489086844" duration="1774000" />
+      <workItem from="1679547128202" duration="14072000" />
+      <workItem from="1679568091686" duration="25000" />
+      <workItem from="1679571341164" duration="709000" />
+      <workItem from="1679645721412" duration="71000" />
+      <workItem from="1679645901217" duration="26000" />
+      <workItem from="1679645991970" duration="4267000" />
+      <workItem from="1679721898038" duration="11393000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

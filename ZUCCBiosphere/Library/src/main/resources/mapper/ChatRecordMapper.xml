@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biosphere.library.mapper.ChatRecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.biosphere.library.pojo.ChatRecord">
+        <id column="id" property="id" />
+        <result column="sourceID" property="sourceID" />
+        <result column="targetID" property="targetID" />
+        <result column="content" property="content" />
+        <result column="msgType" property="msgType" />
+        <result column="createdAt" property="createdAt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, sourceID, targetID, content, msgType, createdAt
+    </sql>
+
+</mapper>

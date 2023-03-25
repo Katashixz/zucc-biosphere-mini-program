@@ -1,12 +1,16 @@
 package com.biosphere.library.util;
 
+import com.alibaba.fastjson.JSON;
+import com.biosphere.library.vo.RespBeanEnum;
+import com.biosphere.library.vo.ResponseResult;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
 /**
  * @author  
- * @description: TODO
+ * @description: 一些基本封装
  * @date 2022/1/30 20:42
  */
 public class CommonUtil {
@@ -29,4 +33,16 @@ public class CommonUtil {
         obj = obj.replaceAll("\\s*", "");
         return obj.isEmpty() || Objects.isNull(obj);
     }
+
+    /**
+     * 功能描述: 返回JSONString
+     */
+    public static String toChannelErrorMsg(RespBeanEnum obj){
+        return JSON.toJSONString(ResponseResult.error(obj));
+    }
+
+    public static String toChannelSuccessMsg(Object obj){
+        return JSON.toJSONString(ResponseResult.success(obj));
+    }
+
 }

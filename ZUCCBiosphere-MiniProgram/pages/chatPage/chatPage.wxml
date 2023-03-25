@@ -1,0 +1,47 @@
+<!--pages/chatPage/chatPage.wxml-->
+<!--pages/noticePage/noticePage.wxml-->
+<view class="noticePage">
+    <view class="homePage">
+        <scroll-view class="chatRecord" scroll-y="true" enable-flex="true">
+            <view wx:for="{{chatRecord}}" wx:key="chatIndex" data-index="{{index}}" wx:for-item="chatItem">
+                <view class="chatItemRight" wx:if="{{chatItem.userID == uid}}">
+                    <view class="timeBox" style="margin-right: 10rpx;">
+                        <view class="time">{{chatItem.time}}
+                        </view>
+                    </view>
+                    <view class="msgBox inCenter" style="margin-right: 10rpx;">
+                        <view class="msg">{{chatItem.msg}}</view>
+                    </view>
+                    <image class="avatar" src="{{chatItem.avatar}}" mode="aspectFill">
+                    </image>
+
+                </view>
+                <view class="chatItemLeft" wx:if="{{chatItem.userID != uid}}">
+                    <image class="avatar" src="{{chatItem.avatar}}" mode="aspectFill">
+                    </image>
+                    <view class="msgBox inCenter" style="margin-left: 10rpx;">
+                        <view class="msg">{{chatItem.msg}}</view>
+                    </view>
+                    <view class="timeBox" style="margin-left: 10rpx;">
+                        <view class="time">{{chatItem.time}}
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="splitBox" style="height: 20rpx;"></view>
+        </scroll-view>
+        <view class='textInputLayout' style="bottom:{{keyboardHeight}}rpx">
+            <input value="{{resContent}}" 
+            type='text' maxlength='100' 
+            class='textInput' 
+            placeholder="{{placeholderText}}"
+            placeholder-class='phcolor' 
+            bindinput='inputContentListening' 
+            bindblur="inputBlur"
+            bindfocus="confirmFocus"
+            focus="{{isFocus}}"
+            />
+            <text class='uploadBtn' bindtap='uploadMessage'>发送</text>
+        </view>
+    </view>
+</view>

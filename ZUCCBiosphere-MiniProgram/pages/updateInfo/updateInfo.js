@@ -23,52 +23,72 @@ Page({
         wx.showLoading({
             title: '加载中',
           })
-        wx.uploadFile({
-            filePath: that.data.avatarUrl,
-            name: 'file',
-            url: url,
-            header: {
-                'token': app.globalData.token
-            },
-            formData:{
-                'id': that.data.pageData.userID,
-                'nickName': that.data.input,
-            },
-            success: (res) => {
-                var data = JSON.parse(res.data);
-                console.log(data)
-                if(data.code == 200){
-                    wx.showToast({
-                        title: '更新成功',
-                        duration: 2000,
-                        icon: 'success',
-                        })
-                        setTimeout(function () {
-                            wx.reLaunch({
-                                url: '../myInfoHome/myInfoHome',
-                            })
-                        }, 2100)
-                }else{
-                    var obj = {
-                        msg: data.msg,
-                        type: "error"
-                    }
-                    that.promptBox.open(obj);
-                }
-            },
-            fail: (res) => {
-                console.log(res);
-                wx.showToast({
-                    title: '服务器错误',
-                    duration: 2000,
-                    icon: 'error'
-                })
-            },
-            complete: (res) => {
-                wx.hideLoading();
+        var avatarFile = undefined;
+        try {
+            var temp = wx.getStorageSync('tempAvatarFile');
+            if (temp) {
+              // Do something with return value
+              avatarFile = temp;
             }
-            
-        })
+          } catch (e) {
+            // Do something when catch error
+            console.log("获取缓存头像失败")
+          }
+        if(avatarFile == undefined){
+            var obj = {
+                msg: "请重新选择头像",
+                type: "error"
+            }
+            that.promptBox.open(obj);
+        }else{
+            wx.uploadFile({
+                filePath: avatarFile,
+                name: 'file',
+                url: url,
+                header: {
+                    'token': app.globalData.token
+                },
+                formData:{
+                    'id': that.data.pageData.userID,
+                    'nickName': that.data.input,
+                },
+                success: (res) => {
+                    var data = JSON.parse(res.data);
+                    console.log(data)
+                    if(data.code == 200){
+                        wx.showToast({
+                            title: '更新成功',
+                            duration: 2000,
+                            icon: 'success',
+                            })
+                            setTimeout(function () {
+                                wx.reLaunch({
+                                    url: '../myInfoHome/myInfoHome',
+                                })
+                            }, 2100)
+                    }else{
+                        var obj = {
+                            msg: data.msg,
+                            type: "error"
+                        }
+                        that.promptBox.open(obj);
+                    }
+                },
+                fail: (res) => {
+                    console.log(res);
+                    wx.showToast({
+                        title: '服务器错误',
+                        duration: 2000,
+                        icon: 'error'
+                    })
+                },
+                complete: (res) => {
+                    wx.hideLoading();
+                }
+                
+            })
+        }
+        
 
         // wx.navigateBack({
         //   delta: 0,

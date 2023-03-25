@@ -1,0 +1,62 @@
+/* pages/shop/shop.wxss */
+.infoBar{
+    position: relative;
+    margin-top: 10rpx;
+    display: flex;
+    height: 80rpx;
+    width: 100%;
+}
+.youHave{
+    box-shadow: 0px 0px 10px #a19c9c;
+    background-color: #F2F2F2;
+    padding: 10rpx;
+    border-top-left-radius: 10rpx;
+    border-bottom-left-radius: 10rpx;
+}
+.energyPoint{
+    display: flex;
+    box-shadow: 0px 0px 10px #a19c9c;
+    background-color: #F2F2F2;
+    padding: 10rpx;
+    border-top-right-radius: 10rpx;
+    border-bottom-right-radius: 10rpx;
+}
+
+.itemBar{
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    margin-left: 2.5%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.father{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.item{
+    margin-top: 30rpx;
+    margin-left: 40rpx;
+    display: flex;
+    flex-direction: column;
+    width: 300rpx;
+    height: 300rpx;
+    background-color: ivory;
+    border-radius: 20rpx;
+}
+
+.sumbit{
+    width: 100% !important;
+    height: 90rpx !important;
+    border-radius: 20rpx;
+    color: #ffffff;
+    background-color: rgb(215,193,168) !important;
+}
+
+.sumbitClick{
+    color: #ffffff;
+    background-color: rgb(224, 210, 192) !important;
+}

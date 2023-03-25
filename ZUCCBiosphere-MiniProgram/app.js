@@ -1,5 +1,7 @@
 // app.js
 const app = getApp()
+var websocket_connected_count = 0;
+var onclose_connected_count = 0;
 
 App({
     // 变暗动画
@@ -73,47 +75,50 @@ App({
         console.log("login")
         var that = this;
         return new Promise((resolve, reject) => {
-            // wx.getUserProfile({
-            //     desc: '获取您的openID用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-            //     success: (res) => {
-            //         console.log(res);
-            //         that.globalData.userInfo = res.userInfo;
-            //         // that.globalData.hasUserInfo = true;
-            //         that.userLogin().then(res => {
-            //             resolve(res)
-            //         }).catch(error => {
-            //             reject(error)
-            //         })
-            //     },
-            //     fail: (res) =>{
-            //         reject("error")
-
-            //     }
-            // }) 
-            // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.record" 这个 scope
-            wx.getSetting({
-                success(res) {
-                    console.log(res.authSetting);
-                    // if (!res.authSetting['scope.userInfo']) {
-                        wx.authorize({
-                            scope: 'scope.werun',
-                            success () {
-                                that.userLogin().then(res => {
-                                resolve(res)
-                                }).catch(error => {
-                                    reject(error)
-                                })
-                            }
-                        })
-                    // }
-                    // else{
-                        // resolve(res);
-                    // }
+            wx.getUserProfile({
+                desc: '获取您的openID用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+                success: (res) => {
+                    console.log(res);
+                    that.globalData.userInfo = res.userInfo;
+                    // that.globalData.hasUserInfo = true;
+                    that.userLogin().then(res => {
+                        if(that.globalData.hasUserInfo == true){
+                            that.WebSocketInit();
+                        }
+                        resolve(res)
+                    }).catch(error => {
+                        reject(error)
+                    })
                 },
                 fail: (res) =>{
-                    reject("error");
+                    reject("error")
+
                 }
-            })           
+            }) 
+            // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.record" 这个 scope
+            // wx.getSetting({
+            //     success(res) {
+            //         console.log(res.authSetting);
+            //         // if (!res.authSetting['scope.userInfo']) {
+            //             wx.authorize({
+            //                 scope: 'scope.werun',
+            //                 success () {
+            //                     that.userLogin().then(res => {
+            //                     resolve(res)
+            //                     }).catch(error => {
+            //                         reject(error)
+            //                     })
+            //                 }
+            //             })
+            //         // }
+            //         // else{
+            //             // resolve(res);
+            //         // }
+            //     },
+            //     fail: (res) =>{
+            //         reject("error");
+            //     }
+            // })           
         })
     },
     userLogin() {
@@ -166,9 +171,27 @@ App({
                         that.globalData.hasUserInfo = true;
                         that.globalData.userInfo = res2.data.data.userInfo;
                         that.globalData.level = res2.data.data.level;
+                        that.globalData.hasNewMsg = res2.data.data.hasMsg;
                     // console.log(that.globalData.userInfo);
-
+                        // 下载头像到本地
+                        wx.downloadFile({
+                          url: res2.data.data.userInfo.avatarUrl,
+                          success (res) {
+                            // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+                            if (res.statusCode === 200) {
+                                wx.setStorageSync('tempAvatarFile', res.tempFilePath);
+                            }
+                            else{
+                                wx.showToast({
+                                    title: '头像下载失败',
+                                    icon: 'error',
+                                    duration: 4000
+                                })
+                            }
+                          }
+                        })
                         wx.setStorageSync('openID', that.openID);
+                        wx.setStorageSync('uid', res2.data.data.userInfo.id);
                         resolve("success")
                     }
                     
@@ -189,7 +212,92 @@ App({
         that.globalData.openID = '';
         that.globalData.level = 0;
     },
-    
+    //连接websocket
+    WebSocketInit: function () {
+        var that = this;
+        that.socketTask = wx.connectSocket({
+            url: 'ws://127.0.0.1:58080/webSocket',
+            data: {},
+            method: 'GET',
+            success: function (res) {
+            console.log("connectSocket 成功")
+            },
+            fail: function (res) {
+            console.log("connectSocket 失败")
+            }
+        })
+        // 需要注意的是wx.connectSocket代表客户端首次和服务器建立联系，wx.onSocketOpen才是正式打开通道，wx.onSocketMessage必须在 wx.onSocketOpen 回调之后发送才生效。
+        that.socketTask.onOpen((res) => {
+            var cmd = {
+                "code": 10001,
+                "userId": wx.getStorageSync('uid'),
+            }
+            that.sendMessage(cmd)
+            // 成功建立连接后，重置心跳检测
+            heartCheck.reset().start();
+        })
+        that.socketTask.onMessage((res) => {
+            if(res.data != "保持连接成功！" && res.data != "服务器连接成功！"){
+                that.globalData.hasNewMsg = true
+            }
+            // 如果获取到消息，说明连接是正常的，重置心跳检测
+            heartCheck.reset().start();
+            that.globalData.webSocketReadyState = 1;
+            console.log("收到消息 ", res)
+        })
+        that.socketTask.onError((res) => {
+            that.globalData.webSocketReadyState = 0;
+            
+            console.log("连接失败 ", res)
+            websocket_connected_count++;
+            if(websocket_connected_count <= 5){
+                that.WebSocketInit()
+            }
+        })
+        that.socketTask.onClose((res) => {
+            that.globalData.webSocketReadyState = 0;
+            console.log("连接断开 ", res.code, res.reason)
+        })
+        // 心跳检测, 每隔一段时间检测连接状态，如果处于连接中，就向server端主动发送消息，来重置server端与客户端的最大连接时间，如果已经断开了，发起重连。
+        var heartCheck = {
+            timeout: 540000, 
+            serverTimeoutObj: null,
+            reset: function(){
+                clearTimeout(this.timeoutObj);
+                clearTimeout(this.serverTimeoutObj);
+                return this;
+            },
+            start: function(){
+                var self = this;
+                self.serverTimeoutObj = setInterval(function(){
+                    if(that.globalData.webSocketReadyState == 1){
+                        console.log("连接状态，发送消息保持连接")
+                        var cmd = {
+                            "code": 10001,
+                            "userId": wx.getStorageSync('uid'),
+                        }
+                        that.sendMessage(cmd);
+                        heartCheck.reset().start();
+                    }else{
+                        console.log("断开状态，尝试重连")
+                        that.WebSocketInit();
+                    }
+                }, self.timeout)
+            }
+        }
+    },
+    sendMessage: function (data) {
+        var that = this;
+        that.socketTask.send({
+            data: JSON.stringify(data),
+            success(res){
+                console.log("webSocket消息发送成功",res)
+            },
+            fail(err){
+                console.log("webSocket消息发送失败",err)
+            }
+        });
+    },
     globalData: {
         userInfo: null,
         // urlHome: 'http://124.221.252.162:9000',
@@ -199,5 +307,7 @@ App({
         openID: '',
         hasUserInfo: false,
         level: 0,
+        hasNewMsg: false,
+        webSocketReadyState: 0,
     },
 })

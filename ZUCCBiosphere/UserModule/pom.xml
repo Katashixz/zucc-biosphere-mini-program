@@ -23,6 +23,18 @@
             <artifactId>Library</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <!--Netty-->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.42.Final</version>
+        </dependency>
+
+        <!--RabbitMQ-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
     </dependencies>
     <!-- 项目打包时会将java目录中的*.xml文件也进行打包 -->
     <build>

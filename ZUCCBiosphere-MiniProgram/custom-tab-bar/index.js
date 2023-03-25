@@ -43,6 +43,7 @@ Component({
       switchTab(e) {
         const data = e.currentTarget.dataset
         var index = data.index
+        var that = this;
         const url = data.path
         wx.switchTab({url})
       },

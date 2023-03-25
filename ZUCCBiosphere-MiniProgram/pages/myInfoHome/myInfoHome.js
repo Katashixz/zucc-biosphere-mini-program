@@ -10,7 +10,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        hasMsg: true,
+        hasMsg: false,
         userInfo: null,
         level: 0,
         hasUserInfo: false,
@@ -59,7 +59,7 @@ Page({
                 hasUserInfo: app.globalData.hasUserInfo,
                 userInfo: app.globalData.userInfo,
                 level: app.globalData.level,
-
+                hasMsg: app.globalData.hasNewMsg,
             })
         })
     },
@@ -155,6 +155,10 @@ Page({
             wx.navigateTo({
                 url: '/pages/noticePage/noticePage?userID=' + that.data.userInfo.id,
             })
+            that.setData({
+                hasMsg: false
+            })
+            getApp().globalData.hasNewMsg = false;
         }
     },
     /**
@@ -277,6 +281,7 @@ Page({
                         that.setData({
                             userInfo: res.data.data.userInfo,
                             level: res.data.data.level,
+                            hasMsg: app.globalData.hasNewMsg
                         })
                     }
                     else{

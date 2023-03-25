@@ -205,6 +205,7 @@ Page({
             success: (res) => {
                 if(res.data.code == 200){
                     var likeNum = that.data.postList[index].likeNum;
+                    that.sendLikeMsg(index);
                     if(!isLiked){
                         likeNum = likeNum + 1;
                         that.setData({
@@ -249,6 +250,70 @@ Page({
         }, 1500)
 
     }, 1500),
+    /**
+     * 发送点赞消息通知
+     */   
+    sendLikeMsg: function (index) {
+        var that = this;
+        var uid = wx.getStorageSync('uid');
+        var objectID = that.data.postList[index].postID;
+        if(uid != undefined && objectID != undefined){
+            var mCmd = {
+                "code": 10003,
+                "userID": uid,
+                "action": 1,
+                "objectID": objectID,
+                "objectType": 2,
+                "createdAt": new Date(),
+                "removeState": that.data.postList[index].postIsLiked ? 0 : 1,
+            }
+            app.sendMessage(mCmd);
+            util.resiverMessage(that);
+        }else {
+            wx.showToast({
+                title: '信息异常',
+                icon: 'error',
+                duration: 2000
+              })
+        }
+    },
+    
+    /**
+     * 发送评论和充电消息通知
+     */
+    sendNotifyMsg: function (action, targetId) {
+        var that = this;
+        var uid = wx.getStorageSync('uid');
+        if(uid != undefined && targetId != undefined){
+            var mCmd = {
+                "code": action == 2 ? 10004 : action == 4 ? 10005 : -1,
+                "userID": uid,
+                "action": action,
+                "objectID": targetId,
+                "objectType": 1,
+                "createdAt": new Date(),
+                "removeState": 0,
+            }
+            app.sendMessage(mCmd);
+            util.resiverMessage(that);
+        }else {
+            wx.showToast({
+                title: '信息异常',
+                icon: 'error',
+                duration: 2000
+              })
+        }
+    },
+    /**
+     * WebSocket页面回调函数
+     */
+    onMessage: function (res) {
+        var that = this;
+        console.log(res.data)
+        var obj = JSON.parse(res.data);
+        console.log("chatPage",obj)
+        
+      },
     
     /**
      * 评论功能
@@ -327,6 +392,7 @@ Page({
                 },
                 success: (res) => {
                     if(res.data.code == 200){
+                        that.sendNotifyMsg(4,toUserID);
                         wx.showToast({
                             title: '打赏成功',
                             icon: 'success',

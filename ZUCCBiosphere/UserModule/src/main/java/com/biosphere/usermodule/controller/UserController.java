@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.biosphere.library.util.JwtUtil;
 import com.biosphere.library.util.TencentCosUtil;
 import com.biosphere.library.vo.*;
+import com.biosphere.usermodule.service.IMessageService;
 import com.biosphere.usermodule.service.IUserService;
 import com.biosphere.library.pojo.User;
 import com.biosphere.usermodule.service.IEnergyRecordService;
@@ -42,6 +43,9 @@ public class UserController {
     @Autowired
     private IEnergyRecordService energyrecordService;
 
+    @Autowired
+    private IMessageService messageService;
+
     @ApiOperation(value = "用户登录", notes = "wx.login上传加密字符串即可")
     @RequestMapping(value = "/exposure/login",method = RequestMethod.POST)
     public JSONObject userLogin(@Validated @RequestBody LoginVo loginVo){
@@ -66,8 +70,11 @@ public class UserController {
         userService.saveUserLikeRecords(curUser.getId());
         // 收藏数据存入缓存
         userService.saveUserStarRecords(curUser.getId());
+        // 确认消息通知缓存信息
+        boolean hasMsg = messageService.hasMsg(curUser.getId());
         resData.put("token", token);
         resData.put("level", curUser.getEnergyPoint() > 0 ? curUser.getEnergyPoint()/100 : 0);
+        resData.put("hasMsg", hasMsg);
         return resData;
     }
 
@@ -103,8 +110,12 @@ public class UserController {
         if (Objects.isNull(userInfo)) {
             throw new ExceptionLogVo(RespBeanEnum.GET_USERINFO_ERROR);
         }
+        // 确认消息通知缓存信息
+        boolean hasMsg = messageService.hasMsg(userInfo.getId());
+
         resData.put("userInfo", userInfo);
         resData.put("level", userInfo.getEnergyPoint() > 0 ? userInfo.getEnergyPoint()/100 : 0);
+        resData.put("hasMsg", hasMsg);
         return resData;
 
     }

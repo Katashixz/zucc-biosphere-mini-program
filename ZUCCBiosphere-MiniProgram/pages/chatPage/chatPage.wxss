@@ -1,0 +1,115 @@
+/* pages/chatPage/chatPage.wxss */
+
+.textInputLayout{
+    border-top-right-radius: 20rpx;
+    border-top-left-radius: 20rpx;
+    padding: 10rpx 5rpx 10rpx;
+    height: 70rpx;        
+    position: fixed;        
+    bottom: 0rpx;   
+    width: 100%;  
+    z-index: 20;            
+    display: flex;        
+    flex-direction: row;       
+    align-items: center;       
+    justify-content: center;       
+    background-color: #fff;        
+    /* 使之可以滚动 */
+        overflow-y: scroll; 
+    /* 增加该属性，可以增加弹性，是滑动更加顺畅 */        
+    -webkit-overflow-scrolling: touch;
+}
+.textInput {
+    border-radius: 25rpx;
+    width: auto;           
+    line-height: 60rpx;       
+    position: relative;       
+    flex: 1;       
+    padding-left: 30rpx;        
+    padding-right: 30rpx;       
+    font-size: 32rpx;       
+    word-break: break-all;        
+    word-wrap: break-word;        
+    color: #333;        
+    border-top: solid #f4f4f4 0.01rpx;        
+    background-color: #f4f4f4;        
+    z-index: 21;        
+}
+.uploadBtn {     
+    line-height: 60rpx; 
+    border-radius: 40rpx;       
+    position: relative;        
+    font-size: 32rpx;       
+    color: #fff;        
+    border-top: solid #6d9afc 0.01rpx;        
+    padding-left: 30rpx;        
+    padding-right: 30rpx;        
+    background-color: #6d9afc;       
+    z-index: 21;        
+    right: 10rpx;
+}
+.chatRecord{
+    position: relative;
+    width: 98%;
+    height: calc(100vh - 95rpx);
+    margin-left: 1%;
+    display: flex;
+    flex-direction: column;
+}
+::-webkit-scrollbar {
+
+    display: none;
+
+  }
+.chatItemLeft{
+    position: relative;
+    display: flex;
+    margin-top: 20rpx;
+    width: 94%;
+    /* height: 60rpx; */
+    min-height: 60rpx;
+}
+
+.chatItemRight{
+    position: relative;
+    display: flex;
+    margin-top: 20rpx;
+    /* height: 60rpx; */
+    min-height: 60rpx;
+    width: 100%;
+    justify-content:flex-end;
+
+}
+.avatar{
+    width: 100rpx;
+    height: 100rpx;
+    min-width: 100rpx;
+    min-height: 100rpx;
+    border-radius: 60rpx;
+}
+.msgBox{
+    max-width: 75%;
+    /* margin-left: 20rpx; */
+    background-color: white;
+    border-radius: 20rpx;
+}
+.msg{
+    /* padding-left: 15rpx; */
+    font-size: 30rpx;
+    text-align: left;
+    padding: 10rpx;
+    padding-left: 12rpx;
+}
+.timeBox{
+    width: 70rpx;
+    /* margin-left: 10rpx; */
+    position: relative;
+    /* display: inline-flex; */
+    flex-direction: column;
+}
+.time{
+    position:absolute;
+    bottom: 0;
+    font-size: small;
+    color: #888685;
+}

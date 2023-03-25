@@ -1,3 +1,4 @@
+const app = getApp()
 
 //节流函数
 function throttle(fn, gapTimes) {
@@ -18,6 +19,44 @@ function throttle(fn, gapTimes) {
       }
     }
   }
+//   function sendMessage(code, uid) {
+    
+//     var mCmd = { 
+//         "code": code,
+//         "userId": uid,
+//         "time": new Date(),
+//     }
+//     wx.sendSocketMessage({
+//       data: JSON.stringify(mCmd),
+//       success:function(res){
+//       }
+//     })
+//   }
+//   function sendChatMessage(code, uid, target, msg) {
+    
+//     var mCmd = { 
+//         "code": code,
+//         "userId": uid,
+//         "time": new Date(),
+//         "target": target,
+//         "content": msg
+//     }
+//     wx.sendSocketMessage({
+//       data: JSON.stringify(mCmd),
+//       success:function(res){
+//       }
+//     })
+//   }
+  function resiverMessage(context) {
+    wx.onSocketMessage(function (data) {
+        // console.log(data)
+        
+      context.onMessage(data) //这里定义一个onMessage方法，用于每个页面的回调
+    })
+   }
   module.exports = {
     throttle: throttle,
+    // sendMessage: sendMessage, 
+    // sendChatMessage: sendChatMessage, 
+    resiverMessage: resiverMessage 
   }

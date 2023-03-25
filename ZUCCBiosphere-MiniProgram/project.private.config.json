@@ -147,6 +147,20 @@
                     "query": "",
                     "launchMode": "default",
                     "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/chatPage/chatPage",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/shop/shop",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }

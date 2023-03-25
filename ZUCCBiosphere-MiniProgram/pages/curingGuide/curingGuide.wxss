@@ -11,6 +11,11 @@
     overflow-y: scroll;
     overflow-x: hidden;
 }
+::-webkit-scrollbar {
+
+    display: none;
+
+  }
 .guideTitle{
     margin-top: 5rpx;
     text-align: center;

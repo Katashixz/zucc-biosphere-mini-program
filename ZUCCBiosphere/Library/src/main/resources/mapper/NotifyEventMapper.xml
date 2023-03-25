@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biosphere.library.mapper.NotifyEventMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.biosphere.library.pojo.NotifyEvent">
+        <id column="id" property="id" />
+        <result column="userID" property="userID" />
+        <result column="action" property="action" />
+        <result column="objectID" property="objectID" />
+        <result column="objectType" property="objectType" />
+        <result column="createdAt" property="createdAt" />
+        <result column="removeState" property="removeState" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, userID, action, objectID, objectType, createdAt, removeState
+    </sql>
+
+</mapper>

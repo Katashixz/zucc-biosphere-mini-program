@@ -18,7 +18,9 @@
         "pages/communityRule/communityRule",
         "pages/aboutUs/aboutUs",
         "pages/myNotice/myNotice",
-        "pages/updateInfo/updateInfo"
+        "pages/updateInfo/updateInfo",
+        "pages/chatPage/chatPage",
+        "pages/shop/shop"
     ],
     "window": {
         "backgroundTextStyle": "light",

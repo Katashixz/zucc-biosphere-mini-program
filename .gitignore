@@ -1,0 +1,6 @@
+MyInfo.java
+application.*
+application-dev.*
+application-pord.*
+**/target/
+**/.history/
