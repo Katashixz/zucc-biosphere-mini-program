@@ -1,0 +1,63 @@
+<wxs module="func">
+      module.exports = {
+        isVideo: function (target) {
+            var typeTemp = target.split(".");
+        if(typeTemp[typeTemp.length - 1] == 'mp4' || typeTemp[typeTemp.length - 1] == 'mov' || typeTemp[typeTemp.length - 1] == 'wmv' || typeTemp[typeTemp.length - 1] == 'mpg' || typeTemp[typeTemp.length - 1] == 'avi'){
+            return true;
+        }
+        return false;
+        },
+        slice: function (target) {
+            return target.slice(0, target.lastIndexOf('.')) + '_0.jpg'
+        }
+      }
+</wxs>
+<view class="adoptDiary">
+    <view class="homePage">
+        <picker mode="date" header-text="选择时间" value="{{date}}" end="{{today}}" bindchange="bindDateChange">
+        <view class="timeSelector inCenter">
+            <text class="chooseDate">选择日期：</text>
+            <text class="dateList">{{date}}</text>
+            <text class="timeIcon">▼</text>
+        </view>
+    </picker>
+    <scroll-view class="diaryList" scroll-y="true">
+        <view class="diaryItem" wx:for="{{diaryList}}" wx:key="diaryItem" wx:for-item="diaryItem" data-index="{{index}}">
+            <view class="diaryTop">
+                <image class="userAvatar avatarImage" mode="aspectFill" src="{{diaryItem.avatar}}"></image>
+                <view class="nameAndPostTime">
+                        <text class="postManName">{{diaryItem.userName}}</text>
+                        <view class="postTime">发布于{{diaryItem.createdAt}}</view>
+                </view>
+                <text class="inCenter" style="width: 40rpx;">与</text>
+
+                <image class="userAvatar avatarImage" mode="aspectFill" src="{{diaryItem.targetAvatar}}"></image>
+                <text class="inCenter" style="width: 100rpx;">的一日</text>
+            </view>
+
+            <view class="diaryMid" bindtap="toDiary" data-index="{{index}}">
+                <text user-select="true">{{diaryItem.body}}</text>
+                <view class="imageWithContent">
+                    <view class="singleImage"
+                    wx:if="{{diaryItem.imageUrlList != null}}"
+                    wx:for="{{diaryItem.imageUrlList}}"
+                    wx:for-item="imageItem"
+                    wx:for-index="index2"
+                    wx:key="imageItemKey"
+                    >
+                        <image mode="aspectFill" src="{{func.isVideo(imageItem) ? func.slice(imageItem):imageItem}}"
+                        data-idx="{{index}}"
+                        data-idx2="{{index2}}"
+                        catchtap="handleImagePreview"
+                        wx:if="{{imageItem != ''}}"
+                        />
+                    </view>
+                </view>
+                </view>
+        </view>
+        
+    </scroll-view>
+    <text class="endText inCenter" style="margin-bottom: 20rpx;">—没有内容了哦—</text>
+
+    </view>
+</view>

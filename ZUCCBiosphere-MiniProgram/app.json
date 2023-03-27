@@ -20,7 +20,10 @@
         "pages/myNotice/myNotice",
         "pages/updateInfo/updateInfo",
         "pages/chatPage/chatPage",
-        "pages/shop/shop"
+        "pages/shop/shop",
+        "pages/adoptDiary/adoptDiary",
+        "pages/adoptDetail/adoptDetail",
+        "pages/diaryDetail/diaryDetail"
     ],
     "window": {
         "backgroundTextStyle": "light",

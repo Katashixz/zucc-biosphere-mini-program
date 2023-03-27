@@ -1,5 +1,8 @@
 {
-    "usingComponents": {},
+    "usingComponents": {
+        "promptBox":"../../utils/promptBox/promptBox"
+
+    },
 
     "navigationBarTitleText": "商城"
 

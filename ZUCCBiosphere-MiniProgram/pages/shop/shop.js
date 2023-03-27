@@ -1,4 +1,6 @@
 // pages/shop/shop.js
+const app = getApp()
+
 Page({
 
     /**
@@ -10,52 +12,85 @@ Page({
                 "id": 1,
                 "name": "猫猫钥匙扣",
                 "cost": 200,
-                "image": "https://cn.bing.com/images/search?q=%e9%92%a5%e5%8c%99%e6%89%a3&id=0A09C5F310309A945335BED4AB6FC2A22D2233E4&FORM=IQFRBA"
+                "image": "https://img.zcool.cn/community/0179a45d634ae9a80120695c3bc94c.jpg@1280w_1l_2o_100sh.jpg",
+                "stock": 4
 
             },
             {
                 "id": 2,
                 "name": "猫猫钥匙扣",
                 "cost": 200,
-                "image": "https://cn.bing.com/images/search?q=%e9%92%a5%e5%8c%99%e6%89%a3&id=0A09C5F310309A945335BED4AB6FC2A22D2233E4&FORM=IQFRBA"
+                "image": "https://img.zcool.cn/community/0179a45d634ae9a80120695c3bc94c.jpg@1280w_1l_2o_100sh.jpg",
+                "stock": 4
+
 
             },
             {
                 "id": 3,
-                "name": "猫猫钥匙扣",
+                "name": "猫猫钥匙扣钥匙扣钥匙扣",
                 "cost": 200,
-                "image": "https://cn.bing.com/images/search?q=%e9%92%a5%e5%8c%99%e6%89%a3&id=0A09C5F310309A945335BED4AB6FC2A22D2233E4&FORM=IQFRBA"
+                "image": "https://img.zcool.cn/community/0179a45d634ae9a80120695c3bc94c.jpg@1280w_1l_2o_100sh.jpg",
+                "stock": 3
 
             },
             {
                 "id": 4,
                 "name": "猫猫钥匙扣",
                 "cost": 200,
-                "image": "https://cn.bing.com/images/search?q=%e9%92%a5%e5%8c%99%e6%89%a3&id=0A09C5F310309A945335BED4AB6FC2A22D2233E4&FORM=IQFRBA"
+                "image": "https://img.zcool.cn/community/0179a45d634ae9a80120695c3bc94c.jpg@1280w_1l_2o_100sh.jpg",
+                "stock": 1
 
             },
             {
                 "id": 5,
                 "name": "猫猫钥匙扣",
                 "cost": 200,
-                "image": "https://cn.bing.com/images/search?q=%e9%92%a5%e5%8c%99%e6%89%a3&id=0A09C5F310309A945335BED4AB6FC2A22D2233E4&FORM=IQFRBA"
+                "image": "https://img.zcool.cn/community/0179a45d634ae9a80120695c3bc94c.jpg@1280w_1l_2o_100sh.jpg",
+                "stock": 0
 
             },
         ]
 
+    },
+    /**
+     * 兑换操作
+     */
+    sumbit(target){
+        var that = this;
+        var index = target.currentTarget.dataset.index;
+        if(that.data.itemList[index].stock <= 0){
+            var obj = {
+                msg: "啊哦！库存没有啦！",
+                type: "error"
+            }
+            that.promptBox.open(obj);
+        }
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        if(app.globalData.hasUserInfo == false){
+            wx.showToast({
+              title: '请先登录',
+              icon: 'error',
+              duration: 1500 
+            })
+            setTimeout(() => {
+                wx.navigateBack({
+                    delta: 0,
+                  })
+            }, 1500)
+            
+        }
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
+        this.promptBox = this.selectComponent("#promptBox");
 
     },
 

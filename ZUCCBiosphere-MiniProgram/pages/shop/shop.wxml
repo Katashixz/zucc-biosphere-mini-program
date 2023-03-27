@@ -1,6 +1,8 @@
 <!--pages/shop/shop.wxml-->
 <view class="shop">
     <view class="homePage">
+        <promptBox id="promptBox"></promptBox>
+
         <view class="infoBar inCenter">
             <view class="youHave">你拥有</view>
             <view class="energyPoint">
@@ -11,9 +13,15 @@
         <scroll-view class="itemBar inCenter" scroll-y="true">
             <view class="father">
                 <view class="item" wx:for="{{itemList}}" wx:key="item" wx:for-item="shopItem" data-index="{{index}}">
-                <image class="itemImage"></image>
-                <view class="itemName"></view>
-                <button class="sumbit inCenter" hover-class="sumbitClick" bindtap="sumbit">兑换</button>
+                <image class="itemImage" mode="aspectFill" src="{{shopItem.image}}"></image>
+                <text class="name">{{shopItem.name}}</text>
+
+                <view class="itemInfo inCenter">
+                    <view class="cost">{{shopItem.cost}} 能量值</view>
+                    
+                    <button class="sumbit inCenter" hover-class="sumbitClick" bindtap="sumbit" data-index="{{index}}">{{shopItem.stock > 0 ? "兑换":"无库存"}}</button>
+                </view>
+
 
                 </view>
             </view>

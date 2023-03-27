@@ -15,9 +15,12 @@ Page({
      * 跳转到其他动物
      */
     toAnotherAnimal: function(e){
-        wx.navigateTo({
-            url: '/pages/animalWikiDetail/animalWikiDetail?id='+this.data.relation[e.currentTarget.dataset.index].id+'&name='+this.data.relation[e.currentTarget.dataset.index].name+'&type='+this.data.pageData.type
+        // wx.navigateTo({
+        //     url: '/pages/animalWikiDetail/animalWikiDetail?id='+this.data.relation[e.currentTarget.dataset.index].id+'&name='+this.data.relation[e.currentTarget.dataset.index].name+'&type='+this.data.pageData.type
 
+        // })
+        wx.redirectTo({
+            url: '/pages/animalWikiDetail/animalWikiDetail?id='+this.data.relation[e.currentTarget.dataset.index].id+'&name='+this.data.relation[e.currentTarget.dataset.index].name+'&type='+this.data.pageData.type
         })
     },
 

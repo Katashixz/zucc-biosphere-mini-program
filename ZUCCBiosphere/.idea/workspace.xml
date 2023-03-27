@@ -4,51 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03e3aba5-35b2-47a4-819e-bf25b6561c1f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_all_4_1_42_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/pojo/ChatRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/pojo/NotifyEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/pojo/ViewChatMsg.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/ChatMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/CommandEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/MessageVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/NotifyMsgVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/resources/mapper/ChatRecordMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/resources/mapper/NotifyEventMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/resources/mapper/ViewChatMsgMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/config/NettyConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/controller/MessageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/handler/CommandHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/handler/WebSocketHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/mapper/ChatRecordMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/mapper/NotifyEventMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/mapper/ViewChatMsgMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/service/IMessageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/service/impl/MessageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/util/NettyServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../VERSION.md" beforeDir="false" afterPath="$PROJECT_DIR$/../VERSION.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/custom-tab-bar/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/custom-tab-bar/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/custom-tab-bar/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/custom-tab-bar/index.wxml" afterDir="false" />
+    <list default="true" id="667cbcbf-9b59-4f82-9fa1-1367bda0ccc8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/animalWikiDetail/animalWikiDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/animalWikiDetail/animalWikiDetail.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/communityHome/communityHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/communityHome/communityHome.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/curingGuide/curingGuide.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/curingGuide/curingGuide.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/myInfoHome/myInfoHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/myInfoHome/myInfoHome.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/noticePage/noticePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/noticePage/noticePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/noticePage/noticePage.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/noticePage/noticePage.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/noticePage/noticePage.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/noticePage/noticePage.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/postDetails/postDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/postDetails/postDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/updateInfo/updateInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/updateInfo/updateInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/project.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/shop/shop.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/shop/shop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/shop/shop.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/shop/shop.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/shop/shop.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/shop/shop.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/shop/shop.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/shop/shop.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/project.private.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/project.private.config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/utils/jsUtil/jsUtil.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/utils/jsUtil/jsUtil.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/utils/searchBar/searchBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/utils/searchBar/searchBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/util/CommonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/util/CommonUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/RespBeanEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/RespBeanEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserModule/UserModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/UserModule/UserModule.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserModule/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/UserModule/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/controller/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +41,7 @@
     </file-type-list>
   </component>
   <component name="ProjectId" id="2JqzKvwp9YyEoqXuw2DP8E4CrJu" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -90,10 +56,11 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Library/src/main/resources/mapper" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
@@ -145,6 +112,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Spring Boot.LibraryApplication" />
+      <item itemvalue="Spring Boot.UserModuleApplication" />
+      <item itemvalue="Spring Boot.WikiModuleApplication" />
+      <item itemvalue="Spring Boot.CommunityModuleApplication" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.CommunityModuleApplication" />
@@ -195,5 +168,12 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest" memberName="request" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

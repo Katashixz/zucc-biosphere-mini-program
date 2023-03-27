@@ -161,6 +161,20 @@
                     "query": "",
                     "launchMode": "default",
                     "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/adoptDiary/adoptDiary",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/diaryDetail/diaryDetail",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }

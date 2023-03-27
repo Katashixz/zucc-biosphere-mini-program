@@ -29,6 +29,7 @@
     margin-left: 2.5%;
     justify-content: flex-start;
     flex-wrap: wrap;
+    margin-bottom: 30rpx;
 }
 .father{
     display: flex;
@@ -43,20 +44,52 @@
     display: flex;
     flex-direction: column;
     width: 300rpx;
-    height: 300rpx;
-    background-color: ivory;
+    height: 400rpx;
+    background-color: rgba(255, 255, 240, 0);
     border-radius: 20rpx;
 }
 
 .sumbit{
-    width: 100% !important;
-    height: 90rpx !important;
+    width: 130rpx !important;
+    height: 60rpx !important;
     border-radius: 20rpx;
     color: #ffffff;
     background-color: rgb(215,193,168) !important;
+    font-size: small;
+    padding-left: 10rpx;
+    padding-right: 10rpx;
 }
 
 .sumbitClick{
     color: #ffffff;
     background-color: rgb(224, 210, 192) !important;
+}
+.itemImage{
+    width: 100%;
+    height: 100%;
+    border-radius: 20rpx;
+    /* border-top-left-radius: 20rpx; */
+    /* border-top-right-radius: 20rpx; */
+}
+.itemInfo{
+    width: 100%;
+    height: 100rpx;
+    display: flex;
+}
+.name{
+    height: 70rpx;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    /* -webkit-box-pack: center;  */
+    /* -webkit-box-align: center;   */
+    -webkit-box-orient: vertical; 
+    text-align: center;
+}
+.cost{
+    font-size: small;
+    font-weight: 700;
+    color: rgb(235, 94, 51);
 }

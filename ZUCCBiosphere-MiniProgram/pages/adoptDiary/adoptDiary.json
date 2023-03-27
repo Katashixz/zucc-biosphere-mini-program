@@ -1,0 +1,6 @@
+{
+    "usingComponents": {},
+    
+    "navigationBarTitleText": "领养日记",
+    "enablePullDownRefresh": true
+}

@@ -142,23 +142,23 @@ Page({
      * 打开领养日记
      */
     toAdoptionDiary: function (e) {
-        var that = this;
-        var obj = {
-            msg: "功能暂未开放",
-            type: "tip"
-        }
-        that.promptBox.open(obj);
+        wx.navigateTo({
+            url: '/pages/adoptDiary/adoptDiary',
+          })
     },
     /**
      * 打开商城
      */
     toShop: function (e) {
         var that = this;
-        var obj = {
-            msg: "功能暂未开放",
-            type: "tip"
-        }
-        that.promptBox.open(obj);
+        // var obj = {
+        //     msg: "功能暂未开放",
+        //     type: "tip"
+        // }
+        // that.promptBox.open(obj);
+        wx.navigateTo({
+          url: '/pages/shop/shop',
+        })
     },
     /**
      * 点赞功能

@@ -144,7 +144,8 @@
 }
 .imageWithContent image{
     z-index: 105;
-    margin: 5rpx;
+    margin-right: 5rpx;
+    margin-left: 5rpx;
     border-radius: 20rpx;
     width: 209rpx;
     height: 200rpx;
