@@ -122,7 +122,7 @@ Page({
      */
     onLoad(options) {
         var that = this;
-        var date = util.formatDate(new Date(), 'yyyy-mm-dd');
+        var date = util.formatDate2(new Date(), 'yyyy-mm-dd');
         that.setData({
             date: date,
             today: date

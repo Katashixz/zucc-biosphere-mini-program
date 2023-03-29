@@ -17,10 +17,11 @@
     <view class="homePage">
         <Dialog id="energyBox" bind:getEnergy="rewardOperation"></Dialog>
         <promptBox id="promptBox"></promptBox>
+        <chatComponent id="chatComponent"></chatComponent>
         <scroll-view scroll-y="{{true}}" >
             <view class="post">
                 <view class="postLineTop">
-                    <view class="avatar" >
+                    <view class="avatar" bindtap="chatPostOwner">
                         <image mode="aspectFill" src="{{postItem.avatarUrl}}" />
                     </view>
                     <view class="nameAndPostTime">
@@ -95,7 +96,7 @@
         bindtap="setAtIndex"
         >
             <view class="postLineTop">
-                <view class="avatar" >
+                <view class="avatar" bindtap="chatCommentOwner" data-index="{{index}}">
                     <image mode="aspectFill" src="{{commentItem.userAvatarUrl}}" />
                 </view>
                 <view class="nameAndPostTime">

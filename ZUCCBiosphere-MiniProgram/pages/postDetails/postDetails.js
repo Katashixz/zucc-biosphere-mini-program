@@ -307,9 +307,48 @@ Page({
     }),
 
     /**
+     * 与楼主聊天
+     */
+    chatPostOwner(e){
+        var that = this;
+        //先判断是否登录 登录后才能点赞
+        if(!app.globalData.hasUserInfo){
+            app.getUserProfile().finally(() => {
+                that.onPullDownRefresh();
+            })
+        }else{
+        var obj = {
+            userName: that.data.postItem.userName,
+            avatarUrl: that.data.postItem.avatarUrl,
+            userID: that.data.postItem.userID
+        };
+            that.chatComponent.open(obj);
+        }
+    },
+
+    /**
+     * 与评论聊天
+     */
+    chatCommentOwner(e){
+        var that = this;
+        //先判断是否登录 登录后才能点赞
+        if(!app.globalData.hasUserInfo){
+            app.getUserProfile().finally(() => {
+                that.onPullDownRefresh();
+            })
+        }else{
+            var index = e.currentTarget.dataset.index
+            var obj = {
+                userName: that.data.commentList[index].userName,
+                avatarUrl: that.data.commentList[index].userAvatarUrl,
+                userID: that.data.commentList[index].userID
+            };
+                that.chatComponent.open(obj);
+        }
+    },
+    /**
      * 打赏弹窗
      */
-    
     toReward: function (e) {
         var that = this
         const post = that.data.postItem
@@ -691,6 +730,7 @@ Page({
     onShow() {
         this.energyBox = this.selectComponent("#energyBox");
         this.promptBox = this.selectComponent("#promptBox");
+        this.chatComponent = this.selectComponent("#chatComponent");
 
     },
 

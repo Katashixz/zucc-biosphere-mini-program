@@ -2,7 +2,7 @@
 <view class="noticePage">
     <view class="homePage">
         <view class="options">
-            <view class="option-item" wx:for="{{optionList}}" wx:key="index" data-index="{{index}}" wx:for-item="item">
+            <view class="option-item" wx:for="{{optionList}}" wx:key="index" data-index="{{index}}" wx:for-item="item" bindtap="toNotifyDetail">
                 <view class="background" style="background-color: {{item.backgroundColor}};">
                     <view class="redPoint" wx:if="{{item.hasMsg}}"></view>
                     <image class="icon" src="{{item.iconPath}}"></image>
@@ -17,12 +17,13 @@
 
         <view class="chatListBar">
             <view class="chatItem" wx:for="{{chatList}}" wx:key="chatIndex" data-index="{{index}}" wx:for-item="chatItem" bindtap="toChatPage">
-                <image class="chatAvatar" src="{{chatItem.avatar}}" mode="aspectFill"></image>
+                <image class="chatAvatar" src="{{chatItem.userInfo.avatarUrl}}" mode="aspectFill"></image>
+                <view class="redPoint" style="right: 0; left: 85rpx; top: 35rpx;" wx:if="{{chatItem.newFlag}}"></view>
                 <view class="chatContext">
-                    <view class="userName">{{chatItem.userName}}</view>
-                    <view class="message">{{chatItem.msg}}</view>
+                    <view class="userName">{{chatItem.userInfo.userName}}</view>
+                    <view class="message">{{chatItem.chatMsg.content}}</view>
                 </view>
-                <view class="time">{{chatItem.time}}</view>
+                <view class="time">{{chatItem.chatMsg.createdAt}}</view>
                 
             </view>
         </view>

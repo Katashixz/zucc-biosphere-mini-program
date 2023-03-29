@@ -119,7 +119,7 @@ Page({
     /**
      * 发送消息
      */
-    uploadMessage: function(e){
+    uploadMessage: util.throttle(function(e){
         var that = this;
         var uid = wx.getStorageSync('uid')
         var target = that.data.pageData.target
@@ -136,18 +136,23 @@ Page({
             // util.sendChatMessage(10002, uid, target, text);
             app.sendMessage(mCmd);
             util.resiverMessage(that);
-            console.log(mCmd);
+            // console.log(mCmd);
+            var time = new Date().getHours() + ':' + new Date().getMinutes().toString().padStart(2, "0");
             var obj = {
-                userID: uid,
-                msg: text,
-                avatar: "https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0",
-                time: new Date().getHours,
+                sourceID: uid,
+                content: text,
+                sourceAvatar: app.globalData.userInfo.avatarUrl,
+                createdAt: time,
             }
             var record = that.data.chatRecord;
             record.push(obj);
             that.setData({
-                chatRecord: record
+                resContent: '',
+                chatRecord: record,
+                toView: `item${that.data.chatRecord.length-1}`
             })
+            // that.onPullDownRefresh();
+
         }else{
             wx.showToast({
               title: '私聊信息异常',
@@ -155,7 +160,7 @@ Page({
               duration: 2000
             })
         }
-    },
+    },1500),
     /**
      * WebSocket页面回调函数
      */
@@ -164,17 +169,23 @@ Page({
         console.log(res.data)
         var obj = JSON.parse(res.data);
         console.log("chatPage",obj)
+        var time = new Date(obj.data.createdAt).getHours() + ':' + new Date(obj.data.createdAt).getMinutes().toString().padStart(2, "0");
         var chat = {
-            userID: obj.data.userId,
-            msg: obj.data.content,
-            avatar: "https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0",
-            time: new Date().getHours,
+            sourceID: obj.data.userId,
+            sourceName: that.data.pageData.userName,
+            content: obj.data.content,
+            sourceAvatar: that.data.pageData.targetAvatar,
+            createdAt: time,
+            
         }
         var temp = that.data.chatRecord
         temp.push(chat)
         that.setData({
-            chatRecord: temp
+            chatRecord: temp,
+            toView: `item${that.data.chatRecord.length-1}`
+
         })
+        // that.onPullDownRefresh();
         
       },
     /**
@@ -196,6 +207,7 @@ Page({
             })
         }
         util.resiverMessage(that)
+        that.onPullDownRefresh();
     },
 
     /**
@@ -209,7 +221,8 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
+        var that = this;
+        that.onPullDownRefresh();
     },
 
     /**
@@ -227,10 +240,54 @@ Page({
     },
 
     /**
+     * 加载聊天记录
+     */
+    loadHistory(){
+        var that = this;
+        wx.request({
+            method: 'GET',
+            url: app.globalData.urlHome + '/user/auth/getOneChatHistory?sourceID=' + that.data.uid + '&targetID=' + that.data.pageData.target,
+            header: {
+                'content-type': 'application/json',
+                'token': app.globalData.token
+            },
+            success: (res) => {
+                if(res.data.code == 200){
+                    console.log(res);
+                    var chatList = res.data.data.history;
+                    for(var i = 0, len = chatList.length; i < len; i++) {
+                        var dateFormat = util.formatDateByDiff(new Date(chatList[i].createdAt));
+                        chatList[i].createdAt = dateFormat;
+                      }
+                    that.setData({
+                        chatRecord: chatList,
+                    })
+                }
+                else{
+                    console.log("error");
+                }
+            },
+            fail: (res) => {
+                wx.showToast({
+                title: '服务器错误',
+                icon: 'error',
+                duration: 1500
+                })
+            }
+        })
+        setTimeout(() => {
+            that.setData({
+                toView: `item${that.data.chatRecord.length-1}`
+            })
+        }, 500)
+    },
+
+    /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh() {
-
+        var that = this;
+        that.loadHistory();
     },
 
     /**

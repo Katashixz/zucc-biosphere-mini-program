@@ -2,28 +2,28 @@
 <!--pages/noticePage/noticePage.wxml-->
 <view class="noticePage">
     <view class="homePage">
-        <scroll-view class="chatRecord" scroll-y="true" enable-flex="true">
-            <view wx:for="{{chatRecord}}" wx:key="chatIndex" data-index="{{index}}" wx:for-item="chatItem">
-                <view class="chatItemRight" wx:if="{{chatItem.userID == uid}}">
+        <scroll-view class="chatRecord" scroll-y="true" enable-flex="true" scroll-into-view="{{toView}}">
+            <view wx:for="{{chatRecord}}" wx:key="chatIndex" data-index="{{index}}" wx:for-item="chatItem" id="item{{index}}">
+                <view class="chatItemRight" wx:if="{{chatItem.sourceID == uid}}">
                     <view class="timeBox" style="margin-right: 10rpx;">
-                        <view class="time">{{chatItem.time}}
+                        <view class="time">{{chatItem.createdAt}}
                         </view>
                     </view>
                     <view class="msgBox inCenter" style="margin-right: 10rpx;">
-                        <view class="msg">{{chatItem.msg}}</view>
+                        <view class="msg">{{chatItem.content}}</view>
                     </view>
-                    <image class="avatar" src="{{chatItem.avatar}}" mode="aspectFill">
+                    <image class="avatar" src="{{chatItem.sourceAvatar}}" mode="aspectFill">
                     </image>
 
                 </view>
-                <view class="chatItemLeft" wx:if="{{chatItem.userID != uid}}">
-                    <image class="avatar" src="{{chatItem.avatar}}" mode="aspectFill">
+                <view class="chatItemLeft" wx:if="{{chatItem.sourceID != uid}}">
+                    <image class="avatar" src="{{chatItem.sourceAvatar}}" mode="aspectFill">
                     </image>
                     <view class="msgBox inCenter" style="margin-left: 10rpx;">
-                        <view class="msg">{{chatItem.msg}}</view>
+                        <view class="msg">{{chatItem.content}}</view>
                     </view>
                     <view class="timeBox" style="margin-left: 10rpx;">
-                        <view class="time">{{chatItem.time}}
+                        <view class="time">{{chatItem.createdAt}}
                         </view>
                     </view>
                 </view>

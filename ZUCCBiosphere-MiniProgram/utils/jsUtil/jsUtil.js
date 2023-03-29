@@ -50,11 +50,77 @@ function throttle(fn, gapTimes) {
   function resiverMessage(context) {
     wx.onSocketMessage(function (data) {
         // console.log(data)
-        
+    // app.globalData.
       context.onMessage(data) //这里定义一个onMessage方法，用于每个页面的回调
     })
    }
-   const formatDate = function (date, matter) {
+   /**
+ * 格式化日期为指定格式
+ * @param {Date} date 日期对象
+ * @param {string} fmt 格式字符串，例如：'YYYY-MM-DD HH:mm:ss'
+ * @returns {string} 格式化后的日期字符串
+ */
+function formatDate(date, fmt) {
+    let o = {
+      "M+": date.getMonth() + 1,
+      "d+": date.getDate(),
+      "H+": date.getHours(),
+      "m+": date.getMinutes(),
+      "s+": date.getSeconds(),
+      "q+": Math.floor((date.getMonth() + 3) / 3),
+      "S": date.getMilliseconds()
+    };
+    if (/(Y+)/.test(fmt)) {
+      fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+    }
+    for (let k in o) {
+      if (new RegExp("(" + k + ")").test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+      }
+    }
+    return fmt;
+  }
+  
+  /**
+   * 获取当前日期的字符串形式
+   * @returns {string} 当前日期的字符串形式，例如：'2022-03-28'
+   */
+  function getCurrentDate() {
+    let now = new Date();
+    return formatDate(now, 'YYYY-MM-dd');
+  }
+  
+  /**
+   * 根据目标日期和当前日期的差值返回不同的格式化字符串
+   * @param {string|Date} targetDate 目标日期，可以是字符串或Date类型
+   * @returns {string} 格式化后的日期字符串
+   */
+  function formatDateByDiff(targetDate) {
+    // 如果传入的是字符串，转换为Date类型
+    if (typeof targetDate === 'string') {
+      targetDate = new Date(targetDate);
+    }
+  
+    let currentDate = new Date();
+    let targetYear = targetDate.getFullYear();
+    let currentYear = currentDate.getFullYear();
+  
+    if (targetYear < currentYear) {
+      // 目标日期早于今年，返回YYYY-MM-DD格式
+      return formatDate(targetDate, 'YYYY-MM-dd');
+    } else if (targetYear === currentYear && targetDate.getMonth() < currentDate.getMonth()) {
+      // 目标日期等于今年但早于当前月份，返回YYYY-MM-DD格式
+      return formatDate(targetDate, 'MM-dd');
+    } else if (targetDate.getDate() === currentDate.getDate() && targetDate.getMonth() === currentDate.getMonth() && targetYear === currentYear) {
+      // 目标日期等于今天，返回HH:mm格式
+      return formatDate(targetDate, 'HH:mm');
+    } else {
+      // 其它情况返回MM-DD格式
+      return formatDate(targetDate, 'MM-dd');
+    }
+  }
+
+   const formatDate2 = function (date, matter) {
     let year = date.getFullYear().toString();
     let month = (date.getMonth() + 1).toString();
     month = (month.length > 1) ? month : ('0' + month);
@@ -118,5 +184,6 @@ function throttle(fn, gapTimes) {
     // sendMessage: sendMessage, 
     // sendChatMessage: sendChatMessage, 
     resiverMessage: resiverMessage,
-    formatDate: formatDate
+    formatDate2: formatDate2,
+    formatDateByDiff: formatDateByDiff,
   }

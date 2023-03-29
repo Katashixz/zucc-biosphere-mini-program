@@ -11,7 +11,7 @@ import java.util.Date;
  * </p>
  *
  * @author hyh
- * @since 2023-03-25
+ * @since 2023-03-27
  */
 public class ViewChatMsg implements Serializable {
 
@@ -20,26 +20,20 @@ public class ViewChatMsg implements Serializable {
     /**
      * 主键
      */
-    @TableField("chatID")
-    private Long chatID;
-
-    /**
-     * 主键id
-     */
-    @TableField("userID")
-    private Integer userID;
+    @TableField("chatId")
+    private Long chatId;
 
     /**
      * 用户名
      */
-    @TableField("userName")
-    private String userName;
+    @TableField("sourceName")
+    private String sourceName;
 
     /**
      * 用户头像url
      */
-    @TableField("avatarUrl")
-    private String avatarUrl;
+    @TableField("sourceAvatar")
+    private String sourceAvatar;
 
     /**
      * 消息来源用户ID
@@ -70,33 +64,38 @@ public class ViewChatMsg implements Serializable {
     @TableField("createdAt")
     private Date createdAt;
 
-    public Long getChatID() {
-        return chatID;
+    /**
+     * 用户头像url
+     */
+    @TableField("targetAvatar")
+    private String targetAvatar;
+
+    /**
+     * 用户名
+     */
+    @TableField("targetName")
+    private String targetName;
+
+    public Long getChatId() {
+        return chatId;
     }
 
-    public void setChatID(Long chatId) {
-        this.chatID = chatId;
+    public void setChatId(Long chatId) {
+        this.chatId = chatId;
     }
-    public Integer getUserID() {
-        return userID;
-    }
-
-    public void setUserID(Integer userId) {
-        this.userID = userId;
-    }
-    public String getUserName() {
-        return userName;
+    public String getSourceName() {
+        return sourceName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setSourceName(String sourceName) {
+        this.sourceName = sourceName;
     }
-    public String getAvatarUrl() {
-        return avatarUrl;
+    public String getSourceAvatar() {
+        return sourceAvatar;
     }
 
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
+    public void setSourceAvatar(String sourceAvatar) {
+        this.sourceAvatar = sourceAvatar;
     }
     public Integer getSourceID() {
         return sourceID;
@@ -133,19 +132,34 @@ public class ViewChatMsg implements Serializable {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
+    public String getTargetAvatar() {
+        return targetAvatar;
+    }
+
+    public void setTargetAvatar(String targetAvatar) {
+        this.targetAvatar = targetAvatar;
+    }
+    public String getTargetName() {
+        return targetName;
+    }
+
+    public void setTargetName(String targetName) {
+        this.targetName = targetName;
+    }
 
     @Override
     public String toString() {
         return "ViewChatMsg{" +
-            "chatID=" + chatID +
-            ", userID=" + userID +
-            ", userName=" + userName +
-            ", avatarUrl=" + avatarUrl +
+            "chatId=" + chatId +
+            ", sourceName=" + sourceName +
+            ", sourceAvatar=" + sourceAvatar +
             ", sourceID=" + sourceID +
             ", targetID=" + targetID +
             ", content=" + content +
             ", msgType=" + msgType +
             ", createdAt=" + createdAt +
+            ", targetAvatar=" + targetAvatar +
+            ", targetName=" + targetName +
         "}";
     }
 }

@@ -607,6 +607,23 @@ Page({
         that.loadPost(1,pageSize);
         that.loadHotPost();
     },
+    openChatComponent(e){
+        var that = this;
+        //先判断是否登录 登录后才能点赞
+        if(!app.globalData.hasUserInfo){
+            app.getUserProfile().finally(() => {
+                that.onPullDownRefresh();
+            })
+        }else{
+            var index = e.currentTarget.dataset.index
+        var obj = {
+            userName: that.data.postList[index].userName,
+            avatarUrl: that.data.postList[index].avatarUrl,
+            userID: that.data.postList[index].userID
+        };
+            that.chatComponent.open(obj);
+        }
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -614,6 +631,7 @@ Page({
     onReady() {
         this.energyBox = this.selectComponent("#energyBox");
         this.promptBox = this.selectComponent("#promptBox");
+        this.chatComponent = this.selectComponent("#chatComponent");
     },
 
     /**
@@ -622,6 +640,9 @@ Page({
     onShow: function () {
         var that = this;
         
+        this.energyBox = this.selectComponent("#energyBox");
+        this.promptBox = this.selectComponent("#promptBox");
+        this.chatComponent = this.selectComponent("#chatComponent");
         that.setData({
             currentIndex: 0,
         })

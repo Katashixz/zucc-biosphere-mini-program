@@ -2,6 +2,7 @@ package com.biosphere.usermodule.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.biosphere.library.pojo.Comment;
+import com.biosphere.library.vo.CommentNotifyVo;
 import com.biosphere.library.vo.CommentVo;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
@@ -80,5 +81,13 @@ public interface CommentMapper extends BaseMapper<Comment> {
             "FROM `comment`\n" +
             "WHERE isDeleted = 1")
     Integer deleteMarkedComments();
+
+
+    @Select("SELECT c.id as commentID, c.userID as userID, u.userName as userName, u.avatarUrl as avatarUrl, c.commentDate as createdAt, c.content as content, c.postID as postID\n" +
+            "FROM `comment` c\n" +
+            "LEFT OUTER JOIN `user` u ON u.id = c.userID\n" +
+            "WHERE c.commentToUser = #{userID} AND userID <> #{userID} AND isDeleted = 0\n" +
+            "ORDER BY createdAt DESC")
+    List<CommentNotifyVo> loadCommentNotify(@Param("userID") Integer userID);
 
 }

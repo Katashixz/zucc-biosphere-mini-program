@@ -1,7 +1,8 @@
 {
     "usingComponents": {
         "Dialog":"../../utils/Dialog/Dialog",
-        "promptBox":"../../utils/promptBox/promptBox"
+        "promptBox":"../../utils/promptBox/promptBox",
+        "chatComponent":"../../utils/chatComponent/chatComponent"
         
     },
     "navigationBarTitleText": "社区",

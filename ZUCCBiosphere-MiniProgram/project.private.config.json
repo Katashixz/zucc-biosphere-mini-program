@@ -175,6 +175,13 @@
                     "query": "",
                     "launchMode": "default",
                     "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/myNotice/myNotice",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }

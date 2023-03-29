@@ -19,7 +19,6 @@ Page({
         energyPoint: 0,
         
     },
-    
     /**
      * 跳转到个人信息修改
      */
@@ -155,10 +154,6 @@ Page({
             wx.navigateTo({
                 url: '/pages/noticePage/noticePage?userID=' + that.data.userInfo.id,
             })
-            that.setData({
-                hasMsg: false
-            })
-            getApp().globalData.hasNewMsg = false;
         }
     },
     /**
@@ -278,10 +273,11 @@ Page({
                     if(res.data.code == 200){
                         app.globalData.userInfo = res.data.data.userInfo;
                         app.globalData.level = res.data.data.level;
+                        app.globalData.hasNewMsg = res.data.data.hasMsg;
                         that.setData({
                             userInfo: res.data.data.userInfo,
                             level: res.data.data.level,
-                            hasMsg: app.globalData.hasNewMsg
+                            hasMsg: res.data.data.hasMsg
                         })
                     }
                     else{

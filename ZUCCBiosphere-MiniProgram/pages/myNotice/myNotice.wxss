@@ -1,1 +1,86 @@
 /* pages/myNotice/myNotice.wxss */
+.noticeList{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    margin-left: 2.5%;
+}
+
+.likeItem{
+    position: relative;
+    margin-top: 20rpx;
+    border-radius: 20rpx;
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    height: 120rpx;
+}
+.name{
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /*限制文本行数*/
+    -webkit-box-orient: vertical;
+    word-break: break-all; /* 追加这一行代码 */
+    max-height: 40rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 270rpx;
+
+}
+.avatarImage{
+    border-radius: 100rpx;
+    width: 100rpx;
+    height: 100rpx;
+    margin-top: 10rpx;
+    margin-left: 10rpx;
+}
+
+
+.nameAndPostTime{
+    margin-top: 20rpx;
+    display: flex;
+    flex: 3;
+    flex-direction: column;
+    height: 100%;
+    margin-left: 10rpx;
+    max-width: 400rpx;
+}
+.contentBox{
+    margin-top: 10rpx;
+    width: 160rpx;
+    height: 100rpx;
+    border-radius: 20rpx;
+    background-color: rgb(207, 207, 207);
+}
+
+.time{
+    font-size: 28rpx;
+    color: #bbb;
+    max-width: 300rpx;
+}
+.content{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-top: 3rpx;
+    padding-left: 15rpx;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /*限制文本行数*/
+    -webkit-box-orient: vertical;
+    word-break: break-all; /* 追加这一行代码 */
+    line-height: 50rpx;
+    color: rgb(61, 60, 60);
+    font-weight: 600;
+}
+
+.energeType{
+    font-size: medium;
+
+}
+
+.num{
+    display: flex;
+    position: absolute;
+    right: 40rpx;
+    color: rgb(255, 145, 0);
+    font-weight: 800;
+    top: 40rpx
+}

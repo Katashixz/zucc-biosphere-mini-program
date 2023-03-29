@@ -1,14 +1,12 @@
 package com.biosphere.usermodule.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import com.biosphere.library.pojo.ChatRecord;
-import com.biosphere.library.pojo.NotifyEvent;
-import com.biosphere.library.vo.ChatMessage;
-import com.biosphere.library.vo.ExceptionNoLogVo;
-import com.biosphere.library.vo.RespBeanEnum;
-import com.biosphere.usermodule.mapper.ChatRecordMapper;
-import com.biosphere.usermodule.mapper.NotifyEventMapper;
+import com.biosphere.library.pojo.*;
+import com.biosphere.library.vo.*;
+import com.biosphere.usermodule.mapper.*;
 import com.biosphere.usermodule.service.IMessageService;
 
 import io.swagger.models.auth.In;
@@ -17,6 +15,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,19 +37,47 @@ public class MessageService implements IMessageService {
     @Autowired
     private NotifyEventMapper notifyEventMapper;
 
+    @Autowired
+    private ViewChatMsgMapper viewChatMsgMapper;
+
+    @Autowired
+    private CommentMapper commentMapper;
+
+    @Autowired
+    private ViewLikeMsgMapper viewLikeMsgMapper;
+
+    @Autowired
+    private EnergyRecordMapper energyRecordMapper;
+
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void saveChatMsg(ChatRecord chatRecord) {
+    public void saveChatMsg(ChatRecord chatRecord, Map<Integer, ChatRecord> chatRecordMap) {
         //将聊天信息更新到数据库
         int insert = chatRecordMapper.insert(chatRecord);
         if (insert <= 0) {
             throw new ExceptionNoLogVo(RespBeanEnum.ERROR);
         }
+        chatRecordMap.put(chatRecord.getSourceID(), chatRecord);
+        redisTemplate.opsForHash().put("userID:" + chatRecord.getTargetID(),"chatMsg", chatRecordMap);
+
     }
 
     @Override
     public boolean hasMsg(Integer userID) {
-        if (redisTemplate.opsForHash().hasKey("userID:" + userID, "chatMsg")) {
+        Map<Integer, ChatRecord> chatMsg = (Map<Integer, ChatRecord>) redisTemplate.opsForHash().get("userID:" + userID, "chatMsg");
+        if (chatMsg != null && chatMsg.size() > 0) {
+            return true;
+        }
+        Map<Integer, NotifyEvent> commentMsg = (Map<Integer, NotifyEvent>) redisTemplate.opsForHash().get("userID:" + userID.toString(), "commentMsg");
+        if (commentMsg != null && commentMsg.size() > 0) {
+            return true;
+        }
+        Map<Integer, NotifyEvent> likeMsg = (Map<Integer, NotifyEvent>) redisTemplate.opsForHash().get("userID:" + userID.toString(), "likeMsg");
+        if (likeMsg != null && likeMsg.size() > 0) {
+            return true;
+        }
+        Map<Integer, NotifyEvent> chargeMsg = (Map<Integer, NotifyEvent>) redisTemplate.opsForHash().get("userID:" + userID.toString(), "chargeMsg");
+        if (chargeMsg != null && chargeMsg.size() > 0) {
             return true;
         }
         return false;
@@ -121,13 +148,95 @@ public class MessageService implements IMessageService {
     public Map<Integer, ChatRecord> getNewChat(Integer userId) {
         // 新的对话就是redis里缓存的
         Map<Integer, ChatRecord> chatMsg = (Map<Integer, ChatRecord>) redisTemplate.opsForHash().get("userID:" + userId, "chatMsg");
-        redisTemplate.opsForHash().delete("userID:" + userId, "chatMsg");
+        // redisTemplate.opsForHash().delete("userID:" + userId, "chatMsg");
         return chatMsg;
     }
 
     @Override
-    public List<ChatRecord> getChatRecord(Integer userId) {
+    public JSONArray getChatRecord(Integer userId, Map<Integer, ChatRecord> newChat) {
+        List<ViewChatMsg> viewChatMsgs = viewChatMsgMapper.getLatestMsg(userId);
+        JSONArray res = new JSONArray();
+        // 获取的历史消息最后一条可能是自己，但是前端需要接受的是目标用户信息
+        for (ViewChatMsg viewChatMsg : viewChatMsgs) {
+            JSONObject tmp = new JSONObject();
+            tmp.put("chatMsg", viewChatMsg);
+            // 如果消息来源于自己，用户信息要获取target的，如果不是自己，就获取source的
+            UserInfoVo targetUser = new UserInfoVo();
+            if (viewChatMsg.getSourceID() == userId) {
+                targetUser.setUserId(viewChatMsg.getTargetID());
+                targetUser.setUserName(viewChatMsg.getTargetName());
+                targetUser.setAvatarUrl(viewChatMsg.getTargetAvatar());
+            }else {
+                targetUser.setUserId(viewChatMsg.getSourceID());
+                targetUser.setUserName(viewChatMsg.getSourceName());
+                targetUser.setAvatarUrl(viewChatMsg.getSourceAvatar());
+            }
+            tmp.put("userInfo", targetUser);
+            // 是否为未读消息只需要判断最后一条消息的主键是否与redis里的一致
+            if (newChat != null)
+                tmp.put("newFlag", viewChatMsg.getChatId().equals(newChat.getOrDefault(targetUser.getUserId().toString(), new ChatRecord()).getId()));
+            else
+                tmp.put("newFlag", false);
+            res.add(tmp);
+        }
+        return res;
+    }
 
-        return null;
+    @Override
+    public JSONObject hasNotify(Integer userId) {
+        JSONObject res = new JSONObject();
+        Map<Integer, NotifyEvent> commentMsg = (Map<Integer, NotifyEvent>) redisTemplate.opsForHash().get("userID:" + userId.toString(), "commentMsg");
+        Map<Integer, NotifyEvent> chargeMsg = (Map<Integer, NotifyEvent>) redisTemplate.opsForHash().get("userID:" + userId.toString(), "chargeMsg");
+        Map<Integer, NotifyEvent> likeMsg = (Map<Integer, NotifyEvent>) redisTemplate.opsForHash().get("userID:" + userId.toString(), "likeMsg");
+        res.put("hasLikeMsg", false);
+        res.put("hasCommentMsg", false);
+        res.put("hasChargeMsg", false);
+        if (commentMsg != null && commentMsg.size() > 0) {
+            res.put("hasCommentMsg", true);
+        }
+        if (likeMsg != null && likeMsg.size() > 0) {
+            res.put("hasLikeMsg", true);
+        }
+        if (chargeMsg != null && chargeMsg.size() > 0) {
+            res.put("hasChargeMsg", true);
+        }
+        return res;
+    }
+
+    @Override
+    public List<ViewChatMsg> getOneChatHistory(Integer sourceId, Integer targetID) {
+        // 访问了与某人的聊天记录，就要清空缓存中与target的新消息记录
+        List<ViewChatMsg> res = viewChatMsgMapper.getOneChatHistory(sourceId, targetID);
+        Map<Integer, ChatRecord> chatMsg = (Map<Integer, ChatRecord>) redisTemplate.opsForHash().get("userID:" + sourceId.toString(), "chatMsg");
+        if (chatMsg != null) {
+            chatMsg.remove(targetID.toString());
+            redisTemplate.opsForHash().put("userID:" + sourceId.toString(),"chatMsg", chatMsg);
+        }
+        return res;
+    }
+
+    @Override
+    public List<CommentNotifyVo> getCommentNotify(Integer userID) {
+        List<CommentNotifyVo> commentNotifyVos = commentMapper.loadCommentNotify(userID);
+        redisTemplate.opsForHash().delete("userID:" + userID, "commentMsg");
+        return commentNotifyVos;
+    }
+
+    @Override
+    public List<ViewLikeMsg> getLikeNotify(Integer userID) {
+        QueryWrapper<ViewLikeMsg> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("targetID", userID).ne("userID", userID).orderByDesc("createdAt");
+        List<ViewLikeMsg> viewLikeMsgs = viewLikeMsgMapper.selectList(queryWrapper);
+        redisTemplate.opsForHash().delete("userID:" + userID, "likeMsg");
+        return viewLikeMsgs;
+    }
+
+    @Override
+    public List<EnergyRecord> getEnergyNotify(Integer userID) {
+        QueryWrapper<EnergyRecord> wrapper = new QueryWrapper<>();
+        wrapper.eq("userID", userID).or().eq("toUserID", userID).orderByDesc("getDate");
+        List<EnergyRecord> energyRecords = energyRecordMapper.selectList(wrapper);
+        redisTemplate.opsForHash().delete("userID:" + userID, "chargeMsg");
+        return energyRecords;
     }
 }

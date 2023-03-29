@@ -84,13 +84,19 @@
     
 }
 .chatContext{
-    width: 520rpx;
+    width: 320rpx;
     text-align: left;
     align-items: left;
     margin-left: 20rpx;
 }
 .userName{
     font-size:large;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
 }
 .message{
     font-size: medium;
@@ -103,7 +109,10 @@
     word-break: break-all;
 }
 .time{
+    position: absolute;
+    right: 0rpx;
     font-size: small;
     color: #888685;
     margin-top: 50rpx;
+    /* text-align: right; */
 }

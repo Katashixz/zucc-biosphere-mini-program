@@ -4,20 +4,21 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.biosphere.library.pojo.ViewChatMsg">
-        <result column="chatID" property="chatID" />
-        <result column="userID" property="userID" />
-        <result column="userName" property="userName" />
-        <result column="avatarUrl" property="avatarUrl" />
+        <result column="chatId" property="chatId" />
+        <result column="sourceName" property="sourceName" />
+        <result column="sourceAvatar" property="sourceAvatar" />
         <result column="sourceID" property="sourceID" />
         <result column="targetID" property="targetID" />
         <result column="content" property="content" />
         <result column="msgType" property="msgType" />
         <result column="createdAt" property="createdAt" />
+        <result column="targetAvatar" property="targetAvatar" />
+        <result column="targetName" property="targetName" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        chatID, userID, userName, avatarUrl, sourceID, targetID, content, msgType, createdAt
+        chatId, sourceName, sourceAvatar, sourceID, targetID, content, msgType, createdAt, targetAvatar, targetName
     </sql>
 
 </mapper>

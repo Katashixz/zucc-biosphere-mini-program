@@ -51,7 +51,7 @@
             <view class="post" wx:for="{{postList}}" wx:key="postIDListKey"
         wx:for-item="postItem" data-index="{{index}}" >
                 <view class="postLineTop">
-                    <view class="avatar" >
+                    <view class="avatar" bindtap="openChatComponent" data-index="{{index}}" >
                         <image mode="aspectFill" src="{{postItem.avatarUrl}}" />
                     </view>
                     <view class="nameAndPostTime">
@@ -141,6 +141,7 @@
         </view>
         <Dialog id="energyBox" bind:getEnergy="rewardOperation"></Dialog>
         <promptBox id="promptBox"></promptBox>
+        <chatComponent id="chatComponent"></chatComponent>
     </view>
    
     

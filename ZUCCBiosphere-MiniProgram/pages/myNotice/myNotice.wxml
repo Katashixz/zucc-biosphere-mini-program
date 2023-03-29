@@ -2,8 +2,45 @@
 <view class="myNotice">
     <view class="homePage">
         <view class="noticeList">
-            <view>
-            
+            <view class="likeItem" wx:if="{{type==0}}" wx:for="{{list}}" wx:key="likeKey" data-index="{{index}}" wx:for-item="likeItem" bindtap="onLikeClick">
+                <image class="avatarImage" src="{{likeItem.sourceAvatar}}"></image>
+                <view class="nameAndPostTime">
+                    <view style="display: flex;">
+                        <text class="name">{{likeItem.sourceName}}</text>
+                    <text style="margin-left: 10rpx;">赞了你</text>
+                    </view>
+                    <view class="time">{{likeItem.createdAt}}</view>
+                </view>
+                <view class="contentBox">
+                    <text class="content">{{likeItem.postContent}}</text>
+                </view>
+            </view>
+            <view class="likeItem" wx:if="{{type==1}}" wx:for="{{list}}" wx:key="commentKey" data-index="{{index}}" wx:for-item="commentItem" bindtap="onCommentClick">
+                <image class="avatarImage" src="{{commentItem.avatarUrl}}"></image>
+                <view class="nameAndPostTime">
+                    <view style="display: flex;">
+                        <text class="name">{{commentItem.userName}}</text>
+                    <text style="margin-left: 10rpx;">评论了你</text>
+                    </view>
+                    <view class="time">{{commentItem.createdAt}}</view>
+                </view>
+                <view class="contentBox">
+                    <text class="content">{{commentItem.content}}</text>
+                </view>
+            </view>
+            <view class="likeItem" wx:if="{{type==2}}" wx:for="{{list}}" wx:key="chargeKey" data-index="{{index}}" wx:for-item="chargeItem">
+                
+                <view class="nameAndPostTime inCenter" style="margin-top: 0rpx;">
+                    <view class="energeType">
+                    {{chargeItem.type == 0 ? '每日登录' : chargeItem.toUserID == uid ? '获得充电' : '充电消耗'}}
+                    </view>
+                    <view class="time">{{chargeItem.getDate}}</view>
+                </view>
+                <view class="num">
+                <view>{{chargeItem.type == 0 ? '+' : chargeItem.toUserID == uid ? '+' : '-'}}</view>
+                <view>{{chargeItem.point}}</view>
+                </view>
+                
             </view>
         </view>
     </view>

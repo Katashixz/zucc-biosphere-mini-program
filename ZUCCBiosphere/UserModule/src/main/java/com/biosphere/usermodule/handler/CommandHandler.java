@@ -97,10 +97,9 @@ public class CommandHandler {
             // Map数据结构key为消息接受者ID,value为一个消息列表chatRecordMap，其中key为消息发送者ID，value为最新的chatRecord
             chatRecordMap = (Map<Integer, ChatRecord>) redisTemplate.opsForHash().get("userID:" + chatMessage.getTargetID(), "chatMsg");
         }
-        // 不存在就新建，不设置过期时间。key为消息来源的ID
-        chatRecordMap.put(chatMessage.getSourceID(), chatMessage);
-        redisTemplate.opsForHash().put("userID:" + chatMessage.getTargetID(),"chatMsg", chatRecordMap);
-        messageService.saveChatMsg(chatMessage);
+        // 不存在就新建，在service里操作，不设置过期时间。key为消息来源的ID
+
+        messageService.saveChatMsg(chatMessage, chatRecordMap);
     }
 
     public void notifyExecute(ChannelHandlerContext ctx, TextWebSocketFrame frame){

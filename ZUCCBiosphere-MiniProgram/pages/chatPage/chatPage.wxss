@@ -101,7 +101,7 @@
     padding-left: 12rpx;
 }
 .timeBox{
-    width: 70rpx;
+    width: 75rpx;
     /* margin-left: 10rpx; */
     position: relative;
     /* display: inline-flex; */
@@ -109,7 +109,7 @@
 }
 .time{
     position:absolute;
-    bottom: 0;
+    bottom: 5rpx;
     font-size: small;
     color: #888685;
 }
