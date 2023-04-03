@@ -73,7 +73,7 @@ public class DataAutoLoadUtil {
         }
         //养护指南数据
         List<CuringGuide> curingGuideList = curingGuideMapper.selectList(new QueryWrapper<CuringGuide>().select("id,content,type,belongToWhichType,keyContent").orderByAsc("type"));
-        List<AnimalsWiki> animalsWikiList = animalsWikiMapper.selectList(new QueryWrapper<AnimalsWiki>().select("ID,nickName,scientificNameID,sex,`condition`,sterilization,`character`,appearance,relationship,image,relationID,location"));
+        List<AnimalsWiki> animalsWikiList = animalsWikiMapper.selectList(new QueryWrapper<AnimalsWiki>().select("ID,nickName,scientificNameID,sex,`condition`,sterilization,`character`,appearance,relationship,image,relationID,location,adoptCondition"));
         List<PlantsWiki> plantsWikiList = plantsWikiMapper.selectList(new QueryWrapper<PlantsWiki>().select("ID,scientificNameID,nickName,location,image,alias"));
         Map<String,Object> animalsWikiMap = new HashMap<>();
         Map<String,Object> plantsWikiMap = new HashMap<>();

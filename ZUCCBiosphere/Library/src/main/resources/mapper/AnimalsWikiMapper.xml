@@ -16,11 +16,12 @@
         <result column="image" property="image" />
         <result column="relationID" property="relationID" />
         <result column="location" property="location" />
+        <result column="adoptCondition" property="adoptCondition" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        ID, nickName, scientificNameID, sex, condition, sterilization, character, appearance, relationship, image, relationID, location
+        ID, nickName, scientificNameID, sex, condition, sterilization, character, appearance, relationship, image, relationID, location, adoptCondition
     </sql>
 
 </mapper>

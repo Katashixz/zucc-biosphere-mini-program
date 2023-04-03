@@ -3,6 +3,7 @@ package com.biosphere.library.pojo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import io.swagger.models.auth.In;
 
 import java.io.Serializable;
 
@@ -82,6 +83,20 @@ public class AnimalsWiki implements Serializable {
      */
     @TableField("location")
     private String location;
+
+    /**
+     * 领养标记，1代表已被领养，0代表未被领养
+     */
+    @TableField("adoptCondition")
+    private Integer adoptCondition;
+
+    public Integer getAdoptCondition() {
+        return adoptCondition;
+    }
+
+    public void setAdoptCondition(Integer adoptCondition) {
+        this.adoptCondition = adoptCondition;
+    }
 
     public String getLocation() {
         return location;

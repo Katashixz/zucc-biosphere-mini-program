@@ -289,6 +289,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     }
 
+    @Override
+    public List<MyAdoptVo> loadMyAdopt(Integer userID) {
+        List<MyAdoptVo> myAdopt = userMapper.getMyAdopt(userID);
+        for (MyAdoptVo myAdoptVo : myAdopt) {
+            myAdoptVo.setImage(myAdoptVo.getImage().split("，")[0]);
+        }
+        return myAdopt;
+
+    }
+
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void deleteStar(Long postID, Integer userID) {
@@ -304,17 +314,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         }
         redisTemplate.opsForHash().put("userID:" + userID, "starRecords",starRecords);
     }
-
-
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public List<Post> test(Long postID, Integer userID){
-
-        // Long[] a = {1L,2L};
-        List<Post> test = new ArrayList<>();
-        return test;
-    }
-
 
 
 

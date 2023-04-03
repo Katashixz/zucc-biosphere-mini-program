@@ -12,7 +12,7 @@ public class RewardVo implements Serializable {
     @Min(value = 1,message = "userID传值有误")
     private Integer userID;
 
-    @Min(value = 1,message = "toUserID传值有误")
+    @Min(value = 0,message = "toUserID传值有误")
     private Integer toUserID;
 
     @Min(value = 1,message = "point传值有误")

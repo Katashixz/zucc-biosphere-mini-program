@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "promptBox":"../../utils/promptBox/promptBox"
+    },
+    "navigationBarTitleText": "我的投食",
+    "enablePullDownRefresh": true
+}

@@ -4,10 +4,14 @@ package com.biosphere.communitymodule.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.biosphere.communitymodule.service.IPostService;
 import com.biosphere.communitymodule.util.CommunityDataAutoLoadUtil;
+import com.biosphere.library.pojo.AdoptDiary;
+import com.biosphere.library.pojo.ShopItem;
+import com.biosphere.library.util.CommonUtil;
 import com.biosphere.library.util.JwtUtil;
 import com.biosphere.library.vo.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -127,6 +132,16 @@ public class CommunityController implements InitializingBean {
 
     }
 
+    @ApiOperation(value = "商品项目加载", notes = "无需传参")
+    @RequestMapping(value = "/exposure/loadShopList",method = RequestMethod.GET)
+    public JSONObject loadShopList(){
+        JSONObject resData = new JSONObject();
+        List<ShopItem> shopItems = postService.loadShopList();
+        resData.put("shopList", shopItems);
+        return resData;
+
+    }
+
     @ApiOperation(value = "增加点赞记录，更改点赞状态", notes = "需要传入用户id、帖子id、点赞状态")
     @RequestMapping(value = "/auth/changeLikeStatus",method = RequestMethod.POST)
     public void changeLikeStatus(@Validated @RequestBody LikeStatusVo req){
@@ -155,6 +170,22 @@ public class CommunityController implements InitializingBean {
         Integer userID = (Integer) req.get("userID");
         Long postID = Long.valueOf(req.get("postID").toString());
         postService.changeStar(userID,postID);
+    }
+
+    @ApiOperation(value = "返回领养日记", notes = "需要传入日期")
+    @RequestMapping(value = "/exposure/loadDiary",method = RequestMethod.GET)
+    public JSONObject loadDiary(String date){
+        JSONObject resData = new JSONObject();
+        List<DiaryVo> diaryVos = postService.loadDiary(date);
+        resData.put("diaryList",diaryVos);
+        return resData;
+    }
+
+    @ApiOperation(value = "发布日记", notes = "需要传入用户id，宠物图片url，内容文字，发布日期，图片url")
+    @RequestMapping(value = "/auth/releaseDiary",method = RequestMethod.POST)
+    public void releaseDiary(@Validated @RequestBody DiaryUploadVo diaryUploadVo){
+        postService.saveDiary(diaryUploadVo);
+
     }
 
     @Override

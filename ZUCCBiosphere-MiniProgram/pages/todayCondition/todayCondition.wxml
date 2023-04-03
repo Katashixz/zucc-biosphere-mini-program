@@ -1,0 +1,31 @@
+<!--pages/todayCondition/todayCondition.wxml-->
+<view class="todayCondition">
+    <!-- <view class="homePage"> -->
+        <picker mode="date" header-text="选择时间" value="{{date}}" end="{{today}}" bindchange="bindDateChange">
+            <view class="timeSelector inCenter">
+                <text class="chooseDate">选择日期：</text>
+                <text class="dateList">{{date}}</text>
+                <text class="timeIcon">▼</text>
+            </view>
+        </picker>
+        <scroll-view class="list" scroll-y="true">
+            <view class="conditionList inCenter">
+                <view class="conditionDetail" wx:for="{{conditionList}}" wx:key="conditionItem" wx:for-item="item" data-index="{{index}}">
+                    <text class="time">- {{item.createdAt}}</text>
+                    <text class="text">被用户{{item.userName}}{{item.action==1?'遇见':'投喂'}}{{item.action==2?(item.shopName==null?'':item.shopName):''}}</text>
+                    <view class="inCenter" style="margin: 20rpx;" wx:if="{{item.imageUrl != '' && item.imageUrl != null}}">
+                        <image class="image" src="{{item.imageUrl}}" mode="aspectFill" bindtap="handleImagePreview" data-index="{{index}}"></image>
+                    </view>
+                </view>
+            </view>
+            <text class="endText inCenter" style="margin-top: 20rpx;margin-bottom: 20rpx;">—没有内容了哦—</text>
+
+        </scroll-view>
+        <view class="releasePostShow"  bindtap="toReleaseCondition">
+        <image class="releasePostShowImage" src="../../icon/release.png"></image>
+        <text class="releasePostShowText"> 发布</text>
+        </view>
+
+    <!-- </view> -->
+</view>
+

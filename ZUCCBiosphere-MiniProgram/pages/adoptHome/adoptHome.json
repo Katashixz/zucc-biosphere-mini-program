@@ -1,7 +1,7 @@
 {
     "usingComponents": {
-        "promptBox":"../../utils/promptBox/promptBox"
-        
+        "promptBox":"../../utils/promptBox/promptBox",
+        "foodComponent":"../../utils/foodComponent/foodComponent"
     },
     "navigationBarTitleText": "云领养",
     "enablePullDownRefresh": true

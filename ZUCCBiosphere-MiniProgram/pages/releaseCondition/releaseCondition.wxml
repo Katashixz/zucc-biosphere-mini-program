@@ -1,0 +1,57 @@
+<!--pages/releaseCondition/releaseCondition.wxml-->
+<view class="communityHome">
+    <view class="homePage">
+        <view class="itemList">
+            <view class="targetName">
+                <text>目标:</text>
+                <text style="margin-left: 60rpx;">{{name}}</text>
+            </view>
+            <view class="action">
+                <text>行为:</text>
+                <radio-group bindchange="radioChange" class="radioSelect">
+                    <label class="radioSelect" wx:for="{{items}}" wx:key="radioKey">
+                    <view class="weui-cell__hd">
+                    <radio value="{{item.value}}" checked='true'/>
+                    </view>
+                    <view class="weui-cell__bd">{{item.name}}</view>
+                    </label>
+                </radio-group>
+            </view>
+            <view class="timeSelectorFather">
+                <picker mode="date" header-text="选择时间" value="{{date}}" end="{{today}}" bindchange="bindDateChange">
+                    <view class="timeSelector">
+                    <text class="chooseDate">选择日期：</text>
+                    <text class="dateList">{{date}}</text>
+                    <text class="timeIcon">▼</text>
+                    </view>
+                </picker>
+                <picker mode="time" header-text="选择时间" value="{{time}}"bindchange="bindTimeChange">
+                    <view class="timeSelector">
+                    <text class="chooseDate">选择时间：</text>
+                    <text class="dateList">{{time}}</text>
+                    <text class="timeIcon">▼</text>
+                    </view>
+                </picker>
+            </view>
+            <view class="pictureMngr">
+            <text class="inCenter" style="margin-left: 40rpx;">添加图片： </text>
+            <block wx:for="{{images}}" wx:key="*this">
+                <view class="imageList">
+                    <!-- 图片缩略图  -->
+                    <image class="singerImage" src="{{item.fileType == 'image'?item.tempFilePath:item.thumbTempFilePath}}" mode="aspectFit" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+                    <!-- 移除图片的按钮  -->
+                    <view class="deleteImage" data-idx="{{index}}" bindtap="removeImage">
+                        
+                    </view>
+                </view>
+            </block>
+            <view id="addPho" bindtap="chooseImage" wx:if="{{images.length < 1}}">
+                <image src="../../icon/addPhotot2.png" />
+                <view >添加图片</view>
+            </view>
+
+        </view>
+        <button class="btn" bindtap="release" hover-class="buttonClick">发布</button>
+        </view>
+    </view>
+</view>

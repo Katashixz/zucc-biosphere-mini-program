@@ -17,7 +17,7 @@ Component({
             },
             {
                 "pagePath": "/pages/adoptHome/adoptHome",
-                "text": "云领养",
+                "text": "领养",
                 "iconPath": "/icon/CatDog.png",
                 "selectedIconPath": "/icon/bCatDog.png"
             },

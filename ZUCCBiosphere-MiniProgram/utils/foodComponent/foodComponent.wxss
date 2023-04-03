@@ -1,0 +1,170 @@
+/* utils/foodComponent/foodComponent.wxss */
+.dialog-mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 1100;
+    opacity: 1;
+    animation: opc 0.2s linear forwards;
+}
+@keyframes opc{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.dialog-content{
+    position: fixed;
+    display: flex;
+    /* align-self: center; */
+    flex-direction: column;
+    width: 90%;
+
+    height: 840rpx;
+    background: #fff;
+    border-radius: 18rpx;
+    top: -120rpx;
+    left: 0;
+    right: 0;
+    /* bottom: -630rpx; */
+    margin: auto;
+    z-index: 1200;
+    opacity: 0;
+}
+
+.dialog-title{
+    width: 100%;
+    height: 75rpx;
+    position: relative;
+    display: flex;
+    flex: 0 0 75rpx;
+    flex-direction: column;
+    align-items: center;
+    background: #eee;
+    border-radius: 18rpx 18rpx 0px 0px;
+}
+.closebtn{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 75rpx;
+    height: 75rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.abcontent{
+    height: 100%;
+    width:225rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+}
+.dialog-main{
+    box-sizing: border-box;
+    height: 670rpx;
+    padding: 18rpx 26rpx 18rpx 26rpx;
+    border-radius: 0 0 18rpx 18rpx;
+}
+.scroll_c{
+    width: 100%;
+    height: 100%;
+
+}
+.itemList{
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.father{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: flex-start; */
+    flex-wrap: wrap;
+    width: 100%;
+}
+.item{
+    margin-top: 5rpx;
+    margin-bottom: 5rpx;
+    margin-left: 10rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20rpx;
+    width: 299rpx;
+    height: 300rpx;
+}
+.itemClick{
+    margin-top: 5rpx;
+    margin-bottom: 5rpx;
+    margin-left: 10rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 299rpx;
+    border-radius: 20rpx;
+    height: 300rpx;
+    background: #e4dad3be;
+}
+.itemImage{
+    width: 250rpx;
+    height: 250rpx;
+    border-radius: 20rpx;
+}
+
+.itemName{
+    font-weight: 800;
+    color: #7c7c7c;
+    height: 60rpx;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-box-orient: vertical; 
+    text-align: center;
+}
+.price{
+    width: 100%;
+    text-align: center;
+    font-size: small;
+    font-weight: 700;
+    color: rgb(235, 94, 51);
+}
+
+
+.sumbitButton{
+    margin-top: 20rpx;
+    position: relative !important;
+    height: 80rpx !important;
+    width: 90% !important;
+    /* margin-top: 25rpx; */
+    background: #7A685B !important;
+    color: #fff !important;
+    text-align: center !important;
+    line-height: 45rpx;
+}
+.sumbitButtonOnClick{
+    position: absolute !important;
+    bottom: 5rpx !important;
+    left: 30rpx !important;
+    height: 80rpx !important;
+    width: 90% !important;
+    /* margin-top: 25rpx; */
+    background: #9b8473 !important;
+    color: #fff !important;
+    text-align: center !important;
+    line-height: 45rpx;
+}

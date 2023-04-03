@@ -1,3 +1,54 @@
 <!--pages/adoptHome/adoptHome.wxml-->
-<text>没做呢还</text>
-<promptBox id="promptBox"></promptBox>
+<view class="adoptDiary">
+    <view class="homePage">
+        
+        
+        <scroll-view scroll-y class="container">
+        <view class="container-head flex-row">
+            <scroll-view scroll-x class="container-head-sc" scroll-left="{{sleft}}" scroll-with-animation="true">
+            <view class="item {{currentTab == index ?'active':''}}" data-current="{{index}}" catchtap="handleTabChange" wx:key="list" wx:for="{{list}}" wx:for-index="index" wx:for-item="item">{{item.nickName}} </view>
+            </scroll-view>
+        </view>
+        <swiper current="{{currentTab}}" bindchange="handleSwiperChange" class="container-swiper">
+            <swiper-item class="flex-column j_c" wx:for="{{list}}" wx:key='index' wx:for-item="item">
+            <!-- <scroll-view scroll-y class="container-swiper-sc">
+                <view class="flex-wrap flex-row items">
+                <block wx:for="{{item}}" wx:key="index">
+                    <image src="https://i.postimg.cc/mgsKJGLw/susu1.jpg" mode="aspectFill" class="item-img" />
+                </block>
+                </view>
+            </scroll-view> -->
+                <view class="animalContainer inCenter">
+                    <scroll-view class="containerBox" scroll-y="true" enable-flex="true">
+                        <image class="animalImage" src="{{item.image}}" mode="aspectFill"></image>
+                        <view class="nameAndSex inCenter">
+                            <text style="font-size: large;">{{item.nickName}}</text>
+                            <image class="sex" src="{{item.sex == '雌' ? '/icon/female.png': item.sex == '雄' ? '/icon/male.png' : '/icon/unknow.png'}}"></image>
+                        </view>
+                        <view class="textBox">
+                            <text class="content">品种：{{item.scientificName}}</text>
+                            <text class="content">出没地：{{item.location}}</text>
+                            <text class="content">性格：{{item.character}}</text>
+                            <text class="content">绝育状况：{{item.sterilization}}</text>
+                            <text class="content">健康状况：{{item.condition}}</text>
+                        </view>
+                        
+                    </scroll-view>
+                </view>
+            </swiper-item>
+        </swiper>
+        <button class="todayCondition inCenter" type="default" hover-class="none" bindtap="toTodayCondition">今日状况</button>
+        <view class="inCenter" style="width: 100%;">
+            <view class="buttonBox">
+                <button class="leftButton inCenter" type="default" hover-class="buttonOnClick" bindtap="openFoodComponent" style="border-right: 1rpx solid #797979">云投食</button>
+                <button class="leftButton inCenter" type="default" hover-class="buttonOnClick" bindtap="openOfflineAdoption">线下领养</button>
+            </view>
+        </view>
+
+
+        </scroll-view>
+    </view>
+    <foodComponent id="foodComponent"></foodComponent>
+    <promptBox id="promptBox"></promptBox>
+
+</view>

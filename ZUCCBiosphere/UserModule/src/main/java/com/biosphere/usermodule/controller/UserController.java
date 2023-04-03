@@ -129,6 +129,9 @@ public class UserController {
             energyrecordService.updateUserEnergy(rewardVo.getUserID(),rewardVo.getPoint(),0);
             // 被打赏者能量值增加状态
             energyrecordService.updateUserEnergy(rewardVo.getToUserID(),rewardVo.getPoint(),1);
+        }else if(rewardVo.getType() == 3){
+            // 打赏者能量值减少状态
+            energyrecordService.updateUserEnergy(rewardVo.getUserID(),rewardVo.getPoint(),0);
         }
         energyrecordService.insertEnergyRecord(rewardVo);
     }
@@ -165,6 +168,15 @@ public class UserController {
             throw new ExceptionNoLogVo(RespBeanEnum.NO_Comment);
         }
         resData.put("commentList",commentVos);
+        return resData;
+    }
+
+    @ApiOperation(value = "加载我的投食", notes = "需要传入userID")
+    @RequestMapping(value = "/auth/loadMyAdopt",method = RequestMethod.GET)
+    public JSONObject loadMyAdopt(Integer userID){
+        JSONObject resData = new JSONObject();
+        List<MyAdoptVo> adoptVos = userService.loadMyAdopt(userID);
+        resData.put("adoptList",adoptVos);
         return resData;
     }
 

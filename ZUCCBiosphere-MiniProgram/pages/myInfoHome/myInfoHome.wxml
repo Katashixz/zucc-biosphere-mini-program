@@ -61,7 +61,7 @@
             <view class="listItemLine"></view>
             <view class="myAnimals listItem" bindtap="toMyAdopt">
                 <image class="itemIcon" src="../../icon/myAnimals.png"></image>
-                <text class="itemText">我的领养</text>
+                <text class="itemText">我的投食</text>
                 <image class="itemGo" src="../../icon/goTo.png"></image>
             </view>
             <view class="listItemLine"></view>

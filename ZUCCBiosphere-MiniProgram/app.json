@@ -23,7 +23,11 @@
         "pages/shop/shop",
         "pages/adoptDiary/adoptDiary",
         "pages/adoptDetail/adoptDetail",
-        "pages/diaryDetail/diaryDetail"
+        "pages/diaryDetail/diaryDetail",
+        "pages/todayCondition/todayCondition",
+        "pages/releaseCondition/releaseCondition",
+        "pages/myAdopt/myAdopt",
+        "pages/releaseDiary/releaseDiary"
     ],
     "window": {
         "backgroundTextStyle": "light",

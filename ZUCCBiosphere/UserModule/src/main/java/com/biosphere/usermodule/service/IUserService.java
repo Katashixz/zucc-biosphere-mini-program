@@ -152,6 +152,15 @@ public interface IUserService extends IService<User> {
     void updateInfo(Integer id, String nickName, String avatar, String openID);
 
 
-    List<Post> test(Long postID, Integer userID);
+    /**
+     * 功能描述: 加载我的投食
+     * @param: userID
+     * @return: java.util.List<com.biosphere.library.vo.MyAdoptVo>
+     * @author hyh
+     * @date: 2023/4/3 12:17
+     */
+    List<MyAdoptVo> loadMyAdopt(Integer userID);
+
+
 
 }

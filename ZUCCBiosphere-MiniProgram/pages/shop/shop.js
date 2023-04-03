@@ -8,50 +8,40 @@ Page({
      */
     data: {
         itemList:[
-            {
-                "id": 1,
-                "name": "猫猫钥匙扣",
-                "cost": 200,
-                "image": "https://img.zcool.cn/community/0179a45d634ae9a80120695c3bc94c.jpg@1280w_1l_2o_100sh.jpg",
-                "stock": 4
-
-            },
-            {
-                "id": 2,
-                "name": "猫猫钥匙扣",
-                "cost": 200,
-                "image": "https://img.zcool.cn/community/0179a45d634ae9a80120695c3bc94c.jpg@1280w_1l_2o_100sh.jpg",
-                "stock": 4
-
-
-            },
-            {
-                "id": 3,
-                "name": "猫猫钥匙扣钥匙扣钥匙扣",
-                "cost": 200,
-                "image": "https://img.zcool.cn/community/0179a45d634ae9a80120695c3bc94c.jpg@1280w_1l_2o_100sh.jpg",
-                "stock": 3
-
-            },
-            {
-                "id": 4,
-                "name": "猫猫钥匙扣",
-                "cost": 200,
-                "image": "https://img.zcool.cn/community/0179a45d634ae9a80120695c3bc94c.jpg@1280w_1l_2o_100sh.jpg",
-                "stock": 1
-
-            },
-            {
-                "id": 5,
-                "name": "猫猫钥匙扣",
-                "cost": 200,
-                "image": "https://img.zcool.cn/community/0179a45d634ae9a80120695c3bc94c.jpg@1280w_1l_2o_100sh.jpg",
-                "stock": 0
-
-            },
+            
         ]
 
     },
+    
+    /**
+     * 加载页面数据
+     */
+    loadPageInfo(){
+        var that = this;
+        wx.request({
+            method: 'GET',
+            url: app.globalData.urlHome + '/community/exposure/loadShopList',
+            success: (res) => {
+                if(res.data.code == 200){
+                    console.log(res)
+                    that.setData({
+                        itemList: res.data.data.shopList
+                    })
+                }
+                else{
+                    console.log("error");
+                }
+            },
+            fail: (res) => {
+                wx.showToast({
+                title: '服务器错误',
+                icon: 'error',
+                duration: 1500
+                })
+            }
+        })
+    },
+
     /**
      * 兑换操作
      */
@@ -71,6 +61,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
+        var that = this;
         if(app.globalData.hasUserInfo == false){
             wx.showToast({
               title: '请先登录',
@@ -84,13 +75,16 @@ Page({
             }, 1500)
             
         }
+        that.onPullDownRefresh()
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
-        this.promptBox = this.selectComponent("#promptBox");
+        var that = this;
+        that.onPullDownRefresh()
+        that.promptBox = this.selectComponent("#promptBox");
 
     },
 
@@ -119,7 +113,8 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh() {
-
+        var that = this;
+        that.loadPageInfo();
     },
 
     /**

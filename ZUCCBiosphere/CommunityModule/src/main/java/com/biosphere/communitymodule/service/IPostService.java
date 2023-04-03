@@ -2,9 +2,11 @@ package com.biosphere.communitymodule.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.biosphere.library.pojo.Post;
+import com.biosphere.library.pojo.ShopItem;
 import com.biosphere.library.vo.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -125,5 +127,35 @@ public interface IPostService extends IService<Post> {
      * @date: 2022/10/13 9:31
      */
     void changeStar(Integer userID, Long postID);
+
+    /**
+     * 功能描述: 加载商城的商品列表
+     * @param:
+     * @return: java.util.List<com.biosphere.library.pojo.ShopItem>
+     * @author hyh
+     * @date: 2023/4/3 13:18
+     */
+    List<ShopItem> loadShopList();
+
+    /**
+     * 功能描述: 加载领养日记
+     * @param: date
+     * @return: java.util.List<com.biosphere.library.vo.DiaryVo>
+     * @author hyh
+     * @date: 2023/4/3 16:42
+     */
+    List<DiaryVo> loadDiary(String date);
+
+    /**
+     * 功能描述: 保存领养日记
+     * @param: diaryUploadVo
+     * @return: void
+     * @author hyh
+     * @date: 2023/4/3 21:30
+     */
+    void saveDiary(DiaryUploadVo diaryUploadVo);
+
+
+
 
 }

@@ -1,14 +1,16 @@
 package com.biosphere.communitymodule.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.biosphere.communitymodule.mapper.CommentMapper;
-import com.biosphere.communitymodule.mapper.PostMapper;
-import com.biosphere.communitymodule.mapper.StarRecordMapper;
+import com.biosphere.communitymodule.mapper.*;
 import com.biosphere.communitymodule.rabbitmq.MQSender;
+import com.biosphere.library.pojo.AdoptDiary;
 import com.biosphere.library.pojo.Post;
 import com.biosphere.communitymodule.service.IPostService;
+import com.biosphere.library.pojo.ShopItem;
 import com.biosphere.library.pojo.StarRecord;
+import com.biosphere.library.util.CommonUtil;
 import com.biosphere.library.util.TencentCosUtil;
 import com.biosphere.library.vo.*;
 import com.github.houbb.sensitive.word.core.SensitiveWordHelper;
@@ -25,6 +27,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.text.ParseException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -54,6 +57,12 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
 
     @Autowired
     private StarRecordMapper starRecordMapper;
+
+    @Autowired
+    private ShopItemMapper shopItemMapper;
+
+    @Autowired
+    private AdoptDiaryMapper adoptDiaryMapper;
 
     // 预计要插入多少数据
     private static int size = 1000000;
@@ -241,6 +250,66 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
         if (starRecord.getPostID() <= 0) {
             throw new ExceptionLogVo(RespBeanEnum.STAR_INSERT_ERROR);
         }
+    }
+
+    @Override
+    public List<ShopItem> loadShopList() {
+
+        QueryWrapper<ShopItem> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("id,`name`,price,createdAt,imageUrl,`usage`,`stock`").orderByDesc("createdAt");
+        return shopItemMapper.selectList(queryWrapper);
+
+
+
+    }
+
+    @Override
+    public List<DiaryVo> loadDiary(String date) {
+        Date date1 = new Date();
+        try {
+            date1 = CommonUtil.toDate(date);
+        }catch (ParseException e){
+            throw new ExceptionLogVo(RespBeanEnum.FORMAT_ERROR);
+        }
+        List<DiaryVo> diaryVos = adoptDiaryMapper.loadDiary(date1);
+        for (DiaryVo diaryVo : diaryVos) {
+            if (diaryVo.getImageUrl() != null)
+                diaryVo.setImageUrlList(diaryVo.getImageUrl().split("，"));
+            diaryVo.setCreatedAtFormat(CommonUtil.TimeFormat(diaryVo.getCreatedAt()));
+        }
+        return diaryVos;
+    }
+
+    @Override
+    public void saveDiary(DiaryUploadVo diaryUploadVo) {
+        AdoptDiary adoptDiary = new AdoptDiary();
+        String timeFormat = CommonUtil.TimeFormat(new Date());
+        String targetTime = diaryUploadVo.getCreatedAt() + " " + timeFormat;
+        String images = new String();
+        if (diaryUploadVo.getImages() != null){
+            for(int i = 0; i < diaryUploadVo.getImages().length; i ++){
+                if (i == 0)
+                    images = images + diaryUploadVo.getImages()[i];
+                else
+                    images = images + "，" + diaryUploadVo.getImages()[i];
+
+            }
+        }
+
+        try{
+            adoptDiary.setCreatedAt(CommonUtil.toCompleteDate(targetTime));
+        }catch (ParseException e){
+            throw new ExceptionLogVo(RespBeanEnum.ERROR);
+        }
+        adoptDiary.setContent(diaryUploadVo.getContent());
+        adoptDiary.setTargetImage(diaryUploadVo.getTargetImage());
+        adoptDiary.setImageUrl(images);
+        adoptDiary.setUserID(diaryUploadVo.getUserID());
+        int insert = adoptDiaryMapper.insert(adoptDiary);
+        if (insert <= 0) {
+            throw new ExceptionLogVo(RespBeanEnum.ERROR_INFO);
+        }
+
     }
 
 

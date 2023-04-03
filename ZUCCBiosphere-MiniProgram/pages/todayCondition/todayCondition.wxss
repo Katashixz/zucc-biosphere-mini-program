@@ -1,0 +1,79 @@
+/* pages/todayCondition/todayCondition.wxss */
+
+.timeSelector{
+    font-size: 30rpx;
+    margin-top: 20rpx;
+}
+
+.chooseDate{
+    color: #333;
+}
+  
+.dateList{
+    color: #666;
+}
+  
+.timeIcon{
+    color:#666;
+    font-size:18rpx;
+    margin-left: 5rpx;
+}
+.list{
+    margin-top: 20rpx;
+    width: 100%;
+    height: calc(100% - 80rpx);
+}
+.conditionList{
+    display: flex;
+    flex-direction: column;
+}
+.conditionDetail{
+    display: flex;
+    flex-direction: column;
+    width: 600rpx;
+    margin-top: 15rpx;
+}
+.time{
+    font-size: larger;
+
+}
+.text{
+    margin-top: 10rpx;
+    margin-left: 20rpx;
+}
+.image{
+    width: 400rpx;
+    height: 300rpx;
+    border-radius: 30rpx;
+}
+
+.releasePostShow {
+    /* animation: bounceInRight 1s 1;  */
+    position: fixed;
+    padding: 0;
+    line-height: 80rpx;
+    height: 80rpx;
+    bottom: 220rpx;
+    right: 0rpx;
+    /* width: 85rpx; */
+    width: 150rpx;
+    border-radius: 50rpx;
+    font-size: 34rpx;
+    font-weight: 500;
+    background: rgba(215,193,168,0.7);
+    opacity: 0.97;
+    text-align: center;
+}
+
+.releasePostShowImage{
+    position: relative;
+    top: 8rpx;
+    width: 40rpx;
+    height: 40rpx;
+}
+.releasePostShowText{
+    position: relative;
+    color: #fff;
+    font-size: 35rpx;
+    font-weight: 600;
+}

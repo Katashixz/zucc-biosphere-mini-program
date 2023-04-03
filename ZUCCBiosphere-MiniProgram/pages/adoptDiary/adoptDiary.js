@@ -1,5 +1,6 @@
 // pages/adoptDiary/adoptDiary.js
 const util = require('../../utils/jsUtil/jsUtil')
+const app = getApp()
 
 Page({
 
@@ -11,47 +12,43 @@ Page({
         date:'',
         diaryList:[
             {
-                "userID": 1,
-                "userName": "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊",
-                "avatar": "https://bkimg.cdn.bcebos.com/pic/562c11dfa9ec8a139fe24202f903918fa1ecc05c?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxMTY=,g_7,xp_5,yp_5/format,f_auto",
-                "title": "与它相遇的第一天",
-                "body": "啊 席八",
-                "imageUrlList": [],
-                "createdAt": "2023-3-26 17:12",
-                "targetID": 1,
-                "targetAvatar": "https://bkimg.cdn.bcebos.com/pic/a8ec8a13632762d0f703fa1f08ba1ffa513d2697684e?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxODA=,g_7,xp_5,yp_5",
-                "targetName": "小黑",
-            },
-            {
-                "userID": 1,
-                "userName": "xddddhb",
-                "avatar": "https://bkimg.cdn.bcebos.com/pic/562c11dfa9ec8a139fe24202f903918fa1ecc05c?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxMTY=,g_7,xp_5,yp_5/format,f_auto",
-                "title": "sddsdsd",
-                "body": "啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2啊 席八2",
-                "createdAt": "2023-3-26 17:12",
-                "imageUrlList": ["https://bkimg.cdn.bcebos.com/pic/a8ec8a13632762d0f703fa1f08ba1ffa513d2697684e?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxODA=,g_7,xp_5,yp_5","https://bkimg.cdn.bcebos.com/pic/a8ec8a13632762d0f703fa1f08ba1ffa513d2697684e?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxODA=,g_7,xp_5,yp_5","https://bkimg.cdn.bcebos.com/pic/a8ec8a13632762d0f703fa1f08ba1ffa513d2697684e?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxODA=,g_7,xp_5,yp_5","https://bkimg.cdn.bcebos.com/pic/a8ec8a13632762d0f703fa1f08ba1ffa513d2697684e?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxODA=,g_7,xp_5,yp_5"],
-                "targetID": 1,
-                "targetAvatar": "https://bkimg.cdn.bcebos.com/pic/a8ec8a13632762d0f703fa1f08ba1ffa513d2697684e?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxODA=,g_7,xp_5,yp_5",
-                "targetName": "",
             },
         ]
     },
 
+    
     bindDateChange: function(e) {
         var that = this;
         console.log('picker发送选择改变，携带值为', e.detail.value)
         that.setData({
           date: e.detail.value
         })
+        that.onPullDownRefresh();
       },
 
     /**
      * 跳转到日记详情
      */
     toDiary(e){
-        wx.navigateTo({
-          url: '/pages/diaryDetail/diaryDetail',
-        })
+        // wx.navigateTo({
+        //   url: '/pages/diaryDetail/diaryDetail',
+        // })
+    },
+    /**
+     * 跳转到发布日记
+     */
+    buttonClick(){
+        var that = this;
+        if (!getApp().globalData.userInfo) {
+            app.getUserProfile().finally(() => {
+                that.onPullDownRefresh();
+            })
+        }
+        else{
+            wx.navigateTo({
+            url: '/pages/releaseDiary/releaseDiary?date=' + that.data.date,
+            })
+        }
     },
     /**
      * 判断是否为视频
@@ -63,7 +60,33 @@ Page({
         }
         return false;
     },
-
+    /**
+     * 查看图片
+     */
+    loadPageInfo() {
+        var that = this;
+        wx.request({
+            method: 'GET',
+            url: app.globalData.urlHome + '/community/exposure/loadDiary?&date=' + that.data.date,
+            success: (res) => {
+                if(res.data.code == 200){
+                    that.setData({
+                        diaryList: res.data.data.diaryList
+                    })
+                }
+                else{
+                    console.log("error");
+                }
+            },
+            fail: (res) => {
+                wx.showToast({
+                title: '服务器错误',
+                icon: 'error',
+                duration: 1500
+                })
+            }
+        })
+    },
      /**
      * 查看图片
      */
@@ -127,6 +150,7 @@ Page({
             date: date,
             today: date
         })
+        that.onPullDownRefresh();
     },
 
     /**
@@ -161,7 +185,8 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh() {
-
+        var that = this;
+        that.loadPageInfo()
     },
 
     /**

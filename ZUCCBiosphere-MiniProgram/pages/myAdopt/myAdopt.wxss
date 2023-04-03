@@ -1,0 +1,37 @@
+/* pages/myAdopt/myAdopt.wxss */
+
+.adoptList{
+    margin-top: 30rpx;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+}
+.adopt{
+    display: flex;
+    width: 95%;
+    height: 150rpx;
+    background-color: #ffffff;
+    margin-top: 20rpx;
+    position: relative;
+    border-radius: 40rpx;
+    margin-left: 2.5%;
+}
+.leftBar{
+    position: absolute;
+    left: 40rpx;
+    margin-left: 20rpx;
+    display: flex;
+    flex-direction: column;
+}
+.time{
+    font-size: small;
+    color: rgb(160, 157, 157);
+}
+.image{
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 100rpx;
+}
+.rightBar{
+    position: absolute;
+    right: 40rpx;
+}

@@ -1,0 +1,30 @@
+<!--utils/foodComponent/foodComponent.wxml-->
+<view class='dialog-container' wx:if="{{isShow}}" catchtouchmove='catchmove'>
+    <view class='dialog-mask' bindtap='close'></view>
+    <view class="dialog-content" animation="{{recoedDalogflash}}">
+        <view class="dialog-title">
+            <view class="abcontent">
+                <text style="font-weight:800;font-size:34rpx">{{title}}</text>
+            </view>
+            <!-- <view class="closebtn" bindtap='close'>
+                x
+            </view> -->
+        </view>
+        <view class="dialog-main">
+            <scroll-view scroll-y class="scroll_c" >  
+                <scroll-view class="itemList" scroll-y="true">
+                <view class="father ">
+                    <view class="{{index==curIndex?'itemClick':'item'}}" wx:for="{{shopItem}}" wx:for-item="item" wx:key='shopItem' bindtap="itemClick" data-index="{{index}}">
+                        <text class="itemName">{{item.name}}</text>
+                        <image class="itemImage" src="{{item.imageUrl}}" mode="aspectFill"></image>
+                        <text class="price">{{item.price}}能量值</text>
+                    </view>
+                </view>
+                </scroll-view>
+                
+            </scroll-view>
+            <button type="default" class="sumbitButton" hover-class="sumbitButtonOnClick" bindtap="buttonClick">换购</button>
+        </view>
+    </view>
+</view>
+

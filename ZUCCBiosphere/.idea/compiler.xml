@@ -8,12 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="CommunityModule" />
+        <module name="AdoptModule" />
         <module name="UserModule" />
         <module name="Library" />
         <module name="WikiModule" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="AdoptModule" target="1.8" />
       <module name="CommunityModule" target="1.8" />
       <module name="library" target="1.8" />
       <module name="Library" target="1.8" />
@@ -24,6 +26,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="AdoptModule" options="-parameters" />
       <module name="CommunityModule" options="-parameters" />
       <module name="Library" options="-parameters" />
       <module name="UserModule" options="-parameters" />

@@ -85,6 +85,7 @@ public class AnimalsWikiServiceImpl extends ServiceImpl<AnimalsWikiMapper, Anima
         title.add("性别");
         title.add("状况");
         title.add("绝育情况");
+        title.add("领养情况");
         title.add("常出没地");
         title.add("性格");
         title.add("关系");
@@ -93,6 +94,7 @@ public class AnimalsWikiServiceImpl extends ServiceImpl<AnimalsWikiMapper, Anima
         content.add(animalsWiki.getSex());
         content.add(animalsWiki.getCondition());
         content.add(animalsWiki.getSterilization());
+        content.add(animalsWiki.getAdoptCondition()==0?"未被领养":"已被领养");
         content.add(animalsWiki.getLocation());
         content.add(animalsWiki.getCharacter());
         content.add(animalsWiki.getRelationship());

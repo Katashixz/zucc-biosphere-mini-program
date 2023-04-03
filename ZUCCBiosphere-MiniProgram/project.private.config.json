@@ -45,7 +45,7 @@
                 },
                 {
                     "name": "",
-                    "pathName": "utils\\toast\\toast",
+                    "pathName": "pages/releaseDiary/releaseDiary",
                     "query": "",
                     "launchMode": "default",
                     "scene": null
@@ -179,6 +179,20 @@
                 {
                     "name": "",
                     "pathName": "pages/myNotice/myNotice",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/adoptHome/adoptHome",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/myAdopt/myAdopt",
                     "query": "",
                     "launchMode": "default",
                     "scene": null

@@ -1,0 +1,24 @@
+<!--pages/myAdopt/myAdopt.wxml-->
+
+<view class="myAdopt">
+    <view class="homePage">
+        <promptBox id="promptBox"></promptBox>
+
+
+        <view class="adoptList">
+            <view class="adopt inCenter" wx:for="{{adoptList}}" wx:key="adoptKey" 
+        wx:for-item="adoptItem" data-index="{{index}}" >
+                <view class="leftBar">
+                    <view class="time">{{adoptItem.createdAt}}</view>
+                    <view class="action">投喂{{adoptItem.nickName}}{{adoptItem.shopName}}</view>
+                </view>
+                <view class="rightBar inCenter">
+                    <image class="image" src="{{adoptItem.image}}" mode="aspectFill"></image>
+                </view>
+            </view>
+        </view>
+        <text class="endText inCenter" style="margin-bottom: 20rpx;margin-top: 20rpx;">—暂无更多内容—</text>
+
+    </view>
+</view>
+

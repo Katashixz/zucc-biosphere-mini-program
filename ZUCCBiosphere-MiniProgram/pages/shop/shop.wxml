@@ -6,18 +6,18 @@
         <view class="infoBar inCenter">
             <view class="youHave">你拥有</view>
             <view class="energyPoint">
-                <view style="color: #7A685B;padding-right: 10rpx;">1000</view>能量
+                <view style="color: #7A685B;padding-right: 10rpx;">0</view>能量
             </view>
         </view>
 
-        <scroll-view class="itemBar inCenter" scroll-y="true">
+        <scroll-view class="itemBar inCenter" scroll-y="true" enable-flex="true">
             <view class="father">
                 <view class="item" wx:for="{{itemList}}" wx:key="item" wx:for-item="shopItem" data-index="{{index}}">
-                <image class="itemImage" mode="aspectFill" src="{{shopItem.image}}"></image>
+                <image class="itemImage" mode="aspectFill" src="{{shopItem.imageUrl}}"></image>
                 <text class="name">{{shopItem.name}}</text>
 
                 <view class="itemInfo inCenter">
-                    <view class="cost">{{shopItem.cost}} 能量值</view>
+                    <view class="cost">{{shopItem.price}} 能量值</view>
                     
                     <button class="sumbit inCenter" hover-class="sumbitClick" bindtap="sumbit" data-index="{{index}}">{{shopItem.stock > 0 ? "兑换":"无库存"}}</button>
                 </view>

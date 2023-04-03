@@ -3,6 +3,7 @@
 .timeSelector{
   font-size: 30rpx;
   margin-top: 20rpx;
+  width: 500rpx;
 }
 
 .chooseDate{
@@ -38,8 +39,8 @@
     margin-top: 30rpx;
 }
 .diaryTop{
-    margin-top: 10rpx;
-    margin-left: 10rpx;
+    margin-top: 20rpx;
+    margin-left: 20rpx;
     display: flex;
     height: 100rpx;
     /* background-color: pink; */
@@ -52,6 +53,9 @@
     border-radius: 100rpx;
     width: 90rpx;
     height: 90rpx;
+}
+.singleImage{
+    margin-left: 3rpx;
 }
 
 .nameAndPostTime{
@@ -80,11 +84,11 @@
 .diaryMid text{
     padding: 0 20rpx;
     display: -webkit-box;
-    word-break: break-all;
+    /* word-break: break-all;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp:9;
+    -webkit-line-clamp:4;
     overflow: hidden;
-    text-overflow:ellipsis;
+    text-overflow:ellipsis; */
 }
 
 .imageWithContent{
@@ -101,4 +105,32 @@
     border-radius: 20rpx;
     width: 220rpx;
     height: 200rpx;
+}
+
+.sumbitButton{
+
+    position: relative !important;
+    height: 60rpx !important;
+    width: 120rpx !important;
+    margin-top: 15rpx;
+    background: #7A685B !important;
+    color: #fff !important;
+    text-align: center !important;
+    font-size: 26rpx;
+    padding: 12rpx 4rpx 12rpx 4rpx;
+    /* line-height: 45rpx; */
+}
+.sumbitButtonOnClick{
+    /* margin-top: 25rpx; */
+    background: #9b8473 !important;
+    color: #fff !important;
+    text-align: center !important;
+    /* line-height: 45rpx; */
+}
+.buttonType{
+    width: 200rpx
+}
+
+.top{
+    display: flex;
 }

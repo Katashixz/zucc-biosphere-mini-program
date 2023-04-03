@@ -46,6 +46,7 @@ public enum RespBeanEnum {
     USER_ID_ERROR(4003,"用户ID异常"),
     ENERGY_NOT_ENOUGH(4004,"能量值不足啦"),
     UNSUPPORTED_CODE(4005,"不支持的CODE"),
+    FORMAT_ERROR(4006,"传入日期格式有误"),
     ;
 
     private final Integer code;

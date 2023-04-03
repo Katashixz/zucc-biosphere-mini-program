@@ -187,15 +187,14 @@ Page({
      * 跳转到帖子详情页面
      */
     toMyAdopt: function (e) {
-        // wx.navigateTo({
-        //     url: '/pages/postDetails/postDetails?postID=' + this.data.postList[e.currentTarget.dataset.index].postID
-        // })
         var that = this;
-        var obj = {
-            msg: "页面暂未开放",
-            type: "error"
+        if(!app.globalData.hasUserInfo){
+            that.getUserProfile()
+        }else{
+            wx.navigateTo({
+            url: '/pages/myAdopt/myAdopt',
+            })
         }
-        that.promptBox.open(obj);
     },
     /**
      * 生命周期函数--监听页面加载

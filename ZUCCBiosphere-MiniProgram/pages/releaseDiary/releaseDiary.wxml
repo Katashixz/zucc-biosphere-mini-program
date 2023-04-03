@@ -1,0 +1,60 @@
+<!--pages/releaseDiary/releaseDiary.wxml-->
+<view class="releaseDiary">
+    <view class="homePage">
+        <promptBox id="promptBox"></promptBox>
+        <picker mode="date" header-text="选择时间" value="{{date}}" end="{{today}}" bindchange="bindDateChange">
+                    <view class="timeSelector">
+                    <text class="chooseDate">选择日期：</text>
+                    <text class="dateList">{{date}}</text>
+                    <text class="timeIcon">▼</text>
+                    </view>
+        </picker>
+        <view class="uploadAnimal">
+            <text class="inCenter" style="margin-left: 40rpx;">和小动物：</text>
+            <view class="pictureMngr" style="width: 400rpx;">
+            <block wx:for="{{animalImages}}" wx:key="*this">
+                <view class="imageList">
+                    <!-- 图片缩略图  -->
+                    <image class="singerImage" src="{{item.fileType == 'image'?item.tempFilePath:item.thumbTempFilePath}}" mode="aspectFit" data-idx="{{index}}" bindtap="handleAnimalImagePreview"></image>
+                    <!-- 移除图片的按钮  -->
+                    <view class="deleteImage" data-idx="{{index}}" bindtap="removeAnimalImage">
+                        
+                    </view>
+                </view>
+            </block>
+            <view id="addPho" bindtap="chooseAnimalImage" wx:if="{{animalImages.length < 1}}">
+                <image src="../../icon/addPhotot2.png" />
+                <view >添加图片</view>
+            </view>
+
+        </view>
+        </view>
+        <view id="bodyText">
+        <view id="textIn">
+            <textarea id="textDown" placeholder="此处输入正文" name="" value="{{content}}" maxlength="800" bindinput="getContent"></textarea>
+            
+        </view>
+        <view class="pictureMngr">
+            <block wx:for="{{images}}" wx:key="*this">
+                <view class="imageList">
+                    <!-- 图片缩略图  -->
+                    <image class="singerImage" src="{{item.fileType == 'image'?item.tempFilePath:item.thumbTempFilePath}}" mode="aspectFit" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+                    <!-- 移除图片的按钮  -->
+                    <view class="deleteImage" data-idx="{{index}}" bindtap="removeImage">
+                        
+                    </view>
+                </view>
+            </block>
+            <view id="addPho" bindtap="chooseImage" wx:if="{{images.length < 9}}">
+                <image src="../../icon/addPhotot2.png" />
+                <view >添加媒体</view>
+            </view>
+
+        </view>
+        <button class="btn" bindtap="release" hover-class="buttonClick">发布</button>
+
+    </view>
+    
+    </view>
+
+</view>

@@ -14,29 +14,36 @@
 </wxs>
 <view class="adoptDiary">
     <view class="homePage">
-        <picker mode="date" header-text="选择时间" value="{{date}}" end="{{today}}" bindchange="bindDateChange">
-        <view class="timeSelector inCenter">
-            <text class="chooseDate">选择日期：</text>
-            <text class="dateList">{{date}}</text>
-            <text class="timeIcon">▼</text>
+        <view class="top">
+            <picker mode="date" header-text="选择时间" value="{{date}}" end="{{today}}" bindchange="bindDateChange">
+                <view class="timeSelector inCenter">
+                    <text class="chooseDate">选择日期：</text>
+                    <text class="dateList">{{date}}</text>
+                    <text class="timeIcon">▼</text>
+                </view>
+            </picker>
+            <view class="buttonType inCenter">
+                <button type="default" class="sumbitButton inCenter" hover-class="sumbitButtonOnClick" bindtap="buttonClick">发布</button>
+            </view>
+            
         </view>
-    </picker>
-    <scroll-view class="diaryList" scroll-y="true">
+        
+    <scroll-view class="diaryList" scroll-y="true" enable-flex="true">
         <view class="diaryItem" wx:for="{{diaryList}}" wx:key="diaryItem" wx:for-item="diaryItem" data-index="{{index}}">
             <view class="diaryTop">
-                <image class="userAvatar avatarImage" mode="aspectFill" src="{{diaryItem.avatar}}"></image>
+                <image class="userAvatar avatarImage" mode="aspectFill" src="{{diaryItem.userAvatar}}"></image>
                 <view class="nameAndPostTime">
                         <text class="postManName">{{diaryItem.userName}}</text>
-                        <view class="postTime">发布于{{diaryItem.createdAt}}</view>
+                        <view class="postTime">发布于{{diaryItem.createdAtFormat}}</view>
                 </view>
                 <text class="inCenter" style="width: 40rpx;">与</text>
 
-                <image class="userAvatar avatarImage" mode="aspectFill" src="{{diaryItem.targetAvatar}}"></image>
+                <image class="userAvatar avatarImage" mode="aspectFill" src="{{diaryItem.animalUrl}}"></image>
                 <text class="inCenter" style="width: 100rpx;">的一日</text>
             </view>
 
             <view class="diaryMid" bindtap="toDiary" data-index="{{index}}">
-                <text user-select="true">{{diaryItem.body}}</text>
+                <text user-select="true" style="margin-left: 20rpx">{{diaryItem.content}}</text>
                 <view class="imageWithContent">
                     <view class="singleImage"
                     wx:if="{{diaryItem.imageUrlList != null}}"
