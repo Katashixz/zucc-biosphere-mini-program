@@ -19,9 +19,7 @@ Page({
     confirmFocus(options) {
         var that = this;
         if(!app.globalData.hasUserInfo){
-            app.getUserProfile().finally(() => {
-                that.refreshData(that.data.postID);
-            })
+            that.loginComponent.open()
             
         }else{
             that.setData({
@@ -99,9 +97,7 @@ Page({
      */
     onMessage: function (res) {
         var that = this;
-        console.log(res.data)
         var obj = JSON.parse(res.data);
-        console.log("chatPage",obj)
         var time = new Date(obj.data.createdAt).getHours() + ':' + new Date(obj.data.createdAt).getMinutes().toString().padStart(2, "0");
         var chat = {
             sourceID: obj.data.userId,
@@ -147,7 +143,8 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
-
+        var that = this;
+        that.loginComponent = that.selectComponent("#loginComponent");
     },
 
     /**
@@ -155,6 +152,7 @@ Page({
      */
     onShow() {
         var that = this;
+        that.loginComponent = that.selectComponent("#loginComponent");
         that.onPullDownRefresh();
     },
 

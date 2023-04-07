@@ -2,6 +2,7 @@
 <!--pages/noticePage/noticePage.wxml-->
 <view class="noticePage">
     <view class="homePage">
+        <loginComponent id="loginComponent"></loginComponent>
         <scroll-view class="chatRecord" scroll-y="true" enable-flex="true" scroll-into-view="{{toView}}">
             <view wx:for="{{chatRecord}}" wx:key="chatIndex" data-index="{{index}}" wx:for-item="chatItem" id="item{{index}}">
                 <view class="chatItemRight" wx:if="{{chatItem.sourceID == uid}}">

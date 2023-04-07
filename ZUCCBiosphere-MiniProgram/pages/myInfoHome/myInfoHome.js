@@ -25,7 +25,7 @@ Page({
     toUpdateInfo(){
         var that = this;
         if(!app.globalData.hasUserInfo){
-            that.getUserProfile()
+            that.loginComponent.open()
         }else{
             wx.navigateTo({
                 url: '/pages/updateInfo/updateInfo?nickName=' + that.data.userInfo.userName  + '&avatarUrl=' + that.data.userInfo.avatarUrl + '&userID=' + that.data.userInfo.id,
@@ -135,7 +135,11 @@ Page({
     toMyPost: function (e) {
         var that = this;
         if(!app.globalData.hasUserInfo){
-            that.getUserProfile()
+            wx.showToast({
+              title: '请先登录!',
+              icon: 'error',
+              duration: 1500
+            })
         }else{
             wx.navigateTo({
                 url: '/pages/myPostOrMyStarPage/myPostOrMyStarPage?type=1&userID=' + that.data.userInfo.id,
@@ -149,7 +153,11 @@ Page({
     toMyMsg: function (e) {
         var that = this;
         if(!app.globalData.hasUserInfo){
-            that.getUserProfile()
+            wx.showToast({
+                title: '请先登录!',
+                icon: 'error',
+                duration: 1500
+              })
         }else{
             wx.navigateTo({
                 url: '/pages/noticePage/noticePage?userID=' + that.data.userInfo.id,
@@ -162,7 +170,11 @@ Page({
     toMyStar: function (e) {
         var that = this;
         if(!app.globalData.hasUserInfo){
-            that.getUserProfile()
+            wx.showToast({
+                title: '请先登录!',
+                icon: 'error',
+                duration: 1500
+              })
         }else{
             wx.navigateTo({
                 url: '/pages/myPostOrMyStarPage/myPostOrMyStarPage?type=2&userID=' + that.data.userInfo.id,
@@ -176,7 +188,11 @@ Page({
     toMyComment: function (e) {
         var that = this;
         if(!app.globalData.hasUserInfo){
-            that.getUserProfile()
+            wx.showToast({
+                title: '请先登录!',
+                icon: 'error',
+                duration: 1500
+              })
         }else{
             wx.navigateTo({
                 url: '/pages/myComments/myComments?&userID=' + that.data.userInfo.id,
@@ -189,7 +205,11 @@ Page({
     toMyAdopt: function (e) {
         var that = this;
         if(!app.globalData.hasUserInfo){
-            that.getUserProfile()
+            wx.showToast({
+                title: '请先登录!',
+                icon: 'error',
+                duration: 1500
+              })
         }else{
             wx.navigateTo({
             url: '/pages/myAdopt/myAdopt',
@@ -208,20 +228,22 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
-        this.promptBox = this.selectComponent("#promptBox");
+
+        var that = this;
+        that.loginComponent = that.selectComponent("#loginComponent");
+        that.promptBox = that.selectComponent("#promptBox");
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
-        // console.log("onShow")
         var that = this;
+        that.loginComponent = that.selectComponent("#loginComponent");
         that.onPullDownRefresh();
-        if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+        if (typeof that.getTabBar === 'function' && that.getTabBar()) {
     
-          this.getTabBar().setData({
+            that.getTabBar().setData({
     
             selected: 3
     

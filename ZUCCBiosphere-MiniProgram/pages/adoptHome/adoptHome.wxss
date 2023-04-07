@@ -98,11 +98,12 @@ page {
 
   .animalContainer{
       width: 100%;
+
   }
   .containerBox{
       position: relative;
       width: 70%;
-      height: 800rpx;
+      height: calc(100vh - 550rpx);
       display: flex;
       flex-direction: column;
       border-radius: 40rpx;

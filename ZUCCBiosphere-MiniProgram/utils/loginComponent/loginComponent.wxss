@@ -1,0 +1,150 @@
+.dialog-mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 1100;
+    opacity: 1;
+    animation: opc 0.2s linear forwards;
+}
+@keyframes opc{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.dialog-content{
+    position: fixed;
+    display: flex;
+    /* align-self: center; */
+    flex-direction: column;
+    width: 90%;
+
+    height: 340rpx;
+    background: #fff;
+    border-radius: 18rpx;
+    top: -120rpx;
+    left: 0;
+    right: 0;
+    /* bottom: -630rpx; */
+    margin: auto;
+    z-index: 1200;
+    opacity: 0;
+}
+
+.dialog-title{
+    width: 100%;
+    height: 75rpx;
+    position: relative;
+    display: flex;
+    flex: 0 0 75rpx;
+    flex-direction: column;
+    align-items: center;
+    background: #eee;
+    border-radius: 18rpx 18rpx 0px 0px;
+}
+.closebtn{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 75rpx;
+    height: 75rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.abcontent{
+    height: 100%;
+    width:225rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+}
+.abouttext{
+    display: flex;
+    flex-direction: column;
+}
+.dialog-main{
+    box-sizing: border-box;
+    height: 370rpx;
+    padding: 28rpx 36rpx 28rpx 36rpx;
+    border-radius: 0 0 18rpx 18rpx;
+}
+.scroll_c{
+    width: 100%;
+    height: 100%;
+}
+.tips{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items:center;
+    justify-content:center;
+}
+.tipSentence{
+    color: #7A685B;
+    font-weight: 800;
+    font-size: 50rpx;
+}
+.tipImage{
+    height: 120rpx;
+    width: 120rpx;
+    margin-bottom: 20rpx;
+}
+
+.sumbitButton{
+    position: absolute !important;
+    bottom: 1rpx !important;
+    /* left: 30rpx !important; */
+    height: 80rpx !important;
+    width: 250rpx !important;
+    /* margin-top: 25rpx; */
+    background: #7A685B !important;
+    color: #fff !important;
+    text-align: center !important;
+    line-height: 45rpx;
+}
+.sumbitButtonOnClick{
+    position: absolute !important;
+    bottom: 1rpx !important;
+    height: 80rpx !important;
+    width: 250rpx !important;
+    /* margin-top: 25rpx; */
+    background: #9b8473 !important;
+    color: #fff !important;
+    text-align: center !important;
+    line-height: 45rpx;
+}
+.bottomButton{
+    display: flex;
+    /* position: absolute; */
+}
+
+
+.name{
+    font-size: large;
+    max-height: 50rpx;
+    max-width: 450rpx;
+    position: relative;
+    margin-top: 25rpx;
+    margin-left: 10rpx;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+}
+
+.bar{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}

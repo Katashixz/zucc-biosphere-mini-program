@@ -5,83 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="667cbcbf-9b59-4f82-9fa1-1367bda0ccc8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/controller/AdpotController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/filter/JWTAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/handler/UserAccessDeniedHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/handler/UserLoginFailureHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/handler/UserLoginSuccessHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/handler/UserLogoutSuccessHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/handler/UserNotLoginHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/mapper/AnimalConditionMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/mapper/AnimalsWikiMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/mapper/ShopItemMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/service/IAnimalConditionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/service/IAnimalsWikiService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/service/IShopItemService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/service/impl/AnimalConditionServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/service/impl/AnimalsWikiServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/service/impl/ShopItemServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/util/AutoMission.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/mapper/AdoptDiaryMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/mapper/ShopItemMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/pojo/AdoptDiary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/pojo/AnimalCondition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/pojo/ShopItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/pojo/ViewTodayCondition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/AdoptPageVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/ConditionReleaseVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/DiaryUploadVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/DiaryVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/MyAdoptVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/resources/mapper/AdoptDiaryMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/resources/mapper/AnimalConditionMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/resources/mapper/ShopItemMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/mapper/ReportRecordMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/pojo/ReportRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Library/src/main/resources/mapper/ReportRecordMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../VERSION.md" beforeDir="false" afterPath="$PROJECT_DIR$/../VERSION.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/custom-tab-bar/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/custom-tab-bar/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/adoptDiary/adoptDiary.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/adoptDiary/adoptDiary.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/adoptDiary/adoptDiary.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/adoptDiary/adoptDiary.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/adoptDiary/adoptDiary.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/adoptDiary/adoptDiary.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/adoptHome/adoptHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/adoptHome/adoptHome.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/adoptHome/adoptHome.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/adoptHome/adoptHome.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/adoptHome/adoptHome.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/adoptHome/adoptHome.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/adoptHome/adoptHome.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/adoptHome/adoptHome.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/chatPage/chatPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/chatPage/chatPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/myInfoHome/myInfoHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/myInfoHome/myInfoHome.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/myInfoHome/myInfoHome.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/myInfoHome/myInfoHome.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/shop/shop.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/shop/shop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/shop/shop.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/shop/shop.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/project.private.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/project.private.config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/utils/promptBox/promptBox.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/utils/promptBox/promptBox.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/communityHome/communityHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/communityHome/communityHome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/communityHome/communityHome.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/communityHome/communityHome.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/communityHome/communityHome.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/communityHome/communityHome.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdoptModule/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdoptModule/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdoptModule/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdoptModule/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdoptModule/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdoptModule/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/AdoptModule/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/AdoptModuleApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/AdoptModuleApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/controller/CommunityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/controller/CommunityController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/service/IPostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/service/IPostService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/service/impl/PostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/service/impl/PostServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/pojo/AnimalsWiki.java" beforeDir="false" afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/pojo/AnimalsWiki.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/util/CommonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/util/CommonUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/util/DateUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/RespBeanEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/RespBeanEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/RewardVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/RewardVo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/src/main/resources/mapper/AnimalsWikiMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Library/src/main/resources/mapper/AnimalsWikiMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserModule/UserModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/UserModule/UserModule.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/service/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/service/IUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WikiModule/src/main/java/com/biosphere/wikimodule/service/impl/AnimalsWikiServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/WikiModule/src/main/java/com/biosphere/wikimodule/service/impl/AnimalsWikiServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WikiModule/src/main/java/com/biosphere/wikimodule/util/DataAutoLoadUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/WikiModule/src/main/java/com/biosphere/wikimodule/util/DataAutoLoadUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,14 +79,14 @@
       <recent name="D:\大学\毕设\项目\zucc-biosphere-mini-program\ZUCCBiosphere\UserModule\src\main\java\com\biosphere\usermodule" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.biosphere.library.pojo" />
       <recent name="com.biosphere.communitymodule.mapper" />
+      <recent name="com.biosphere.library.pojo" />
       <recent name="com.biosphere.adoptmodule.service.impl" />
       <recent name="com.biosphere.adoptmodule.service" />
       <recent name="com.biosphere.adoptmodule.mapper" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.AdoptModuleApplication">
+  <component name="RunManager" selected="Spring Boot.UserModuleApplication">
     <configuration name="CommonUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.biosphere.library.util.CommonUtil" />
       <module name="Library" />
@@ -272,6 +208,8 @@
       <workItem from="1680415300113" duration="7697000" />
       <workItem from="1680486276380" duration="10484000" />
       <workItem from="1680508056239" duration="12149000" />
+      <workItem from="1680585196788" duration="5148000" />
+      <workItem from="1680680117148" duration="1079000" />
     </task>
     <servers />
   </component>

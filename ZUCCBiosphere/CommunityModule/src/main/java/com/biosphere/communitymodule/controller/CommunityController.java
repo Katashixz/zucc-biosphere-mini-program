@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.biosphere.communitymodule.service.IPostService;
 import com.biosphere.communitymodule.util.CommunityDataAutoLoadUtil;
 import com.biosphere.library.pojo.AdoptDiary;
+import com.biosphere.library.pojo.ReportRecord;
 import com.biosphere.library.pojo.ShopItem;
 import com.biosphere.library.util.CommonUtil;
 import com.biosphere.library.util.JwtUtil;
@@ -186,6 +187,12 @@ public class CommunityController implements InitializingBean {
     public void releaseDiary(@Validated @RequestBody DiaryUploadVo diaryUploadVo){
         postService.saveDiary(diaryUploadVo);
 
+    }
+
+    @ApiOperation(value = "发送举报信息", notes = "需要传入用户ID，目标帖子，目标用户ID，举报内容")
+    @RequestMapping(value = "/auth/report",method = RequestMethod.POST)
+    public void report(@Validated @RequestBody ReportRecord reportRecord){
+        postService.saveReport(reportRecord);
     }
 
     @Override

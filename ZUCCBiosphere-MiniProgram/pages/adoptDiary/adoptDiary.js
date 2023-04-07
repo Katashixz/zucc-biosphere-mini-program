@@ -40,9 +40,8 @@ Page({
     buttonClick(){
         var that = this;
         if (!getApp().globalData.userInfo) {
-            app.getUserProfile().finally(() => {
-                that.onPullDownRefresh();
-            })
+            that.loginComponent.open()
+
         }
         else{
             wx.navigateTo({
@@ -157,13 +156,16 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
-
+        var that = this;
+        that.loginComponent = that.selectComponent("#loginComponent");
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
     onShow() {
+        var that = this;
+        that.loginComponent = that.selectComponent("#loginComponent");
 
     },
 

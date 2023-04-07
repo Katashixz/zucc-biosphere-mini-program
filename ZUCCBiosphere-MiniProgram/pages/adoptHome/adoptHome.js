@@ -73,9 +73,7 @@ Page({
           var index = that.data.currentTab
           var target = that.data.list[index].id
         if(!app.globalData.hasUserInfo){
-            app.getUserProfile().finally(() => {
-                that.onPullDownRefresh();
-            })
+            that.loginComponent.open();
         }else{
             that.foodComponent.open(target);
         }
@@ -93,7 +91,9 @@ Page({
      */
     onReady() {
         var that = this;
-        this.promptBox = this.selectComponent("#promptBox");
+        that.loginComponent = that.selectComponent("#loginComponent");
+        that.foodComponent = that.selectComponent("#foodComponent");
+        that.promptBox = that.selectComponent("#promptBox");
     },
 
     /**
@@ -101,12 +101,13 @@ Page({
      */
     onShow() {
         var that = this;
-        this.foodComponent = this.selectComponent("#foodComponent");
-        this.promptBox = this.selectComponent("#promptBox");
+        that.loginComponent = that.selectComponent("#loginComponent");
+        that.foodComponent = that.selectComponent("#foodComponent");
+        that.promptBox = that.selectComponent("#promptBox");
 
-        if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+        if (typeof that.getTabBar === 'function' && that.getTabBar()) {
     
-            this.getTabBar().setData({
+            that.getTabBar().setData({
       
               selected: 1
       

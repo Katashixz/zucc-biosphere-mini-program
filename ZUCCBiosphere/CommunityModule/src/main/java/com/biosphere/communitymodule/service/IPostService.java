@@ -2,6 +2,7 @@ package com.biosphere.communitymodule.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.biosphere.library.pojo.Post;
+import com.biosphere.library.pojo.ReportRecord;
 import com.biosphere.library.pojo.ShopItem;
 import com.biosphere.library.vo.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -155,7 +156,14 @@ public interface IPostService extends IService<Post> {
      */
     void saveDiary(DiaryUploadVo diaryUploadVo);
 
-
+    /**
+     * 功能描述:  保存举报信息
+     * @param: reportRecord
+     * @return: void
+     * @author hyh
+     * @date: 2023/4/4 20:57
+     */
+    void saveReport(ReportRecord reportRecord);
 
 
 }

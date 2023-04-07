@@ -48,6 +48,7 @@
 
         </scroll-view>
     </view>
+    <loginComponent id="loginComponent"></loginComponent>
     <foodComponent id="foodComponent"></foodComponent>
     <promptBox id="promptBox"></promptBox>
 

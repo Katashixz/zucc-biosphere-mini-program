@@ -1,5 +1,7 @@
 {
-    "usingComponents": {},
+    "usingComponents": {
+        "loginComponent":"../../utils/loginComponent/loginComponent"
+    },
     "navigationBarTitleText": "今日状况"
 
 }

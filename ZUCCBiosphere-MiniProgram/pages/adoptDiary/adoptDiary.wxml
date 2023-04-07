@@ -65,6 +65,7 @@
         
     </scroll-view>
     <text class="endText inCenter" style="margin-bottom: 20rpx;">—没有内容了哦—</text>
+    <loginComponent id="loginComponent"></loginComponent>
 
     </view>
 </view>

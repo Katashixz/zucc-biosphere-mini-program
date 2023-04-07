@@ -72,7 +72,6 @@ App({
 
     //封装登录
     getUserProfile:function(){
-        console.log("login")
         var that = this;
         return new Promise((resolve, reject) => {
             wx.getUserProfile({
@@ -216,7 +215,7 @@ App({
     WebSocketInit: function () {
         var that = this;
         that.socketTask = wx.connectSocket({
-            url: 'ws://127.0.0.1:58080/webSocket',
+            url: that.globalData.webSocketHome,
             data: {},
             method: 'GET',
             success: function (res) {
@@ -301,8 +300,9 @@ App({
     globalData: {
         userInfo: null,
         // urlHome: 'http://124.221.252.162:9000',
-        urlHome: 'http://localhost:9000',
-        // urlHome: 'https://katashix.top',
+        // urlHome: 'http://localhost:9000',
+        urlHome: 'https://katashix.top',
+        webSocketHome: 'ws://124.221.252.162:58080/webSocket',
         token: '',
         openID: '',
         hasUserInfo: false,

@@ -151,11 +151,6 @@ Page({
      */
     toShop: function (e) {
         var that = this;
-        // var obj = {
-        //     msg: "功能暂未开放",
-        //     type: "tip"
-        // }
-        // that.promptBox.open(obj);
         wx.navigateTo({
           url: '/pages/shop/shop',
         })
@@ -167,9 +162,8 @@ Page({
         var that = this;
         //先判断是否登录 登录后才能点赞
         if(!app.globalData.hasUserInfo){
-            app.getUserProfile().finally(() => {
-                that.onPullDownRefresh();
-            })
+            that.loginComponent.open()
+
         }else{
             that.changeLikeFunc(e)
         }
@@ -346,9 +340,8 @@ Page({
             }
 
         } else {
-            app.getUserProfile().finally(() => {
-                that.onPullDownRefresh();
-            })
+            that.loginComponent.open()
+
         }
     },
     rewardOperation: function (e) {
@@ -476,9 +469,8 @@ Page({
         var index = e.currentTarget.dataset.index
         //先判断是否登录 登录后才能点赞
         if(!app.globalData.hasUserInfo){
-            app.getUserProfile().finally(() => {
-                that.onPullDownRefresh();
-            })
+            that.loginComponent.open()
+
         }else{
             wx.request({
                 method: 'POST',
@@ -530,8 +522,22 @@ Page({
      * 举报
      */
     report(options) {
-        console.log("举报")
+        var that = this;
 
+        if(!app.globalData.hasUserInfo){
+            that.loginComponent.open()
+
+        }else{
+            var uid = wx.getStorageSync('uid')
+            var index = options.currentTarget.dataset.index
+
+            var obj = {
+            "userID": uid,
+            "targetID": that.data.postList[index].userID,
+            "postID": that.data.postList[index].postID
+            }
+            that.reportComponent.open(obj)
+        }
     },
     /**
      * 分享
@@ -611,9 +617,7 @@ Page({
         var that = this;
         //先判断是否登录 登录后才能点赞
         if(!app.globalData.hasUserInfo){
-            app.getUserProfile().finally(() => {
-                that.onPullDownRefresh();
-            })
+            that.loginComponent.open()
         }else{
             var index = e.currentTarget.dataset.index
         var obj = {
@@ -629,9 +633,14 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
-        this.energyBox = this.selectComponent("#energyBox");
-        this.promptBox = this.selectComponent("#promptBox");
-        this.chatComponent = this.selectComponent("#chatComponent");
+        var that = this;
+        that.energyBox = that.selectComponent("#energyBox");
+        that.promptBox = that.selectComponent("#promptBox");
+        that.chatComponent = that.selectComponent("#chatComponent");
+        that.reportComponent = that.selectComponent("#reportComponent");
+        that.loginComponent = that.selectComponent("#loginComponent");
+        that.loginComponent = that.selectComponent("#loginComponent");
+
     },
 
     /**
@@ -640,9 +649,12 @@ Page({
     onShow: function () {
         var that = this;
         
-        this.energyBox = this.selectComponent("#energyBox");
-        this.promptBox = this.selectComponent("#promptBox");
-        this.chatComponent = this.selectComponent("#chatComponent");
+        that.energyBox = that.selectComponent("#energyBox");
+        that.promptBox = that.selectComponent("#promptBox");
+        that.chatComponent = that.selectComponent("#chatComponent");
+        that.reportComponent = that.selectComponent("#reportComponent");
+        that.loginComponent = that.selectComponent("#loginComponent");
+
         that.setData({
             currentIndex: 0,
         })
@@ -752,9 +764,8 @@ Page({
     toReleasePost: function(e){
         var that = this;
         if (!getApp().globalData.userInfo) {
-            app.getUserProfile().finally(() => {
-                that.onPullDownRefresh();
-            })
+            that.loginComponent.open()
+
         }
         else{
         wx.navigateTo({

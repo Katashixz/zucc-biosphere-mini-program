@@ -1,0 +1,27 @@
+<!--utils/reportComponent/reportComponent.wxml-->
+<view class='dialog-container' wx:if="{{isShow}}" catchtouchmove='catchmove'>
+    <view class='dialog-mask' bindtap='close'></view>
+    <view class="dialog-content" animation="{{recoedDalogflash}}">
+        <view class="dialog-title">
+            <view class="abcontent">
+                <text style="font-weight:800;font-size:34rpx">{{title}}</text>
+            </view>
+            <!-- <view class="closebtn" bindtap='close'>
+                x
+            </view> -->
+        </view>
+        <view class="dialog-main">
+            <scroll-view scroll-y class="scroll_c">  
+
+                <view class="textIn">
+                    <textarea class="textDown" placeholder="此处输入正文" name="" value="{{content}}" maxlength="800" bindinput="getContent"></textarea>
+                 </view>
+                <view class="bottomButton">
+                    <button type="default" class="sumbitButton" style="left: 30rpx;" hover-class="sumbitButtonOnClick" bindtap="close">返回</button>
+                    <button type="default" class="sumbitButton" style="right: 30rpx;" hover-class="sumbitButtonOnClick" bindtap="buttonClick">提交</button>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+</view>
+ 

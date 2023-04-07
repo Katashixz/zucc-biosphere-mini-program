@@ -66,7 +66,7 @@
                             <view class="optionListItems">
                                 <button class="optionItemStyle" bindtap="star" data-index="{{index}}">收藏</button>
                                 <button class="optionItemStyle" open-type="share">分享</button>
-                                <button class="optionItemStyle" bindtap="report" style="border-bottom: 1rpx solid rgb(211, 211, 211);">举报</button>
+                                <button class="optionItemStyle" bindtap="report" style="border-bottom: 1rpx solid rgb(211, 211, 211);" data-index="{{index}}">举报</button>
                             </view>
 
                         </view>
@@ -142,6 +142,8 @@
         <Dialog id="energyBox" bind:getEnergy="rewardOperation"></Dialog>
         <promptBox id="promptBox"></promptBox>
         <chatComponent id="chatComponent"></chatComponent>
+        <reportComponent id="reportComponent"></reportComponent>
+        <loginComponent id="loginComponent"></loginComponent>
     </view>
    
     

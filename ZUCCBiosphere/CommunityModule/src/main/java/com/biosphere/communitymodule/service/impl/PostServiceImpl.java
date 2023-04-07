@@ -5,11 +5,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.biosphere.communitymodule.mapper.*;
 import com.biosphere.communitymodule.rabbitmq.MQSender;
-import com.biosphere.library.pojo.AdoptDiary;
-import com.biosphere.library.pojo.Post;
+import com.biosphere.library.pojo.*;
 import com.biosphere.communitymodule.service.IPostService;
-import com.biosphere.library.pojo.ShopItem;
-import com.biosphere.library.pojo.StarRecord;
 import com.biosphere.library.util.CommonUtil;
 import com.biosphere.library.util.TencentCosUtil;
 import com.biosphere.library.vo.*;
@@ -63,6 +60,9 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
 
     @Autowired
     private AdoptDiaryMapper adoptDiaryMapper;
+
+    @Autowired
+    private ReportRecordMapper reportRecordMapper;
 
     // 预计要插入多少数据
     private static int size = 1000000;
@@ -310,6 +310,16 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
             throw new ExceptionLogVo(RespBeanEnum.ERROR_INFO);
         }
 
+    }
+
+    @Override
+    public void saveReport(ReportRecord reportRecord) {
+        reportRecord.setIsHandled(0);
+        reportRecord.setCreatedAt(new Date());
+        int insert = reportRecordMapper.insert(reportRecord);
+        if (insert <= 0) {
+            throw new ExceptionLogVo(RespBeanEnum.ERROR_INFO);
+        }
     }
 
 

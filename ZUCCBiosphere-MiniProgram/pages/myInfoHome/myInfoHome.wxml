@@ -1,6 +1,7 @@
 <!--pages/myInfoHome/myInfoHome.wxml-->
 <view class="myInfoHome">
     <view class="homePage" >
+        <loginComponent id="loginComponent"></loginComponent>
         <view class="loginButton" wx:if="{{!hasUserInfo}}">
             <button id="userLogin" bindtap="getUserProfile">请点击登录</button>
             <image class="avatarImage" src="../../icon/cat.png"></image>

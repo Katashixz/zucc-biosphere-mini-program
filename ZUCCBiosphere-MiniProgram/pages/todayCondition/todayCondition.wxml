@@ -1,6 +1,7 @@
 <!--pages/todayCondition/todayCondition.wxml-->
 <view class="todayCondition">
     <!-- <view class="homePage"> -->
+        <loginComponent id="loginComponent"></loginComponent>
         <picker mode="date" header-text="选择时间" value="{{date}}" end="{{today}}" bindchange="bindDateChange">
             <view class="timeSelector inCenter">
                 <text class="chooseDate">选择日期：</text>

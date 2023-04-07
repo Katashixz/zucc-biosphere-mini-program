@@ -88,9 +88,7 @@ Page({
         var that = this;
         //先判断是否登录 登录后才能点赞
         if(!app.globalData.hasUserInfo){
-            app.getUserProfile().finally(() => {
-                that.refreshData(that.data.postID);
-            })
+            that.loginComponent.open()
             
         }else{
             that.changeLikeFunc(e)
@@ -246,9 +244,7 @@ Page({
         }
         else{
             if(!app.globalData.hasUserInfo){
-                app.getUserProfile().finally(() => {
-                    that.refreshData(that.data.postID);
-                })
+                that.loginComponent.open()
                 
             }else{
                 var url = app.globalData.urlHome + '/community/auth/uploadComment';
@@ -313,9 +309,7 @@ Page({
         var that = this;
         //先判断是否登录 登录后才能点赞
         if(!app.globalData.hasUserInfo){
-            app.getUserProfile().finally(() => {
-                that.onPullDownRefresh();
-            })
+            that.loginComponent.open()
         }else{
         var obj = {
             userName: that.data.postItem.userName,
@@ -333,9 +327,7 @@ Page({
         var that = this;
         //先判断是否登录 登录后才能点赞
         if(!app.globalData.hasUserInfo){
-            app.getUserProfile().finally(() => {
-                that.onPullDownRefresh();
-            })
+            that.loginComponent.open()
         }else{
             var index = e.currentTarget.dataset.index
             var obj = {
@@ -369,9 +361,7 @@ Page({
             }
 
         } else {
-            app.getUserProfile().finally(() => {
-                that.onPullDownRefresh();
-            })
+            that.loginComponent.open()
         }
     },
     rewardOperation: function (e) {
@@ -528,9 +518,7 @@ Page({
         // var index = e.currentTarget.dataset.index
         //先判断是否登录 登录后才能点赞
         if(!app.globalData.hasUserInfo){
-            app.getUserProfile().finally(() => {
-                that.onPullDownRefresh();
-            })
+            that.loginComponent.open()
         }else{
             wx.request({
                 method: 'POST',
@@ -592,9 +580,7 @@ Page({
     confirmFocus(options) {
         var that = this;
         if(!app.globalData.hasUserInfo){
-            app.getUserProfile().finally(() => {
-                that.refreshData(that.data.postID);
-            })
+            that.loginComponent.open()
             
         }else{
             that.setData({
@@ -728,9 +714,11 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        this.energyBox = this.selectComponent("#energyBox");
-        this.promptBox = this.selectComponent("#promptBox");
-        this.chatComponent = this.selectComponent("#chatComponent");
+        var that = this;
+        that.loginComponent = that.selectComponent("#loginComponent");
+        that.energyBox = that.selectComponent("#energyBox");
+        that.promptBox = that.selectComponent("#promptBox");
+        that.chatComponent = that.selectComponent("#chatComponent");
 
     },
 

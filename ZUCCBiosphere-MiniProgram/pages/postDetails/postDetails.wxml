@@ -15,6 +15,7 @@
 </wxs>
 <view class="postDetails">
     <view class="homePage">
+        <loginComponent id="loginComponent"></loginComponent>
         <Dialog id="energyBox" bind:getEnergy="rewardOperation"></Dialog>
         <promptBox id="promptBox"></promptBox>
         <chatComponent id="chatComponent"></chatComponent>

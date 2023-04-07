@@ -1,6 +1,7 @@
 {
     "usingComponents": {
-        "promptBox":"../../utils/promptBox/promptBox"
+        "promptBox":"../../utils/promptBox/promptBox",
+        "loginComponent":"../../utils/loginComponent/loginComponent"
     },
     "navigationBarTitleText": "我的",
     "enablePullDownRefresh": true

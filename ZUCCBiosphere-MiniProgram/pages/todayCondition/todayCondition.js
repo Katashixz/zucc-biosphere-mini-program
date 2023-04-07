@@ -38,9 +38,7 @@ Page({
     toReleaseCondition(){
         var that = this;
         if(!app.globalData.hasUserInfo){
-            app.getUserProfile().finally(() => {
-                that.onPullDownRefresh();
-            })
+            that.loginComponent.open()
         }else{
             wx.navigateTo({
                 url: '/pages/releaseCondition/releaseCondition?targetID=' + that.data.target + '&date=' + that.data.date + '&name=' + that.data.name,
@@ -105,6 +103,7 @@ Page({
      */
     onReady() {
         var that = this;
+        that.loginComponent = that.selectComponent("#loginComponent");
         that.onPullDownRefresh();
     },
 
@@ -113,11 +112,13 @@ Page({
      */
     onShow() {
         var that = this;
+        that.loginComponent = that.selectComponent("#loginComponent");
         var date = util.formatDate2(new Date(), 'yyyy-mm-dd');
         that.setData({
             date: date,
             today: date
         })
+        that.onPullDownRefresh();
     },
 
     /**

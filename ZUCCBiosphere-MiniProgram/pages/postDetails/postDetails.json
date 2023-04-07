@@ -2,7 +2,8 @@
     "usingComponents": {
         "Dialog":"../../utils/Dialog/Dialog",
         "promptBox":"../../utils/promptBox/promptBox",
-        "chatComponent":"../../utils/chatComponent/chatComponent"
+        "chatComponent":"../../utils/chatComponent/chatComponent",
+        "loginComponent":"../../utils/loginComponent/loginComponent"
 
     },
     "navigationBarTitleText": "社区"
