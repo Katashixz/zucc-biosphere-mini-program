@@ -11,9 +11,9 @@
 <img src="./image/preview1.jpg" width="30%">
 <img src="./image/preview2.jpg" width="30%">
 <img src="./image/preview3.jpg" width="30%">
-<img src="./image/preview6.jpg" width="30%">
-<img src="./image/preview5.jpg" width="30%">
 <img src="./image/preview4.jpg" width="30%">
+<img src="./image/preview5.jpg" width="30%">
+<img src="./image/preview6.jpg" width="30%">
 
 ---
 

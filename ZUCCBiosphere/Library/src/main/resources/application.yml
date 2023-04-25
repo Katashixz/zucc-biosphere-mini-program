@@ -1,16 +1,15 @@
 spring:
   #数据源配置
   datasource:
-    username: "biosphere"
-    password: "yi89853901yi"
-    url: jdbc:mysql://124.221.252.162:3306/biosphere?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-    #    url: jdbc:mysql://localhost:3306/biosphere?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: "root"
+    password: "root"
+    url: jdbc:mysql://localhost:3306/biosphere?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
   hikari:
     #连接池名
     pool-name: HikariCP
     #最小空闲连接数
-    minimum-idle: 10
+    minimum-idle: 5
     #空闲连接存货最大时间，默认600000(10min)
     idle-timeout: 60000
     #最大连接数，默认10
@@ -20,6 +19,15 @@ spring:
     #连接最大存活时间，0表示永久存货，默认1800000(30min)
     max-lifetime: 60000
     #连接超时时间，默认30000(30s)
-    connection-timeout: 60000
+    connection-timeout: 30000
     #测试链接是否可用的查询语句
     connection-test-query: SELECT 1
+    #检测数据库的查询语句
+    validation-query: select 1 from dual
+    test-on-borrow: true
+    #每隔五分钟检测空闲超过10分钟的连接
+    min-evictable-idle-time-millis: 60000
+    time-between-eviction-runs-millis: 30000
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  type-aliases-package: com.biosphere.library.pojo

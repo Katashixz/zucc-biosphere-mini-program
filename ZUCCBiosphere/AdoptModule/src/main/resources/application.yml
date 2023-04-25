@@ -14,7 +14,5 @@ mybatis-plus:
   #配置Mybatis数据返回类型别名(默认别名是类名)
   type-aliases-package: com.biosphere.library.pojo
 
-
 server:
   port: ${PORT:9004}
-
