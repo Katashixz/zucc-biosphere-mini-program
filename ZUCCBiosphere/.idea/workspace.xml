@@ -5,19 +5,62 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="667cbcbf-9b59-4f82-9fa1-1367bda0ccc8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/mapper/ReportRecordMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/pojo/ReportRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library/src/main/resources/mapper/ReportRecordMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminModule/AdminModule.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminModule/src/main/java/com/biosphere/adminmodule/AdminModuleApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminModule/src/main/java/com/biosphere/adminmodule/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminModule/src/main/java/com/biosphere/adminmodule/controller/AdministratorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminModule/src/main/java/com/biosphere/adminmodule/filter/JWTAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminModule/src/main/java/com/biosphere/adminmodule/handler/UserAccessDeniedHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminModule/src/main/java/com/biosphere/adminmodule/handler/UserLoginFailureHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminModule/src/main/java/com/biosphere/adminmodule/handler/UserLoginSuccessHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminModule/src/main/java/com/biosphere/adminmodule/handler/UserLogoutSuccessHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminModule/src/main/java/com/biosphere/adminmodule/handler/UserNotLoginHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminModule/src/main/java/com/biosphere/adminmodule/mapper/AdministratorMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminModule/src/main/java/com/biosphere/adminmodule/service/IAdministratorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminModule/src/main/java/com/biosphere/adminmodule/service/impl/AdministratorServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/pojo/Administrator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Library/src/main/resources/mapper/AdministratorMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../VERSION.md" beforeDir="false" afterPath="$PROJECT_DIR$/../VERSION.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/communityHome/communityHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/communityHome/communityHome.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/communityHome/communityHome.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/communityHome/communityHome.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/communityHome/communityHome.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/communityHome/communityHome.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/adoptDiary/adoptDiary.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/adoptDiary/adoptDiary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/adoptDiary/adoptDiary.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/adoptDiary/adoptDiary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/adoptDiary/adoptDiary.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/adoptDiary/adoptDiary.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/animalWikiDetail/animalWikiDetail.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/animalWikiDetail/animalWikiDetail.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/chatPage/chatPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/chatPage/chatPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/hotPostList/hotPostList.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/hotPostList/hotPostList.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/myInfoHome/myInfoHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/myInfoHome/myInfoHome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/myNotice/myNotice.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/myNotice/myNotice.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/postDetails/postDetails.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/postDetails/postDetails.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/releasePost/releasePost.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/releasePost/releasePost.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/updateInfo/updateInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/updateInfo/updateInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/updateInfo/updateInfo.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/updateInfo/updateInfo.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/wikiHome/wikiHome.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/pages/wikiHome/wikiHome.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/project.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/project.private.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/project.private.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/utils/foodComponent/foodComponent.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/../ZUCCBiosphere-MiniProgram/utils/foodComponent/foodComponent.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/controller/CommunityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/controller/CommunityController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/service/IPostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/service/IPostService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/service/impl/PostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/service/impl/PostServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/controller/AdpotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/controller/AdpotController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/mapper/AnimalsWikiMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/mapper/AnimalsWikiMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/service/IAnimalsWikiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AdoptModule/src/main/java/com/biosphere/adoptmodule/service/IAnimalsWikiService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/filter/JWTAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/filter/JWTAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/mapper/PostMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/mapper/PostMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/rabbitmq/MQReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/rabbitmq/MQReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/util/CommunityDataAutoLoadUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommunityModule/src/main/java/com/biosphere/communitymodule/util/CommunityDataAutoLoadUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/util/CommonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/util/CommonUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/util/TencentCosUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/util/TencentCosUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/RespBeanEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/Library/src/main/java/com/biosphere/library/vo/RespBeanEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/filter/JWTAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/filter/JWTAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/handler/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/handler/CommandHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserModule/src/main/java/com/biosphere/usermodule/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WikiModule/src/main/java/com/biosphere/wikimodule/filter/JWTAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/WikiModule/src/main/java/com/biosphere/wikimodule/filter/JWTAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WikiModule/src/main/java/com/biosphere/wikimodule/util/DataAutoLoadUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/WikiModule/src/main/java/com/biosphere/wikimodule/util/DataAutoLoadUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +73,7 @@
         <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="Mybatis Mapper" />
       </list>
     </option>
   </component>
@@ -60,7 +104,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Library/src/main/resources/mapper" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../作业/学长小课堂/tempFile/ccCarRental-master/ccCarRental-master" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -72,21 +116,25 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\大学\毕设\项目\zucc-biosphere-mini-program\ZUCCBiosphere\AdminModule\src\main\java\com\biosphere\adminmodule" />
+      <recent name="D:\大学\毕设\项目\zucc-biosphere-mini-program\ZUCCBiosphere\AdminModule\src\main\resources" />
+      <recent name="D:\大学\毕设\项目\zucc-biosphere-mini-program\ZUCCBiosphere\Library\src\main\java\com\biosphere\library\util" />
+      <recent name="D:\大学\毕设\项目\zucc-biosphere-mini-program\ZUCCBiosphere\AdoptModule\src\main\java" />
       <recent name="D:\大学\毕设\项目\zucc-biosphere-mini-program\ZUCCBiosphere\Library\src\main\resources\mapper" />
-      <recent name="D:\大学\毕设\项目\zucc-biosphere-mini-program\ZUCCBiosphere\AdoptModule\src\main\java\com\biosphere\adoptmodule" />
-      <recent name="D:\大学\毕设\项目\zucc-biosphere-mini-program\ZUCCBiosphere\AdoptModule\src\main\resources" />
-      <recent name="D:\大学\毕设\项目\zucc-biosphere-mini-program\ZUCCBiosphere\Library\src\main\resources" />
-      <recent name="D:\大学\毕设\项目\zucc-biosphere-mini-program\ZUCCBiosphere\UserModule\src\main\java\com\biosphere\usermodule" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\大学\毕设\项目\zucc-biosphere-mini-program\ZUCCBiosphere\Library\src\main\resources\mapper" />
+      <recent name="D:\大学\毕设\项目\zucc-biosphere-mini-program\ZUCCBiosphere\AdoptModule\src\main" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.biosphere.communitymodule.mapper" />
+      <recent name="com.biosphere.adminmodule.config" />
+      <recent name="com.biosphere.adminmodule" />
       <recent name="com.biosphere.library.pojo" />
+      <recent name="com.biosphere.communitymodule.mapper" />
       <recent name="com.biosphere.adoptmodule.service.impl" />
-      <recent name="com.biosphere.adoptmodule.service" />
-      <recent name="com.biosphere.adoptmodule.mapper" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.UserModuleApplication">
+  <component name="RunManager" selected="Spring Boot.AdminModuleApplication">
     <configuration name="CommonUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.biosphere.library.util.CommonUtil" />
       <module name="Library" />
@@ -96,6 +144,13 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AdminModuleApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="AdminModule" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.biosphere.adminmodule.AdminModuleApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -147,6 +202,7 @@
       <item itemvalue="Spring Boot.UserModuleApplication" />
       <item itemvalue="Spring Boot.WikiModuleApplication" />
       <item itemvalue="Spring Boot.AdoptModuleApplication" />
+      <item itemvalue="Spring Boot.AdminModuleApplication" />
       <item itemvalue="Spring Boot.CommunityModuleApplication" />
     </list>
     <recent_temporary>
@@ -210,6 +266,24 @@
       <workItem from="1680508056239" duration="12149000" />
       <workItem from="1680585196788" duration="5148000" />
       <workItem from="1680680117148" duration="1079000" />
+      <workItem from="1680866893528" duration="4582000" />
+      <workItem from="1680934962454" duration="2261000" />
+      <workItem from="1681018878437" duration="8998000" />
+      <workItem from="1681113548118" duration="6939000" />
+      <workItem from="1681188722099" duration="7265000" />
+      <workItem from="1681282129275" duration="698000" />
+      <workItem from="1681293235307" duration="111000" />
+      <workItem from="1681302876403" duration="1986000" />
+      <workItem from="1681445122978" duration="613000" />
+      <workItem from="1681447056459" duration="4000" />
+      <workItem from="1681645497674" duration="620000" />
+      <workItem from="1681732157266" duration="550000" />
+      <workItem from="1681794797807" duration="6236000" />
+      <workItem from="1681814197198" duration="5000000" />
+      <workItem from="1681887062108" duration="906000" />
+      <workItem from="1681891633872" duration="36000" />
+      <workItem from="1681892672919" duration="984000" />
+      <workItem from="1682081561932" duration="33000" />
     </task>
     <servers />
   </component>

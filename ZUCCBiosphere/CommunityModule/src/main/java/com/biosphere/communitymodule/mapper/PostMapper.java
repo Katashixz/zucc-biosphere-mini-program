@@ -22,7 +22,7 @@ import java.util.Map;
  */
 public interface PostMapper extends BaseMapper<Post> {
 
-    @Select("SELECT p.id as postID, p.userID as userID, u.avatarUrl as avatarUrl, u.userName as userName,p.theme as theme, p.content as content, p.postDate as postDate, p.isTop as isTop, p.isEssential as isEssential, p.imageUrl, DATE_FORMAT(p.postDate,\"%Y-%m-%d %H:%i\") as dateformat, COUNT(c.isDeleted = 0 OR NULL) as commentNum, COUNT(DISTINCT l.id) as likeNum\n" +
+    @Select("SELECT p.id as postID, p.userID as userID, u.avatarUrl as avatarUrl, u.userName as userName,p.theme as theme, p.content as content, p.postDate as postDate, p.isTop as isTop, p.isEssential as isEssential, p.imageUrl, DATE_FORMAT(p.postDate,\"%Y-%m-%d %H:%i\") as dateformat, COUNT(DISTINCT(c.id)) as commentNum, COUNT(DISTINCT l.id) as likeNum\n" +
             "from post p \n" +
             "LEFT JOIN `comment` c on p.id = c.postID \n" +
             "LEFT JOIN like_record l on p.id = l.postID\n" +

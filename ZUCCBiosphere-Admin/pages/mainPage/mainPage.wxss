@@ -1,0 +1,21 @@
+/* pages/mainPage/mainPage.wxss */
+.module{
+  display: flex;
+  /* height: 100%; */
+  width: 750rpx;
+  flex-wrap: wrap;
+}
+
+.sonModule{
+  height: 200rpx;
+  width: 300rpx;
+  background-color: #ffffff;
+  margin-left: 50rpx;
+  margin-top: 40rpx;
+  border-radius: 20rpx;
+}
+.itemText{
+  font-size: 38rpx;
+  font-weight: 700;
+  color: #6E5D52;
+}

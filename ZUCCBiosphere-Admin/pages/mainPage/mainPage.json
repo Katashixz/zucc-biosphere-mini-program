@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "promptBox":"../../utils/promptBox/promptBox"
+  },
+  "navigationBarTitleText": "首页"
+  
+
+}

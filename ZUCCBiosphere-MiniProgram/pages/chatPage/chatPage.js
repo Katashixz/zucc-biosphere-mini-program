@@ -98,7 +98,8 @@ Page({
     onMessage: function (res) {
         var that = this;
         var obj = JSON.parse(res.data);
-        var time = new Date(obj.data.createdAt).getHours() + ':' + new Date(obj.data.createdAt).getMinutes().toString().padStart(2, "0");
+        if(obj.data.code == undefined){
+            var time = new Date(obj.data.createdAt).getHours() + ':' + new Date(obj.data.createdAt).getMinutes().toString().padStart(2, "0");
         var chat = {
             sourceID: obj.data.userId,
             sourceName: that.data.pageData.userName,
@@ -114,6 +115,8 @@ Page({
             toView: `item${that.data.chatRecord.length-1}`
 
         })
+        }
+        
         // that.onPullDownRefresh();
         
       },

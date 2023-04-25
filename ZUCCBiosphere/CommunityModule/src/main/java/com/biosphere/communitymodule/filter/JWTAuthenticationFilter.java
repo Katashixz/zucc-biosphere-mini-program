@@ -1,6 +1,7 @@
 package com.biosphere.communitymodule.filter;
 
 import com.biosphere.library.pojo.User;
+import com.biosphere.library.util.CommonUtil;
 import com.biosphere.library.util.HttpMethodUtil;
 import com.biosphere.library.util.JwtUtil;
 import com.biosphere.library.vo.RespBeanEnum;
@@ -43,7 +44,7 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
 
 		// 取出Token
 		String token = request.getHeader("token");
-		if (Objects.isNull(token)) {
+		if (CommonUtil.isBlank(token)) {
 			filterChain.doFilter(request, response);
 			return;
 		}

@@ -1,6 +1,8 @@
 {
     "usingComponents": {
-        "loginComponent":"../../utils/loginComponent/loginComponent"
+        "loginComponent":"../../utils/loginComponent/loginComponent",
+        "chatComponent":"../../utils/chatComponent/chatComponent"
+
     },
     
     "navigationBarTitleText": "领养日记",

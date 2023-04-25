@@ -9,6 +9,7 @@
         <module>WikiModule</module>
         <module>CommunityModule</module>
         <module>AdoptModule</module>
+        <module>AdminModule</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

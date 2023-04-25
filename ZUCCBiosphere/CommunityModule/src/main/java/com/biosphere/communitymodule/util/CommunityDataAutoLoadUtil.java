@@ -44,7 +44,7 @@ public class CommunityDataAutoLoadUtil {
     @Autowired
     private LikeRecordMapper likeRecordMapper;
 
-    @Scheduled(cron = "0 0 4 * * ?")
+    @Scheduled(cron = "0 0/6 * * * ? ")
     public void communityMainPageData(){
         try{
             //先清空缓存
@@ -56,7 +56,6 @@ public class CommunityDataAutoLoadUtil {
         }
 
         log.info("定时加载主页帖子数据任务启动");
-        //每天凌晨四点更新缓存，把数据库里前1000条更新到缓存里。(没人能这么闲看完这么多帖子吧)
         List<CommunityPostVo> communityPostVo = postMapper.loadPostWithPage(0,3);
         Map<String, Object> postMap = new HashMap<>();
         Set<ZSetOperations.TypedTuple<Long>> tempSet = new HashSet<>();
@@ -134,13 +133,17 @@ public class CommunityDataAutoLoadUtil {
         Map<String, Object> postMap = redisTemplate.opsForHash().entries("postMap");
         for (HotPostVo hotPostVo : hotPostVos) {
             Map<String, Object> tempMap = new HashMap<>();
-            //根据计算得出的热度进行排序
+            // 根据计算得出的热度进行排序
             Double heat = hotPostVo.getCommentNum() * COMMENT_POINT + hotPostVo.getLikeNum() * LIKE_POINT;
             hotPostVo.setHeat(heat);
             ZSetOperations.TypedTuple<Long> temp = new DefaultTypedTuple<>(hotPostVo.getPostID(),Double.valueOf(heat));
             tempSet.add(temp);
-            //方便根据帖子ID查找对应的帖子信息
+            // 方便根据帖子ID查找对应的帖子信息
             CommunityPostVo post = (CommunityPostVo) postMap.get(hotPostVo.getPostID().toString());
+            if (post == null) {
+                post = postMapper.findOne(hotPostVo.getPostID());
+            }
+            // 热帖数据可能不在缓存里
             tempMap.put("content", post.getContent());
             tempMap.put("imageUrl", post.getImageUrlList());
             tempMap.put("hotPost", hotPostVo);

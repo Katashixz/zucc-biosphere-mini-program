@@ -18,21 +18,17 @@ Page({
      */
     sumbit: util.throttle(function (e) {
         var that = this;
-        console.log(that.data);
         var url = app.globalData.urlHome + '/user/auth/updateInfo';
         wx.showLoading({
             title: '加载中',
           })
         var avatarFile = undefined;
         try {
-            var temp = wx.getStorageSync('tempAvatarFile');
-            if (temp) {
-              // Do something with return value
-              avatarFile = temp;
-            }
+            avatarFile = that.data.avatarUrl;
           } catch (e) {
             // Do something when catch error
             console.log("获取缓存头像失败")
+            wx.hideLoading();
           }
         if(avatarFile == undefined){
             var obj = {
@@ -40,60 +36,79 @@ Page({
                 type: "error"
             }
             that.promptBox.open(obj);
-        }else{
+            wx.hideLoading();
+
+        }else if(that.data.input == '' || that.data.input == undefined){
+            var obj = {
+                msg: "请填入正确的名称",
+                type: "error"
+            }
+            that.promptBox.open(obj);
+            wx.hideLoading();
+        }
+        else{
+            that.uploadAvatar(avatarFile, url).then(res => {
+                wx.hideLoading();
+                wx.showToast({
+                    title: '更新成功',
+                    duration: 2000,
+                    icon: 'success',
+                    })
+                    setTimeout(function () {
+                        wx.reLaunch({
+                            url: '../myInfoHome/myInfoHome',
+                        })
+                    }, 2500)
+            }).catch(error => {
+                console.log(error)
+                wx.hideLoading();
+                wx.showToast({
+                    title: '更新失败',
+                    duration: 2000,
+                    icon: 'error',
+                    })
+            });
+        }
+    }, 2500),
+    /**
+     * 上传头像
+     */
+    uploadAvatar(filePath, url){
+        var that = this;
+        return new Promise((resolve, reject) => {
+            var uid = wx.getStorageSync('uid')
             wx.uploadFile({
-                filePath: avatarFile,
+                filePath: filePath,
                 name: 'file',
                 url: url,
                 header: {
                     'token': app.globalData.token
                 },
                 formData:{
-                    'id': that.data.pageData.userID,
+                    'id': uid,
                     'nickName': that.data.input,
                 },
                 success: (res) => {
                     var data = JSON.parse(res.data);
                     console.log(data)
                     if(data.code == 200){
-                        wx.showToast({
-                            title: '更新成功',
-                            duration: 2000,
-                            icon: 'success',
-                            })
-                            setTimeout(function () {
-                                wx.reLaunch({
-                                    url: '../myInfoHome/myInfoHome',
-                                })
-                            }, 2100)
+                        resolve(data);
                     }else{
                         var obj = {
                             msg: data.msg,
                             type: "error"
                         }
                         that.promptBox.open(obj);
+                        reject(data);
                     }
                 },
                 fail: (res) => {
-                    console.log(res);
-                    wx.showToast({
-                        title: '服务器错误',
-                        duration: 2000,
-                        icon: 'error'
-                    })
+                    reject(res);
                 },
-                complete: (res) => {
-                    wx.hideLoading();
-                }
-                
             })
-        }
-        
 
-        // wx.navigateBack({
-        //   delta: 0,
-        // })
-    }, 2500),
+        })
+    },
     /**
      * 动态输入框长度
      */
@@ -127,7 +142,7 @@ Page({
         var that = this;
         that.setData({
             pageData: options,
-            avatarUrl: options.avatarUrl,
+            avatarUrl: wx.getStorageSync('tempAvatarFile'),
             input: options.nickName,
             inputLength: options.nickName.length * 34,
         })

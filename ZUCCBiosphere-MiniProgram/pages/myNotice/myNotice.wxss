@@ -23,7 +23,7 @@
     max-height: 40rpx;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 270rpx;
+    max-width: 250rpx;
 
 }
 .avatarImage{

@@ -25,6 +25,13 @@ public interface IAnimalsWikiService extends IService<AnimalsWiki> {
      */
     void saveAdoptCache();
 
+    /**
+     * 功能描述: 加载领养信息
+     * @param:
+     * @return: void
+     * @author hyh
+     * @date: 2023/3/29 19:51
+     */
     List<AdoptPageVo> getAdoptPageInfo();
 
 

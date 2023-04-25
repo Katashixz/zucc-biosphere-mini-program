@@ -4,7 +4,7 @@
 - 前端技术栈
   - wxml + wxss + js
 - 后端技术栈
-  - SpringBoot + SpringSecurity + Redis + MySQL + RabbitMQ
+  - SpringBoot + SpringSecurity + Redis + MySQL + RabbitMQ + Netty
 ## 效果预览图
 ---
 

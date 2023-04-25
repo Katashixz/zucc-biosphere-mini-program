@@ -85,13 +85,15 @@
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 50rpx;
+    direction: rtl;
+
 }
 .relationItem {
     width: 140rpx;
     display: flex;
     flex-direction: column;
     margin-top: 20rpx;
-    margin-left: 35rpx;
+    margin-right: 35rpx;
     /* margin-bottom: 20rpx; */
     /* position: relative;
     left: 40rpx;

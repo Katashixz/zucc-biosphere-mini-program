@@ -25,7 +25,7 @@ public interface AnimalsWikiMapper extends BaseMapper<AnimalsWiki> {
     @Select("SELECT w.ID, nickName, sex, `condition`, sterilization, `character`, image, location, IFNULL(`name`,\"未知\") as scientificName, adoptCondition\n" +
             "FROM animals_wiki w\n" +
             "LEFT OUTER JOIN scientific_name s ON w.scientificNameID = s.id\n" +
-            "WHERE w.adoptCondition = 0")
+            "WHERE w.adoptCondition = 0 AND (s.familyID = '猫科' OR s.familyID = '犬科')")
     List<AdoptPageVo> getHomelessAnimalList();
 
 }

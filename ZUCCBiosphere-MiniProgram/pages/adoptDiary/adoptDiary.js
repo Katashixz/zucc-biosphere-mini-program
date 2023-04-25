@@ -87,6 +87,24 @@ Page({
         })
     },
      /**
+     * 打开私信组件
+     */
+    openChatComponent(e){
+        var that = this;
+        //先判断是否登录 登录后才能点赞
+        if(!app.globalData.hasUserInfo){
+            that.loginComponent.open()
+        }else{
+            var index = e.currentTarget.dataset.index
+            var obj = {
+                userName: that.data.diaryList[index].userName,
+                avatarUrl: that.data.diaryList[index].userAvatar,
+                userID: that.data.diaryList[index].userID
+            };
+            that.chatComponent.open(obj);
+        }
+    },
+     /**
      * 查看图片
      */
     handleImagePreview(e) {
@@ -166,6 +184,7 @@ Page({
     onShow() {
         var that = this;
         that.loginComponent = that.selectComponent("#loginComponent");
+        that.chatComponent = that.selectComponent("#chatComponent");
 
     },
 

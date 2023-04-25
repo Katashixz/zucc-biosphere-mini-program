@@ -1,0 +1,22 @@
+<!--pages/loginPage/loginPage.wxml-->
+<view class="loginPage">
+  <!-- <view class="homePage"> -->
+    <view class="imageContainer inCenter">
+      <image class="logo" src="/icon/logo.png" mode="aspectFill"></image>
+      <text class="title">城院生态圈</text>
+      <text class="title" style="font-size: medium;margin-top: 10rpx;">管理员系统登录</text>
+    </view>
+    <view class="inputContainer inCenter">
+      <view class="accountContainer inCenter">
+        <text>账号：</text>
+        <input class="accountInput" placeholder="请输入账号" maxlength="15" confirm-type="done" bindinput="changeAccount" bindkeyboardheightchange="changeAccount" />
+      </view>
+      <view class="pwdContainer">
+        <text>密码：</text>
+        <input class="pwdInput" placeholder="请输入密码" maxlength="15" confirm-type="done" bindinput="changePwd" password="true" bindkeyboardheightchange="changePwd" />
+      </view>
+    </view>
+    <button class="sumbit" hover-class="sumbitClick" bindtap="login">确认</button>
+
+  <!-- </view> -->
+</view>

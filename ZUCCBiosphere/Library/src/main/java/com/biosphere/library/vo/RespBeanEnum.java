@@ -21,6 +21,9 @@ public enum RespBeanEnum {
     NO_POST(1007,"还未发布过帖子哦"),
     NO_Star(1008,"还未收藏过帖子哦"),
     NO_Comment(1009,"还未评论过帖子哦"),
+    PWD_ERROR(1010,"密码错误"),
+    ACCOUNT_ERROR(1011,"账号错误"),
+
     //百科模块
     GET_WIKI_ERROR(2001,"获取百科失败"),
     GET_GUIDE_ERROR(2002,"获取养护指南信息失败"),

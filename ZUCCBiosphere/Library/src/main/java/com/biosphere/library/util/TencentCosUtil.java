@@ -53,7 +53,6 @@ public class TencentCosUtil {
             String substring = fileName.substring(fileName.lastIndexOf("."));
             File localFile = File.createTempFile(String.valueOf(System.currentTimeMillis()),substring);
             file.transferTo(localFile);
-            Random random = new Random();
             fileName =MyInfo.prefix + openID + "_" + "avatar" + ".jpeg";
             // 将 文件上传至 COS
             PutObjectRequest objectRequest = new PutObjectRequest(MyInfo.bucketName,fileName,localFile);

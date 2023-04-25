@@ -116,10 +116,12 @@ public class MQReceiver {
 
         }
         //更新帖子点赞数
-        Long cnt = likeRecordMapper.selectCount(new QueryWrapper<LikeRecord>().eq("postID", likeStatusVo.getPostID()));
         CommunityPostVo post = (CommunityPostVo) redisTemplate.opsForHash().get("postMap", likeStatusVo.getPostID().toString());
-        post.setLikeNum(cnt);
-        redisTemplate.opsForHash().put("postMap",likeStatusVo.getPostID().toString(),post);
+        if (post != null) {
+            Long cnt = likeRecordMapper.selectCount(new QueryWrapper<LikeRecord>().eq("postID", likeStatusVo.getPostID()));
+            post.setLikeNum(cnt);
+            redisTemplate.opsForHash().put("postMap",likeStatusVo.getPostID().toString(),post);
+        }
 
     }
 
@@ -145,10 +147,12 @@ public class MQReceiver {
         redisTemplate.opsForHash().put("commentRecords", comment.getPostID().toString(), commentList);
         // }
         //评论数更新
-        Long cnt = commentMapper.selectCount(new QueryWrapper<Comment>().eq("postID", comment.getPostID()).eq("isDeleted",0));
         CommunityPostVo post = (CommunityPostVo) redisTemplate.opsForHash().get("postMap", comment.getPostID().toString());
-        post.setCommentNum(cnt);
-        redisTemplate.opsForHash().put("postMap",comment.getPostID().toString(),post);
+        if (post != null) {
+            Long cnt = commentMapper.selectCount(new QueryWrapper<Comment>().eq("postID", comment.getPostID()).eq("isDeleted",0));
+            post.setCommentNum(cnt);
+            redisTemplate.opsForHash().put("postMap",comment.getPostID().toString(),post);
+        }
         //更新到个人缓存
         List<CommentVo> commentVos = commentMapper.loadCommentByUserID(req.getUserID());
         for (CommentVo commentVo : commentList) {

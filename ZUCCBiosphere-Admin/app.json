@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/loginPage/loginPage",
+    "pages/mainPage/mainPage",
+    "custom-tab-bar/index",
+    "pages/adminInfo/adminInfo",
+    "pages/postManagement/postManagement"
+ 
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/mainPage/mainPage",
+        "text": "",
+        "iconPath": "icon/info.png",
+        "selectedIconPath": "icon/binfo.png"
+      },
+      {
+        "pagePath": "pages/adminInfo/adminInfo",
+        "text": "",
+        "iconPath": "icon/setting.png",
+        "selectedIconPath": "icon/bsetting.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

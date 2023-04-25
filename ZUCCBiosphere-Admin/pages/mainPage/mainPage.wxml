@@ -1,0 +1,15 @@
+<!--pages/mainPage/mainPage.wxml-->
+<view class="mainPage">
+  <view class="homePage">
+    <view class="module">
+    
+      <view class="sonModule inCenter" wx:for="{{list}}" wx:key="listKey"
+        wx:for-item="item" data-index="{{index}}" bindtap="toPage">
+      <text class="itemText">{{item.text}}</text>
+      </view>
+
+    </view>
+  </view>
+  <promptBox id="promptBox"></promptBox>
+
+</view>

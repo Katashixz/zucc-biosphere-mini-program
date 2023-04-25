@@ -70,8 +70,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     // public User checkUserInfo(String openID, String url, String nickName){
     public User checkUserInfo(String openID){
         User curUser = new User();
-        // curUser.setUserName(nickName);
-        // curUser.setAvatarUrl(url);
         curUser.setOpenID(openID);
         // 检查数据库中是否存在该用户信息，不存在则自动注册，存在就更新
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
@@ -278,6 +276,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Transactional(rollbackFor = Exception.class)
     public void updateInfo(Integer id, String nickName, String avatar, String openID) {
         // 数据库更新
+        avatar = avatar + "?t=" + System.currentTimeMillis();
         Integer integer = userMapper.updateInfo(id, nickName, avatar);
         if (integer != 1) {
             throw new ExceptionLogVo(RespBeanEnum.USER_ID_ERROR);

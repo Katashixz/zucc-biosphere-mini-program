@@ -1,0 +1,14 @@
+<view class="tab-bar-cat-ears">
+    <image class="left" src="../icon/ears2.png"></image>
+    <image class="right" src="../icon/ears2.png"></image>
+  </view>
+<view class="tab-bar">
+  <view class="tab-bar-border" ></view>
+  <view class="tab-bar-item-list">
+  <view wx:for="{{list}}" wx:key="index" class="tab-bar-item" data-path="{{item.pagePath}}" data-index="{{index}}" bindtap="switchTab">
+    <image src="{{selected == index ? item.selectedIconPath : item.iconPath}}"></image>
+    <view class="text" style="color: {{selected == index ? selectedColor : color}}">{{item.text}}</view>
+</view>
+    
+</view>
+</view>

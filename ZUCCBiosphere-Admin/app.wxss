@@ -1,0 +1,25 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+.homePage{
+  width: 750rpx;
+  height: 100vh;
+  background: rgb(238, 234, 231);
+  border-top-left-radius: 40rpx;
+  border-top-right-radius: 40rpx;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.inCenter{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}

@@ -8,7 +8,8 @@
         position: relative;
         /* top: 90rpx; */
         width: 100%;
-        height: 100%;
+        height: calc(100vh - 310rpx);
+
     }
     .divider{
         margin: auto;   
@@ -61,7 +62,7 @@
         display: block;
         width: 100%;
         /* overflow: hidden;  */
-        height: 100vh;
+        height: calc(100vh - 310rpx);
         
         /* height: calc(100vh - 80rpx); */
 
@@ -77,6 +78,7 @@
         /* position: relative; */
         align-content: flex-start;
         flex-wrap: wrap;
+        overflow: auto;
         /* overflow: hidden; */
         /* justify-content: space-between; */
     }

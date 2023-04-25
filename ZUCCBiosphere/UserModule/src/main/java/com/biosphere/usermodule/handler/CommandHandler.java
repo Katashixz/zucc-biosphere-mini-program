@@ -72,19 +72,6 @@ public class CommandHandler {
             return;
         }
         Channel channel = NettyConfig.getUserChannelMap().get(chatMessage.getTargetID());
-        // 用户不在线的情况
-        // if (channel == null || !channel.isActive()) {
-        //     // 不在线的情况要将消息存入到Redis，用户上线后主动拉取
-        //     Map<Integer, ChatRecord> chatRecordMap = new HashMap<>();
-        //     // 如果存在这个用户的登陆状态，就更新
-        //     if (redisTemplate.opsForHash().hasKey("userID:" + chatMessage.getTargetID(), "chatMsg")) {
-        //         // Map数据结构key为消息接受者ID,value为一个消息列表chatRecordMap，其中key为消息发送者ID，value为最新的chatRecord
-        //         chatRecordMap = (Map<Integer, ChatRecord>) redisTemplate.opsForHash().get("userID:" + chatMessage.getTargetID(), "chatMsg");
-        //     }
-        //     // 不存在就新建，不设置过期时间
-        //     chatRecordMap.put(chatMessage.getSourceID(), chatMessage);
-        //     redisTemplate.opsForHash().put("userID:" + chatMessage.getTargetID(),"chatMsg", chatRecordMap);
-        // }
         if(channel != null && channel.isActive()){
             // 在线的情况，websocket用于实现实时聊天，客户端收到消息对全局变量进行处理。
             log.info("服务器收到消息：{}", chatMessage);

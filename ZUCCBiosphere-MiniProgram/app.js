@@ -294,6 +294,9 @@ App({
             },
             fail(err){
                 console.log("webSocket消息发送失败",err)
+                if(websocket_connected_count <= 5){
+                    that.WebSocketInit()
+                }
             }
         });
     },
@@ -303,6 +306,7 @@ App({
         // urlHome: 'http://localhost:9000',
         urlHome: 'https://katashix.top',
         webSocketHome: 'ws://124.221.252.162:58080/webSocket',
+        // webSocketHome: 'ws://127.0.0.1:58080/webSocket',
         token: '',
         openID: '',
         hasUserInfo: false,

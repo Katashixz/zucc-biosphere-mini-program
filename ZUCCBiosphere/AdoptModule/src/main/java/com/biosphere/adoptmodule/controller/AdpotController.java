@@ -60,7 +60,6 @@ public class AdpotController implements InitializingBean {
     @ApiOperation(value = "返回云领养主页数据", notes = "无需传参")
     @RequestMapping(value = "/exposure/getHomelessAnimals",method = RequestMethod.GET)
     public List<AdoptPageVo> getHomelessAnimals(){
-
         return animalsWikiService.getAdoptPageInfo();
     }
 

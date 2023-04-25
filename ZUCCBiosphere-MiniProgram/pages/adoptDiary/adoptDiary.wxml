@@ -31,7 +31,7 @@
     <scroll-view class="diaryList" scroll-y="true" enable-flex="true">
         <view class="diaryItem" wx:for="{{diaryList}}" wx:key="diaryItem" wx:for-item="diaryItem" data-index="{{index}}">
             <view class="diaryTop">
-                <image class="userAvatar avatarImage" mode="aspectFill" src="{{diaryItem.userAvatar}}"></image>
+                <image class="userAvatar avatarImage" mode="aspectFill" src="{{diaryItem.userAvatar}}" bindtap="openChatComponent" data-index="{{index}}"></image>
                 <view class="nameAndPostTime">
                         <text class="postManName">{{diaryItem.userName}}</text>
                         <view class="postTime">发布于{{diaryItem.createdAtFormat}}</view>
@@ -66,6 +66,7 @@
     </scroll-view>
     <text class="endText inCenter" style="margin-bottom: 20rpx;">—没有内容了哦—</text>
     <loginComponent id="loginComponent"></loginComponent>
+    <chatComponent id="chatComponent"></chatComponent>
 
     </view>
 </view>

@@ -28,7 +28,7 @@ Page({
             that.loginComponent.open()
         }else{
             wx.navigateTo({
-                url: '/pages/updateInfo/updateInfo?nickName=' + that.data.userInfo.userName  + '&avatarUrl=' + that.data.userInfo.avatarUrl + '&userID=' + that.data.userInfo.id,
+                url: '/pages/updateInfo/updateInfo?nickName=' + that.data.userInfo.userName + '&userID=' + that.data.userInfo.id + '&avatarUrl=' + that.data.userInfo.avatarUrl,
             })
         }
     },

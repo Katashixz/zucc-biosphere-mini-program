@@ -1,0 +1,57 @@
+/* pages/loginPage/loginPage.wxss */
+.imageContainer{
+  margin-top: 130rpx;
+  display: flex;
+  flex-direction: column;
+}
+.title{
+  margin-top: 20rpx;
+  font-size: 50rpx;
+  color: #6E5D52;
+
+}
+.logo{
+  height: 300rpx;
+  width: 250rpx;
+}
+.inputContainer{
+  display: flex;
+  flex-direction: column;
+}
+.accountContainer{
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+}
+.accountInput{
+  width: 400rpx;
+  height: 50rpx;
+  border-radius: 10rpx;
+  box-shadow: 0rpx 0rpx 10rpx 5rpx #c2c2c2;
+
+}
+.pwdContainer{
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+}
+.pwdInput{
+  width: 400rpx;
+  height: 50rpx;
+  border-radius: 10rpx;
+  box-shadow: 0rpx 0rpx 10rpx 5rpx #c2c2c2;
+}
+
+.sumbit{
+  margin-top: 50rpx;
+  width: 350rpx !important;
+  height: 90rpx !important;
+  border-radius: 20rpx;
+  color: #ffffff;
+  background-color: rgb(215,193,168) !important;
+}
+
+.sumbitClick{
+  color: #ffffff;
+  background-color: rgb(224, 210, 192) !important;
+}

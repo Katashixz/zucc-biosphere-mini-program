@@ -51,8 +51,7 @@ public class CommonUtil {
      * 功能描述: 传入字符串如果为null或者长度为0返回true
      */
     public static boolean isBlank(String obj){
-        obj = obj.replaceAll("\\s*", "");
-        return obj.isEmpty() || Objects.isNull(obj);
+        return Objects.isNull(obj)|| obj.replaceAll("\\s*", "").isEmpty();
     }
 
     /**

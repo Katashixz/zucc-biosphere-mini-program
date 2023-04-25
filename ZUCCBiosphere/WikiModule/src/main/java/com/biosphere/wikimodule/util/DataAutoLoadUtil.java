@@ -103,14 +103,6 @@ public class DataAutoLoadUtil {
 
 
         }
-        // Map animalsMap = new HashMap<>();
-        // for (AnimalsWiki animalsWiki : animalsWikiList) {
-        //     animalsMap.put(animalsWiki.getId().toString(),animalsWiki.getScientificNameID().toString());
-        // }
-        // Map plantsMap = new HashMap<>();
-        // for (PlantsWiki plantsWiki : plantsWikiList) {
-        //     plantsMap.put(plantsWiki.getId().toString(),plantsWiki.getScientificNameID().toString());
-        // }
         try {
             //防止发生缓存雪崩，设置不同过期时间。同时防止缓存击穿，设置更新时间短于过期时间
             redisTemplate.opsForValue().set("animalDataVoList", animalMainPageDataVoList,40, TimeUnit.MINUTES);

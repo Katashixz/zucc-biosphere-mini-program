@@ -11,10 +11,12 @@
         <module name="AdoptModule" />
         <module name="UserModule" />
         <module name="Library" />
+        <module name="AdminModule" />
         <module name="WikiModule" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="AdminModule" target="1.8" />
       <module name="AdoptModule" target="1.8" />
       <module name="CommunityModule" target="1.8" />
       <module name="library" target="1.8" />
@@ -26,6 +28,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="AdminModule" options="-parameters" />
       <module name="AdoptModule" options="-parameters" />
       <module name="CommunityModule" options="-parameters" />
       <module name="Library" options="-parameters" />

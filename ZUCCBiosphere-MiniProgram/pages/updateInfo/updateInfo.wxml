@@ -13,7 +13,7 @@
             <view class="avatar">
                 <view class="assistView">
                     <text class="title" style="padding-left: 45rpx;">设置名称</text>
-                    <input type="nickname" class="nickName" placeholder="{{input}}" maxlength="15" confirm-type="done"	style="width:{{inputLength}}rpx" bindinput="changeWidth" bindkeyboardheightchange="changeWidth" />
+                    <input class="nickName" placeholder="{{input}}" maxlength="15" confirm-type="done"	style="width:{{inputLength}}rpx" bindinput="changeWidth" bindkeyboardheightchange="changeWidth" />
                     <image class="symbol" src="../../icon/goTo.png"></image>
                 </view>
             </view>

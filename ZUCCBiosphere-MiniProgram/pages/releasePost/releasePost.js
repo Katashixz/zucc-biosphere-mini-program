@@ -276,7 +276,7 @@ Page({
             ).catch(
                 function(error){
                     wx.showToast({
-                        title: reason,
+                        title: error.msg,
                         duration: 2000,
                         icon: "error"
                     })
@@ -312,7 +312,7 @@ Page({
                     }
                 },
                 fail: (res) => {
-                    reject("服务器错误")    
+                    reject(res)    
 
                 }
             })
@@ -332,9 +332,9 @@ Page({
             let images = that.data.images
             wx.chooseMedia({
                 count: that.data.maxImg - that.data.images.length,
-                sizeType: ['original', 'compressed'],  //可选择原图或压缩后的图片
+                sizeType: ['compressed'],  //可选择原图或压缩后的图片
                 sourceType: ['album', 'camera'], //可选择性开放访问相册、相机
-                maxDuration: 15,
+                maxDuration: 10,
                 success: res => {
                     // console.log(res)
                     for (let i = 0; i < res.tempFiles.length; i++) {

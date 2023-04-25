@@ -54,6 +54,7 @@
 .imageWithContent{
     display: flex;
     justify-content: left;
+    flex-wrap: wrap;
     margin-top: 10rpx;
     padding: 0 10rpx;
 }
